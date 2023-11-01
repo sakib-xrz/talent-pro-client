@@ -1,3 +1,5 @@
+"use client";
+
 import Select from "react-select";
 
 export default function SelectField({
@@ -36,12 +38,15 @@ export default function SelectField({
           control: (baseStyles, { isFocused }) => ({
             ...baseStyles,
             boxShadow: "none",
+            borderRadius: "6px",
+            paddingTop: "1px",
+            paddingBottom: "1px",
             borderColor: isFocused ? "#059669" : "#D1D5DB",
             ":hover": { borderColor: "#059669" },
           }),
           option: (baseStyles, { isFocused }) => ({
-            ...baseStyles,
             backgroundColor: isFocused ? "#059669" : "#fff",
+            padding: "8px",
             color: isFocused ? "#fff" : "#1F2937",
           }),
           input: (baseStyles) => ({
