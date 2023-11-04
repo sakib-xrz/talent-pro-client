@@ -43,13 +43,16 @@ export default function RootNavbar() {
           <div
             className={`${
               open ? "absolute right-0 top-12 flex flex-col" : "hidden"
-            } " w-36 rounded-md border bg-white`}
+            } " w-40 rounded-md border bg-white`}
           >
-            <Link className=" border-b p-2 font-medium" href={"register"}>
-              As a candidate
+            <Link className=" border-b px-4 py-2 font-medium" href={"register"}>
+              As a Candidate
             </Link>
-            <Link className="p-2 font-medium" href={"/recruiter-register"}>
-              As a recruiter
+            <Link
+              className="px-4 py-2 font-medium"
+              href={"/recruiter-register"}
+            >
+              As a Recruiter
             </Link>
           </div>
         </div>

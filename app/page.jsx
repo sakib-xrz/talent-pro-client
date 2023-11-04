@@ -39,7 +39,7 @@ export default function Home() {
           placeholder={"Select a option"}
           value={fileType}
           isClearable={true}
-          isSearchable={true}
+          // isSearchable={true}
         />
         <TextInputField
           placeholder="Enter your email"
