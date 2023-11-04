@@ -39,6 +39,7 @@ export default function Home() {
           placeholder={"Select a option"}
           value={fileType}
           isClearable={true}
+          isSearchable={true}
         />
         <TextInputField
           placeholder="Enter your email"
@@ -70,7 +71,7 @@ export default function Home() {
           minRows={2}
         />
         <Button extraClassName="w-full">Primary Button</Button>
-        <Button variant="secondary" extraClassName="w-full">
+        <Button variant="secondary" extraClassName="w-full" isLoading>
           Secondary Button
         </Button>
       </div>

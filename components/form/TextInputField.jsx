@@ -3,7 +3,7 @@
 const defaultLabelClassNames = "block text-sm font-semibold text-gray-800";
 
 const defaultClassNames =
-  "mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm";
+  "mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:outline-none focus:ring-primary sm:text-sm disabled:cursor-not-allowed disabled:opacity-50";
 
 export default function TextInputField({
   type = "text",
@@ -11,6 +11,8 @@ export default function TextInputField({
   label,
   labelClassName = defaultLabelClassNames,
   className = defaultClassNames,
+  defaultValue,
+  disabled,
   placeholder,
   value,
   onChange,
@@ -26,6 +28,8 @@ export default function TextInputField({
         name={name}
         placeholder={placeholder}
         className={className}
+        defaultValue={defaultValue}
+        disabled={disabled}
         value={value}
         onChange={onChange}
       />
