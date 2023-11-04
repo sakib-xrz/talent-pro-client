@@ -28,8 +28,8 @@ export default function Home() {
   const [fileType, setFileType] = useState();
 
   return (
-    <div className="mx-auto max-w-7xl px-5">
-      <h1 className="pb-5 pt-20 text-center text-2xl font-bold text-primary">
+    <div className="mx-auto max-w-7xl px-5 py-20">
+      <h1 className="pb-5 text-center text-2xl font-bold text-primary">
         Welcome to Talent Pro
       </h1>
       <div className="space-y-4">
