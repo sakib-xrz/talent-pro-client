@@ -17,10 +17,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={PlusJakartaSans.className}>
-        <main className="min-h-screen bg-base">
+        <main className="bg-base min-h-screen">
           <GlobalProvider>
             <RootNavbar />
-            {children}
+            <div className="!min-h-[calc(100vh-17rem)]">{children}</div>
             <RootFooter />
           </GlobalProvider>
         </main>

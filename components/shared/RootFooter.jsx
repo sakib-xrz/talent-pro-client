@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "public/images/logo.jpg";
+import Logo from "public/images/logo.png";
 import Image from "next/image";
 
 const footerOptions = [
@@ -27,7 +27,7 @@ export default function RootFooter() {
             <Link
               href={item.href}
               key={item.name}
-              className="font-semibold text-gray-400 hover:text-gray-500"
+              className="text-base font-medium text-gray-500 hover:text-gray-700"
             >
               {item.name}
             </Link>
@@ -38,27 +38,27 @@ export default function RootFooter() {
             height={500}
             width={500}
             src="/images/twitter.png"
-            className="h-5 w-5 cursor-pointer object-cover object-center opacity-40 hover:opacity-80"
+            className="h-5 w-5 cursor-pointer object-cover object-center opacity-40 hover:opacity-100"
             alt="twitter.png"
           />
           <Image
             height={500}
             width={500}
             src="/images/linkedin.png"
-            className="h-5 w-5 cursor-pointer object-cover object-center opacity-40 hover:opacity-80"
+            className="h-5 w-5 cursor-pointer object-cover object-center opacity-40 hover:opacity-100"
             alt="linkedin.png"
           />
           <Image
             height={500}
             width={500}
             src="/images/facebook.png"
-            className="h-5 w-5 cursor-pointer object-cover object-center opacity-40 hover:opacity-80"
+            className="h-5 w-5 cursor-pointer object-cover object-center opacity-40 hover:opacity-100"
             alt="facebook.png"
           />
         </div>
       </div>
       <hr />
-      <p className="py-4 text-center text-base text-gray-400">
+      <p className="py-4 text-center text-base text-gray-500">
         © Copyright {year} Talent Pro
       </p>
     </footer>
