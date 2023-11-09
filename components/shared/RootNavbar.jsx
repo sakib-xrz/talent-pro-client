@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "public/images/logo.png";
+import Logo from "public/images/logo.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -28,7 +28,7 @@ export default function RootNavbar() {
           <Separator orientation="vertical" className="h-8" />
           <Button
             variant="link"
-            className="px-0 text-gray-800"
+            className="px-0 font-semibold"
             href={"/recruiter-register"}
           >
             Hire talent

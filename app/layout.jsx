@@ -20,7 +20,9 @@ export default function RootLayout({ children }) {
         <main className="bg-base min-h-screen">
           <GlobalProvider>
             <RootNavbar />
-            <div className="!min-h-[calc(100vh-17rem)]">{children}</div>
+            <div className="!min-h-[calc(100vh-17rem)] bg-gray-50">
+              {children}
+            </div>
             <RootFooter />
           </GlobalProvider>
         </main>
