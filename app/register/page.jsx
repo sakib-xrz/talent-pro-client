@@ -1,21 +1,25 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import Logo from "public/images/logo.png";
+
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import toast from "react-hot-toast";
+
+import APIKit from "@/common/APIkit";
+import { setJWTokenAndRedirect } from "@/components/candidate/CandidateAuthGuardHOC";
+
 import { Button } from "@/components/ui/button";
+import FormikErrorBox from "@/components/form/FormikErrorBox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Password } from "@/components/ui/password";
-import Image from "next/image";
-import Link from "next/link";
-import Logo from "public/images/logo.png";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import FormikErrorBox from "@/components/form/FormikErrorBox";
-import APIKit from "@/common/APIkit";
-import toast from "react-hot-toast";
-import { setJWTokenAndRedirect } from "@/components/candidate/CandidateAuthGuardHOC";
-import RootNavbar from "@/components/shared/RootNavbar";
 import RootFooter from "@/components/shared/RootFooter";
-import { useRouter } from "next/navigation";
+import RootNavbar from "@/components/shared/RootNavbar";
 
 const validationSchema = Yup.object({
   first_name: Yup.string().required("First Name is required"),
