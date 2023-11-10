@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={PlusJakartaSans.className}>
-        <main className="bg-base min-h-screen">
+        <main>
           <GlobalProvider>{children}</GlobalProvider>
         </main>
       </body>
