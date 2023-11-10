@@ -10,6 +10,8 @@ import Logo from "public/images/logo.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
+import APIKit from "@/common/APIkit";
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object({
   first_name: Yup.string().required("First Name is required"),
@@ -47,9 +49,30 @@ export default function CandidateRegister() {
         email: values.email,
         password: values.password,
       };
-      console.log(payload);
+
+      const handleSuccess = ({ data }) => {
+        console.log(data);
+        formik.resetForm();
+      };
+
+      const handleFailure = (error) => {
+        throw error;
+      };
+
+      const promise = APIKit.auth
+        .register(payload)
+        .then(handleSuccess)
+        .catch(handleFailure)
+        .finally(() => setSubmitting(false));
+
+      return toast.promise(promise, {
+        loading: "Creating your account...",
+        success: "Signed up successfully",
+        error: (error) => error.message,
+      });
     },
   });
+
   return (
     <div className="mx-auto w-full sm:w-2/3 sm:py-10 xl:w-1/3">
       <div className="space-y-8 rounded-md bg-white px-8 py-10 shadow">
@@ -124,7 +147,7 @@ export default function CandidateRegister() {
             <Password
               id="confirm_password"
               name="confirm_password"
-              placeholder="retype your password"
+              placeholder="re-type your password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.confirm_password}
@@ -132,7 +155,11 @@ export default function CandidateRegister() {
             <FormikErrorBox formik={formik} field="confirm_password" />
           </div>
           <div className="w-full">
-            <Button type="submit" className="mt-2 w-full">
+            <Button
+              type="submit"
+              className="mt-2 w-full"
+              isLoading={formik.isSubmitting}
+            >
               Sign Up
             </Button>
           </div>

@@ -22,9 +22,26 @@ const setClientToken = (token) => {
   } catch (error) {
     defer.reject(error);
   }
-
   return defer.promise;
 };
+
+client.interceptors.response.use(
+  function (response) {
+    // const responseObject = {
+    //   data: response?.data?.data,
+    // };
+    // return responseObject;
+    return response;
+  },
+  function (error) {
+    const errorResponse = {
+      success: false,
+      message: error.response?.data?.message || "An error occurred",
+      errorMessages: error.response?.data?.errorMessages || [],
+    };
+    return Promise.reject(errorResponse);
+  },
+);
 
 const HTTPKit = {
   setClientToken,
