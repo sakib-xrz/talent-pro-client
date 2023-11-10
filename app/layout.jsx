@@ -18,11 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={PlusJakartaSans.className}>
         <main className="bg-base min-h-screen">
-          <GlobalProvider>
-            <RootNavbar />
-            <div className="!min-h-[calc(100vh-17rem)]">{children}</div>
-            <RootFooter />
-          </GlobalProvider>
+          <GlobalProvider>{children}</GlobalProvider>
         </main>
       </body>
     </html>

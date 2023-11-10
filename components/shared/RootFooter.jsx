@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "public/images/logo.png";
+import Logo from "public/images/logo.jpg";
 import Image from "next/image";
 
 const footerOptions = [
@@ -15,8 +15,8 @@ let year = date.getFullYear();
 
 export default function RootFooter() {
   return (
-    <footer className="bg-white px-5 sm:px-8 ">
-      <div className="flex flex-col items-center justify-between gap-8 border-gray-200 py-10 md:flex-row ">
+    <footer className="border-t border-gray-200 bg-white px-5 sm:px-8">
+      <div className="flex flex-col items-center justify-between gap-8 py-10 md:flex-row ">
         <div className="flex gap-20">
           <div>
             <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
