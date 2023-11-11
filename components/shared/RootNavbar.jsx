@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "public/images/logo.jpg";
+import Logo from "public/images/logo.png";
 import Button from "./Button";
 import Image from "next/image";
 import LinkButton from "./LinkButton";
