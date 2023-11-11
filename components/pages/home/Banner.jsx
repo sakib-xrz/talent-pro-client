@@ -9,7 +9,7 @@ export default function Banner() {
           <h1 className="max-w-xs text-2xl font-semibold text-primary-foreground sm:max-w-sm sm:text-3xl md:mx-auto md:max-w-md md:text-center lg:max-w-4xl lg:text-6xl">
             Connecting Opportunities and Empowering Careers
           </h1>
-          <p className="max-w-xs text-xs text-primary-foreground sm:max-w-md md:mx-auto md:text-center lg:max-w-2xl lg:text-lg">
+          <p className="max-w-xs text-sm text-primary-foreground sm:max-w-md md:mx-auto md:text-center lg:max-w-2xl lg:text-lg">
             Where Aspirations Meet Careers, and Recruiters Discover Exceptional
             Talent Your Gateway to Professional Excellence!
           </p>
