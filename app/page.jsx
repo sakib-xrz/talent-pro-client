@@ -25,11 +25,13 @@ export default function Home() {
           />
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
             <Card>
-              <CardHeader>
+              <CardHeader className="pb-3">
                 <SparklesIcon className="bg- h-10 w-10 rounded-md bg-sky-200 p-2 text-[#0369A1]" />
               </CardHeader>
-              <CardContent>
-                <h4 className="text-xl font-semibold">Jobs that Fit You</h4>
+              <CardContent className="pb-2">
+                <h4 className="text-lg font-semibold lg:text-xl">
+                  Jobs that Fit You
+                </h4>
               </CardContent>
               <CardFooter>
                 <p className="text-base">
@@ -40,11 +42,11 @@ export default function Home() {
               </CardFooter>
             </Card>
             <Card>
-              <CardHeader>
+              <CardHeader className="pb-3">
                 <SparklesIcon className="bg- h-10 w-10 rounded-md bg-[#FFEDD5] p-2 text-[#1F2937]" />
               </CardHeader>
-              <CardContent>
-                <h4 className="text-xl font-semibold">Easy Apply</h4>
+              <CardContent className="pb-2">
+                <h4 className="text-lg font-semibold lg:text-xl">Easy Apply</h4>
               </CardContent>
               <CardFooter>
                 <p className="text-base">
@@ -55,11 +57,13 @@ export default function Home() {
               </CardFooter>
             </Card>
             <Card>
-              <CardHeader>
+              <CardHeader className="pb-3">
                 <SparklesIcon className="bg- h-10 w-10 rounded-md bg-[#EDE9FE] p-2 text-[#5B21B6]" />
               </CardHeader>
-              <CardContent>
-                <h4 className="text-xl font-semibold">Showcase Your Talents</h4>
+              <CardContent className="pb-2">
+                <h4 className="text-lg font-semibold lg:text-xl">
+                  Showcase Your Talents
+                </h4>
               </CardContent>
               <CardFooter>
                 <p className="text-base">
@@ -69,11 +73,11 @@ export default function Home() {
               </CardFooter>
             </Card>
             <Card>
-              <CardHeader>
+              <CardHeader className="pb-3">
                 <SparklesIcon className="bg- h-10 w-10 rounded-md bg-[#ECFDF5] p-2 text-[#059669]" />
               </CardHeader>
-              <CardContent>
-                <h4 className="text-xl font-semibold">Job Vault</h4>
+              <CardContent className="pb-2">
+                <h4 className="text-lg font-semibold lg:text-xl">Job Vault</h4>
               </CardContent>
               <CardFooter>
                 <p className="text-base">
