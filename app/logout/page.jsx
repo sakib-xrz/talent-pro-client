@@ -15,7 +15,7 @@ export default function Logout() {
     dispatch(clearUserData());
     localStorage.removeItem(AUTH_TOKEN_KEY);
     router.push("/login");
-  }, []);
+  }, [dispatch, router]);
 
   return null;
 }

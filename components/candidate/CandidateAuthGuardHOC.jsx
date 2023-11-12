@@ -58,4 +58,5 @@ export default function CandidateAuthGuardHOC({ children }) {
   }, []);
 
   return user.email ? children : null;
+  // return children;
 }

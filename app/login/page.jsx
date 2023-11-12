@@ -77,7 +77,13 @@ export default function CandidateLogin() {
       <div className="mx-auto w-full sm:w-2/3 sm:py-10 xl:w-1/3">
         <div className="space-y-8 rounded-md bg-white px-8 py-10 shadow">
           <div className="flex justify-center">
-            <Image src={Logo} width={200} height={50} alt="Talent Pro Logo" />
+            <Image
+              src={Logo}
+              width={200}
+              height={50}
+              alt="Talent Pro Logo"
+              style={{ height: "auto", width: "auto" }}
+            />
           </div>
           <h2 className="scroll-m-20 text-center text-3xl font-semibold tracking-tight first:mt-0">
             Sign In to Your Account
