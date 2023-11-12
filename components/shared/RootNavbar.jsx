@@ -1,41 +1,45 @@
 "use client";
 
-import Logo from "public/images/logo.png";
-import Button from "./Button";
 import Image from "next/image";
-import LinkButton from "./LinkButton";
 import Link from "next/link";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+
+import Logo from "public/images/logo.png";
+
+import { Button } from "../ui/button";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { Separator } from "../ui/separator";
 
 export default function RootNavbar() {
   const [open, setOpen] = useState(false);
   return (
-    <nav className=" border-b border-gray-200 bg-white px-4 py-5 sm:px-8 lg:border-none">
+    <nav className="sticky top-0 z-50 w-full px-4 py-5 shadow backdrop-blur supports-[backdrop-filter]:bg-background/40 sm:px-8">
       <div className="flex items-center justify-between">
         <Link href={"/"}>
           <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
         </Link>
-        <div className="hidden items-center gap-x-6 divide-x-2 sm:flex">
+        <div className="hidden items-center gap-x-6 sm:flex">
           <div className=" flex items-center gap-4">
             <Link href={"/login"}>
               <Button>Sign In</Button>
             </Link>
             <Link href={"/register"}>
-              <Button variant="secondary">Sign Up</Button>
+              <Button variant="outline">Sign Up</Button>
             </Link>
           </div>
-          <LinkButton
-            extraClassName="pl-4 text-gray-800"
+          <Separator orientation="vertical" className="h-8" />
+          <Button
+            variant="link"
+            className="px-0 font-semibold"
             href={"/recruiter-register"}
           >
             Hire talent
-          </LinkButton>
+          </Button>
         </div>
         <div className="relative sm:hidden">
           <Button
             onClick={() => setOpen(!open)}
-            extraClassName="flex gap-2 items-center"
+            className="flex items-center gap-2"
           >
             Register
             <ChevronDownIcon className="h-4 w-4 text-white" />
