@@ -1,6 +1,10 @@
+import Link from "next/link";
+import Image from "next/image";
+
 import { SparklesIcon } from "@heroicons/react/24/outline";
 
 import Banner from "@/components/pages/home/Banner";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,10 +14,6 @@ import {
 import HeadingWithSubtitle from "@/components/shared/HeadingWithSubtitle";
 import RootFooter from "@/components/shared/RootFooter";
 import RootNavbar from "@/components/shared/RootNavbar";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
 
 const feature = [
   {
@@ -70,6 +70,51 @@ const steps = [
   },
 ];
 
+const whyTalentPro = [
+  {
+    id: 1,
+    title: "Time Saving",
+    details:
+      "Our recruitment tool is designed to put time back in your hands. Say goodbye to lengthy, manual processes, and hello to a streamlined, efficient solution",
+    logo_color: "text-sky-700 bg-sky-100",
+  },
+  {
+    id: 2,
+    title: "Cost-efficiency",
+    details:
+      "By automating key processes and pinpointing the best candidates, you'll reduce recruitment costs and boost your return on investment",
+    logo_color: "text-orange-700 bg-orange-100",
+  },
+  {
+    id: 3,
+    title: "Improved Candidate Quality",
+    details:
+      "With our intelligent matching and assessment tools, you'll welcome candidates who truly fit your needs.",
+    logo_color: "text-purple-700 bg-purple-100",
+  },
+  {
+    id: 4,
+    title: "Easy To Use",
+    details:
+      "Our recruitment tool is designed to put time back in your hands. Say goodbye to lengthy, manual processes, and hello to a streamlined, efficient solution",
+    logo_color: "text-emerald-700 bg-emerald-100",
+  },
+  {
+    id: 5,
+    title: "HR needs in a Single Hub",
+    details:
+      "By automating key processes and pinpointing the best candidates, you'll reduce recruitment costs and boost your return on investment",
+    logo_color: "text-lime-700 bg-lime-100",
+  },
+  {
+    id: 6,
+    title: "Effortless Talent Tracking",
+    details:
+      "Quality over quantity—our recruitment tool is your gateway to exceptional candidates.",
+    logo_color: "text-rose-700 bg-rose-100",
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -83,7 +128,7 @@ export default function Home() {
               "Discover the Tools and Resources You Need to Land Your Dream Job"
             }
           />
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
             {feature.map((el) => (
               <Card key={el.id}>
                 <CardHeader className="pb-3">
@@ -200,38 +245,16 @@ export default function Home() {
         <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-8 lg:space-y-14">
           <HeadingWithSubtitle title={"Why choose Talent Pro to hire talent"} />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div className="space-y-4 border-l-2 pl-8">
-              <SparklesIcon className="h-12 w-12 rounded-md bg-sky-100 p-2 text-sky-700" />
+            {whyTalentPro.map((el) => (
+              <div key={el.id} className="space-y-4 border-l-2 pl-8">
+                <SparklesIcon
+                  className={`h-12 w-12 rounded-md p-2 ${el.logo_color}`}
+                />
 
-              <h4 className="text-lg font-semibold lg:text-xl">Time Saving</h4>
-              <p className="text-muted-foreground">
-                Our recruitment tool is designed to put time back in your hands.
-                Say goodbye to lengthy, manual processes, and hello to a
-                streamlined, efficient solution.
-              </p>
-            </div>
-
-            <div className="space-y-4 border-l-2 pl-8">
-              <SparklesIcon className="h-12 w-12 rounded-md bg-sky-100 p-2 text-sky-700" />
-
-              <h4 className="text-lg font-semibold lg:text-xl">Time Saving</h4>
-              <p className="text-muted-foreground">
-                Our recruitment tool is designed to put time back in your hands.
-                Say goodbye to lengthy, manual processes, and hello to a
-                streamlined, efficient solution.
-              </p>
-            </div>
-
-            <div className="space-y-4 border-l-2 pl-8">
-              <SparklesIcon className="h-12 w-12 rounded-md bg-sky-100 p-2 text-sky-700" />
-
-              <h4 className="text-lg font-semibold lg:text-xl">Time Saving</h4>
-              <p className="text-muted-foreground">
-                Our recruitment tool is designed to put time back in your hands.
-                Say goodbye to lengthy, manual processes, and hello to a
-                streamlined, efficient solution.
-              </p>
-            </div>
+                <h4 className="text-lg font-semibold lg:text-xl">{el.title}</h4>
+                <p className="text-muted-foreground">{el.details}</p>
+              </div>
+            ))}
           </div>
         </div>
 
