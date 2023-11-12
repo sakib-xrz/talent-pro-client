@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "public/images/logo.jpg";
+import Logo from "public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -11,7 +11,7 @@ import { Separator } from "../ui/separator";
 export default function RootNavbar() {
   const [open, setOpen] = useState(false);
   return (
-    <nav className="sticky top-0 border-b border-gray-200 bg-white px-4 py-5 sm:px-8">
+    <nav className="sticky top-0 z-50 w-full px-4 py-5 shadow backdrop-blur supports-[backdrop-filter]:bg-background/40 sm:px-8">
       <div className="flex items-center justify-between">
         <Link href={"/"}>
           <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
