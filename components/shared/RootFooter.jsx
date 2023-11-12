@@ -1,6 +1,7 @@
-import Link from "next/link";
-import Logo from "public/images/logo.png";
 import Image from "next/image";
+import Link from "next/link";
+
+import Logo from "public/images/logo.png";
 
 const footerOptions = [
   { name: "Hire Talents", href: "/recruiter-register" },

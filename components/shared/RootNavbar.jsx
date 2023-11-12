@@ -1,11 +1,13 @@
 "use client";
 
-import Logo from "public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+
+import Logo from "public/images/logo.png";
+
 import { Button } from "../ui/button";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Separator } from "../ui/separator";
 
 export default function RootNavbar() {
