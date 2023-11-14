@@ -10,12 +10,40 @@ import Step3Form from "./components/Step3Form";
 import Success from "./components/Success";
 
 const initialValues = {
-  industry: {
-    label: "",
-    value: "",
+  name: {
+    first_name: "",
+    last_name: "",
   },
-  employ_status: "",
-  employment_type: "",
+  email: "",
+  phone: "",
+  location: "",
+  industry: "",
+  job_status: "",
+  experience: {
+    company_name: "",
+    designation: "",
+    job_type: "",
+    start_date: "",
+    end_date: "",
+    work_currently: false,
+  },
+  education: {
+    institute_name: "",
+    degree: "",
+    major: "",
+    location: "",
+    start_date: "",
+    end_date: "",
+    study_currently: false,
+  },
+  skills: [],
+  portfolio: "",
+  resume: "",
+  desired_salary: {
+    min: "",
+    max: "",
+  },
+  open_to_work_remotely: false,
 };
 
 const validationSchema = Yup.object().shape({

@@ -34,7 +34,7 @@ export default function CandidateAuthGuardHOC({ children }) {
   const fetchMe = async () => {
     try {
       const { data } = await APIKit.me.getMe();
-      dispatch(setUserData(data?.data));
+      dispatch(setUserData(data));
     } catch (error) {
       console.error(error);
     }
@@ -58,5 +58,4 @@ export default function CandidateAuthGuardHOC({ children }) {
   }, []);
 
   return user.email ? children : null;
-  // return children;
 }

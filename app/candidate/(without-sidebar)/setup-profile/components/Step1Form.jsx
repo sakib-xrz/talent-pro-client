@@ -4,7 +4,9 @@ import { EmployStatus, IndustryOptions } from "@/common/KeyChain";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
 import SelectField from "@/components/form/SelectField";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Phone } from "@/components/ui/phone";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function Step1Form({ formik, handleCompleteStep1 }) {
@@ -32,13 +34,44 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           </div>
         </div>
         <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
+          <h4 className="text-lg font-semibold">Personal Information</h4>
+          <div className="space-y-2">
+            <p className="font-medium text-primary">Your phone number</p>
+            <div>
+              <Phone
+                id="phone"
+                name="phone"
+                placeholder="01XXX-XXXXXX"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.phone}
+              />
+            </div>
+            <FormikErrorBox formik={formik} field="phone" />
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-medium text-primary">Company Name</p>
+            <div>
+              <Input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="e.g. Dhaka, Bangladesh"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.location}
+              />
+            </div>
+            <FormikErrorBox formik={formik} field="location" />
+          </div>
+
           <div className="space-y-2">
             <p className="font-medium text-primary">What’s your industry?</p>
             <div>
               <SelectField
                 id="industry"
                 name="industry"
-                label="Industry"
                 placeholder="Select Your Industry"
                 options={IndustryOptions}
                 onChange={handleIndustryChange}
@@ -56,8 +89,7 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           <div className="space-y-2">
             <p className="font-medium text-primary">What’s your job status?</p>
             <div className="space-y-2">
-              <p className="text-sm font-medium leading-none">Employ status</p>
-              <div className="space-y-1">
+              <div className="space-y-1 pl-2">
                 <RadioGroup
                   name={"employ_status"}
                   onValueChange={(value) =>

@@ -3,9 +3,19 @@
 import { EmploymentType } from "@/common/KeyChain";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { cn } from "@/lib/utils";
+import { CalendarIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { format } from "date-fns";
 
 export default function Step2Form({
   formik,
@@ -29,21 +39,49 @@ export default function Step2Form({
           </div>
         </div>
         <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
+          <h4 className="text-lg font-semibold">Work Experience</h4>
           <div className="space-y-2">
-            <p className="font-medium text-primary">
-              What’s your employment status?
-            </p>
+            <p className="font-medium text-primary">Company Name</p>
+            <div>
+              <Input
+                type="text"
+                id="company_name"
+                name="experience.company_name"
+                placeholder="e.g. Google"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.experience.company_name}
+              />
+            </div>
+            <FormikErrorBox formik={formik} field="experience.company_name" />
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-medium text-primary">Designation</p>
+            <div>
+              <Input
+                type="text"
+                id="designation"
+                name="experience.designation"
+                placeholder="e.g. Product Designer"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.experience.designation}
+              />
+            </div>
+            <FormikErrorBox formik={formik} field="experience.designation" />
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-medium text-primary">Job type?</p>
             <div className="space-y-2">
-              <p className="text-sm font-medium leading-none">
-                Employment status
-              </p>
-              <div className="space-y-1">
+              <div className="ml-2 space-y-1">
                 <RadioGroup
-                  name={"employment_type"}
+                  name={"experience.job_type"}
                   onValueChange={(value) =>
-                    formik.setFieldValue("employment_type", value)
+                    formik.setFieldValue("experience.job_type", value)
                   }
-                  defaultValue={formik.values.employment_type || ""}
+                  defaultValue={formik.values.experience.job_type || ""}
                 >
                   {EmploymentType.map((el, i) => (
                     <div key={i} className="flex items-center space-x-2">
@@ -54,8 +92,109 @@ export default function Step2Form({
                 </RadioGroup>
               </div>
             </div>
-            <FormikErrorBox formik={formik} field="employment_type" />
+            <FormikErrorBox formik={formik} field="experience.job_type" />
           </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between gap-4">
+              <div className="w-full space-y-2">
+                <p className="font-medium text-primary">Start Date</p>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-full justify-start text-left font-normal",
+                        !formik.values.experience.start_date &&
+                          "text-muted-foreground",
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {formik.values.experience.start_date ? (
+                        formik.values.experience.start_date
+                      ) : (
+                        <span>dd/mm/yy</span>
+                      )}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <Calendar
+                      mode="single"
+                      selected={formik.values.experience.start_date}
+                      onSelect={(newDate) => {
+                        const formattedStartDate = format(
+                          newDate,
+                          "dd/MM/yyyy",
+                        );
+                        formik.setFieldValue(
+                          "experience.start_date",
+                          formattedStartDate,
+                        );
+                      }}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+              <div className="w-full space-y-2">
+                <p className="font-medium text-primary">End Date</p>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-full justify-start text-left font-normal",
+                        !formik.values.experience.end_date &&
+                          "text-muted-foreground",
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {formik.values.experience.end_date ? (
+                        formik.values.experience.end_date
+                      ) : (
+                        <span>dd/mm/yy</span>
+                      )}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <Calendar
+                      mode="single"
+                      selected={formik.values.experience.end_date}
+                      onSelect={(newDate) => {
+                        const formattedEndDate = format(newDate, "dd/MM/yyyy");
+                        formik.setFieldValue(
+                          "experience.end_date",
+                          formattedEndDate,
+                        );
+                      }}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                type="checkbox"
+                id="work_currently"
+                name="experience.work_currently"
+                onCheckedChange={(value) =>
+                  formik.setFieldValue("experience.work_currently", value)
+                }
+                checked={formik.values.experience.work_currently}
+              />
+              <Label
+                htmlFor="work_currently"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                I currently work here
+              </Label>
+            </div>
+          </div>
+
           <div></div>
           <div className="border-t border-neutral-200 py-4">
             <div className="flex items-center justify-between">

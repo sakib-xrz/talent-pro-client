@@ -50,7 +50,7 @@ export const IndustryOptions = [
 export const EmployStatus = [
   { label: "Employed", value: "EMPLOYED" },
   { label: "Internship", value: "INTERNSHIP" },
-  { label: "Student", value: "STUDENT" },
+  { label: "Unemployed", value: "UNEMPLOYED" },
 ];
 
 export const EmploymentType = [

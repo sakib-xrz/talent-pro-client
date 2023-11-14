@@ -31,8 +31,8 @@ const validationSchema = Yup.object({
 });
 
 const initialValues = {
-  email: "",
-  password: "",
+  email: "sakib@gmail.com",
+  password: "Sakib@123",
 };
 
 export default function CandidateLogin() {
