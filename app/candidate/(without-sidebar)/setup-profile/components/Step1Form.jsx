@@ -26,9 +26,12 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           </h2>
         </div>
         <div className="els-start flex flex-col justify-start gap-1 p-4 sm:p-8">
-          <p className="text-base text-accent-foreground">Step 1/3</p>
+          <p className="text-base font-medium text-accent-foreground">
+            Step 1/4
+          </p>
           <div className="flex w-full gap-2">
             <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
+            <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
           </div>

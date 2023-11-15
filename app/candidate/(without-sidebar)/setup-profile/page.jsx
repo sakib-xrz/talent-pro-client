@@ -4,47 +4,15 @@ import { useState } from "react";
 
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useSelector } from "react-redux";
+
+import { selectUser } from "@/redux/reducers/userSlice";
+
 import Step1Form from "./components/Step1Form";
 import Step2Form from "./components/Step2Form";
 import Step3Form from "./components/Step3Form";
 import Success from "./components/Success";
-
-const initialValues = {
-  name: {
-    first_name: "",
-    last_name: "",
-  },
-  email: "",
-  phone: "",
-  location: "",
-  industry: "",
-  job_status: "",
-  experience: {
-    company_name: "",
-    designation: "",
-    job_type: "",
-    start_date: "",
-    end_date: "",
-    work_currently: false,
-  },
-  education: {
-    institute_name: "",
-    degree: "",
-    major: "",
-    location: "",
-    start_date: "",
-    end_date: "",
-    study_currently: false,
-  },
-  skills: [],
-  portfolio: "",
-  resume: "",
-  desired_salary: {
-    min: "",
-    max: "",
-  },
-  open_to_work_remotely: false,
-};
+import Step4From from "./components/Step4From";
 
 const validationSchema = Yup.object().shape({
   // Add validation rules as needed
@@ -52,6 +20,40 @@ const validationSchema = Yup.object().shape({
 
 export default function CandidateSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
+  const user = useSelector(selectUser);
+
+  const initialValues = {
+    candidate_id: user?.id,
+    phone: "",
+    location: "",
+    industry: "",
+    job_status: "",
+    experience: {
+      company_name: "",
+      designation: "",
+      job_type: "",
+      start_date: "",
+      end_date: "",
+      work_currently: false,
+    },
+    education: {
+      institute_name: "",
+      degree: "",
+      major: "",
+      location: "",
+      start_date: "",
+      end_date: "",
+      study_currently: false,
+    },
+    skills: [],
+    portfolio: "",
+    resume: "",
+    desired_salary: {
+      min: "",
+      max: "",
+    },
+    open_to_work_remotely: false,
+  };
 
   const formik = useFormik({
     initialValues,
@@ -69,13 +71,18 @@ export default function CandidateSetupProfile() {
 
   const handleCompleteStep2 = (data) => {
     formik.setValues({ ...formik.values, ...data });
-    console.log(formik.values);
     setCurrentStep(3);
   };
 
   const handleCompleteStep3 = (data) => {
     formik.setValues({ ...formik.values, ...data });
     setCurrentStep(4);
+  };
+
+  const handleCompleteStep4 = (data) => {
+    formik.setValues({ ...formik.values, ...data });
+    console.log(formik.values);
+    setCurrentStep(5);
   };
 
   const handleStepChange = (step) => {
@@ -107,7 +114,15 @@ export default function CandidateSetupProfile() {
             handleBackToStep2={() => handleStepChange(2)}
           />
         )}
-        {currentStep === 4 && <Success />}
+
+        {currentStep === 4 && (
+          <Step4From
+            formik={formik}
+            handleCompleteStep4={handleCompleteStep4}
+            handleBackToStep3={() => handleStepChange(3)}
+          />
+        )}
+        {currentStep === 5 && <Success />}
       </div>
     </div>
   );

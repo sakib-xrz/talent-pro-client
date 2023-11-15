@@ -1,10 +1,13 @@
 "use client";
 
-import { EmploymentType } from "@/common/KeyChain";
-import FormikErrorBox from "@/components/form/FormikErrorBox";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Checkbox } from "@/components/ui/checkbox";
+import { CalendarIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { EmploymentType } from "@/common/KeyChain";
+import FormikErrorBox from "@/components/form/FormikErrorBox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -13,9 +16,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { cn } from "@/lib/utils";
-import { CalendarIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
-import { format } from "date-fns";
 
 export default function Step2Form({
   formik,
@@ -31,10 +31,13 @@ export default function Step2Form({
           </h2>
         </div>
         <div className="els-start flex flex-col justify-start gap-1 p-4 sm:p-8">
-          <p className="text-base text-accent-foreground">Step 2/3</p>
+          <p className="text-base font-medium text-accent-foreground">
+            Step 2/4
+          </p>
           <div className="flex w-full gap-2">
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
+            <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
           </div>
         </div>
@@ -106,7 +109,7 @@ export default function Step2Form({
                       className={cn(
                         "w-full justify-start text-left font-normal",
                         !formik.values.experience.start_date &&
-                          "text-muted-foreground",
+                          "text-muted-foreground hover:bg-transparent",
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
@@ -137,15 +140,24 @@ export default function Step2Form({
                 </Popover>
               </div>
               <div className="w-full space-y-2">
-                <p className="font-medium text-primary">End Date</p>
+                <p
+                  className={`font-medium ${
+                    formik.values?.experience?.work_currently
+                      ? "text-primary/30"
+                      : "text-primary"
+                  }`}
+                >
+                  End Date
+                </p>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
+                      disabled={formik.values?.experience?.work_currently}
                       variant={"outline"}
                       className={cn(
                         "w-full justify-start text-left font-normal",
                         !formik.values.experience.end_date &&
-                          "text-muted-foreground",
+                          "text-muted-foreground hover:bg-transparent",
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
@@ -177,21 +189,20 @@ export default function Step2Form({
 
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
-              <Checkbox
+              <input
                 type="checkbox"
                 id="work_currently"
                 name="experience.work_currently"
-                onCheckedChange={(value) =>
-                  formik.setFieldValue("experience.work_currently", value)
-                }
+                onChange={formik.handleChange}
                 checked={formik.values.experience.work_currently}
+                className="accent-primary"
               />
-              <Label
+              <label
                 htmlFor="work_currently"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 I currently work here
-              </Label>
+              </label>
             </div>
           </div>
 

@@ -13,11 +13,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import CreatableSelectField from "@/components/form/CreatableSelectField";
 
-export default function Step3Form({
+export default function Step4From({
   formik,
-  handleCompleteStep3,
-  handleBackToStep2,
+  handleCompleteStep4,
+  handleBackToStep3,
 }) {
   return (
     <div className="rounded-2xl bg-white shadow">
@@ -29,28 +30,38 @@ export default function Step3Form({
         </div>
         <div className="els-start flex flex-col justify-start gap-1 p-4 sm:p-8">
           <p className="text-base font-medium text-accent-foreground">
-            Step 3/4
+            Step 4/4
           </p>
           <div className="flex w-full gap-2">
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
-            <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
+            <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
           </div>
         </div>
         <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
-          <h4 className="text-lg font-semibold">Education</h4>
+          <h4 className="text-lg font-semibold">Skills and Expertise</h4>
           <div className="space-y-2">
-            <p className="font-medium text-primary">Institute name</p>
+            <p className="font-medium text-primary">Add Skills</p>
             <div>
-              <Input
-                type="text"
-                id="institute_name"
-                name="education.institute_name"
-                placeholder="e.g. California University"
-                onChange={formik.handleChange}
+              <CreatableSelectField
+                id="skills"
+                name="skills"
+                placeholder="e.g. Python, React"
+                // options={IndustryOptions}
+                onChange={(selectedOption) => {
+                  const skills = selectedOption.map((obj) => ({
+                    label:
+                      obj.label.charAt(0).toUpperCase() + obj.label.slice(1),
+                    value: obj.value.toUpperCase().replace(/\s+/g, "_"),
+                  }));
+                  formik.setFieldValue("skills", skills);
+                }}
+                value={formik.values.skills}
                 onBlur={formik.handleBlur}
-                value={formik.values.education.institute_name}
+                isClearable
+                isMulti
+                isSearchable
               />
             </div>
             <FormikErrorBox formik={formik} field="education.institute_name" />
@@ -217,13 +228,13 @@ export default function Step3Form({
             <div className="flex items-center justify-between">
               <Button
                 variant="ghost"
-                onClick={handleBackToStep2}
+                onClick={handleBackToStep3}
                 className="flex items-center justify-center gap-2"
               >
                 <ChevronLeftIcon className="h-4 w-4" />
                 Back
               </Button>
-              <Button onClick={() => handleCompleteStep3()}>
+              <Button onClick={() => handleCompleteStep4()}>
                 Save & Continue
               </Button>
             </div>
