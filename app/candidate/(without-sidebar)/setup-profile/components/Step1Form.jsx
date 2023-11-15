@@ -51,7 +51,7 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           </div>
 
           <div className="space-y-2">
-            <p className="font-medium text-primary">Company Name</p>
+            <p className="font-medium text-primary">Location</p>
             <div>
               <Input
                 type="text"

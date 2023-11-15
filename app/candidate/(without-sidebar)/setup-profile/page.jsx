@@ -69,6 +69,7 @@ export default function CandidateSetupProfile() {
 
   const handleCompleteStep2 = (data) => {
     formik.setValues({ ...formik.values, ...data });
+    console.log(formik.values);
     setCurrentStep(3);
   };
 

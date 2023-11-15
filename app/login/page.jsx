@@ -123,7 +123,7 @@ export default function CandidateLogin() {
               className="w-full"
               isLoading={formik.isSubmitting}
             >
-              Sign Up
+              Sign In
             </Button>
             <p className="text-center text-sm font-medium leading-none">
               Don’t have an account?{" "}
