@@ -25,7 +25,7 @@ export default function Step2Form({
   return (
     <div className="rounded-2xl bg-white shadow">
       <div className="mx-auto max-w-3xl">
-        <div className="els-center flex justify-center border-b border-neutral-200 px-8 py-4 text-2xl font-semibold text-accent-foreground">
+        <div className=" flex justify-center border-b border-neutral-200 px-8 py-4 text-2xl font-semibold text-accent-foreground">
           <h2 className="text-center text-lg font-semibold text-neutral-700 sm:text-left md:text-2xl">
             Set up your profile
           </h2>

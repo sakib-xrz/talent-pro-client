@@ -90,7 +90,7 @@ export default function CandidateSetupProfile() {
   };
 
   return (
-    <div className="mx-auto max-w-xl px-5 pt-20">
+    <div className="mx-auto max-w-xl px-5 py-10 lg:py-20">
       <div className="rounded-2xl bg-white shadow">
         {currentStep === 1 && (
           <Step1Form
