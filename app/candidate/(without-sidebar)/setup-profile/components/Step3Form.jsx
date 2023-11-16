@@ -1,18 +1,10 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import DatePicker from "@/components/form/DatePicker";
 
 export default function Step3Form({
   formik,
@@ -32,8 +24,8 @@ export default function Step3Form({
             Step 3/4
           </p>
           <div className="flex w-full gap-2">
-            <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
-            <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
+            <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
+            <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
           </div>
@@ -105,45 +97,16 @@ export default function Step3Form({
           </div>
 
           <div className="space-y-2">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
               <div className="w-full space-y-2">
                 <p className="font-medium text-primary">Start Date</p>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !formik.values.education.start_date &&
-                          "text-muted-foreground hover:bg-transparent",
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formik.values.education.start_date ? (
-                        formik.values.education.start_date
-                      ) : (
-                        <span>dd/mm/yy</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={formik.values.education.start_date}
-                      onSelect={(newDate) => {
-                        const formattedStartDate = format(
-                          newDate,
-                          "dd/MM/yyyy",
-                        );
-                        formik.setFieldValue(
-                          "education.start_date",
-                          formattedStartDate,
-                        );
-                      }}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                <DatePicker
+                  name="education.start_date"
+                  id="education.start_date"
+                  value={formik.values.education.start_date}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
               </div>
               <div className="w-full space-y-2">
                 <p
@@ -155,40 +118,14 @@ export default function Step3Form({
                 >
                   End Date
                 </p>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      disabled={formik.values?.education?.study_currently}
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !formik.values.education.end_date &&
-                          "text-muted-foreground hover:bg-transparent",
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formik.values.education.end_date ? (
-                        formik.values.education.end_date
-                      ) : (
-                        <span>dd/mm/yy</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={formik.values.education.end_date}
-                      onSelect={(newDate) => {
-                        const formattedEndDate = format(newDate, "dd/MM/yyyy");
-                        formik.setFieldValue(
-                          "education.end_date",
-                          formattedEndDate,
-                        );
-                      }}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                <DatePicker
+                  disabled={formik.values?.education?.study_currently}
+                  name="education.end_date"
+                  id="education.end_date"
+                  value={formik.values.education.end_date}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
               </div>
             </div>
           </div>
@@ -223,7 +160,19 @@ export default function Step3Form({
                 <ChevronLeftIcon className="h-4 w-4" />
                 Back
               </Button>
-              <Button onClick={() => handleCompleteStep3()}>
+              <Button
+                // disabled={
+                //   formik.errors.education?.institute_name ||
+                //   formik.errors.education?.degree ||
+                //   formik.errors.education?.major ||
+                //   formik.errors.education?.location ||
+                //   formik.errors.education?.start_date ||
+                //   (formik.errors.education?.end_date &&
+                //     !formik.values.education?.study_currently) ||
+                //   !formik.dirty
+                // }
+                onClick={() => handleCompleteStep3()}
+              >
                 Save & Continue
               </Button>
             </div>

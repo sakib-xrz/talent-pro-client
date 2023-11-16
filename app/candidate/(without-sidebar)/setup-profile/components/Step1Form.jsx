@@ -115,6 +115,12 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           <div></div>
           <div className="border-t border-neutral-200 py-4">
             <Button
+              // disabled={
+              //   formik.errors.phone ||
+              //   formik.errors.location ||
+              //   formik.errors.industry ||
+              //   !formik.dirty
+              // }
               onClick={() => handleCompleteStep1()}
               className="flex w-full justify-center"
             >

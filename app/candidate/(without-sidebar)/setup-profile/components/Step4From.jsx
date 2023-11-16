@@ -1,25 +1,32 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
-import FormikErrorBox from "@/components/form/FormikErrorBox";
-import { Input } from "@/components/ui/input";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  ChevronLeftIcon,
+  DocumentTextIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import FormikErrorBox from "@/components/form/FormikErrorBox";
 import CreatableSelectField from "@/components/form/CreatableSelectField";
+import FileUpload from "@/components/form/FileUpload";
+import { Input } from "@/components/ui/input";
 
 export default function Step4From({
   formik,
   handleCompleteStep4,
   handleBackToStep3,
 }) {
+  const { resume, resume_preview } = formik.values || {};
+
+  const handleFileUpload = (e) => {
+    formik.setFieldValue("resume", e.target.files[0]);
+    URL.createObjectURL(e.target.files[0]);
+    formik.setFieldValue(
+      "resume_preview",
+      URL.createObjectURL(e.target.files[0]),
+    );
+  };
+
   return (
     <div className="rounded-2xl bg-white shadow">
       <div className="mx-auto max-w-3xl">
@@ -33,9 +40,9 @@ export default function Step4From({
             Step 4/4
           </p>
           <div className="flex w-full gap-2">
-            <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
-            <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
-            <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
+            <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
+            <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
+            <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
             <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
           </div>
         </div>
@@ -48,7 +55,6 @@ export default function Step4From({
                 id="skills"
                 name="skills"
                 placeholder="e.g. Python, React"
-                // options={IndustryOptions}
                 onChange={(selectedOption) => {
                   const skills = selectedOption.map((obj) => ({
                     label:
@@ -64,142 +70,90 @@ export default function Step4From({
                 isSearchable
               />
             </div>
-            <FormikErrorBox formik={formik} field="education.institute_name" />
+            <FormikErrorBox formik={formik} field="skills" />
           </div>
 
           <div className="space-y-2">
-            <p className="font-medium text-primary">Degree</p>
+            <p className="font-medium text-primary">Portfolio</p>
             <div>
               <Input
                 type="text"
-                id="degree"
-                name="education.degree"
-                placeholder="e.g. Bachelor’s"
+                id="portfolio"
+                name="portfolio"
+                placeholder="e.g. www.example.com"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.education.degree}
+                value={formik.values.portfolio}
               />
             </div>
-            <FormikErrorBox formik={formik} field="education.degree" />
+            <FormikErrorBox formik={formik} field="portfolio" />
           </div>
 
           <div className="space-y-2">
-            <p className="font-medium text-primary">Field of Study</p>
+            <p className="font-medium text-primary">
+              {resume_preview && resume
+                ? "Attached File"
+                : "Upload Your Resume"}
+            </p>
             <div>
-              <Input
-                type="text"
-                id="major"
-                name="education.major"
-                placeholder="e.g. Computer Science & Engineering"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.education.major}
-              />
-            </div>
-            <FormikErrorBox formik={formik} field="education.major" />
-          </div>
-
-          <div className="space-y-2">
-            <p className="font-medium text-primary">Location</p>
-            <div>
-              <Input
-                type="text"
-                id="education.location"
-                name="education.location"
-                placeholder="e.g. Dhaka, Bangladesh"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.education.location}
-              />
-            </div>
-            <FormikErrorBox formik={formik} field="education.location" />
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center justify-between gap-4">
-              <div className="w-full space-y-2">
-                <p className="font-medium text-primary">Start Date</p>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !formik.values.education.start_date &&
-                          "text-muted-foreground hover:bg-transparent",
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formik.values.education.start_date ? (
-                        formik.values.education.start_date
-                      ) : (
-                        <span>dd/mm/yy</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={formik.values.education.start_date}
-                      onSelect={(newDate) => {
-                        const formattedStartDate = format(
-                          newDate,
-                          "dd/MM/yyyy",
-                        );
-                        formik.setFieldValue(
-                          "education.start_date",
-                          formattedStartDate,
-                        );
+              {resume_preview && resume ? (
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between rounded-md border border-gray-200 p-3">
+                    <div className="flex items-center gap-x-3">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-md bg-input/50">
+                        <DocumentTextIcon className="h-6 w-6 text-primary" />
+                      </div>
+                      <p>{resume?.name}</p>
+                    </div>
+                    <XMarkIcon
+                      className="h-6 w-6 cursor-pointer"
+                      onClick={() => {
+                        formik.setFieldValue("resume", "");
+                        formik.setFieldValue("resume_preview", "");
                       }}
-                      initialFocus
                     />
-                  </PopoverContent>
-                </Popover>
+                  </div>
+                </div>
+              ) : (
+                <FileUpload
+                  id="resume"
+                  name="resume"
+                  htmlFor="resume"
+                  title="Select and upload your resume"
+                  helperText="Supported only PDF up to 10 mb"
+                  accept=".pdf"
+                  onChange={handleFileUpload}
+                />
+              )}
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-medium text-primary">
+              What is your desired salary?
+            </p>
+            <div className="flex flex-col items-center justify-between gap-2 sm:flex-row sm:gap-4">
+              <div className="w-full space-y-2">
+                <Input
+                  type="text"
+                  id="desired_salary.min"
+                  name="desired_salary.min"
+                  placeholder="Set min range"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.desired_salary.min}
+                />
               </div>
               <div className="w-full space-y-2">
-                <p
-                  className={`font-medium ${
-                    formik.values?.education?.study_currently
-                      ? "text-primary/30"
-                      : "text-primary"
-                  }`}
-                >
-                  End Date
-                </p>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      disabled={formik.values?.education?.study_currently}
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !formik.values.education.end_date &&
-                          "text-muted-foreground hover:bg-transparent",
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formik.values.education.end_date ? (
-                        formik.values.education.end_date
-                      ) : (
-                        <span>dd/mm/yy</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={formik.values.education.end_date}
-                      onSelect={(newDate) => {
-                        const formattedEndDate = format(newDate, "dd/MM/yyyy");
-                        formik.setFieldValue(
-                          "education.end_date",
-                          formattedEndDate,
-                        );
-                      }}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                <Input
+                  type="text"
+                  id="desired_salary.max"
+                  name="desired_salary.max"
+                  placeholder="Set max range"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.desired_salary.max}
+                />
               </div>
             </div>
           </div>
@@ -208,17 +162,17 @@ export default function Step4From({
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
-                id="study_currently"
-                name="education.study_currently"
+                id="open_to_work_remotely"
+                name="open_to_work_remotely"
                 onChange={formik.handleChange}
-                checked={formik.values.education.study_currently}
+                checked={formik.values.open_to_work_remotely}
                 className="accent-primary"
               />
               <label
-                htmlFor="study_currently"
+                htmlFor="open_to_work_remotely"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
-                I currently study here
+                Open to working remotely
               </label>
             </div>
           </div>
@@ -234,8 +188,17 @@ export default function Step4From({
                 <ChevronLeftIcon className="h-4 w-4" />
                 Back
               </Button>
-              <Button onClick={() => handleCompleteStep4()}>
-                Save & Continue
+              <Button
+                // disabled={
+                //   formik.errors.skills ||
+                //   formik.errors.portfolio ||
+                //   formik.errors.resume ||
+                //   formik.errors.desired_salary?.min ||
+                //   formik.errors.desired_salary?.max
+                // }
+                onClick={() => handleCompleteStep4()}
+              >
+                Submit
               </Button>
             </div>
           </div>
