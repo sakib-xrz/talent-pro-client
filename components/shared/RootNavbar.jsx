@@ -17,7 +17,7 @@ export default function RootNavbar() {
     APIKit.server.start();
   }, []);
   return (
-    <nav className="sticky top-0 z-50 w-full px-4 py-5 shadow backdrop-blur supports-[backdrop-filter]:bg-background/40 sm:px-8">
+    <nav className="sticky top-0 z-50 w-full px-4 py-4 shadow backdrop-blur supports-[backdrop-filter]:bg-background/40 sm:px-8">
       <div className="flex items-center justify-between">
         <Link href={"/"}>
           <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />

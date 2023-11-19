@@ -2,12 +2,11 @@
 
 import { EmployStatus, IndustryOptions } from "@/common/KeyChain";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
+import Radio from "@/components/form/Radio";
 import SelectField from "@/components/form/SelectField";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Phone } from "@/components/ui/phone";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function Step1Form({ formik, handleCompleteStep1 }) {
   const handleIndustryChange = (selectedOption) => {
@@ -39,7 +38,9 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
         <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
           <h4 className="text-lg font-semibold">Personal Information</h4>
           <div className="space-y-2">
-            <p className="font-medium text-primary">Your phone number</p>
+            <p className="font-medium text-primary">
+              Your phone number <span className="text-destructive">*</span>
+            </p>
             <div>
               <Phone
                 id="phone"
@@ -54,7 +55,9 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           </div>
 
           <div className="space-y-2">
-            <p className="font-medium text-primary">Location</p>
+            <p className="font-medium text-primary">
+              Location <span className="text-destructive">*</span>
+            </p>
             <div>
               <Input
                 type="text"
@@ -70,7 +73,9 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           </div>
 
           <div className="space-y-2">
-            <p className="font-medium text-primary">What’s your industry?</p>
+            <p className="font-medium text-primary">
+              What’s your industry? <span className="text-destructive">*</span>
+            </p>
             <div>
               <SelectField
                 id="industry"
@@ -90,33 +95,32 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           </div>
 
           <div className="space-y-2">
-            <p className="font-medium text-primary">What’s your job status?</p>
-            <div className="space-y-2">
-              <div className="space-y-1 pl-2">
-                <RadioGroup
-                  name={"employ_status"}
-                  onValueChange={(value) =>
-                    formik.setFieldValue("employ_status", value)
-                  }
-                  defaultValue={formik.values.employ_status || ""}
-                >
-                  {EmployStatus.map((el, i) => (
-                    <div key={i} className="flex items-center space-x-2">
-                      <RadioGroupItem value={el.value} id={el.value} />
-                      <Label htmlFor={el.value}>{el.label}</Label>
-                    </div>
-                  ))}
-                </RadioGroup>
-              </div>
+            <p className="font-medium text-primary">
+              What’s your job status?{" "}
+              <span className="text-destructive">*</span>
+            </p>
+            <div>
+              {EmployStatus.map((item, i) => (
+                <Radio
+                  key={i}
+                  htmlFor={item.value}
+                  type="radio"
+                  id={item.value}
+                  name="job_status"
+                  value={item.value}
+                  onChange={formik.handleChange}
+                  checked={formik.values.job_status === item.value}
+                  label={item.label}
+                />
+              ))}
             </div>
-            <FormikErrorBox formik={formik} field="employ_status" />
+            <FormikErrorBox formik={formik} field="job_status" />
           </div>
 
           <div></div>
           <div className="border-t border-neutral-200 py-4">
             <Button
-              // disabled={!formik.dirty}
-              onClick={() => handleCompleteStep1()}
+              onClick={() => handleCompleteStep1(formik.values)}
               className="flex w-full justify-center"
             >
               Save & Continue

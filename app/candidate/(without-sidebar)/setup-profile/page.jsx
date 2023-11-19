@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
   phone: Yup.string().required("Phone is required"),
   location: Yup.string().required("Location is required"),
   industry: Yup.string().required("Industry is required"),
-  job_status: Yup.string(),
+  job_status: Yup.string().required("Job status is required"),
   experience: Yup.object().shape({
     company_name: Yup.string(),
     designation: Yup.string(),
@@ -110,19 +110,14 @@ export default function CandidateSetupProfile() {
     initialValues,
     validationSchema,
     onSubmit: (values, { setSubmitting }) => {
-      console.log(values);
       setSubmitting(true);
+      console.log(values);
     },
   });
 
   const handleCompleteStep1 = (data) => {
     formik.setValues({ ...formik.values, ...data });
-    console.log(formik.errors);
-    formik.validateForm().then(() => {
-      if (Object.keys(formik.errors).length === 0) {
-        setCurrentStep(2);
-      }
-    });
+    setCurrentStep(2);
   };
 
   const handleCompleteStep2 = (data) => {
@@ -137,8 +132,6 @@ export default function CandidateSetupProfile() {
 
   const handleCompleteStep4 = (data) => {
     formik.setValues({ ...formik.values, ...data });
-    console.log(formik.values);
-    setCurrentStep(5);
   };
 
   const handleStepChange = (step) => {
@@ -146,7 +139,7 @@ export default function CandidateSetupProfile() {
   };
 
   return (
-    <div className="mx-auto max-w-xl py-10 lg:py-20">
+    <div className="mx-auto max-w-xl py-10 lg:py-14">
       <div className="rounded-2xl bg-white shadow">
         {currentStep === 1 && (
           <Step1Form

@@ -136,7 +136,12 @@ export default function Step3Form({
                 type="checkbox"
                 id="study_currently"
                 name="education.study_currently"
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  if (e.target.checked) {
+                    formik.setFieldValue("education.end_date", "");
+                  }
+                }}
                 checked={formik.values.education.study_currently}
                 className="accent-primary"
               />
@@ -160,19 +165,7 @@ export default function Step3Form({
                 <ChevronLeftIcon className="h-4 w-4" />
                 Back
               </Button>
-              <Button
-                // disabled={
-                //   formik.errors.education?.institute_name ||
-                //   formik.errors.education?.degree ||
-                //   formik.errors.education?.major ||
-                //   formik.errors.education?.location ||
-                //   formik.errors.education?.start_date ||
-                //   (formik.errors.education?.end_date &&
-                //     !formik.values.education?.study_currently) ||
-                //   !formik.dirty
-                // }
-                onClick={() => handleCompleteStep3()}
-              >
+              <Button onClick={() => handleCompleteStep3(formik.values)}>
                 Save & Continue
               </Button>
             </div>

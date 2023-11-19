@@ -189,14 +189,8 @@ export default function Step4From({
                 Back
               </Button>
               <Button
-                // disabled={
-                //   formik.errors.skills ||
-                //   formik.errors.portfolio ||
-                //   formik.errors.resume ||
-                //   formik.errors.desired_salary?.min ||
-                //   formik.errors.desired_salary?.max
-                // }
-                onClick={() => handleCompleteStep4()}
+                type="submit"
+                onClick={() => handleCompleteStep4(formik.values)}
               >
                 Submit
               </Button>

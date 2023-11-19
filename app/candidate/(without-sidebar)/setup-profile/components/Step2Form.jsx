@@ -5,9 +5,8 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { EmploymentType } from "@/common/KeyChain";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import DatePicker from "@/components/form/DatePicker";
+import Radio from "@/components/form/Radio";
 
 export default function Step2Form({
   formik,
@@ -69,23 +68,20 @@ export default function Step2Form({
 
           <div className="space-y-2">
             <p className="font-medium text-primary">Job type?</p>
-            <div className="space-y-2">
-              <div className="ml-2 space-y-1">
-                <RadioGroup
-                  name={"experience.job_type"}
-                  onValueChange={(value) =>
-                    formik.setFieldValue("experience.job_type", value)
-                  }
-                  defaultValue={formik.values.experience.job_type || ""}
-                >
-                  {EmploymentType.map((el, i) => (
-                    <div key={i} className="flex items-center space-x-2">
-                      <RadioGroupItem value={el.value} id={el.value} />
-                      <Label htmlFor={el.value}>{el.label}</Label>
-                    </div>
-                  ))}
-                </RadioGroup>
-              </div>
+            <div>
+              {EmploymentType.map((item, i) => (
+                <Radio
+                  key={i}
+                  htmlFor={item.value}
+                  type="radio"
+                  id={item.value}
+                  name="experience.job_type"
+                  value={item.value}
+                  onChange={formik.handleChange}
+                  checked={formik.values.experience.job_type === item.value}
+                  label={item.label}
+                />
+              ))}
             </div>
             <FormikErrorBox formik={formik} field="experience.job_type" />
           </div>
@@ -130,7 +126,12 @@ export default function Step2Form({
                 type="checkbox"
                 id="work_currently"
                 name="experience.work_currently"
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  if (e.target.checked) {
+                    formik.setFieldValue("experience.end_date", "");
+                  }
+                }}
                 checked={formik.values.experience.work_currently}
                 className="accent-primary"
               />
@@ -154,18 +155,7 @@ export default function Step2Form({
                 <ChevronLeftIcon className="h-4 w-4" />
                 Back
               </Button>
-              <Button
-                // disabled={
-                //   formik.errors.experience?.company_name ||
-                //   formik.errors.experience?.designation ||
-                //   formik.errors.experience?.job_type ||
-                //   formik.errors.experience?.start_date ||
-                //   (formik.errors.experience?.end_date &&
-                //     !formik.values.experience?.work_currently) ||
-                //   !formik.dirty
-                // }
-                onClick={() => handleCompleteStep2()}
-              >
+              <Button onClick={() => handleCompleteStep2(formik.values)}>
                 Save & Continue
               </Button>
             </div>
