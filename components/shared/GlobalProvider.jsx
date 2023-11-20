@@ -1,21 +1,20 @@
 "use client";
 
-import store from "@/redux/Store";
+import UserProvider from "@/context/UserProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import { Provider } from "react-redux";
 
 const queryClient = new QueryClient();
 
 export default function GlobalProvider({ children }) {
   return (
     <>
-      <Provider store={store}>
+      <UserProvider>
         <QueryClientProvider client={queryClient}>
           <Toaster position="top-center" reverseOrder={false} />
           {children}
         </QueryClientProvider>
-      </Provider>
+      </UserProvider>
     </>
   );
 }
