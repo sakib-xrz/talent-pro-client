@@ -1,11 +1,12 @@
-import { selectUser } from "@/redux/reducers/userSlice";
+import { useUser } from "@/context/UserProvider";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
 
 export default function CandidateCard() {
-  const user = useSelector(selectUser);
+  const { user } = useUser();
+  console.log(user);
   return (
     <Menu as="div" className={"relative"}>
       <div>
@@ -45,9 +46,12 @@ export default function CandidateCard() {
           }
         >
           <Menu.Item>
-            <h5 className="rounded-md p-2 hover:bg-destructive hover:text-white">
+            <Link
+              href={"/logout"}
+              className="block cursor-pointer rounded-md p-2 hover:bg-destructive hover:text-white"
+            >
               Logout
-            </h5>
+            </Link>
           </Menu.Item>
         </Menu.Items>
       </Transition>

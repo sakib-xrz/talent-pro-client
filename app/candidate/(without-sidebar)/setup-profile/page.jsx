@@ -4,15 +4,13 @@ import { useState } from "react";
 
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useSelector } from "react-redux";
-
-import { selectUser } from "@/redux/reducers/userSlice";
 
 import Step1Form from "./components/Step1Form";
 import Step2Form from "./components/Step2Form";
 import Step3Form from "./components/Step3Form";
 import Success from "./components/Success";
 import Step4From from "./components/Step4From";
+import { useUser } from "@/context/UserProvider";
 
 const validationSchema = Yup.object({
   candidate_id: Yup.string(),
@@ -70,7 +68,7 @@ const validationSchema = Yup.object({
 
 export default function CandidateSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
-  const user = useSelector(selectUser);
+  const { user } = useUser();
 
   const initialValues = {
     candidate_id: user?.id,
