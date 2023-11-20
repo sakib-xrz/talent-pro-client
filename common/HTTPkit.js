@@ -27,11 +27,14 @@ const setClientToken = (token) => {
 
 client.interceptors.response.use(
   function (response) {
-    // const responseObject = {
-    //   data: response?.data?.data,
-    // };
-    // return responseObject;
-    return response;
+    const responseObject = {
+      success: true,
+      statusCode: response?.data?.statusCode || 200,
+      message: response?.data?.message || "Request successful",
+      meta: response?.data?.meta || null,
+      data: response?.data?.result,
+    };
+    return responseObject;
   },
   function (error) {
     const errorResponse = {

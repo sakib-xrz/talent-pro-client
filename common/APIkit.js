@@ -3,6 +3,13 @@ import HTTPKit, { client } from "./HTTPkit";
 const APIKit = {
   setClientToken: HTTPKit.setClientToken,
 
+  server: {
+    start: () => {
+      const url = "/start";
+      return client.get(url);
+    },
+  },
+
   auth: {
     register: (payload) => {
       const url = "/auth/register";

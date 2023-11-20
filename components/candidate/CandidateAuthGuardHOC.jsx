@@ -2,43 +2,16 @@
 
 import { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
 
 import { AUTH_TOKEN_KEY } from "@/common/KeyChain";
-import APIKit from "@/common/APIkit";
-import HTTPKit from "@/common/HTTPkit";
-
-import { selectUser, setUserData } from "@/redux/reducers/userSlice";
-
-export const setJWTokenAndRedirect = async (token, redirect = () => {}) => {
-  try {
-    const client = await APIKit.setClientToken(token);
-    const authToken = client.defaults.headers.common["Authorization"].replace(
-      "Bearer ",
-      "",
-    );
-    localStorage.setItem(AUTH_TOKEN_KEY, authToken);
-    HTTPKit.defer.resolve(client);
-    redirect();
-  } catch (error) {
-    console.error(error);
-  }
-};
+import { setJWTokenAndRedirect } from "@/common/UtilKit";
+import { useUser } from "@/context/UserProvider";
 
 export default function CandidateAuthGuardHOC({ children }) {
+  const { fetchMe, user } = useUser();
+
   const router = useRouter();
   const pathname = usePathname();
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
-
-  const fetchMe = async () => {
-    try {
-      const { data } = await APIKit.me.getMe();
-      dispatch(setUserData(data?.data));
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   useEffect(() => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
@@ -57,5 +30,5 @@ export default function CandidateAuthGuardHOC({ children }) {
     }
   }, []);
 
-  return user.email ? children : null;
+  return user?.email ? children : null;
 }
