@@ -113,7 +113,11 @@ export default function CandidateLogin() {
               />
               <FormikErrorBox formik={formik} field="password" />
               <p className="flex justify-end">
-                <Button variant="link" className="p-0 font-semibold">
+                <Button
+                  type="button"
+                  variant="link"
+                  className="p-0 font-semibold"
+                >
                   Forget Password
                 </Button>
               </p>

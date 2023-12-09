@@ -14,7 +14,6 @@ import {
 import HeadingWithSubtitle from "@/components/shared/HeadingWithSubtitle";
 import RootFooter from "@/components/shared/RootFooter";
 import RootNavbar from "@/components/shared/RootNavbar";
-import APIKit from "@/common/APIkit";
 
 const feature = [
   {

@@ -117,9 +117,9 @@ export default function CandidateSetupProfile() {
     // validationSchema,
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
-      console.log(values);
 
-      const handleSuccess = () => {
+      const handleSuccess = ({ data }) => {
+        console.log(data);
         formik.resetForm();
         setCurrentStep(5);
       };

@@ -46,11 +46,11 @@ export default function RightSideDrawer({ open, setOpen, children, title }) {
                                 onClick={() => setOpen(false)}
                               >
                                 <svg
-                                  className="h-6 w-6 focus:outline-none focus:ring-0"
+                                  className="h-8 w-8 focus:outline-none focus:ring-0"
                                   xmlns="http://www.w3.org/2000/svg"
                                   fill="none"
                                   viewBox="0 0 24 24"
-                                  strokeWidth="3.0"
+                                  strokeWidth="1.5"
                                   stroke="currentColor"
                                 >
                                   <path
@@ -63,6 +63,7 @@ export default function RightSideDrawer({ open, setOpen, children, title }) {
                             </div>
                           </div>
                         </div>
+                        <hr />
                         <div className="bg-white p-4 ">{children}</div>
                       </div>
                     </div>

@@ -1,12 +1,16 @@
 "use client";
 
-import { Bars3Icon } from "@heroicons/react/24/outline";
+import {
+  ArrowLeftOnRectangleIcon,
+  Bars3Icon,
+} from "@heroicons/react/24/outline";
 import RightSideDrawer from "../shared/RightSideDrawer";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "public/images/logo.png";
 import CandidateCard from "./CandidateCard";
+import { Button } from "../ui/button";
 
 export default function CandidateAuthNavbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -27,11 +31,17 @@ export default function CandidateAuthNavbar() {
       <RightSideDrawer
         open={drawerOpen}
         setOpen={setDrawerOpen}
-        title={
-          <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
-        }
+        title={<CandidateCard />}
       >
-        This is content
+        <div>test</div>
+        <Button
+          href="/logout"
+          variant="outline"
+          className="absolute bottom-5 mx-auto w-11/12 gap-2"
+        >
+          <ArrowLeftOnRectangleIcon className="h-5 w-5" />
+          Logout
+        </Button>
       </RightSideDrawer>
     </div>
   );

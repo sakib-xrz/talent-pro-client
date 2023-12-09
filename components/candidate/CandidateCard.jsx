@@ -9,11 +9,11 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 const dropdownItems = [
-  // {
-  //   name: "My Profile",
-  //   href: "/candidate/my-profile",
-  //   icon: UserIcon,
-  // },
+  {
+    name: "My Profile",
+    href: "/candidate/my-profile",
+    icon: UserIcon,
+  },
   {
     name: "Logout",
     href: "/logout",
