@@ -29,7 +29,7 @@ export default function Success() {
 
           <Link href={"/candidate"} className="flex w-full justify-center">
             <Button className="flex w-fit justify-center px-6">
-              Go to Home
+              Explore Jobs
             </Button>
           </Link>
         </div>
