@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
+  swcMinify: true,
   images: {
-    domains: ["i.ibb.co"],
+    domains: ["res.cloudinary.com"],
+    minimumCacheTTL: 120,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+      },
+    ],
   },
 };
 

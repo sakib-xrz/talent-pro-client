@@ -1,16 +1,15 @@
 "use client";
 
-import {
-  ArrowLeftOnRectangleIcon,
-  Bars3Icon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import RightSideDrawer from "../shared/RightSideDrawer";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "public/images/logo.png";
-import CandidateCard from "./CandidateCard";
 import { Button } from "../ui/button";
+import CandidateCardDropdown from "./CandidateCardDropdown";
+import CandidateCard from "./CandidateCard";
+import { LogOut } from "lucide-react";
 
 export default function CandidateAuthNavbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -20,7 +19,7 @@ export default function CandidateAuthNavbar() {
         <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
       </Link>
       <div className="hidden items-center sm:flex">
-        <CandidateCard />
+        <CandidateCardDropdown />
       </div>
       <div className="sm:hidden">
         <Bars3Icon
@@ -33,15 +32,15 @@ export default function CandidateAuthNavbar() {
         setOpen={setDrawerOpen}
         title={<CandidateCard />}
       >
-        <div>test</div>
-        <Button
+        <Link
           href="/logout"
-          variant="outline"
-          className="absolute bottom-5 mx-auto w-11/12 gap-2"
+          className="absolute bottom-5 right-5 mx-auto w-fit"
         >
-          <ArrowLeftOnRectangleIcon className="h-5 w-5" />
-          Logout
-        </Button>
+          <Button variant="destructive" className="w-full gap-2">
+            <LogOut className="h-5 w-5" />
+            Logout
+          </Button>
+        </Link>
       </RightSideDrawer>
     </div>
   );

@@ -71,7 +71,7 @@ import Step4From from "./components/Step4From";
 
 export default function CandidateSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
-  const { user } = useUser();
+  const { user, refetchMe } = useUser();
 
   const initialValues = {
     candidate_id: user?.id,
@@ -118,8 +118,8 @@ export default function CandidateSetupProfile() {
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
 
-      const handleSuccess = ({ data }) => {
-        console.log(data);
+      const handleSuccess = () => {
+        refetchMe();
         formik.resetForm();
         setCurrentStep(5);
       };
