@@ -4,7 +4,7 @@ import { deferred } from "./UtilKit";
 
 export let client = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  timeout: 20000,
+  timeout: 30000,
   headers: {
     "Content-Type": "application/json",
   },
