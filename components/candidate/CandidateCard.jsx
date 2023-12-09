@@ -6,7 +6,6 @@ import { Fragment } from "react";
 
 export default function CandidateCard() {
   const { user } = useUser();
-  console.log(user);
   return (
     <Menu as="div" className={"relative"}>
       <div>

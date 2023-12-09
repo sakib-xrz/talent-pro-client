@@ -1,5 +1,9 @@
 import HTTPKit, { client } from "./HTTPkit";
 
+const defaultFileUploadConfig = {
+  headers: { "Content-Type": "multipart/form-data" },
+};
+
 const APIKit = {
   setClientToken: HTTPKit.setClientToken,
 
@@ -19,6 +23,13 @@ const APIKit = {
     token: (payload) => {
       const url = "/auth/token";
       return client.post(url, payload);
+    },
+  },
+
+  candidate: {
+    setupProfile: (payload) => {
+      const url = "/me/profile";
+      return client.post(url, payload, defaultFileUploadConfig);
     },
   },
 
