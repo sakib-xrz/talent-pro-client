@@ -1,8 +1,25 @@
 import { useUser } from "@/context/UserProvider";
 import { Menu, Transition } from "@headlessui/react";
+import {
+  ArrowLeftOnRectangleIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+
+const dropdownItems = [
+  // {
+  //   name: "My Profile",
+  //   href: "/candidate/my-profile",
+  //   icon: UserIcon,
+  // },
+  {
+    name: "Logout",
+    href: "/logout",
+    icon: ArrowLeftOnRectangleIcon,
+  },
+];
 
 export default function CandidateCard() {
   const { user } = useUser();
@@ -41,17 +58,23 @@ export default function CandidateCard() {
       >
         <Menu.Items
           className={
-            "absolute right-0 mt-2 w-32 origin-top-right rounded-md border border-border bg-white shadow"
+            "absolute right-0 z-50 mt-4 w-full origin-top-right rounded-md bg-gray-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           }
         >
-          <Menu.Item>
+          {dropdownItems.map((route, index) => (
             <Link
-              href={"/logout"}
-              className="block cursor-pointer rounded-md p-2 hover:bg-destructive hover:text-white"
+              href={route.href}
+              key={index + 1}
+              className={`flex w-full items-center gap-2 bg-white p-4 text-center text-sm font-medium text-gray-700 duration-300 first:rounded-t-sm last:rounded-b-sm ${
+                route.href === "/logout"
+                  ? "hover:bg-destructive hover:text-white"
+                  : "hover:bg-secondary/80"
+              } `}
             >
-              Logout
+              <route.icon className="h-5 w-5" />
+              {route.name}
             </Link>
-          </Menu.Item>
+          ))}
         </Menu.Items>
       </Transition>
     </Menu>
