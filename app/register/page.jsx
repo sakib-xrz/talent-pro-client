@@ -104,7 +104,7 @@ export default function CandidateRegister() {
           <form onSubmit={formik.handleSubmit} className="space-y-4">
             <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
               <div className="w-full">
-                <Label htmlFor="email">First Name</Label>
+                <Label htmlFor="first_name">First Name</Label>
                 <Input
                   type="text"
                   id="first_name"
@@ -117,7 +117,7 @@ export default function CandidateRegister() {
                 <FormikErrorBox formik={formik} field="first_name" />
               </div>
               <div className="w-full">
-                <Label htmlFor="email">Last Name</Label>
+                <Label htmlFor="last_name">Last Name</Label>
                 <Input
                   type="text"
                   id="last_name"

@@ -234,7 +234,7 @@ export default async function Home() {
                 building your dream team.
               </p>
               <div className="pt-2">
-                <Link href="/recruiter-register">
+                <Link href="">
                   <Button>Get Started</Button>
                 </Link>
               </div>

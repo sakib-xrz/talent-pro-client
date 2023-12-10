@@ -4,11 +4,11 @@ import Link from "next/link";
 import Logo from "public/images/logo.png";
 
 const footerOptions = [
-  { name: "Hire Talents", href: "/recruiter-register" },
-  { name: "Find Jobs", href: "/find-jobs" },
-  { name: "Blog", href: "/blog" },
-  { name: "About", href: "/about" },
-  { name: "FAQ", href: "/faq" },
+  { name: "Hire Talents", href: "" },
+  { name: "Find Jobs", href: "" },
+  { name: "Blog", href: "" },
+  { name: "About", href: "" },
+  { name: "FAQ", href: "" },
 ];
 
 const date = new Date();

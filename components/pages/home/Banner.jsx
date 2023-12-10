@@ -23,7 +23,7 @@ export default function Banner() {
               Sign Up as Job Seeker
             </Button>
           </Link>
-          <Link href={"/recruiter/register"}>
+          <Link href={""}>
             <Button
               variant="outline"
               className="bg-transparent text-primary-foreground hover:bg-transparent hover:text-primary-foreground"
@@ -42,7 +42,7 @@ export default function Banner() {
               Sign Up as Job Seeker
             </Button>
           </Link>
-          <Link href={"/recruiter/register"}>
+          <Link href={""}>
             <Button
               size={"sm"}
               variant="outline"
