@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import CandidateCardDropdown from "./CandidateCardDropdown";
 import CandidateCard from "./CandidateCard";
 import { LogOut } from "lucide-react";
+import MobileNavOptions from "./MobileNavOptions";
 
 export default function CandidateAuthNavbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -18,10 +19,10 @@ export default function CandidateAuthNavbar() {
       <Link href={"/candidate"}>
         <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
       </Link>
-      <div className="hidden items-center sm:flex">
+      <div className="hidden items-center lg:flex">
         <CandidateCardDropdown />
       </div>
-      <div className="sm:hidden">
+      <div className="lg:hidden">
         <Bars3Icon
           onClick={() => setDrawerOpen(!drawerOpen)}
           className="h-8 w-8 cursor-pointer text-primary"
@@ -32,6 +33,9 @@ export default function CandidateAuthNavbar() {
         setOpen={setDrawerOpen}
         title={<CandidateCard />}
       >
+        <div>
+          <MobileNavOptions setOpen={setDrawerOpen} />
+        </div>
         <Link
           href="/logout"
           className="absolute bottom-5 right-5 mx-auto w-fit"

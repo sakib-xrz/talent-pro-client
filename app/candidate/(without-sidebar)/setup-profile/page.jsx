@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import * as Yup from "yup";
 import toast from "react-hot-toast";
@@ -72,6 +73,16 @@ import Step4From from "./components/Step4From";
 export default function CandidateSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
   const { user, refetchMe } = useUser();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user?.isOnboardComplete === false) {
+      router.push("/candidate/setup-profile");
+    } else {
+      router.push("/candidate");
+    }
+  }, [router, user?.isOnboardComplete]);
 
   const initialValues = {
     candidate_id: user?.id,

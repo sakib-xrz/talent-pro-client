@@ -15,5 +15,9 @@ export default function Candidate() {
       router.push("/candidate");
     }
   }, [router, user?.isOnboardComplete]);
-  return <div className="text-gray-700">Candidate</div>;
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8 lg:py-14">
+      Candidate page coming soon...
+    </div>
+  );
 }

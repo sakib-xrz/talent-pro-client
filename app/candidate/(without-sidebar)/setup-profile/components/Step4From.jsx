@@ -190,6 +190,7 @@ export default function Step4From({
               </Button>
               <Button
                 type="submit"
+                isLoading={formik.isSubmitting}
                 onClick={() => handleCompleteStep4(formik.values)}
               >
                 Submit

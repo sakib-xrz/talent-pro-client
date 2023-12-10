@@ -1,3 +1,9 @@
+import {
+  BookmarkIcon,
+  DocumentDuplicateIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
+
 export const AUTH_TOKEN_KEY = "@AUTH_TOKEN";
 
 export const IndustryOptions = [
@@ -57,4 +63,22 @@ export const EmploymentType = [
   { label: "Full Time", value: "FULL_TIME" },
   { label: "Part Time", value: "PART_TIME" },
   { label: "Intern", value: "INTERN" },
+];
+
+export const navOptions = [
+  {
+    icon: UserIcon,
+    name: "My Profile",
+    href: "/candidate/my-profile/info",
+  },
+  {
+    icon: DocumentDuplicateIcon,
+    name: "My Applications",
+    href: "/candidate/my-applications",
+  },
+  {
+    icon: BookmarkIcon,
+    name: "Saved Jobs",
+    href: "/candidate/saved-jobs",
+  },
 ];

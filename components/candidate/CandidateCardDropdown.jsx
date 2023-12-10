@@ -1,7 +1,10 @@
+import { navOptions } from "@/common/KeyChain";
 import { useUser } from "@/context/UserProvider";
 import { Menu, Transition } from "@headlessui/react";
 import {
   ArrowRightOnRectangleIcon,
+  BookmarkIcon,
+  DocumentDuplicateIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -9,11 +12,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 const dropdownItems = [
-  {
-    name: "My Profile",
-    href: "/candidate/my-profile",
-    icon: UserIcon,
-  },
+  ...navOptions,
   {
     name: "Logout",
     href: "/logout",
