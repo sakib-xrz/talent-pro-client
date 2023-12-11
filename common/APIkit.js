@@ -38,6 +38,14 @@ const APIKit = {
       const url = "/me";
       return client.get(url);
     },
+    getInfo: () => {
+      const url = "/me/info";
+      return client.get(url);
+    },
+    getExperience: () => {
+      const url = "/me/experience";
+      return client.get(url);
+    },
     updateProfilePicture: (payload) => {
       const url = "/me/image";
       return client.patch(url, payload, defaultFileUploadConfig);

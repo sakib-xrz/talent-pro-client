@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import APIKit from "./APIkit";
 import HTTPKit from "./HTTPkit";
 import { AUTH_TOKEN_KEY } from "./KeyChain";
@@ -11,7 +12,6 @@ export function deferred() {
   return _deferred;
 }
 
-
 export const setJWTokenAndRedirect = async (token, redirect = () => {}) => {
   try {
     const client = await APIKit.setClientToken(token);
@@ -23,4 +23,21 @@ export const setJWTokenAndRedirect = async (token, redirect = () => {}) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const formatText = (text) => {
+  if (text) {
+    const textLowerCase = text.split("_").join(" ").toLowerCase();
+    const formattedText =
+      textLowerCase.charAt(0).toUpperCase() + textLowerCase.slice(1);
+    return formattedText;
+  } else {
+    return "";
+  }
+};
+
+export const formatDate = (date) => {
+  const dateString = new Date(date);
+  const formattedDate = format(dateString, "PP");
+  return formattedDate;
 };

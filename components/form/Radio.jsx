@@ -12,7 +12,7 @@ export default function Radio({
   return (
     <label
       htmlFor={htmlFor}
-      className={`flex items-center space-x-2 px-4 py-1`}
+      className={`inline flex items-center space-x-2 p-1`}
     >
       <input
         id={id}
