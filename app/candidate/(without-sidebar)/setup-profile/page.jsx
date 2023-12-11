@@ -77,10 +77,8 @@ export default function CandidateSetupProfile() {
   const router = useRouter();
 
   useEffect(() => {
-    if (user?.isOnboardComplete === false) {
-      router.push("/candidate/setup-profile");
-    } else {
-      router.push("/candidate");
+    if (user?.isOnboardComplete) {
+      router.back();
     }
   }, [router, user?.isOnboardComplete]);
 
