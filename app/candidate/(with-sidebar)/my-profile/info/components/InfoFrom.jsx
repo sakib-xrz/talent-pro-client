@@ -6,30 +6,43 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Radio from "@/components/form/Radio";
 import { EmployStatus } from "@/common/KeyChain";
+import APIKit from "@/common/APIkit";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 export default function InfoFrom({ initialValues, refetch }) {
+  const [showActionButtons, setShowActionButtons] = useState(false);
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
-      console.log(values);
-      // const handleSuccess = ({ data }) => {
-      //   router.push("/candidate/my-profile");
-      // };
+    onSubmit: (values, { setSubmitting }) => {
+      setSubmitting(true);
+      const payload = {
+        industry: values.industry,
+        phone: values.phone,
+        location: values.location,
+        job_status: values.job_status,
+      };
 
-      // const handleFailure = (error) => {
-      //   throw error;
-      // };
+      const handleSuccess = () => {
+        setShowActionButtons(false);
+        refetch();
+      };
 
-      // const promise = APIKit.me
-      //   .patchProfileInformation({ ...values, gender: values.gender.value })
-      //   .then(handleSuccess)
-      //   .catch(handleFailure);
+      const handleFailure = (error) => {
+        throw error;
+      };
 
-      // return toast.promise(promise, {
-      //   loading: "Updating personal information...",
-      //   success: "Personal information edited successfully!",
-      //   error: "Something went wrong!",
-      // });
+      const promise = APIKit.me
+        .updateInfo(payload)
+        .then(handleSuccess)
+        .catch(handleFailure)
+        .finally(() => setSubmitting(false));
+
+      return toast.promise(promise, {
+        loading: "Updating personal information...",
+        success: "Personal info edited successfully!",
+        error: "Something went wrong!",
+      });
     },
   });
 
@@ -83,26 +96,32 @@ export default function InfoFrom({ initialValues, refetch }) {
           id="phone"
           placeholder="01XXX-XXXXXX"
           value={formik.values?.phone}
-          onChange={formik.handleChange}
+          onChange={(e) => {
+            formik.handleChange(e);
+            setShowActionButtons(true);
+          }}
         />
       </div>
 
       <div className="flex flex-col gap-2 md:flex-row md:gap-3">
-        <Label htmlFor="email" className="md:w-2/5">
+        <Label htmlFor="location" className="md:w-2/5">
           Location
         </Label>
         <Input
           name="location"
           id="location"
           placeholder="Your Location"
-          onChange={formik.handleChange}
+          onChange={(e) => {
+            formik.handleChange(e);
+            setShowActionButtons(true);
+          }}
           onBlur={formik.handleBlur}
           value={formik.values.location}
         />
       </div>
 
       <div className="flex flex-col gap-2 md:flex-row md:gap-3">
-        <Label htmlFor="email" className="md:w-2/5">
+        <Label htmlFor="job_status" className="md:w-2/5">
           Job Status
         </Label>
         <div className="w-full">
@@ -114,7 +133,10 @@ export default function InfoFrom({ initialValues, refetch }) {
               id={item.value}
               name="job_status"
               value={item.value}
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                formik.handleChange(e);
+                setShowActionButtons(true);
+              }}
               checked={formik.values.job_status === item.value}
               label={item.label}
             />
@@ -124,18 +146,22 @@ export default function InfoFrom({ initialValues, refetch }) {
 
       <div
         className={`${
-          formik.dirty ? "flex" : "hidden"
+          showActionButtons ? "flex" : "hidden"
         }  items-center justify-end gap-2 pt-2`}
       >
         <>
           <Button
-            href="/candidate/my-profile"
             type="button"
             variant="secondary"
+            onClick={() => {
+              formik.resetForm(), setShowActionButtons(false);
+            }}
           >
             Cancel
           </Button>
-          <Button type="submit">Save</Button>
+          <Button type="submit" isLoading={formik.isSubmitting}>
+            Save
+          </Button>
         </>
       </div>
     </form>

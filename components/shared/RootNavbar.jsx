@@ -32,11 +32,7 @@ export default function RootNavbar() {
             </Link>
           </div>
           <Separator orientation="vertical" className="h-8" />
-          <Button
-            variant="link"
-            className="px-0 font-semibold"
-            href={"/recruiter-register"}
-          >
+          <Button variant="link" className="px-0 font-semibold" href={"/"}>
             Hire talent
           </Button>
         </div>
@@ -45,7 +41,7 @@ export default function RootNavbar() {
             onClick={() => setOpen(!open)}
             className="flex items-center gap-2"
           >
-            Register
+            Login
             <ChevronDownIcon className="h-4 w-4 text-white" />
           </Button>
           <div
@@ -53,7 +49,7 @@ export default function RootNavbar() {
               open ? "absolute right-0 top-12 flex flex-col" : "hidden"
             } " w-40 rounded-md border bg-white`}
           >
-            <Link className=" border-b px-4 py-2 font-medium" href={"register"}>
+            <Link className=" border-b px-4 py-2 font-medium" href={"/login"}>
               As a Candidate
             </Link>
             <Link className="px-4 py-2 font-medium" href={""}>

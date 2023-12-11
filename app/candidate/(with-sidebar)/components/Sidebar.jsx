@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { navOptions } from "@/common/KeyChain";
 
 const DEFAULT_STYLES = "flex w-full items-center gap-2 p-4 cursor-pointer";
-const DEFAULT_NAV_BACKGROUND_STYLES = "hover:bg-secondary";
+const DEFAULT_NAV_BACKGROUND_STYLES =
+  "hover:bg-secondary border-l-4 border-transparent";
 const ACTIVE_NAV_BACKGROUND_STYLES =
   "bg-primary/80 border-l-4 border-primary/90";
 const DEFAULT_NAV_ICON_STYLES = "font-semibold";
@@ -20,7 +21,7 @@ export default function Sidebar() {
   const isActiveRoute = (currentNav) => currentNav.includes(currentPathname);
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] border-r border-border">
+    <div className="sticky top-20 min-h-[calc(100vh-5rem)] border-r border-border ">
       {navOptions.map((option, index) => (
         <Link
           href={option.href}

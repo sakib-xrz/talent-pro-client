@@ -37,7 +37,11 @@ export const formatText = (text) => {
 };
 
 export const formatDate = (date) => {
-  const dateString = new Date(date);
-  const formattedDate = format(dateString, "PP");
-  return formattedDate;
+  if (date) {
+    const dateString = new Date(date);
+    const formattedDate = format(dateString, "PP");
+    return formattedDate;
+  } else {
+    return "";
+  }
 };

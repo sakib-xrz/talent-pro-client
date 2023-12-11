@@ -36,7 +36,8 @@ export default function ExperienceCard({ experience, refetch }) {
                 {company_name} • {formatText(job_type)}
               </p>
               <p className="mt-2 text-sm font-medium text-accent-foreground">
-                {formatDate(start_date)} - Present
+                {formatDate(start_date)} -{" "}
+                {work_currently ? "Present" : formatDate(end_date)}
               </p>
             </div>
           </div>

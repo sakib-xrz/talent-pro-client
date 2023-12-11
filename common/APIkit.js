@@ -46,6 +46,14 @@ const APIKit = {
       const url = "/me/experience";
       return client.get(url);
     },
+    updateInfo: (payload) => {
+      const url = "/me/info";
+      return client.patch(url, payload);
+    },
+    updateExperience: (payload) => {
+      const url = "/me/experience/update";
+      return client.patch(url, payload);
+    },
     updateProfilePicture: (payload) => {
       const url = "/me/image";
       return client.patch(url, payload, defaultFileUploadConfig);

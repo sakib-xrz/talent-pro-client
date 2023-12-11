@@ -71,7 +71,7 @@ export default function PersonalInformation() {
 
       <div>
         {image ? (
-          <div className="flex w-full flex-col gap-3 lg:flex-row">
+          <div className="flex w-full flex-col gap-3 md:flex-row">
             <div className="w-full text-neutral-800 md:w-2/5">
               <label className="text-sm font-medium">Profile Image</label>
             </div>
