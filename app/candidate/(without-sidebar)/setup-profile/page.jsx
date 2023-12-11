@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import * as Yup from "yup";
 import toast from "react-hot-toast";
@@ -73,6 +74,16 @@ export default function CandidateSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
   const { user, refetchMe } = useUser();
 
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user?.isOnboardComplete === false) {
+      router.push("/candidate/setup-profile");
+    } else {
+      router.push("/candidate");
+    }
+  }, [router, user?.isOnboardComplete]);
+
   const initialValues = {
     candidate_id: user?.id,
     phone: "01409029742",
@@ -121,7 +132,7 @@ export default function CandidateSetupProfile() {
       const handleSuccess = () => {
         refetchMe();
         formik.resetForm();
-        setCurrentStep(5);
+        router.push("/candidate/setup-profile/success");
       };
 
       const handleFailure = (error) => {
@@ -199,7 +210,6 @@ export default function CandidateSetupProfile() {
             handleBackToStep3={() => handleStepChange(3)}
           />
         )}
-        {currentStep === 5 && <Success />}
       </div>
     </div>
   );
