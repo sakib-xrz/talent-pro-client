@@ -26,7 +26,7 @@ export default function InfoFrom({ initialValues, refetch }) {
       //   .catch(handleFailure);
 
       // return toast.promise(promise, {
-      //   loading: "Loading...",
+      //   loading: "Updating personal information...",
       //   success: "Personal information edited successfully!",
       //   error: "Something went wrong!",
       // });

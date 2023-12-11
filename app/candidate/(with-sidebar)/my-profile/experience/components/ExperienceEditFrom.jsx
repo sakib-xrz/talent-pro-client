@@ -33,9 +33,9 @@ export default function ExperienceEditFrom({
       //     .then(handleSuccess)
       //     .catch(handleFailure);
       //   return toast.promise(promise, {
-      //     loading: "Loading...",
-      //     success: "Experience updating successfully",
-      //     error: "Something went wrong",
+      //     loading: "Updating professional experience...",
+      //     success: "Professional experience edited successfully!",
+      //     error: "Something went wrong!",
       //   });
     },
   });

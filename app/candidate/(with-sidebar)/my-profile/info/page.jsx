@@ -56,8 +56,8 @@ export default function PersonalInformation() {
 
     return toast.promise(promise, {
       loading: "Updating profile picture...",
-      success: "Profile picture updated successfully",
-      error: "Something went wrong",
+      success: "Profile picture updated successfully!",
+      error: "Something went wrong!",
     });
   };
 
