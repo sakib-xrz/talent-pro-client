@@ -56,10 +56,7 @@ export default function RootNavbar() {
             <Link className=" border-b px-4 py-2 font-medium" href={"register"}>
               As a Candidate
             </Link>
-            <Link
-              className="px-4 py-2 font-medium"
-              href={"/recruiter-register"}
-            >
+            <Link className="px-4 py-2 font-medium" href={""}>
               As a Recruiter
             </Link>
           </div>

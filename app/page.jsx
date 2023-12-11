@@ -125,7 +125,7 @@ export default async function Home() {
           <HeadingWithSubtitle
             title={"We have everything that you need"}
             subtitle={
-              "Discover the Tools and Resources You Need to Land Your Dream Job"
+              "Discover the tools and resources you need to land your dream job"
             }
           />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
@@ -181,7 +181,7 @@ export default async function Home() {
           <HeadingWithSubtitle
             title={"Simplifying Your Hiring Journey"}
             subtitle={
-              "Follow our Simple Steps to Start Hiring Top Talent and Growing Your Team"
+              "Follow our simple steps to start hiring top talent and growing your team"
             }
           />
           <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
