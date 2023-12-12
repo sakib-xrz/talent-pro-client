@@ -24,6 +24,15 @@ export default function ExperienceEditFrom({
       _id: experience?._id,
     },
     onSubmit: (values) => {
+      const uid = values._id;
+      const payload = {
+        company_name: values.company_name,
+        designation: values.designation,
+        job_type: values.job_type,
+        start_date: values.start_date,
+        end_date: values.end_date,
+        work_currently: values.work_currently,
+      };
       const handleSuccess = () => {
         refetch();
         setShowExperienceEditForm(false);
@@ -32,7 +41,7 @@ export default function ExperienceEditFrom({
         throw error;
       };
       const promise = APIKit.me
-        .updateExperience(values)
+        .updateExperience(uid, payload)
         .then(handleSuccess)
         .catch(handleFailure);
       return toast.promise(promise, {

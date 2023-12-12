@@ -42,18 +42,23 @@ const APIKit = {
       const url = "/me/info";
       return client.get(url);
     },
-    getExperience: () => {
-      const url = "/me/experience";
-      return client.get(url);
-    },
     updateInfo: (payload) => {
       const url = "/me/info";
       return client.patch(url, payload);
     },
-    updateExperience: (payload) => {
-      const url = "/me/experience/update";
+    getExperience: () => {
+      const url = "/me/experience";
+      return client.get(url);
+    },
+    updateExperience: (uid, payload) => {
+      const url = `/me/experience/${uid}`;
       return client.patch(url, payload);
     },
+    deleteExperience: (uid) => {
+      const url = `/me/experience/${uid}`;
+      return client.delete(url);
+    },
+
     updateProfilePicture: (payload) => {
       const url = "/me/image";
       return client.patch(url, payload, defaultFileUploadConfig);
