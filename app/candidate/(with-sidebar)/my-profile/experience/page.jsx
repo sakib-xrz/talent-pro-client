@@ -6,12 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useUser } from "@/context/UserProvider";
 import ExperienceCard from "./components/ExperienceCard";
 import { useState } from "react";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { PlusIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/button";
+import ExperienceAddForm from "./components/ExperienceAddForm";
 
 export default function ProfessionalExperience() {
   const { user } = useUser();
-  const [showExperienceForm, setShowExperienceForm] = useState(false);
+  const [showExperienceAddForm, setShowAddExperienceForm] = useState(false);
   const {
     data: userExperience,
     isLoading,
@@ -45,7 +46,22 @@ export default function ProfessionalExperience() {
           ))}
         </div>
       ) : (
-        <>{!showExperienceForm && <p>No Experiences added</p>}</>
+        <>{!showExperienceAddForm && <p>No Experiences added</p>}</>
+      )}
+
+      {showExperienceAddForm ? (
+        <ExperienceAddForm
+          setShowAddExperienceForm={setShowAddExperienceForm}
+          refetch={refetch}
+        />
+      ) : (
+        <Button
+          onClick={() => setShowAddExperienceForm(true)}
+          className="w-full gap-2 md:w-fit"
+        >
+          <PlusSmallIcon className="h-5 w-5" />
+          Add Experience
+        </Button>
       )}
     </div>
   );

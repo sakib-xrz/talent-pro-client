@@ -46,6 +46,10 @@ const APIKit = {
       const url = "/me/info";
       return client.patch(url, payload);
     },
+    addExperience: (payload) => {
+      const url = "/me/experience";
+      return client.post(url, payload);
+    },
     getExperience: () => {
       const url = "/me/experience";
       return client.get(url);
