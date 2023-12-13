@@ -29,16 +29,14 @@ export default function PersonalInformation() {
     return "Loading...";
   }
 
-  const { phone, location, industry, job_status } = userInfo;
-
   const initialValues = {
     first_name: user?.name?.first_name,
     last_name: user?.name?.last_name,
     email: user?.email,
-    phone: phone,
-    location: location,
-    industry: industry,
-    job_status: job_status,
+    phone: userInfo?.phone || "",
+    location: userInfo?.location || "",
+    industry: userInfo?.industry || "",
+    job_status: userInfo?.job_status || "",
   };
 
   const handleProfileImageUpload = (event) => {
