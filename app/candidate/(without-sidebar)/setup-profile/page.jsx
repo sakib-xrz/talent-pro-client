@@ -21,12 +21,6 @@ export default function CandidateSetupProfile() {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (user?.isOnboardComplete) {
-      router.back();
-    }
-  }, [router, user?.isOnboardComplete]);
-
   const initialValues = {
     user_id: user?.id,
     phone: "01409029742",
@@ -73,8 +67,8 @@ export default function CandidateSetupProfile() {
 
       const handleSuccess = () => {
         refetchMe();
-        formik.resetForm();
         router.push("/candidate/setup-profile/success");
+        formik.resetForm();
       };
 
       const handleFailure = (error) => {
