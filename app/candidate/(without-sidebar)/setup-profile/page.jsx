@@ -84,6 +84,8 @@ export default function CandidateSetupProfile() {
         payload.education = [];
       }
 
+      console.log(payload);
+
       const handleSuccess = () => {
         refetchMe();
         router.push("/candidate/setup-profile/success");
