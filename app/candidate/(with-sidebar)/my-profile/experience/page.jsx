@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useUser } from "@/context/UserProvider";
 import ExperienceCard from "./components/ExperienceCard";
 import { useState } from "react";
-import { PlusIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import { PlusSmallIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/button";
 import ExperienceAddForm from "./components/ExperienceAddForm";
 
@@ -19,7 +19,8 @@ export default function ProfessionalExperience() {
     refetch,
   } = useQuery({
     queryKey: ["my-experiences", user?.email],
-    queryFn: () => APIKit.me.getExperience().then(({ data }) => data),
+    queryFn: () =>
+      APIKit.me.experience.getExperience().then(({ data }) => data),
   });
 
   if (isLoading) {
@@ -46,7 +47,7 @@ export default function ProfessionalExperience() {
           ))}
         </div>
       ) : (
-        <>{!showExperienceAddForm && <p>No Experiences added</p>}</>
+        <>{!showExperienceAddForm && <p>No Experiences Added</p>}</>
       )}
 
       {showExperienceAddForm ? (

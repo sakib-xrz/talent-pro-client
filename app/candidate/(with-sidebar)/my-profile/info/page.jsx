@@ -22,7 +22,7 @@ export default function PersonalInformation() {
     refetch,
   } = useQuery({
     queryKey: ["my-info", user?.email],
-    queryFn: () => APIKit.me.getInfo().then(({ data }) => data),
+    queryFn: () => APIKit.me.info.getInfo().then(({ data }) => data),
   });
 
   if (isLoading) {

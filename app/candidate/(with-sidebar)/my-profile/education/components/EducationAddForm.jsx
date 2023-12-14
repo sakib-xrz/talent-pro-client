@@ -1,49 +1,46 @@
 import APIKit from "@/common/APIkit";
-import { EmploymentType } from "@/common/KeyChain";
 import DatePicker from "@/components/form/DatePicker";
-import Radio from "@/components/form/Radio";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
 
-export default function ExperienceAddForm({
-  setShowAddExperienceForm,
-  refetch,
-}) {
+export default function EducationAddForm({ setShowAddEducationForm, refetch }) {
   const formik = useFormik({
     initialValues: {
-      company_name: "Algosoft Technologies Limited",
-      designation: "Frontend Developer",
-      job_type: "INTERN",
-      start_date: "2023-01-20",
-      end_date: "2023-06-30",
-      work_currently: false,
+      institute_name: "Daffodil International University",
+      degree: "B.Sc",
+      major: "Computer Science and Engineering",
+      location: "Dhaka, Bangladesh",
+      start_date: "2018-09-20",
+      end_date: "",
+      study_currently: true,
     },
     onSubmit: (values) => {
       const payload = {
-        company_name: values.company_name,
-        designation: values.designation,
-        job_type: values.job_type,
+        institute_name: values.institute_name,
+        degree: values.degree,
+        major: values.major,
+        location: values.location,
         start_date: values.start_date,
         end_date: values.end_date,
-        work_currently: values.work_currently,
+        study_currently: values.study_currently,
       };
       const handleSuccess = () => {
         refetch();
-        setShowAddExperienceForm(false);
+        setShowAddEducationForm(false);
       };
       const handleFailure = (error) => {
         throw error;
       };
-      const promise = APIKit.me.experience
-        .addExperience(payload)
+      const promise = APIKit.me.education
+        .addEducation(payload)
         .then(handleSuccess)
         .catch(handleFailure);
       return toast.promise(promise, {
-        loading: "Adding professional experience...",
-        success: "Experience added successfully!",
+        loading: "Adding education...",
+        success: "Education added successfully!",
         error: "Something went wrong!",
       });
     },
@@ -52,60 +49,67 @@ export default function ExperienceAddForm({
   return (
     <div className="pt-3">
       <h3 className="mb-6 text-base font-semibold text-neutral-800">
-        Add Experience
+        Add Education
       </h3>
       <form onSubmit={formik.handleSubmit} className="space-y-5 pt-4 md:pt-4 ">
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
-          <Label htmlFor="company_name" className="md:w-2/5">
-            Company Name
+          <Label htmlFor="institute_name" className="md:w-2/5">
+            Institute name
           </Label>
           <Input
             type="text"
-            name="company_name"
-            id="company_name"
-            placeholder="e.g. Google"
+            name="institute_name"
+            id="institute_name"
+            placeholder="e.g. California University"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.company_name}
+            value={formik.values.institute_name}
           />
         </div>
 
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
-          <Label htmlFor="designation" className="md:w-2/5">
-            Designation
+          <Label htmlFor="degree" className="md:w-2/5">
+            Degree
           </Label>
           <Input
             type="text"
-            id="designation"
-            name="designation"
-            placeholder="e.g. Product Designer"
+            id="degree"
+            name="degree"
+            placeholder="e.g. Bachelor's"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.designation}
+            value={formik.values.degree}
           />
         </div>
 
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
-          <Label htmlFor="company_name" className="md:w-2/5">
-            Job type
+          <Label htmlFor="major" className="md:w-2/5">
+            Field of Study
           </Label>
-          <div className="w-full">
-            {EmploymentType.map((item, i) => (
-              <Radio
-                key={i}
-                htmlFor={item.value}
-                type="radio"
-                id={item.value}
-                name="job_type"
-                value={item.value}
-                onChange={formik.handleChange}
-                checked={formik.values.job_type === item.value}
-                label={item.label}
-              />
-            ))}
-          </div>
+          <Input
+            type="text"
+            id="major"
+            name="major"
+            placeholder="e.g. Computer Science & Engineering"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.major}
+          />
         </div>
-
+        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+          <Label htmlFor="location" className="md:w-2/5">
+            Location
+          </Label>
+          <Input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="e.g. Dhaka, Bangladesh"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.location}
+          />
+        </div>
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
           <Label htmlFor="start_date" className="md:w-2/5">
             Start Date
@@ -120,7 +124,6 @@ export default function ExperienceAddForm({
             />
           </div>
         </div>
-
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
           <Label htmlFor="end_date" className="md:w-2/5">
             End Date
@@ -132,41 +135,39 @@ export default function ExperienceAddForm({
               value={formik.values.end_date}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              disabled={formik.values.work_currently}
+              disabled={formik.values.study_currently}
             />
           </div>
         </div>
-
         <div className="space-y-2">
           <div className="flex items-center justify-end space-x-2">
             <input
               type="checkbox"
-              id="work_currently"
-              name="work_currently"
+              id="study_currently"
+              name="study_currently"
               onChange={(e) => {
                 formik.handleChange(e);
                 if (e.target.checked) {
                   formik.setFieldValue("end_date", "");
                 }
               }}
-              checked={formik.values.work_currently}
+              checked={formik.values.study_currently}
               className="accent-primary"
             />
             <label
-              htmlFor="work_currently"
+              htmlFor="study_currently"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              I currently work here
+              I currently study here
             </label>
           </div>
         </div>
-
         <div className="flex items-center justify-end gap-2 pt-2">
           <>
             <Button
               type="button"
               variant="secondary"
-              onClick={() => setShowAddExperienceForm(false)}
+              onClick={() => setShowAddEducationForm(false)}
             >
               Cancel
             </Button>

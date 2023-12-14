@@ -32,7 +32,7 @@ export default function InfoFrom({ initialValues, refetch }) {
         throw error;
       };
 
-      const promise = APIKit.me
+      const promise = APIKit.me.info
         .updateInfo(payload)
         .then(handleSuccess)
         .catch(handleFailure)

@@ -38,34 +38,60 @@ const APIKit = {
       const url = "/me";
       return client.get(url);
     },
-    getInfo: () => {
-      const url = "/me/info";
-      return client.get(url);
-    },
-    updateInfo: (payload) => {
-      const url = "/me/info";
-      return client.patch(url, payload);
-    },
-    addExperience: (payload) => {
-      const url = "/me/experience";
-      return client.post(url, payload);
-    },
-    getExperience: () => {
-      const url = "/me/experience";
-      return client.get(url);
-    },
-    updateExperience: (uid, payload) => {
-      const url = `/me/experience/${uid}`;
-      return client.patch(url, payload);
-    },
-    deleteExperience: (uid) => {
-      const url = `/me/experience/${uid}`;
-      return client.delete(url);
-    },
 
     updateProfilePicture: (payload) => {
       const url = "/me/image";
       return client.patch(url, payload, defaultFileUploadConfig);
+    },
+
+    info: {
+      getInfo: () => {
+        const url = "/me/info";
+        return client.get(url);
+      },
+
+      updateInfo: (payload) => {
+        const url = "/me/info";
+        return client.patch(url, payload);
+      },
+    },
+
+    experience: {
+      addExperience: (payload) => {
+        const url = "/me/experience";
+        return client.post(url, payload);
+      },
+      getExperience: () => {
+        const url = "/me/experience";
+        return client.get(url);
+      },
+      updateExperience: (uid, payload) => {
+        const url = `/me/experience/${uid}`;
+        return client.patch(url, payload);
+      },
+      deleteExperience: (uid) => {
+        const url = `/me/experience/${uid}`;
+        return client.delete(url);
+      },
+    },
+
+    education: {
+      addEducation: (payload) => {
+        const url = "/me/education";
+        return client.post(url, payload);
+      },
+      getEducation: () => {
+        const url = "/me/education";
+        return client.get(url);
+      },
+      updateEducation: (uid, payload) => {
+        const url = `/me/education/${uid}`;
+        return client.patch(url, payload);
+      },
+      deleteEducation: (uid) => {
+        const url = `/me/education/${uid}`;
+        return client.delete(url);
+      },
     },
   },
 };

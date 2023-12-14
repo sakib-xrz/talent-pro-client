@@ -40,7 +40,7 @@ export default function ExperienceEditFrom({
       const handleFailure = (error) => {
         throw error;
       };
-      const promise = APIKit.me
+      const promise = APIKit.me.experience
         .updateExperience(uid, payload)
         .then(handleSuccess)
         .catch(handleFailure);
@@ -167,7 +167,6 @@ export default function ExperienceEditFrom({
         <div className="flex items-center justify-end gap-2 pt-2">
           <>
             <Button
-              href="/candidate/my-profile"
               type="button"
               variant="secondary"
               onClick={() => setShowExperienceEditForm(false)}
