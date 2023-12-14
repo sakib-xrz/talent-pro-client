@@ -65,6 +65,25 @@ export default function CandidateSetupProfile() {
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
 
+      let payload = { ...values };
+
+      payload.experience = [payload.experience];
+      payload.education = [payload.education];
+
+      if (
+        !payload.experience[0]?.company_name ||
+        !payload.experience[0]?.designation
+      ) {
+        payload.experience = [];
+      }
+
+      if (
+        !payload.education[0]?.institute_name ||
+        !payload.education[0]?.degree
+      ) {
+        payload.education = [];
+      }
+
       const handleSuccess = () => {
         refetchMe();
         router.push("/candidate/setup-profile/success");

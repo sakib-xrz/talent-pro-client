@@ -49,7 +49,9 @@ export default function Step4From({
         <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
           <h4 className="text-lg font-semibold">Skills and Expertise</h4>
           <div className="space-y-2">
-            <p className="font-medium text-primary">Add Skills</p>
+            <p className="font-medium text-primary">
+              Add Skills <span className="text-destructive">*</span>
+            </p>
             <div>
               <CreatableSelectField
                 id="skills"
@@ -93,7 +95,8 @@ export default function Step4From({
             <p className="font-medium text-primary">
               {resume_preview && resume
                 ? "Attached File"
-                : "Upload Your Resume"}
+                : "Upload Your Resume"}{" "}
+              <span className="text-destructive">*</span>
             </p>
             <div>
               {resume_preview && resume ? (
@@ -130,7 +133,8 @@ export default function Step4From({
 
           <div className="space-y-2">
             <p className="font-medium text-primary">
-              What is your desired salary?
+              What is your desired salary?{" "}
+              <span className="text-destructive">*</span>
             </p>
             <div className="flex flex-col items-center justify-between gap-2 sm:flex-row sm:gap-4">
               <div className="w-full space-y-2">

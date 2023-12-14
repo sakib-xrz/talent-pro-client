@@ -1,7 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronLeftIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/24/outline";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
 import { Input } from "@/components/ui/input";
 import DatePicker from "@/components/form/DatePicker";
@@ -32,6 +35,10 @@ export default function Step3Form({
         </div>
         <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
           <h4 className="text-lg font-semibold">Education</h4>
+          <div className="flex items-center gap-2 rounded-md bg-primary/10 p-2">
+            <InformationCircleIcon className="h-5 w-5" />
+            <p className="text-sm font-medium">You can skip this step</p>
+          </div>
           <div className="space-y-2">
             <p className="font-medium text-primary">Institute name</p>
             <div>
