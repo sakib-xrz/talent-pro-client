@@ -96,7 +96,7 @@ export default function CandidateSetupProfile() {
       };
 
       const promise = APIKit.candidate
-        .setupProfile(values)
+        .setupProfile(payload)
         .then(handleSuccess)
         .catch(handleFailure)
         .finally(() => setSubmitting(false));
