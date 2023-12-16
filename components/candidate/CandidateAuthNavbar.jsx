@@ -1,17 +1,20 @@
 "use client";
 
-import { Bars3Icon } from "@heroicons/react/24/outline";
-import RightSideDrawer from "../shared/RightSideDrawer";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "public/images/logo.png";
-import { Button } from "../ui/button";
-import CandidateCardDropdown from "./CandidateCardDropdown";
-import CandidateCard from "./CandidateCard";
+
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import { LogOut } from "lucide-react";
-import MobileNavOptions from "./MobileNavOptions";
+
+import Logo from "public/images/logo.png";
 import { useUser } from "@/context/UserProvider";
+
+import { Button } from "../ui/button";
+import CandidateCard from "./CandidateCard";
+import CandidateCardDropdown from "./CandidateCardDropdown";
+import RightSideDrawer from "../shared/RightSideDrawer";
+import MobileNavOptions from "./MobileNavOptions";
 
 export default function CandidateAuthNavbar() {
   const { user } = useUser();

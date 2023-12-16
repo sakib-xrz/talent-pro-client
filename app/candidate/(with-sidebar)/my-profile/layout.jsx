@@ -1,8 +1,9 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
+
 import SelectField from "@/components/form/SelectField";
 import TabNavigation from "@/components/shared/TabNavigation";
-import { usePathname, useRouter } from "next/navigation";
 
 const profileTabsOptions = [
   {

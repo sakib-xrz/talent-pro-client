@@ -1,13 +1,13 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   ChevronLeftIcon,
   InformationCircleIcon,
 } from "@heroicons/react/24/outline";
-import FormikErrorBox from "@/components/form/FormikErrorBox";
-import { Input } from "@/components/ui/input";
+
+import { Button } from "@/components/ui/button";
 import DatePicker from "@/components/form/DatePicker";
+import { Input } from "@/components/ui/input";
 
 export default function Step3Form({
   formik,
@@ -52,7 +52,6 @@ export default function Step3Form({
                 value={formik.values.education.institute_name}
               />
             </div>
-            <FormikErrorBox formik={formik} field="education.institute_name" />
           </div>
 
           <div className="space-y-2">
@@ -68,7 +67,6 @@ export default function Step3Form({
                 value={formik.values.education.degree}
               />
             </div>
-            <FormikErrorBox formik={formik} field="education.degree" />
           </div>
 
           <div className="space-y-2">
@@ -84,7 +82,6 @@ export default function Step3Form({
                 value={formik.values.education.major}
               />
             </div>
-            <FormikErrorBox formik={formik} field="education.major" />
           </div>
 
           <div className="space-y-2">
@@ -100,7 +97,6 @@ export default function Step3Form({
                 value={formik.values.education.location}
               />
             </div>
-            <FormikErrorBox formik={formik} field="education.location" />
           </div>
 
           <div className="space-y-2">

@@ -1,10 +1,12 @@
+import toast from "react-hot-toast";
+import { useFormik } from "formik";
+
 import APIKit from "@/common/APIkit";
-import DatePicker from "@/components/form/DatePicker";
+
 import { Button } from "@/components/ui/button";
+import DatePicker from "@/components/form/DatePicker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useFormik } from "formik";
-import toast from "react-hot-toast";
 
 export default function EducationEditFrom({
   education,

@@ -1,14 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   ChevronLeftIcon,
   InformationCircleIcon,
 } from "@heroicons/react/24/outline";
+
 import { EmploymentType } from "@/common/KeyChain";
-import FormikErrorBox from "@/components/form/FormikErrorBox";
-import { Input } from "@/components/ui/input";
+
+import { Button } from "@/components/ui/button";
 import DatePicker from "@/components/form/DatePicker";
+import { Input } from "@/components/ui/input";
 import Radio from "@/components/form/Radio";
 
 export default function Step2Form({
@@ -54,7 +55,6 @@ export default function Step2Form({
                 value={formik.values.experience.company_name}
               />
             </div>
-            <FormikErrorBox formik={formik} field="experience.company_name" />
           </div>
 
           <div className="space-y-2">
@@ -70,7 +70,6 @@ export default function Step2Form({
                 value={formik.values.experience.designation}
               />
             </div>
-            <FormikErrorBox formik={formik} field="experience.designation" />
           </div>
 
           <div className="space-y-2">
@@ -90,7 +89,6 @@ export default function Step2Form({
                 />
               ))}
             </div>
-            <FormikErrorBox formik={formik} field="experience.job_type" />
           </div>
 
           <div className="space-y-2">

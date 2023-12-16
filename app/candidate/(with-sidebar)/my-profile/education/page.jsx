@@ -1,14 +1,17 @@
 "use client";
 
-import { useUser } from "@/context/UserProvider";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import TitleWithDescription from "../../components/TitleWithDescription";
-import APIKit from "@/common/APIkit";
-import EducationCard from "./components/EducationCard";
-import { Button } from "@/components/ui/button";
+
 import { PlusSmallIcon } from "@heroicons/react/24/outline";
+import { useQuery } from "@tanstack/react-query";
+
+import APIKit from "@/common/APIkit";
+import { useUser } from "@/context/UserProvider";
+
+import { Button } from "@/components/ui/button";
 import EducationAddForm from "./components/EducationAddForm";
+import EducationCard from "./components/EducationCard";
+import TitleWithDescription from "../../components/TitleWithDescription";
 
 export default function EducationalBackground() {
   const { user } = useUser();

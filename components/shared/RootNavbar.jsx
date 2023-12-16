@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import APIKit from "@/common/APIkit";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import Logo from "public/images/logo.png";
 
 import { Button } from "../ui/button";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Separator } from "../ui/separator";
-import APIKit from "@/common/APIkit";
 
 export default function RootNavbar() {
   const [open, setOpen] = useState(false);

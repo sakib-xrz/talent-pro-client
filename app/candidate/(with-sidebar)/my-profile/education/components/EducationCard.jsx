@@ -1,13 +1,15 @@
 import { useState } from "react";
-import EducationEditFrom from "./EducationEditFrom";
-import APIKit from "@/common/APIkit";
-import toast from "react-hot-toast";
+
 import {
   AcademicCapIcon,
   PencilSquareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
+
+import APIKit from "@/common/APIkit";
+import { formatDate } from "@/common/UtilKit";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,7 +21,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { formatDate } from "@/common/UtilKit";
+import { Button } from "@/components/ui/button";
+import EducationEditFrom from "./EducationEditFrom";
 
 export default function EducationCard({ education, refetch }) {
   const [showEducationEditForm, setShowEducationEditForm] = useState(false);

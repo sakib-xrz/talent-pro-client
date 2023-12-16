@@ -1,16 +1,18 @@
 "use client";
 
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import TitleWithDescription from "../../components/TitleWithDescription";
-import Image from "next/image";
-import FileUpload from "@/components/form/FileUpload";
 import { useState } from "react";
-import { useUser } from "@/context/UserProvider";
-import APIKit from "@/common/APIkit";
-import toast from "react-hot-toast";
+import Image from "next/image";
 
-import { useQuery } from "@tanstack/react-query";
 import InfoFrom from "./components/InfoFrom";
+import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+
+import APIKit from "@/common/APIkit";
+import { useUser } from "@/context/UserProvider";
+
+import FileUpload from "@/components/form/FileUpload";
+import TitleWithDescription from "../../components/TitleWithDescription";
 
 export default function PersonalInformation() {
   const { user, refetchMe } = useUser();

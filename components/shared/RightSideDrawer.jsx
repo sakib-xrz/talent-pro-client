@@ -1,5 +1,6 @@
-import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+
+import { Dialog, Transition } from "@headlessui/react";
 
 export default function RightSideDrawer({ open, setOpen, children, title }) {
   return (

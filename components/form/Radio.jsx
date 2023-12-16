@@ -10,10 +10,7 @@ export default function Radio({
   disabled,
 }) {
   return (
-    <label
-      htmlFor={htmlFor}
-      className={`inline flex items-center space-x-2 p-1`}
-    >
+    <label htmlFor={htmlFor} className={`flex items-center space-x-2 p-1`}>
       <input
         id={id}
         type={type}

@@ -1,14 +1,16 @@
+import { useState } from "react";
+
 import { useFormik } from "formik";
+import toast from "react-hot-toast";
+
+import APIKit from "@/common/APIkit";
+import { EmployStatus } from "@/common/KeyChain";
 
 import { Button } from "@/components/ui/button";
-import { Phone } from "@/components/ui/phone";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Phone } from "@/components/ui/phone";
 import Radio from "@/components/form/Radio";
-import { EmployStatus } from "@/common/KeyChain";
-import APIKit from "@/common/APIkit";
-import toast from "react-hot-toast";
-import { useState } from "react";
 
 export default function InfoFrom({ initialValues, refetch }) {
   const [showActionButtons, setShowActionButtons] = useState(false);

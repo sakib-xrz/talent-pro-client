@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   ChevronLeftIcon,
   DocumentTextIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import FormikErrorBox from "@/components/form/FormikErrorBox";
+
+import { Button } from "@/components/ui/button";
 import CreatableSelectField from "@/components/form/CreatableSelectField";
 import FileUpload from "@/components/form/FileUpload";
 import { Input } from "@/components/ui/input";
@@ -72,7 +72,6 @@ export default function Step4From({
                 isSearchable
               />
             </div>
-            <FormikErrorBox formik={formik} field="skills" />
           </div>
 
           <div className="space-y-2">
@@ -88,7 +87,6 @@ export default function Step4From({
                 value={formik.values.portfolio}
               />
             </div>
-            <FormikErrorBox formik={formik} field="portfolio" />
           </div>
 
           <div className="space-y-2">

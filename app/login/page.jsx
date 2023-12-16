@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import toast from "react-hot-toast";
 
 import APIKit from "@/common/APIkit";
+import { setJWTokenAndRedirect } from "@/common/UtilKit";
 
 import { Button } from "@/components/ui/button";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
@@ -19,7 +20,6 @@ import { Label } from "@/components/ui/label";
 import { Password } from "@/components/ui/password";
 import RootFooter from "@/components/shared/RootFooter";
 import RootNavbar from "@/components/shared/RootNavbar";
-import { setJWTokenAndRedirect } from "@/common/UtilKit";
 
 const validationSchema = Yup.object({
   email: Yup.string()

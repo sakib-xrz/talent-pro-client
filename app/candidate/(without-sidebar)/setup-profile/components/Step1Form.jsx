@@ -1,12 +1,12 @@
 "use client";
 
 import { EmployStatus, IndustryOptions } from "@/common/KeyChain";
-import FormikErrorBox from "@/components/form/FormikErrorBox";
-import Radio from "@/components/form/Radio";
-import SelectField from "@/components/form/SelectField";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Phone } from "@/components/ui/phone";
+import Radio from "@/components/form/Radio";
+import SelectField from "@/components/form/SelectField";
 
 export default function Step1Form({ formik, handleCompleteStep1 }) {
   const handleIndustryChange = (selectedOption) => {
@@ -51,7 +51,6 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
                 value={formik.values.phone}
               />
             </div>
-            <FormikErrorBox formik={formik} field="phone" />
           </div>
 
           <div className="space-y-2">
@@ -69,7 +68,6 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
                 value={formik.values.location}
               />
             </div>
-            <FormikErrorBox formik={formik} field="location" />
           </div>
 
           <div className="space-y-2">
@@ -91,7 +89,6 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
                 isSearchable
               />
             </div>
-            <FormikErrorBox formik={formik} field="industry" />
           </div>
 
           <div className="space-y-2">
@@ -114,7 +111,6 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
                 />
               ))}
             </div>
-            <FormikErrorBox formik={formik} field="job_status" />
           </div>
 
           <div></div>

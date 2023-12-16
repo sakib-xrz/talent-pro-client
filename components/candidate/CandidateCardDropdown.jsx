@@ -1,10 +1,11 @@
+import { Fragment } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
 import { navOptions } from "@/common/KeyChain";
 import { useUser } from "@/context/UserProvider";
 import { Menu, Transition } from "@headlessui/react";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import Link from "next/link";
-import { Fragment } from "react";
 
 export default function CandidateCardDropdown() {
   const { user } = useUser();
