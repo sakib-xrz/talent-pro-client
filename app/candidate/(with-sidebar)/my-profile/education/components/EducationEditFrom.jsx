@@ -1,3 +1,4 @@
+import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 
@@ -7,6 +8,20 @@ import { Button } from "@/components/ui/button";
 import DatePicker from "@/components/form/DatePicker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import FormikErrorBox from "@/components/form/FormikErrorBox";
+
+const validationSchema = Yup.object().shape({
+  institute_name: Yup.string().required("Institute name is required"),
+  degree: Yup.string().required("Degree is required"),
+  major: Yup.string().required("Major is required"),
+  location: Yup.string().required("Location is required"),
+  study_currently: Yup.boolean(),
+  start_date: Yup.date().required("Start date is required"),
+  end_date: Yup.date().min(
+    Yup.ref("start_date"),
+    "End date must be after start date",
+  ),
+});
 
 export default function EducationEditFrom({
   education,
@@ -24,6 +39,7 @@ export default function EducationEditFrom({
       end_date: education.end_date,
       study_currently: education.study_currently,
     },
+    validationSchema,
     onSubmit: (values) => {
       const uid = values._id;
       const payload = {
@@ -33,7 +49,7 @@ export default function EducationEditFrom({
         location: values.location,
         start_date: values.start_date,
         end_date: values.end_date,
-        study_currently: values.study_currently,
+        study_currently: values.study_currently ? values.study_currently : true,
       };
       const handleSuccess = () => {
         refetch();
@@ -64,59 +80,71 @@ export default function EducationEditFrom({
           <Label htmlFor="institute_name" className="md:w-2/5">
             Institute name
           </Label>
-          <Input
-            type="text"
-            name="institute_name"
-            id="institute_name"
-            placeholder="e.g. California University"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.institute_name}
-          />
+          <div className="w-full">
+            <Input
+              type="text"
+              name="institute_name"
+              id="institute_name"
+              placeholder="e.g. California University"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.institute_name}
+            />
+            <FormikErrorBox formik={formik} field={"institute_name"} />
+          </div>
         </div>
 
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
           <Label htmlFor="degree" className="md:w-2/5">
             Degree
           </Label>
-          <Input
-            type="text"
-            id="degree"
-            name="degree"
-            placeholder="e.g. Bachelor's"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.degree}
-          />
+          <div className="w-full">
+            <Input
+              type="text"
+              id="degree"
+              name="degree"
+              placeholder="e.g. Bachelor's"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.degree}
+            />
+            <FormikErrorBox formik={formik} field={"degree"} />
+          </div>
         </div>
 
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
           <Label htmlFor="major" className="md:w-2/5">
             Field of Study
           </Label>
-          <Input
-            type="text"
-            id="major"
-            name="major"
-            placeholder="e.g. Computer Science & Engineering"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.major}
-          />
+          <div className="w-full">
+            <Input
+              type="text"
+              id="major"
+              name="major"
+              placeholder="e.g. Computer Science & Engineering"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.major}
+            />
+            <FormikErrorBox formik={formik} field={"major"} />
+          </div>
         </div>
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
           <Label htmlFor="location" className="md:w-2/5">
             Location
           </Label>
-          <Input
-            type="text"
-            id="location"
-            name="location"
-            placeholder="e.g. Dhaka, Bangladesh"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.location}
-          />
+          <div className="w-full">
+            <Input
+              type="text"
+              id="location"
+              name="location"
+              placeholder="e.g. Dhaka, Bangladesh"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.location}
+            />
+            <FormikErrorBox formik={formik} field={"location"} />
+          </div>
         </div>
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
           <Label htmlFor="start_date" className="md:w-2/5">
@@ -130,6 +158,7 @@ export default function EducationEditFrom({
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
+            <FormikErrorBox formik={formik} field={"start_date"} />
           </div>
         </div>
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
@@ -145,6 +174,7 @@ export default function EducationEditFrom({
               onBlur={formik.handleBlur}
               disabled={formik.values.study_currently}
             />
+            <FormikErrorBox formik={formik} field={"end_date"} />
           </div>
         </div>
         <div className="space-y-2">
