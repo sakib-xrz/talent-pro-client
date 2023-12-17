@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
 
@@ -11,11 +12,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Phone } from "@/components/ui/phone";
 import Radio from "@/components/form/Radio";
+import FormikErrorBox from "@/components/form/FormikErrorBox";
+
+const validationSchema = Yup.object().shape({
+  phone: Yup.string()
+    .matches(/^01[3-9]\d{8}$/, "Invalid phone number")
+    .required("Phone is required"),
+
+  location: Yup.string().required("Location is required"),
+
+  industry: Yup.string().required("Industry is required"),
+});
 
 export default function InfoFrom({ initialValues, refetch }) {
   const [showActionButtons, setShowActionButtons] = useState(false);
   const formik = useFormik({
     initialValues,
+    validationSchema,
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
       const payload = {
@@ -93,33 +106,40 @@ export default function InfoFrom({ initialValues, refetch }) {
         <Label htmlFor="phone" className="md:w-2/5">
           Contact Number
         </Label>
-        <Phone
-          name="phone"
-          id="phone"
-          placeholder="01XXX-XXXXXX"
-          value={formik.values?.phone}
-          onChange={(e) => {
-            formik.handleChange(e);
-            setShowActionButtons(true);
-          }}
-        />
+        <div className="w-full">
+          <Phone
+            name="phone"
+            id="phone"
+            placeholder="01XXX-XXXXXX"
+            value={formik.values?.phone}
+            onChange={(e) => {
+              formik.handleChange(e);
+              setShowActionButtons(true);
+            }}
+            onBlur={formik.handleBlur}
+          />
+          <FormikErrorBox formik={formik} field={"phone"} />
+        </div>
       </div>
 
       <div className="flex flex-col gap-2 md:flex-row md:gap-3">
         <Label htmlFor="location" className="md:w-2/5">
           Location
         </Label>
-        <Input
-          name="location"
-          id="location"
-          placeholder="Your Location"
-          onChange={(e) => {
-            formik.handleChange(e);
-            setShowActionButtons(true);
-          }}
-          onBlur={formik.handleBlur}
-          value={formik.values.location}
-        />
+        <div className="w-full">
+          <Input
+            name="location"
+            id="location"
+            placeholder="Your Location"
+            onChange={(e) => {
+              formik.handleChange(e);
+              setShowActionButtons(true);
+            }}
+            onBlur={formik.handleBlur}
+            value={formik.values.location}
+          />
+          <FormikErrorBox formik={formik} field={"location"} />
+        </div>
       </div>
 
       <div className="flex flex-col gap-2 md:flex-row md:gap-3">

@@ -70,13 +70,20 @@ export default function ExperienceCard({ experience, refetch }) {
               <BriefcaseIcon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
             </div>
             <div>
-              <h3 className="text-base font-semibold">{designation}</h3>
+              <h3 className="text-base font-semibold">
+                {designation || "Not set"}
+              </h3>
               <p className="text-base font-medium">
-                {company_name} • {formatText(job_type)}
+                {company_name || "Not set"} •{" "}
+                {formatText(job_type) || "Not Set"}
               </p>
               <p className="mt-2 text-sm font-medium text-accent-foreground">
-                {formatDate(start_date)} -{" "}
-                {work_currently ? "Present" : formatDate(end_date)}
+                {formatDate(start_date) || "Not set"} -{" "}
+                {work_currently
+                  ? "Present"
+                  : end_date
+                    ? formatDate(end_date)
+                    : "Not set"}
               </p>
             </div>
           </div>

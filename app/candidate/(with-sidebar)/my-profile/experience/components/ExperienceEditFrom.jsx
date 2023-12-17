@@ -1,3 +1,4 @@
+import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 
@@ -9,6 +10,25 @@ import DatePicker from "@/components/form/DatePicker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Radio from "@/components/form/Radio";
+import FormikErrorBox from "@/components/form/FormikErrorBox";
+
+const validationSchema = Yup.object({
+  company_name: Yup.string()
+    .max(50, "Must be 50 characters or less")
+    .required("Company name is required"),
+  designation: Yup.string()
+    .max(50, "Must be 50 characters or less")
+    .required("Designation is required"),
+  job_type: Yup.string()
+    .oneOf(["INTERN", "FULL_TIME", "PART_TIME"], "Invalid job type")
+    .required("Job type is required"),
+  work_currently: Yup.boolean(),
+  start_date: Yup.date().required("Start date is required"),
+  end_date: Yup.date().min(
+    Yup.ref("start_date"),
+    "End date must be after start date",
+  ),
+});
 
 export default function ExperienceEditFrom({
   experience,
@@ -25,6 +45,7 @@ export default function ExperienceEditFrom({
       work_currently: experience.work_currently,
       _id: experience?._id,
     },
+    validationSchema,
     onSubmit: (values) => {
       const uid = values._id;
       const payload = {
@@ -33,7 +54,7 @@ export default function ExperienceEditFrom({
         job_type: values.job_type,
         start_date: values.start_date,
         end_date: values.end_date,
-        work_currently: values.work_currently,
+        work_currently: values.end_date ? values.work_currently : true,
       };
       const handleSuccess = () => {
         refetch();
@@ -64,30 +85,36 @@ export default function ExperienceEditFrom({
           <Label htmlFor="company_name" className="md:w-2/5">
             Company Name
           </Label>
-          <Input
-            type="text"
-            name="company_name"
-            id="company_name"
-            placeholder="e.g. Google"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.company_name}
-          />
+          <div className="w-full">
+            <Input
+              type="text"
+              name="company_name"
+              id="company_name"
+              placeholder="e.g. Google"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.company_name}
+            />
+            <FormikErrorBox formik={formik} field={"company_name"} />
+          </div>
         </div>
 
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
           <Label htmlFor="designation" className="md:w-2/5">
             Designation
           </Label>
-          <Input
-            type="text"
-            id="designation"
-            name="designation"
-            placeholder="e.g. Product Designer"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.designation}
-          />
+          <div className="w-full">
+            <Input
+              type="text"
+              id="designation"
+              name="designation"
+              placeholder="e.g. Product Designer"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.designation}
+            />
+            <FormikErrorBox formik={formik} field={"designation"} />
+          </div>
         </div>
 
         <div className="flex flex-col gap-2 md:flex-row md:gap-3">
@@ -108,6 +135,7 @@ export default function ExperienceEditFrom({
                 label={item.label}
               />
             ))}
+            <FormikErrorBox formik={formik} field={"job_type"} />
           </div>
         </div>
 
@@ -123,6 +151,7 @@ export default function ExperienceEditFrom({
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
+            <FormikErrorBox formik={formik} field={"start_date"} />
           </div>
         </div>
 
@@ -139,6 +168,7 @@ export default function ExperienceEditFrom({
               onBlur={formik.handleBlur}
               disabled={formik.values.work_currently}
             />
+            <FormikErrorBox formik={formik} field={"end_date"} />
           </div>
         </div>
 
