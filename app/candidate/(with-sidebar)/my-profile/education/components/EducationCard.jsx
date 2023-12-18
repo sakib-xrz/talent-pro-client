@@ -71,14 +71,20 @@ export default function EducationCard({ education, refetch }) {
               <AcademicCapIcon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
             </div>
             <div>
-              <h3 className="text-base font-semibold">{institute_name}</h3>
+              <h3 className="text-base font-semibold">
+                {institute_name || "Not set"}
+              </h3>
               <p className="text-base font-medium">
-                {degree} • {major}
+                {degree || "Not set"} • {major || "Not set"}
               </p>
-              <p className="text-base font-medium">{location}</p>
+              <p className="text-base font-medium">{location || "Not set"}</p>
               <p className="mt-2 text-sm font-medium text-accent-foreground">
-                {formatDate(start_date)} -{" "}
-                {study_currently ? "Present" : formatDate(end_date)}
+                {formatDate(start_date) || "Not set"} -{" "}
+                {study_currently
+                  ? "Present"
+                  : end_date
+                    ? formatDate(end_date)
+                    : "Not set"}
               </p>
             </div>
           </div>
