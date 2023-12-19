@@ -49,10 +49,18 @@ export default function RootNavbar() {
               open ? "absolute right-0 top-12 flex flex-col" : "hidden"
             } " w-40 rounded-md border bg-white`}
           >
-            <Link className=" border-b px-4 py-2 font-medium" href={"/login"}>
+            <Link
+              onClick={() => setOpen(false)}
+              className=" border-b px-4 py-2 font-medium"
+              href={"/login"}
+            >
               As a Candidate
             </Link>
-            <Link className="px-4 py-2 font-medium" href={""}>
+            <Link
+              onClick={() => setOpen(false)}
+              className="px-4 py-2 font-medium"
+              href={""}
+            >
               As a Recruiter
             </Link>
           </div>
