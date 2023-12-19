@@ -1,13 +1,32 @@
+"use client";
+
+import APIKit from "@/common/APIkit";
 import FileUpload from "@/components/form/FileUpload";
 import { DocumentTextIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
-export default function UpdateResume({ resumeData, refetch }) {
-  const { resume_preview } = resumeData;
+export default function UpdateResume({ resume, setResume, refetch }) {
+  const handleResumeUpdate = (event) => {
+    const formData = new FormData();
+    formData.append("resume", event.target.files[0]);
+    const promise = APIKit.me
+      .updateResume(formData)
+      .then(refetch)
+      .catch((error) => {
+        throw error;
+      });
+
+    return toast.promise(promise, {
+      loading: "Updating resume...",
+      success: "Resume updated successfully",
+      error: "Something went wrong",
+    });
+  };
 
   return (
     <div>
-      {resume_preview ? (
+      {resume ? (
         <div className="space-y-1">
           <div className="flex items-center justify-between rounded-md border border-gray-200 p-3">
             <div className="flex items-center gap-x-3">
@@ -15,7 +34,7 @@ export default function UpdateResume({ resumeData, refetch }) {
                 <DocumentTextIcon className="h-6 w-6 text-primary" />
               </div>
               <Link
-                href={resume_preview}
+                href={resume}
                 className="cursor-pointer font-semibold hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -23,10 +42,10 @@ export default function UpdateResume({ resumeData, refetch }) {
                 Resume.pdf
               </Link>
             </div>
-            {/* <XMarkIcon
+            <XMarkIcon
               className="h-6 w-6 cursor-pointer"
-              onClick={handleRemoveResume}
-            /> */}
+              onClick={() => setResume("")}
+            />
           </div>
         </div>
       ) : (
@@ -37,7 +56,7 @@ export default function UpdateResume({ resumeData, refetch }) {
           title="Select and upload your resume"
           helperText="Supported only PDF up to 10 mb"
           accept=".pdf"
-          //   onChange={handleFileUpload}
+          onChange={handleResumeUpdate}
         />
       )}
     </div>

@@ -44,6 +44,11 @@ const APIKit = {
       return client.patch(url, payload, defaultFileUploadConfig);
     },
 
+    updateResume: (payload) => {
+      const url = "/me/resume";
+      return client.patch(url, payload, defaultFileUploadConfig);
+    },
+
     info: {
       getInfo: () => {
         const url = "/me/info";
