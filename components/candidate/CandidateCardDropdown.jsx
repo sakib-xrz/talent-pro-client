@@ -58,18 +58,19 @@ export default function CandidateCardDropdown() {
           }
         >
           {dropdownItems.map((route, index) => (
-            <Link
-              href={route.href}
-              key={index + 1}
-              className={`flex w-full items-center gap-2 bg-white p-4 text-center text-sm font-medium text-gray-700 duration-300 first:rounded-t-sm last:rounded-b-sm ${
-                route.href === "/logout"
-                  ? "hover:bg-destructive hover:text-white"
-                  : "hover:bg-secondary/80"
-              } `}
-            >
-              <route.icon className="h-5 w-5" />
-              {route.name}
-            </Link>
+            <Menu.Item key={index + 1}>
+              <Link
+                href={route.href}
+                className={`flex w-full items-center gap-2 bg-white p-4 text-center text-sm font-medium text-gray-700 duration-300 first:rounded-t-sm last:rounded-b-sm ${
+                  route.href === "/logout"
+                    ? "hover:bg-destructive hover:text-white"
+                    : "hover:bg-secondary/80"
+                } `}
+              >
+                <route.icon className="h-5 w-5" />
+                {route.name}
+              </Link>
+            </Menu.Item>
           ))}
         </Menu.Items>
       </Transition>
