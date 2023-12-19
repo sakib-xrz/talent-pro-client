@@ -93,6 +93,13 @@ const APIKit = {
         return client.delete(url);
       },
     },
+
+    expertise: {
+      getSkillAndExpertise: () => {
+        const url = "/me/skills-expertise";
+        return client.get(url);
+      },
+    },
   },
 };
 
