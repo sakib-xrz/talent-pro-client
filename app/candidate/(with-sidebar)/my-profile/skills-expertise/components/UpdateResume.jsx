@@ -1,10 +1,13 @@
 "use client";
 
-import APIKit from "@/common/APIkit";
-import FileUpload from "@/components/form/FileUpload";
-import { DocumentTextIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+
+import { DocumentTextIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
+
+import APIKit from "@/common/APIkit";
+
+import FileUpload from "@/components/form/FileUpload";
 
 export default function UpdateResume({ resume, setResume, refetch }) {
   const handleResumeUpdate = (event) => {

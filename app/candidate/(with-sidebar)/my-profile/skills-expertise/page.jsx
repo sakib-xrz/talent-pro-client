@@ -1,10 +1,12 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import TitleWithDescription from "../../components/TitleWithDescription";
-import APIKit from "@/common/APIkit";
-import UpdateResume from "./components/UpdateResume";
 import { useState } from "react";
+
+import APIKit from "@/common/APIkit";
+
+import TitleWithDescription from "../../components/TitleWithDescription";
+import UpdateResume from "./components/UpdateResume";
 
 export default function SkillAndExpertise() {
   const [resume, setResume] = useState("");
