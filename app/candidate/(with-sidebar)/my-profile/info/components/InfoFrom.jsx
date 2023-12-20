@@ -63,7 +63,7 @@ export default function InfoFrom({ initialValues, refetch }) {
 
   return (
     <form onSubmit={formik.handleSubmit} className="space-y-5 pt-4 md:pt-4 ">
-      <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="first_name" className="md:w-2/5">
           First Name
         </Label>
@@ -76,7 +76,7 @@ export default function InfoFrom({ initialValues, refetch }) {
         />
       </div>
 
-      <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="last_name" className="md:w-2/5">
           Last Name
         </Label>
@@ -89,7 +89,7 @@ export default function InfoFrom({ initialValues, refetch }) {
         />
       </div>
 
-      <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="email" className="md:w-2/5">
           Email Address
         </Label>
@@ -102,7 +102,7 @@ export default function InfoFrom({ initialValues, refetch }) {
         />
       </div>
 
-      <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="phone" className="md:w-2/5">
           Contact Number
         </Label>
@@ -122,7 +122,7 @@ export default function InfoFrom({ initialValues, refetch }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="location" className="md:w-2/5">
           Location
         </Label>
@@ -142,7 +142,7 @@ export default function InfoFrom({ initialValues, refetch }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="job_status" className="md:w-2/5">
           Job Status
         </Label>

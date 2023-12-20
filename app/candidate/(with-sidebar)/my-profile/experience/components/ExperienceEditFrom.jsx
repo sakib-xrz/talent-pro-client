@@ -81,7 +81,7 @@ export default function ExperienceEditFrom({
         Edit Experience
       </h3>
       <form onSubmit={formik.handleSubmit} className="space-y-5 pt-4 md:pt-4 ">
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="company_name" className="md:w-2/5">
             Company Name
           </Label>
@@ -99,7 +99,7 @@ export default function ExperienceEditFrom({
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="designation" className="md:w-2/5">
             Designation
           </Label>
@@ -139,7 +139,7 @@ export default function ExperienceEditFrom({
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="start_date" className="md:w-2/5">
             Start Date
           </Label>
@@ -155,7 +155,7 @@ export default function ExperienceEditFrom({
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="end_date" className="md:w-2/5">
             End Date
           </Label>

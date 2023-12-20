@@ -104,6 +104,10 @@ const APIKit = {
         const url = "/me/skills-expertise";
         return client.get(url);
       },
+      updateSkillAndExpertise: (payload) => {
+        const url = "/me/skills-expertise";
+        return client.patch(url, payload);
+      },
     },
   },
 };

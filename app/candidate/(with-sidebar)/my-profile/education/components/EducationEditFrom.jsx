@@ -76,7 +76,7 @@ export default function EducationEditFrom({
         Edit Education
       </h3>
       <form onSubmit={formik.handleSubmit} className="space-y-5 pt-4 md:pt-4 ">
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="institute_name" className="md:w-2/5">
             Institute name
           </Label>
@@ -94,7 +94,7 @@ export default function EducationEditFrom({
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="degree" className="md:w-2/5">
             Degree
           </Label>
@@ -112,7 +112,7 @@ export default function EducationEditFrom({
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="major" className="md:w-2/5">
             Field of Study
           </Label>
@@ -129,7 +129,7 @@ export default function EducationEditFrom({
             <FormikErrorBox formik={formik} field={"major"} />
           </div>
         </div>
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="location" className="md:w-2/5">
             Location
           </Label>
@@ -146,7 +146,7 @@ export default function EducationEditFrom({
             <FormikErrorBox formik={formik} field={"location"} />
           </div>
         </div>
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="start_date" className="md:w-2/5">
             Start Date
           </Label>
@@ -161,7 +161,7 @@ export default function EducationEditFrom({
             <FormikErrorBox formik={formik} field={"start_date"} />
           </div>
         </div>
-        <div className="flex flex-col gap-2 md:flex-row md:gap-3">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
           <Label htmlFor="end_date" className="md:w-2/5">
             End Date
           </Label>
