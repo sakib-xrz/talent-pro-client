@@ -27,16 +27,18 @@ export default function RootNavbar() {
         <div className="hidden items-center gap-x-6 sm:flex">
           <div className=" flex items-center gap-4">
             <Link href={"/login"}>
-              <Button>Sign In</Button>
+              <Button>Sign in</Button>
             </Link>
             <Link href={"/register"}>
-              <Button variant="outline">Sign Up</Button>
+              <Button variant="outline">Sign up</Button>
             </Link>
           </div>
           <Separator orientation="vertical" className="h-8" />
-          <Button variant="link" className="px-0 font-semibold" href={"/"}>
-            Hire talent
-          </Button>
+          <Link href={"/recruiter-login"}>
+            <Button variant="link" className="px-0 font-semibold">
+              Hire talent
+            </Button>
+          </Link>
         </div>
         <div className="relative sm:hidden">
           <Button
@@ -61,7 +63,7 @@ export default function RootNavbar() {
             <Link
               onClick={() => setOpen(false)}
               className="px-4 py-2 font-medium"
-              href={""}
+              href={"/recruiter-login"}
             >
               As a Recruiter
             </Link>

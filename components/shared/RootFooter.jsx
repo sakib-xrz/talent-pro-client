@@ -4,7 +4,7 @@ import Link from "next/link";
 import Logo from "public/images/logo.png";
 
 const footerOptions = [
-  { name: "Hire Talents", href: "" },
+  { name: "Hire Talents", href: "/recruiter-login" },
   { name: "Find Jobs", href: "" },
   { name: "Blog", href: "" },
   { name: "About", href: "" },
@@ -19,9 +19,9 @@ export default function RootFooter() {
     <footer className="border-t border-gray-200 bg-white px-5 sm:px-8">
       <div className="flex flex-col items-center justify-between gap-8 py-10 md:flex-row ">
         <div className="flex gap-20">
-          <div>
+          <Link href={"/"}>
             <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 lg:gap-16">
           {footerOptions?.map((item) => (

@@ -20,6 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Password } from "@/components/ui/password";
 import RootFooter from "@/components/shared/RootFooter";
 import RootNavbar from "@/components/shared/RootNavbar";
+import { useUser } from "@/context/UserProvider";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -36,6 +37,7 @@ const initialValues = {
 };
 
 export default function CandidateLogin() {
+  const { user } = useUser();
   const router = useRouter();
   const formik = useFormik({
     initialValues,
@@ -71,6 +73,7 @@ export default function CandidateLogin() {
       });
     },
   });
+
   return (
     <>
       <RootNavbar />
@@ -85,8 +88,8 @@ export default function CandidateLogin() {
               style={{ height: "auto", width: "auto" }}
             />
           </div>
-          <h2 className="scroll-m-20 text-center text-3xl font-semibold tracking-tight first:mt-0">
-            Sign In to Your Account
+          <h2 className=" text-center text-3xl font-semibold tracking-tight first:mt-0">
+            Sign in as a Candidate
           </h2>
           <form onSubmit={formik.handleSubmit} className="space-y-4">
             <div>
@@ -127,7 +130,7 @@ export default function CandidateLogin() {
               className="w-full"
               isLoading={formik.isSubmitting}
             >
-              Sign In
+              Sign in
             </Button>
             <p className="text-center text-sm font-medium leading-none">
               Don’t have an account?{" "}

@@ -7,7 +7,7 @@ import { AUTH_TOKEN_KEY } from "@/common/KeyChain";
 import { setJWTokenAndRedirect } from "@/common/UtilKit";
 import { useUser } from "@/context/UserProvider";
 
-export default function CandidateAuthGuardHOC({ children }) {
+export default function RecruiterAuthGuardHOC({ children }) {
   const { fetchMe, user } = useUser();
   const router = useRouter();
   const pathname = usePathname();
@@ -20,14 +20,14 @@ export default function CandidateAuthGuardHOC({ children }) {
         .then(fetchMe)
         .catch((error) => {
           console.log(error?.response);
-          router.push("/logout");
+          router.push("/recruiter-logout");
         });
     } else {
       const nextURL = { next: pathname };
       const queryParams = new URLSearchParams(nextURL).toString();
-      router.push(`/login?${queryParams}`);
+      router.push(`/recruiter-login?${queryParams}`);
     }
   }, []);
 
-  return user?.email && user?.role === "candidate" ? children : null;
+  return user?.email && user?.role === "recruiter" ? children : null;
 }

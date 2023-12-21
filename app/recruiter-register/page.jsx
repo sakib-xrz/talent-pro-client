@@ -36,14 +36,14 @@ const validationSchema = Yup.object({
 });
 
 const initialValues = {
-  first_name: "Sakibul",
-  last_name: "Islam",
-  email: "sakib@gmail.com",
-  password: "Sakib@123",
-  confirm_password: "Sakib@123",
+  first_name: "Google",
+  last_name: "HR",
+  email: "google.hr@gmail.com",
+  password: "Google.hr@123",
+  confirm_password: "Google.hr@123",
 };
 
-export default function CandidateRegister() {
+export default function RecruiterRegister() {
   const router = useRouter();
   const formik = useFormik({
     initialValues,
@@ -57,12 +57,13 @@ export default function CandidateRegister() {
         },
         email: values.email,
         password: values.password,
+        role: "recruiter",
       };
 
       const handleSuccess = ({ data }) => {
         formik.resetForm();
         setJWTokenAndRedirect(data.access, () => {
-          router.push("/candidate");
+          router.push("/recruiter");
         });
       };
 
@@ -99,7 +100,7 @@ export default function CandidateRegister() {
             />
           </div>
           <h2 className=" text-center text-3xl font-semibold tracking-tight first:mt-0">
-            Create an Account
+            Create a Recruiter Account
           </h2>
           <form onSubmit={formik.handleSubmit} className="space-y-4">
             <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
@@ -178,7 +179,7 @@ export default function CandidateRegister() {
             </div>
             <p className="text-center text-sm font-medium leading-none">
               Already have an account?{" "}
-              <Link href={"/login"}>
+              <Link href={"/recruiter-login"}>
                 <Button variant="link" className="p-0 font-bold">
                   Sign in
                 </Button>

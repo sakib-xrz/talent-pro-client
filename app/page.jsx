@@ -14,6 +14,7 @@ import {
 import HeadingWithSubtitle from "@/components/shared/HeadingWithSubtitle";
 import RootFooter from "@/components/shared/RootFooter";
 import RootNavbar from "@/components/shared/RootNavbar";
+import ScrollToTop from "@/components/shared/ScrollToTop";
 
 const feature = [
   {
@@ -234,7 +235,7 @@ export default async function Home() {
                 building your dream team.
               </p>
               <div className="pt-2">
-                <Link href="">
+                <Link href={"/recruiter-register"}>
                   <Button>Get Started</Button>
                 </Link>
               </div>
@@ -261,6 +262,7 @@ export default async function Home() {
         <div></div>
       </div>
       <RootFooter />
+      <ScrollToTop />
     </>
   );
 }

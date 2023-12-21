@@ -10,12 +10,14 @@ import { Button } from "@/components/ui/button";
 import CreatableSelectField from "@/components/form/CreatableSelectField";
 import FileUpload from "@/components/form/FileUpload";
 import { Input } from "@/components/ui/input";
+import { useUser } from "@/context/UserProvider";
 
 export default function Step4From({
   formik,
   handleCompleteStep4,
   handleBackToStep3,
 }) {
+  const { user } = useUser();
   const { resume, resume_preview } = formik.values || {};
 
   const handleFileUpload = (e) => {
@@ -190,13 +192,19 @@ export default function Step4From({
                 <ChevronLeftIcon className="h-4 w-4" />
                 Back
               </Button>
-              <Button
-                type="submit"
-                isLoading={formik.isSubmitting}
-                onClick={() => handleCompleteStep4(formik.values)}
-              >
-                Submit
-              </Button>
+              {user?.isOnboardComplete ? (
+                <Button type="button" disabled>
+                  Setup Completed
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  isLoading={formik.isSubmitting}
+                  onClick={() => handleCompleteStep4(formik.values)}
+                >
+                  Submit
+                </Button>
+              )}
             </div>
           </div>
         </form>
