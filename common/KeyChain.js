@@ -1,5 +1,6 @@
 import {
   BookmarkIcon,
+  BuildingOffice2Icon,
   DocumentDuplicateIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
@@ -80,5 +81,18 @@ export const navOptions = [
     icon: BookmarkIcon,
     name: "Saved Jobs",
     href: "/candidate/saved-jobs",
+  },
+];
+
+export const recruiterNavOptions = [
+  {
+    name: "My Profile",
+    href: "/recruiter/my-profile",
+    icon: UserIcon,
+  },
+  {
+    name: "My Organization",
+    href: "/recruiter/organization",
+    icon: BuildingOffice2Icon,
   },
 ];

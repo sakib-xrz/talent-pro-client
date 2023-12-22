@@ -41,11 +41,18 @@ export default function UserProvider({ children }) {
     router.push("/login");
   };
 
+  const logoutRecruiter = () => {
+    setUser(null);
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    router.push("/recruiter-login");
+  };
+
   const userInfo = {
     user,
     fetchMe,
     refetchMe,
     logout,
+    logoutRecruiter,
   };
 
   return (
