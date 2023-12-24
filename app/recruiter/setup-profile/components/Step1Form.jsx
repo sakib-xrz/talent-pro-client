@@ -1,8 +1,13 @@
 "use client";
 
+import Image from "next/image";
+
+import { XMarkIcon } from "@heroicons/react/24/outline";
+
 import { CompanySizeOptions, IndustryOptions } from "@/common/KeyChain";
 
 import { Button } from "@/components/ui/button";
+import FileUpload from "@/components/form/FileUpload";
 import { Input } from "@/components/ui/input";
 import SelectField from "@/components/form/SelectField";
 
@@ -18,6 +23,15 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
     formik.setFieldValue(
       "company_size",
       selectedOption ? selectedOption.value : "",
+    );
+  };
+
+  const handleLogoUpload = (e) => {
+    formik.setFieldValue("company_logo", e.target.files[0]);
+    URL.createObjectURL(e.target.files[0]);
+    formik.setFieldValue(
+      "logo_preview",
+      URL.createObjectURL(e.target.files[0]),
     );
   };
 
@@ -39,6 +53,40 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
           </div>
         </div>
         <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
+          <div className="space-y-2">
+            <p className="font-medium text-primary">Company Logo</p>
+            <div>
+              {formik.values.company_logo ? (
+                <div className="relative h-44 w-40 rounded-md">
+                  <XMarkIcon
+                    className="absolute right-1 top-1 h-6 w-6 cursor-pointer rounded-full border bg-white p-1"
+                    onClick={() => {
+                      formik.setFieldValue("company_logo", null);
+                      formik.setFieldValue("logo_preview", "");
+                    }}
+                  />
+                  <Image
+                    className="h-44 w-40 rounded-md border border-border object-cover object-center"
+                    src={formik.values.logo_preview}
+                    height={500}
+                    width={500}
+                    alt="profile-image"
+                  />
+                </div>
+              ) : (
+                <FileUpload
+                  id="company_logo"
+                  name="company_logo"
+                  htmlFor="company_logo"
+                  title="Upload your company logo"
+                  helperText="Supported .jpg .jpeg .png up to 10 mb"
+                  accept="image/*"
+                  onChange={handleLogoUpload}
+                />
+              )}
+            </div>
+          </div>
+
           <div className="space-y-2">
             <p className="font-medium text-primary">
               Company Name <span className="text-destructive">*</span>

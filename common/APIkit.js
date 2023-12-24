@@ -26,13 +26,6 @@ const APIKit = {
     },
   },
 
-  candidate: {
-    setupProfile: (payload) => {
-      const url = "/me/profile";
-      return client.post(url, payload, defaultFileUploadConfig);
-    },
-  },
-
   me: {
     getMe: () => {
       const url = "/me";
@@ -47,6 +40,11 @@ const APIKit = {
     updateResume: (payload) => {
       const url = "/me/resume";
       return client.patch(url, payload, defaultFileUploadConfig);
+    },
+
+    setupProfile: (payload) => {
+      const url = "/me/profile";
+      return client.post(url, payload, defaultFileUploadConfig);
     },
 
     info: {
@@ -108,6 +106,13 @@ const APIKit = {
         const url = "/me/skills-expertise";
         return client.patch(url, payload);
       },
+    },
+  },
+
+  we: {
+    setupProfile: (payload) => {
+      const url = "/we/profile";
+      return client.post(url, payload, defaultFileUploadConfig);
     },
   },
 };

@@ -18,6 +18,17 @@ export default function OrganizationSetupProfile() {
 
   const initialValues = {
     user_id: user?.id,
+    company_logo: null,
+    logo_preview: "",
+    company_name: "Google",
+    industry: "INFORMATION_TECHNOLOGY",
+    company_size: "51-200",
+    company_location: "1600 Amphitheatre Parkway, California.",
+    website: "https://www.google.com",
+    linkedin_link: "https://www.linkedin.com/company/google",
+    slogan: "Build for everyone.",
+    about_us:
+      "A problem isn't truly solved until it's solved for all. Googlers build products that help create opportunities for everyone, whether down the street or across the globe. Bring your insight, imagination and a healthy disregard for the impossible. Bring everything that makes you unique. Together, we can build for everyone.",
   };
 
   const formik = useFormik({
@@ -36,7 +47,7 @@ export default function OrganizationSetupProfile() {
         throw error;
       };
 
-      const promise = APIKit.candidate
+      const promise = APIKit.we
         .setupProfile(values)
         .then(handleSuccess)
         .catch(handleFailure)

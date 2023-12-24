@@ -6,11 +6,12 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
+import { useUser } from "@/context/UserProvider";
+
 import { Button } from "@/components/ui/button";
 import CreatableSelectField from "@/components/form/CreatableSelectField";
 import FileUpload from "@/components/form/FileUpload";
 import { Input } from "@/components/ui/input";
-import { useUser } from "@/context/UserProvider";
 
 export default function Step4From({
   formik,

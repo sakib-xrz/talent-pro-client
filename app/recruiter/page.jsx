@@ -1,4 +1,21 @@
+"use client";
+
+import { useUser } from "@/context/UserProvider";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function Recruiter() {
+  const router = useRouter();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user?.isOnboardComplete === false) {
+      router.push("/recruiter/setup-profile");
+    } else {
+      router.push("/recruiter");
+    }
+  }, [router, user?.isOnboardComplete]);
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8 lg:py-14">
       Recruiter page coming soon...

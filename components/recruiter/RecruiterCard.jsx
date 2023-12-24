@@ -16,7 +16,8 @@ export default function RecruiterCard() {
       />
       <div className="pr-2">
         <p className="text-start text-xs font-semibold text-gray-700">
-          {user?.name?.first_name} {user?.name?.last_name} (Recruiter)
+          {user?.name?.first_name} {user?.name?.last_name}{" "}
+          <span className="italic">(Recruiter)</span>
         </p>
         <p className="text-start text-xs font-medium text-gray-500">
           {user?.email}

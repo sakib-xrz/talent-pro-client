@@ -92,7 +92,7 @@ export default function CandidateSetupProfile() {
         throw error;
       };
 
-      const promise = APIKit.candidate
+      const promise = APIKit.me
         .setupProfile(payload)
         .then(handleSuccess)
         .catch(handleFailure)

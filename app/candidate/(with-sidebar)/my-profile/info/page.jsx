@@ -102,6 +102,7 @@ export default function PersonalInformation() {
               title="Upload your profile picture"
               accept="image/*"
               onChange={handleProfileImageUpload}
+              helperText="Supported .jpg .jpeg .png up to 10 mb"
             />
           </div>
         )}
