@@ -54,6 +54,12 @@ export const IndustryOptions = [
   },
 ];
 
+export const CompanySizeOptions = [
+  { label: "1 - 50 employees", value: "1-50" },
+  { label: "51 - 200 employees", value: "51-200" },
+  { label: "201 - 1,000 employees", value: "201-1000" },
+];
+
 export const EmployStatus = [
   { label: "Employed", value: "EMPLOYED" },
   { label: "Internship", value: "INTERNSHIP" },
