@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useFormik } from "formik";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
+const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 
 const initialValues = {};
@@ -84,7 +85,7 @@ export default function PostJob() {
                 Job Description <span className="text-destructive">*</span>
               </p>
               <div>
-                <ReactQuill placeholder="e.g. Skills, Requirements, Responsibilities" />
+                <DynamicQuill placeholder="e.g. Skills, Requirements, Responsibilities" />
               </div>
             </div>
           </form>
