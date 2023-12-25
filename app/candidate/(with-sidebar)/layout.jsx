@@ -1,3 +1,4 @@
+import Container from "@/components/shared/Container";
 import Sidebar from "./components/Sidebar";
 
 export default function CandidateLayoutWithSidebar({ children }) {
@@ -7,9 +8,7 @@ export default function CandidateLayoutWithSidebar({ children }) {
         <Sidebar />
       </div>
       <div className="w-full md:w-4/5">
-        <div className="mx-auto my-10 max-w-7xl px-4 sm:px-8 lg:my-14">
-          {children}
-        </div>
+        <Container> {children}</Container>
       </div>
     </div>
   );

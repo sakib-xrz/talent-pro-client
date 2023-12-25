@@ -142,7 +142,7 @@ export default function InfoFrom({ initialValues, refetch }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+      <div className="flex flex-col gap-2 md:flex-row md:gap-3">
         <Label htmlFor="job_status" className="md:w-2/5">
           Job Status
         </Label>

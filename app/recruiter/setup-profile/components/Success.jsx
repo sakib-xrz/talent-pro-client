@@ -36,7 +36,10 @@ export default function Success() {
                 Go to Dashboard
               </Button>
             </Link>
-            <Link href={"/"} className="flex w-full justify-center">
+            <Link
+              href={"/recruiter/jobs/post-job"}
+              className="flex w-full justify-center"
+            >
               <Button className="flex w-full justify-center px-6">
                 Post a Job
               </Button>

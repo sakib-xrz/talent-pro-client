@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import Logo from "public/images/logo.png";
 
@@ -37,6 +37,8 @@ const initialValues = {
 
 export default function RecruiterLogin() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const previousURL = searchParams.get("next");
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -50,7 +52,11 @@ export default function RecruiterLogin() {
       const handleSuccess = ({ data }) => {
         formik.resetForm();
         setJWTokenAndRedirect(data.access, () => {
-          router.push("/recruiter");
+          if (previousURL) {
+            router.push(previousURL);
+          } else {
+            router.push("/recruiter");
+          }
         });
       };
 

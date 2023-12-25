@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/shared/Container";
 import { useStore } from "@/context/StoreProvider";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -18,9 +19,5 @@ export default function Recruiter() {
 
   console.log(organization);
 
-  return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8 lg:py-14">
-      Recruiter page coming soon...
-    </div>
-  );
+  return <Container>Recruiter page coming soon...</Container>;
 }

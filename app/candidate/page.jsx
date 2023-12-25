@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/shared/Container";
 import { useStore } from "@/context/StoreProvider";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -15,9 +16,5 @@ export default function Candidate() {
       router.push("/candidate");
     }
   }, [router, user?.isOnboardComplete]);
-  return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8 lg:py-14">
-      Candidate page coming soon...
-    </div>
-  );
+  return <Container>Candidate page coming soon...</Container>;
 }
