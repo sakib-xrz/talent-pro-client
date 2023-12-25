@@ -20,7 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Password } from "@/components/ui/password";
 import RootFooter from "@/components/shared/RootFooter";
 import RootNavbar from "@/components/shared/RootNavbar";
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -37,7 +37,7 @@ const initialValues = {
 };
 
 export default function CandidateLogin() {
-  const { user } = useUser();
+  const { user } = useStore();
   const router = useRouter();
   const formik = useFormik({
     initialValues,

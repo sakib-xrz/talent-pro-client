@@ -1,12 +1,12 @@
 "use client";
 
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Candidate() {
   const router = useRouter();
-  const { user } = useUser();
+  const { user } = useStore();
 
   useEffect(() => {
     if (user?.isOnboardComplete === false) {

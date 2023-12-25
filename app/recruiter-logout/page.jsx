@@ -1,10 +1,10 @@
 "use client";
 
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 import { useEffect } from "react";
 
 export default function RecruiterLogout() {
-  const { logoutRecruiter } = useUser();
+  const { logoutRecruiter } = useStore();
 
   useEffect(() => {
     logoutRecruiter();

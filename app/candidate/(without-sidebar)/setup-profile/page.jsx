@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useFormik } from "formik";
 
 import APIKit from "@/common/APIkit";
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 import Step1Form from "./components/Step1Form";
 import Step2Form from "./components/Step2Form";
@@ -16,7 +16,7 @@ import Success from "./components/Success";
 
 export default function CandidateSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
-  const { user, refetchMe } = useUser();
+  const { user, refetchMe } = useStore();
 
   const initialValues = {
     user_id: user?.id,

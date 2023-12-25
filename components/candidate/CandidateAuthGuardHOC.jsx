@@ -5,10 +5,10 @@ import { useRouter, usePathname } from "next/navigation";
 
 import { AUTH_TOKEN_KEY } from "@/common/KeyChain";
 import { setJWTokenAndRedirect } from "@/common/UtilKit";
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 export default function CandidateAuthGuardHOC({ children }) {
-  const { fetchMe, user } = useUser();
+  const { fetchMe, user } = useStore();
   const router = useRouter();
   const pathname = usePathname();
 

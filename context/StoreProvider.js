@@ -7,11 +7,12 @@ import APIKit from "@/common/APIkit";
 import { AUTH_TOKEN_KEY } from "@/common/KeyChain";
 import { setJWTokenAndRedirect } from "@/common/UtilKit";
 
-const UserContext = createContext();
+const StoreContext = createContext();
 
-export default function UserProvider({ children }) {
+export default function StoreProvider({ children }) {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [organization, setOrganization] = useState(null);
 
   const fetchMe = async () => {
     try {
@@ -24,11 +25,33 @@ export default function UserProvider({ children }) {
     }
   };
 
+  const fetchWe = async () => {
+    try {
+      const { data } = await APIKit.we.getWe();
+      if (data) {
+        setOrganization(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const refetchMe = () => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
     if (token) {
       setJWTokenAndRedirect(token)
         .then(fetchMe)
+        .catch((error) => {
+          console.log(error?.response);
+        });
+    }
+  };
+
+  const refetchWe = () => {
+    const token = localStorage.getItem(AUTH_TOKEN_KEY);
+    if (token) {
+      setJWTokenAndRedirect(token)
+        .then(fetchWe)
         .catch((error) => {
           console.log(error?.response);
         });
@@ -49,17 +72,20 @@ export default function UserProvider({ children }) {
 
   const userInfo = {
     user,
+    organization,
     fetchMe,
+    fetchWe,
     refetchMe,
+    refetchWe,
     logout,
     logoutRecruiter,
   };
 
   return (
-    <UserContext.Provider value={userInfo}>{children}</UserContext.Provider>
+    <StoreContext.Provider value={userInfo}>{children}</StoreContext.Provider>
   );
 }
 
-export const useUser = () => {
-  return useContext(UserContext);
+export const useStore = () => {
+  return useContext(StoreContext);
 };

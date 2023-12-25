@@ -6,7 +6,7 @@ import { PlusSmallIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 
 import APIKit from "@/common/APIkit";
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 import { Button } from "@/components/ui/button";
 import EducationAddForm from "./components/EducationAddForm";
@@ -14,7 +14,7 @@ import EducationCard from "./components/EducationCard";
 import TitleWithDescription from "../../components/TitleWithDescription";
 
 export default function EducationalBackground() {
-  const { user } = useUser();
+  const { user } = useStore();
   const [showEducationAddForm, setShowAddEducationForm] = useState(false);
 
   const {

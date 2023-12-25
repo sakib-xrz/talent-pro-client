@@ -8,7 +8,7 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import { LogOut } from "lucide-react";
 
 import Logo from "public/images/logo.png";
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 import { Button } from "../ui/button";
 import CandidateCard from "./CandidateCard";
@@ -17,7 +17,7 @@ import RightSideDrawer from "../shared/RightSideDrawer";
 import MobileNavOptions from "./MobileNavOptions";
 
 export default function CandidateAuthNavbar() {
-  const { user } = useUser();
+  const { user } = useStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
     <div className="sticky top-0 z-50 flex w-full items-center justify-between bg-white px-4 py-3 shadow sm:px-8">

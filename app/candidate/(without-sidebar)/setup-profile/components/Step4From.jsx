@@ -6,7 +6,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 import { Button } from "@/components/ui/button";
 import CreatableSelectField from "@/components/form/CreatableSelectField";
@@ -18,7 +18,7 @@ export default function Step4From({
   handleCompleteStep4,
   handleBackToStep3,
 }) {
-  const { user } = useUser();
+  const { user } = useStore();
   const { resume, resume_preview } = formik.values || {};
 
   const handleFileUpload = (e) => {

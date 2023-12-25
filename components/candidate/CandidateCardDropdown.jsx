@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { navOptions } from "@/common/KeyChain";
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 import { Menu, Transition } from "@headlessui/react";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 
 export default function CandidateCardDropdown() {
-  const { user } = useUser();
+  const { user } = useStore();
 
   const dropdownItems = [
     ...(user.isOnboardComplete ? navOptions : []),

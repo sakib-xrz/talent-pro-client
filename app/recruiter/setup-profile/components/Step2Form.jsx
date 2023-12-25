@@ -2,7 +2,7 @@
 
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,7 @@ export default function Step2Form({
   handleCompleteStep2,
   handleBackToStep1,
 }) {
-  const { user } = useUser();
+  const { user } = useStore();
   return (
     <div className="rounded-2xl bg-white shadow">
       <div className="mx-auto max-w-3xl">

@@ -1,10 +1,10 @@
 "use client";
 
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 import { useEffect } from "react";
 
 export default function Logout() {
-  const { logout } = useUser();
+  const { logout } = useStore();
 
   useEffect(() => {
     logout();

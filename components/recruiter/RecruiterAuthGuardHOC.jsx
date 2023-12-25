@@ -5,10 +5,10 @@ import { useRouter, usePathname } from "next/navigation";
 
 import { AUTH_TOKEN_KEY } from "@/common/KeyChain";
 import { setJWTokenAndRedirect } from "@/common/UtilKit";
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 export default function RecruiterAuthGuardHOC({ children }) {
-  const { fetchMe, user } = useUser();
+  const { fetchMe, fetchWe, user } = useStore();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -18,6 +18,7 @@ export default function RecruiterAuthGuardHOC({ children }) {
     if (token) {
       setJWTokenAndRedirect(token)
         .then(fetchMe)
+        .then(fetchWe)
         .catch((error) => {
           console.log(error?.response);
           router.push("/recruiter-logout");

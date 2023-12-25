@@ -9,13 +9,13 @@ import { useQuery } from "@tanstack/react-query";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import APIKit from "@/common/APIkit";
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 import FileUpload from "@/components/form/FileUpload";
 import TitleWithDescription from "../../components/TitleWithDescription";
 
 export default function PersonalInformation() {
-  const { user, refetchMe } = useUser();
+  const { user, refetchMe } = useStore();
   const [image, setImage] = useState(user?.image_url);
 
   const {

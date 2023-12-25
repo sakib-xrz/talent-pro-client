@@ -110,8 +110,12 @@ const APIKit = {
   },
 
   we: {
+    getWe: () => {
+      const url = "/we";
+      return client.get(url);
+    },
     setupProfile: (payload) => {
-      const url = "/we/profile";
+      const url = "/we";
       return client.post(url, payload, defaultFileUploadConfig);
     },
   },

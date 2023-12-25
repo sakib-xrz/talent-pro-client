@@ -2,13 +2,13 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 import { Menu, Transition } from "@headlessui/react";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import { recruiterNavOptions } from "@/common/KeyChain";
 
 export default function RecruiterCardDropdown() {
-  const { user } = useUser();
+  const { user } = useStore();
 
   const dropdownItems = [
     ...(user.isOnboardComplete ? recruiterNavOptions : []),

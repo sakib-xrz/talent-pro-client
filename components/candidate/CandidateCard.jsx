@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-import { useUser } from "@/context/UserProvider";
+import { useStore } from "@/context/StoreProvider";
 
 export default function CandidateCard() {
-  const { user } = useUser();
+  const { user } = useStore();
   return (
     <div className="flex items-center gap-2 rounded-md border border-border p-2">
       <Image
