@@ -72,6 +72,28 @@ export const EmploymentType = [
   { label: "Intern", value: "INTERN" },
 ];
 
+export const ExperienceLevel = [
+  { label: "Entry Level", value: "ENTRY" },
+  { label: "Mid Level", value: "MID" },
+  { label: "Senior Level", value: "SENIOR" },
+];
+
+export const LocationType = [
+  { label: "Onsite", value: "ONSITE" },
+  { label: "Hybrid", value: "HYBRID" },
+  { label: "Remote", value: "REMOTE" },
+];
+
+export const WeekDay = [
+  { label: "Sunday", value: "SUNDAY" },
+  { label: "Monday", value: "MONDAY" },
+  { label: "Tuesday", value: "TUESDAY" },
+  { label: "Wednesday", value: "WEDNESDAY" },
+  { label: "Thursday", value: "THURSDAY" },
+  { label: "Friday", value: "FRIDAY" },
+  { label: "Saturday", value: "SATURDAY" },
+];
+
 export const navOptions = [
   {
     icon: UserIcon,

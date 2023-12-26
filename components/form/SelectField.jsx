@@ -16,7 +16,7 @@ export default function SelectField({
   defaultValue,
 }) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col">
       <label
         htmlFor={name}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
