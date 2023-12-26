@@ -94,6 +94,11 @@ export const WeekDay = [
   { label: "Saturday", value: "SATURDAY" },
 ];
 
+export const SortOptions = [
+  { label: "Newest", value: "descending" },
+  { label: "Oldest", value: "ascending" },
+];
+
 export const navOptions = [
   {
     icon: UserIcon,

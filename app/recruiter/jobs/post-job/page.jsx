@@ -1,5 +1,6 @@
 "use client";
 
+import APIKit from "@/common/APIkit";
 import {
   EmploymentType,
   ExperienceLevel,
@@ -24,6 +25,7 @@ import { useStore } from "@/context/StoreProvider";
 import { useFormik } from "formik";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 
@@ -62,27 +64,27 @@ export default function PostJob() {
     },
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
-      console.log(values);
-      // const handleSuccess = () => {
-      //   formik.resetForm();
-      // };
 
-      // const handleFailure = (error) => {
-      //   console.log(error);
-      //   throw error;
-      // };
+      const handleSuccess = () => {
+        formik.resetForm();
+      };
 
-      // const promise = APIKit.job
-      //   .postJob(values)
-      //   .then(handleSuccess)
-      //   .catch(handleFailure)
-      //   .finally(() => setSubmitting(false));
+      const handleFailure = (error) => {
+        console.log(error);
+        throw error;
+      };
 
-      // return toast.promise(promise, {
-      //   loading: "Loading...",
-      //   success: "Profile setup successful!",
-      //   error: "Something went wrong!",
-      // });
+      const promise = APIKit.job
+        .postJob(values)
+        .then(handleSuccess)
+        .catch(handleFailure)
+        .finally(() => setSubmitting(false));
+
+      return toast.promise(promise, {
+        loading: "Loading...",
+        success: "Job published successful!",
+        error: "Something went wrong!",
+      });
     },
   });
 
@@ -485,7 +487,7 @@ export default function PostJob() {
               <Button
                 className={"w-full md:w-fit"}
                 type="submit"
-                // isLoading={formik.isSubmitting}
+                isLoading={formik.isSubmitting}
               >
                 Publish Job
               </Button>

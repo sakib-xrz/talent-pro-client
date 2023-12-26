@@ -45,3 +45,21 @@ export const formatDate = (date) => {
     return "";
   }
 };
+
+export function generateQueryString(params) {
+  const isEmpty = Object.values(params).every((value) => value === "");
+
+  if (isEmpty) {
+    return "";
+  }
+
+  const queryString = Object.entries(params)
+    .filter(([key, value]) => value !== "")
+    .map(
+      ([key, value]) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
+    )
+    .join("&");
+
+  return `?${queryString}`;
+}

@@ -119,6 +119,13 @@ const APIKit = {
       return client.post(url, payload, defaultFileUploadConfig);
     },
   },
+
+  job: {
+    postJob: (payload) => {
+      const url = "/job";
+      return client.post(url, payload);
+    },
+  },
 };
 
 export default APIKit;
