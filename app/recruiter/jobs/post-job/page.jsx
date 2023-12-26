@@ -20,43 +20,46 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useStore } from "@/context/StoreProvider";
 import { useFormik } from "formik";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 
-const initialValues = {
-  job_title: "Frontend Developer",
-  job_description:
-    "<h3><strong>Job brief</strong></h3><p>We are looking for a qualified Front-end developer to join our IT team. You will be responsible for building the ‘client-side’ of our web applications. You should be able to translate our company and customer needs into functional and appealing interactive applications.</p><p><br></p><h3><strong>Responsibilities</strong></h3><ul><li>Use markup languages like HTML to create user-friendly web pages</li><li>Maintain and improve website</li><li>Optimize applications for maximum speed</li><li>Design mobile-based features</li><li>Collaborate with back-end developers and web designers to improve usability</li><li>Get feedback from, and build solutions for, users and customers</li><li>Write functional requirement documents and guides</li><li>Create quality mockups and prototypes</li><li>Help back-end developers with coding and troubleshooting</li><li>Ensure high quality graphic standards and brand consistency</li><li>Stay up-to-date on emerging technologies</li></ul><p><br></p><h3><strong>Requirements and skills</strong></h3><ul><li>Proven work experience as a Front-end developer</li><li>Hands on experience with markup languages</li><li>Experience with JavaScript, CSS and jQuery</li><li>Familiarity with browser testing and debugging</li><li>In-depth understanding of the entire web development process (design, development and deployment)</li><li>Understanding of layout aesthetics</li><li>Knowledge of SEO principles</li><li>Familiarity with software like Adobe Suite, Photoshop and content management systems</li><li>An ability to perform well in a fast-paced environment</li><li>Excellent analytical and multitasking skills</li><li>BSc degree in Computer Science or relevant field</li></ul>",
-  industry: "INFORMATION_TECHNOLOGY",
-  job_type: "FULL_TIME",
-  experience_level: "ENTRY",
-  years_of_experience: 1,
-  required_skills: [
-    { label: "React", value: "REACT" },
-    { label: "NextJs", value: "NEXTJS" },
-    { label: "JavaScript", value: "JAVASCRIPT" },
-    { label: "Tailwind Css", value: "TAILWIND_CSS" },
-  ],
-  location_type: "ONSITE",
-  address: "Mirpur 10, Dhaka, Bangladesh",
-  start_day: "MONDAY",
-  end_day: "FRIDAY",
-  start_time: "10:00",
-  end_time: "19:00",
-  deadline: "2023-12-31",
-  num_of_vacancy: 5,
-  salary: {
-    min: 25000,
-    max: 35000,
-  },
-  is_negotiable: true,
-};
-
 export default function PostJob() {
+  const { user, organization } = useStore();
   const formik = useFormik({
-    initialValues,
+    initialValues: {
+      createdBy: "",
+      organization: "",
+      job_title: "Frontend Developer",
+      job_description:
+        "<h3><strong>Job brief</strong></h3><p>We are looking for a qualified Front-end developer to join our IT team. You will be responsible for building the ‘client-side’ of our web applications. You should be able to translate our company and customer needs into functional and appealing interactive applications.</p><p><br></p><h3><strong>Responsibilities</strong></h3><ul><li>Use markup languages like HTML to create user-friendly web pages</li><li>Maintain and improve website</li><li>Optimize applications for maximum speed</li><li>Design mobile-based features</li><li>Collaborate with back-end developers and web designers to improve usability</li><li>Get feedback from, and build solutions for, users and customers</li><li>Write functional requirement documents and guides</li><li>Create quality mockups and prototypes</li><li>Help back-end developers with coding and troubleshooting</li><li>Ensure high quality graphic standards and brand consistency</li><li>Stay up-to-date on emerging technologies</li></ul><p><br></p><h3><strong>Requirements and skills</strong></h3><ul><li>Proven work experience as a Front-end developer</li><li>Hands on experience with markup languages</li><li>Experience with JavaScript, CSS and jQuery</li><li>Familiarity with browser testing and debugging</li><li>In-depth understanding of the entire web development process (design, development and deployment)</li><li>Understanding of layout aesthetics</li><li>Knowledge of SEO principles</li><li>Familiarity with software like Adobe Suite, Photoshop and content management systems</li><li>An ability to perform well in a fast-paced environment</li><li>Excellent analytical and multitasking skills</li><li>BSc degree in Computer Science or relevant field</li></ul>",
+      industry: "INFORMATION_TECHNOLOGY",
+      job_type: "FULL_TIME",
+      experience_level: "ENTRY",
+      years_of_experience: 1,
+      required_skills: [
+        { label: "React", value: "REACT" },
+        { label: "NextJs", value: "NEXTJS" },
+        { label: "JavaScript", value: "JAVASCRIPT" },
+        { label: "Tailwind Css", value: "TAILWIND_CSS" },
+      ],
+      location_type: "ONSITE",
+      address: "Mirpur 10, Dhaka, Bangladesh",
+      start_day: "MONDAY",
+      end_day: "FRIDAY",
+      start_time: "10:00",
+      end_time: "19:00",
+      deadline: "2023-12-31",
+      num_of_vacancy: 5,
+      salary: {
+        min: 25000,
+        max: 35000,
+      },
+      is_negotiable: true,
+    },
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
       console.log(values);
@@ -82,6 +85,11 @@ export default function PostJob() {
       // });
     },
   });
+
+  useEffect(() => {
+    formik.setFieldValue("createdBy", user?._id);
+    formik.setFieldValue("organization", organization?._id);
+  }, [organization?._id, user?._id]);
 
   const handleIndustryChange = (selectedOption) => {
     formik.setFieldValue(
