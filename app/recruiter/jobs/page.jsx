@@ -30,6 +30,12 @@ export default function AllJobs() {
             search: e?.target?.value,
           }))
         }
+        onReset={() => {
+          setParams((prevParams) => ({
+            ...prevParams,
+            search: "",
+          }));
+        }}
       />
     </Container>
   );
