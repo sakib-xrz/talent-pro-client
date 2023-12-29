@@ -19,14 +19,17 @@ export default function Recruiter() {
     }
   }, [router, user?.isOnboardComplete]);
 
-  console.log(organization);
-
   return (
     <Container>
       <p className="mb-6">Recruiter page coming soon...</p>
-      <Link href={"/recruiter/jobs/post-job"}>
-        <Button>Post a Job</Button>
-      </Link>
+      <div className="flex gap-2">
+        <Link href={"/recruiter/jobs"}>
+          <Button>All Jobs</Button>
+        </Link>
+        <Link href={"/recruiter/jobs/post-job"}>
+          <Button>Post a Job</Button>
+        </Link>
+      </div>
     </Container>
   );
 }
