@@ -14,6 +14,7 @@ export default function SelectField({
   placeholder,
   value,
   defaultValue,
+  isFocused = true,
 }) {
   return (
     <div className="flex flex-col">
@@ -34,6 +35,7 @@ export default function SelectField({
         value={value}
         defaultValue={defaultValue}
         onChange={onChange}
+        isFocused={isFocused}
         styles={{
           control: (baseStyles, { isFocused }) => ({
             ...baseStyles,
@@ -41,6 +43,7 @@ export default function SelectField({
             borderRadius: "6px",
             paddingTop: "1px",
             paddingBottom: "1px",
+            zIndex: "0",
             borderColor: isFocused ? "#020817" : "#e5e7eb",
             ":hover": {
               borderColor: isFocused ? "#020817" : "#e5e7eb",
@@ -50,12 +53,15 @@ export default function SelectField({
             backgroundColor: isFocused ? "#020817" : "#fff",
             padding: "8px",
             color: isFocused ? "#fff" : "#020817",
+            cursor: "default",
+            zIndex: "999",
           }),
           input: (baseStyles) => ({
             ...baseStyles,
             "input:focus": {
               boxShadow: "none",
             },
+            zIndex: "0",
           }),
         }}
       />
