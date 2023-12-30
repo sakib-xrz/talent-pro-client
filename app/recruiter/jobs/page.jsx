@@ -8,6 +8,7 @@ import RecruiterJobSearchSortFilter from "./components/RecruiterJobSearchSortFil
 import { useQuery } from "@tanstack/react-query";
 import APIKit from "@/common/APIkit";
 import { useRouter, useSearchParams } from "next/navigation";
+import Pagination from "@/components/shared/Pagination";
 
 export default function AllJobs() {
   const router = useRouter();
@@ -31,21 +32,33 @@ export default function AllJobs() {
 
   const { data: jobs, isLoading } = useQuery({
     queryKey: [`/jobs/${queryString}`],
-    queryFn: () => APIKit.job.getJob(queryString).then(({ data }) => data),
+    queryFn: () => APIKit.job.getJob(queryString).then((data) => data),
   });
 
   return (
     <Container>
       <div className="space-y-4">
+        {/* All Search and filters */}
         <RecruiterJobSearchSortFilter params={params} setParams={setParams} />
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <div className="grid gap-4 md:grid-cols-2">
-            {jobs?.map((job) => (
-              <RecruiterJobCard key={job?._id} job={job} />
-            ))}
+
+        {/* Skeleton for loading state */}
+        {isLoading && <p>Loading...</p>}
+
+        {jobs?.meta?.total ? (
+          <div className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-2">
+              {jobs?.data?.map((job) => (
+                <RecruiterJobCard key={job?._id} job={job} />
+              ))}
+            </div>
+            <Pagination
+              params={params}
+              setParams={setParams}
+              dataLength={jobs?.meta?.total}
+            />
           </div>
+        ) : (
+          <p>No data found</p>
         )}
       </div>
     </Container>

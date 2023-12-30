@@ -10,8 +10,8 @@ import Link from "next/link";
 
 export default function RecruiterJobCard({ job }) {
   return (
-    <Card className={"space-y-4"}>
-      <div className="flex flex-col-reverse justify-between gap-2 lg:flex-row lg:items-center">
+    <Card className={"space-y-3"}>
+      <div className="flex flex-col justify-between gap-2 lg:flex-row lg:items-center">
         <CardDescription>
           Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
         </CardDescription>
@@ -28,7 +28,7 @@ export default function RecruiterJobCard({ job }) {
           </div>
         </div>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <div className="flex items-center gap-2">
           <Image
             width={50}
