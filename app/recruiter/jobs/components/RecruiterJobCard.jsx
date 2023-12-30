@@ -5,24 +5,30 @@ import SelectField from "@/components/form/SelectField";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { JobOptions } from "@/common/KeyChain";
+import { getTimeDifference } from "@/common/UtilKit";
+import Link from "next/link";
 
-export default function RecruiterJobCard() {
+export default function RecruiterJobCard({ job }) {
   return (
     <Card className={"space-y-4"}>
       <div className="flex flex-col-reverse justify-between gap-2 lg:flex-row lg:items-center">
-        <CardDescription>Posted 4 hours ago</CardDescription>
+        <CardDescription>
+          Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
+        </CardDescription>
         <div className="flex items-center gap-6 ">
           <div className="flex items-center gap-2 text-primary">
             <EyeIcon className="h-5 w-5" />
-            <CardDescription>0 Views</CardDescription>
+            <CardDescription>{job?.total_views || 0} Views</CardDescription>
           </div>
           <div className="flex items-center gap-2 text-primary">
             <UsersIcon className="h-5 w-5" />
-            <CardDescription>0 Applied</CardDescription>
+            <CardDescription>
+              {job?.total_applications || 0} Applied
+            </CardDescription>
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 lg:flex-row lg:justify-between">
+      <div className="flex flex-col gap-2 xl:flex-row xl:justify-between">
         <div className="flex items-center gap-2">
           <Image
             width={50}
@@ -33,22 +39,23 @@ export default function RecruiterJobCard() {
           />
           <div>
             <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
-              Junior Software Developer
+              {job?.job_title || "Not set"}
             </h3>
-            <CardDescription className="line-clamp-1 sm:line-clamp-none">
-              Google • Berlin, Germany
+            <CardDescription className="line-clamp-1 lg:line-clamp-none">
+              {job?.organization?.company_name || "Not set"} •{" "}
+              {job?.address || "Not set"}
             </CardDescription>
           </div>
         </div>
         <div className="space-x-2">
-          <Badge variant="secondary">Full time</Badge>
-          <Badge variant="secondary">Onsite</Badge>
+          <Badge variant="secondary">{job?.job_type || "Not set"}</Badge>
+          <Badge variant="secondary">{job?.location_type || "Not set"}</Badge>
         </div>
       </div>
       <div>
         <SelectField
           options={JobOptions}
-          defaultValue={{ label: "Published", value: "PUBLISHED" }}
+          defaultValue={JobOptions.find((el) => el.value === job?.status)}
         />
       </div>
       <div>
@@ -59,7 +66,9 @@ export default function RecruiterJobCard() {
             </div>{" "}
             <p> Get Shared Link</p>
           </Button>
-          <Button className="w-full">View Job Details</Button>
+          <Link className="block w-full" href={`/recruiter/jobs/${job?._id}`}>
+            <Button className="w-full">View Job Details</Button>
+          </Link>
         </div>
       </div>
     </Card>

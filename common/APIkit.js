@@ -125,6 +125,10 @@ const APIKit = {
       const url = "/job";
       return client.post(url, payload);
     },
+    getJob: (queryString) => {
+      const url = `/job${queryString}`;
+      return client.get(url);
+    },
   },
 };
 

@@ -63,3 +63,27 @@ export function generateQueryString(params) {
 
   return `?${queryString}`;
 }
+
+export function getTimeDifference(timestamp) {
+  const currentDate = new Date();
+  const providedDate = new Date(timestamp);
+
+  const timeDifferenceInSeconds = Math.floor(
+    (currentDate - providedDate) / 1000,
+  );
+
+  if (timeDifferenceInSeconds < 60) {
+    return timeDifferenceInSeconds === 1
+      ? "1 min ago"
+      : `${timeDifferenceInSeconds} mins ago`;
+  } else if (timeDifferenceInSeconds < 3600) {
+    const minutes = Math.floor(timeDifferenceInSeconds / 60);
+    return minutes === 1 ? "1 min ago" : `${minutes} mins ago`;
+  } else if (timeDifferenceInSeconds < 86400) {
+    const hours = Math.floor(timeDifferenceInSeconds / 3600);
+    return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
+  } else {
+    const days = Math.floor(timeDifferenceInSeconds / 86400);
+    return days === 1 ? "1 day ago" : `${days} days ago`;
+  }
+}
