@@ -1,7 +1,7 @@
 "use client";
 
 import { generateQueryString } from "@/common/UtilKit";
-import RecruiterJobCard from "@/components/recruiter/job/RecruiterJobCard";
+import RecruiterJobCard from "@/app/recruiter/jobs/components/RecruiterJobCard";
 import Container from "@/components/shared/Container";
 import { useState } from "react";
 import RecruiterJobSearchSortFilter from "./components/RecruiterJobSearchSortFilter";
@@ -12,8 +12,8 @@ export default function AllJobs() {
     job_type: "",
     location_type: "",
     experience_level: "",
-    sortBy: "createdAt",
-    sortOrder: "descending",
+    sort_by: "createdAt",
+    sort_order: "descending",
     page: "",
     limit: "",
   });
@@ -25,7 +25,7 @@ export default function AllJobs() {
     <Container>
       <div className="space-y-4">
         <RecruiterJobSearchSortFilter params={params} setParams={setParams} />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid gap-4 md:grid-cols-2">
           <RecruiterJobCard />
           <RecruiterJobCard />
         </div>

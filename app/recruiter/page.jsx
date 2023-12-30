@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export default function Recruiter() {
   const router = useRouter();
-  const { user, organization } = useStore();
+  const { user } = useStore();
 
   useEffect(() => {
     if (user?.isOnboardComplete === false) {

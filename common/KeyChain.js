@@ -99,6 +99,13 @@ export const SortOptions = [
   { label: "Oldest", value: "ascending" },
 ];
 
+export const JobOptions = [
+  { label: "Published", value: "PUBLISHED" },
+  { label: "Unpublished", value: "UNPUBLISHED" },
+  { label: "On Hold", value: "ON_HOLD" },
+  { label: "Closed", value: "CLOSED" },
+];
+
 export const navOptions = [
   {
     icon: UserIcon,
