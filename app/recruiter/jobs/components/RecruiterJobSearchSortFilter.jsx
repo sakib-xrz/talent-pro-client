@@ -4,15 +4,34 @@ import {
   LocationType,
   SortOptions,
 } from "@/common/KeyChain";
+import { formatText } from "@/common/UtilKit";
 
 import SelectField from "@/components/form/SelectField";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search } from "@/components/ui/search";
-import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
+import {
+  AdjustmentsHorizontalIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function RecruiterJobSearchSortFilter({ params, setParams }) {
   const [expand, setExpand] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleResetFilter = (paramName) => {
+    setParams((prevParams) => ({
+      ...prevParams,
+      [paramName]: "",
+    }));
+
+    setExpand(false);
+    router.replace(pathname);
+  };
+
   return (
     <div className="space-y-2">
       <div className="flex flex-col gap-4 md:flex-row">
@@ -44,7 +63,7 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
                   sortOrder: SelectedOption?.value,
                 }))
               }
-              defaultValue={{ label: "Newest", value: "descending" }}
+              value={SortOptions.find((el) => el.value === params.sortOrder)}
             />
           </div>
           <div>
@@ -65,6 +84,21 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="w-full">
             <SelectField
+              options={ExperienceLevel}
+              onChange={(SelectedOption) =>
+                setParams((prevParams) => ({
+                  ...prevParams,
+                  experience_level: SelectedOption?.value,
+                }))
+              }
+              value={ExperienceLevel.find(
+                (el) => el.value === params.experience_level,
+              )}
+              placeholder={"Filter by experience level"}
+            />
+          </div>
+          <div className="w-full">
+            <SelectField
               options={EmploymentType}
               onChange={(SelectedOption) =>
                 setParams((prevParams) => ({
@@ -72,9 +106,7 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
                   job_type: SelectedOption?.value,
                 }))
               }
-              value={EmploymentType.filter(
-                (el) => el.value === params.job_type,
-              )}
+              value={EmploymentType.find((el) => el.value === params.job_type)}
               placeholder={"Filter by job type"}
             />
           </div>
@@ -87,29 +119,53 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
                   location_type: SelectedOption?.value,
                 }))
               }
-              value={LocationType.filter(
+              value={LocationType.find(
                 (el) => el.value === params.location_type,
               )}
               placeholder={"Filter by location type"}
             />
           </div>
-          <div className="w-full">
-            <SelectField
-              options={ExperienceLevel}
-              onChange={(SelectedOption) =>
-                setParams((prevParams) => ({
-                  ...prevParams,
-                  experience_level: SelectedOption?.value,
-                }))
-              }
-              value={ExperienceLevel.filter(
-                (el) => el.value === params.experience_level,
-              )}
-              placeholder={"Filter by experience level"}
-            />
-          </div>
         </div>
       )}
+
+      {params.search && (
+        <p className="truncate text-sm text-primary">
+          Showing jobs for{" "}
+          <span className="font-bold">{`"${params.search}"`}</span>
+        </p>
+      )}
+      <div className="flex flex-wrap items-center gap-2">
+        {params.experience_level && (
+          <Badge
+            onClick={() => handleResetFilter("experience_level")}
+            variant="outline"
+            className="space-x-1"
+          >
+            <span>{`${formatText(params.experience_level)} level`}</span>
+            <XMarkIcon className="h-4 w-4 cursor-pointer" />
+          </Badge>
+        )}
+        {params.job_type && (
+          <Badge
+            onClick={() => handleResetFilter("job_type")}
+            variant="outline"
+            className="space-x-1"
+          >
+            <span>{formatText(params.job_type)}</span>
+            <XMarkIcon className="h-4 w-4 cursor-pointer" />
+          </Badge>
+        )}
+        {params.location_type && (
+          <Badge
+            onClick={() => handleResetFilter("location_type")}
+            variant="outline"
+            className="space-x-1"
+          >
+            <span>{formatText(params.location_type)}</span>
+            <XMarkIcon className="h-4 w-4 cursor-pointer" />
+          </Badge>
+        )}
+      </div>
     </div>
   );
 }

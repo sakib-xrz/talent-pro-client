@@ -5,7 +5,7 @@ import SelectField from "@/components/form/SelectField";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { JobOptions } from "@/common/KeyChain";
-import { getTimeDifference } from "@/common/UtilKit";
+import { formatText, getTimeDifference } from "@/common/UtilKit";
 import Link from "next/link";
 
 export default function RecruiterJobCard({ job }) {
@@ -28,7 +28,7 @@ export default function RecruiterJobCard({ job }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 xl:flex-row xl:justify-between">
+      <div className="space-y-2">
         <div className="flex items-center gap-2">
           <Image
             width={50}
@@ -48,8 +48,17 @@ export default function RecruiterJobCard({ job }) {
           </div>
         </div>
         <div className="space-x-2">
-          <Badge variant="secondary">{job?.job_type || "Not set"}</Badge>
-          <Badge variant="secondary">{job?.location_type || "Not set"}</Badge>
+          <Badge variant="secondary">
+            {job?.experience_level
+              ? `${formatText(job?.experience_level)} level`
+              : "Not set"}
+          </Badge>
+          <Badge variant="secondary">
+            {job?.job_type ? formatText(job?.job_type) : "Not set"}
+          </Badge>
+          <Badge variant="secondary">
+            {job?.location_type ? formatText(job?.location_type) : "Not set"}
+          </Badge>
         </div>
       </div>
       <div>

@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { useStore } from "@/context/StoreProvider";
 import { useFormik } from "formik";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -31,6 +32,7 @@ import "react-quill/dist/quill.snow.css";
 
 export default function PostJob() {
   const { user, organization } = useStore();
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       createdBy: "",
@@ -67,6 +69,7 @@ export default function PostJob() {
 
       const handleSuccess = () => {
         formik.resetForm();
+        router.push("/recruiter/jobs");
       };
 
       const handleFailure = (error) => {
