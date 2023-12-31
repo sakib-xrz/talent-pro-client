@@ -1,5 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
+import "react-quill/dist/quill.snow.css";
+import { toast } from "sonner";
+import { useFormik } from "formik";
+
 import APIKit from "@/common/APIkit";
 import {
   EmploymentType,
@@ -8,11 +17,8 @@ import {
   LocationType,
   WeekDay,
 } from "@/common/KeyChain";
-import CreatableSelectField from "@/components/form/CreatableSelectField";
-import DatePicker from "@/components/form/DatePicker";
-import SelectField from "@/components/form/SelectField";
-import TimePicker from "@/components/form/TimePicker";
-import Container from "@/components/shared/Container";
+import { useStore } from "@/context/StoreProvider";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,15 +26,12 @@ import {
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
+import Container from "@/components/shared/Container";
+import CreatableSelectField from "@/components/form/CreatableSelectField";
+import DatePicker from "@/components/form/DatePicker";
 import { Input } from "@/components/ui/input";
-import { useStore } from "@/context/StoreProvider";
-import { useFormik } from "formik";
-import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { toast } from "sonner";
-const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
-import "react-quill/dist/quill.snow.css";
+import SelectField from "@/components/form/SelectField";
+import TimePicker from "@/components/form/TimePicker";
 
 export default function PostJob() {
   const { user, organization } = useStore();

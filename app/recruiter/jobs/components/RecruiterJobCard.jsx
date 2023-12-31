@@ -1,12 +1,15 @@
+import Link from "next/link";
 import Image from "next/image";
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+
 import { EyeIcon, ShareIcon, UsersIcon } from "@heroicons/react/24/outline";
-import SelectField from "@/components/form/SelectField";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+
 import { JobOptions } from "@/common/KeyChain";
 import { formatText, getTimeDifference } from "@/common/UtilKit";
-import Link from "next/link";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardDescription } from "@/components/ui/card";
+import SelectField from "@/components/form/SelectField";
 
 export default function RecruiterJobCard({ job }) {
   return (
@@ -28,6 +31,7 @@ export default function RecruiterJobCard({ job }) {
           </div>
         </div>
       </div>
+
       <div className="space-y-3">
         <div className="flex items-center gap-2">
           <Image
@@ -47,6 +51,7 @@ export default function RecruiterJobCard({ job }) {
             </CardDescription>
           </div>
         </div>
+
         <div className="space-x-2">
           <Badge variant="secondary">
             {job?.experience_level
@@ -61,12 +66,14 @@ export default function RecruiterJobCard({ job }) {
           </Badge>
         </div>
       </div>
+
       <div>
         <SelectField
           options={JobOptions}
           defaultValue={JobOptions.find((el) => el.value === job?.status)}
         />
       </div>
+
       <div>
         <div className="flex flex-col gap-4 lg:flex-row">
           <Button variant="secondary" className="w-full gap-2">
@@ -75,6 +82,7 @@ export default function RecruiterJobCard({ job }) {
             </div>{" "}
             <p> Get Shared Link</p>
           </Button>
+
           <Link className="block w-full" href={`/recruiter/jobs/${job?._id}`}>
             <Button className="w-full">View Job Details</Button>
           </Link>
