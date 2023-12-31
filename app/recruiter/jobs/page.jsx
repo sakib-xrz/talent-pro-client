@@ -15,6 +15,7 @@ export default function AllJobs() {
   const searchParams = useSearchParams();
   const [params, setParams] = useState({
     search: searchParams.get("search") || "",
+    job_type: searchParams.get("status") || "",
     job_type: searchParams.get("job_type") || "",
     location_type: searchParams.get("location_type") || "",
     experience_level: searchParams.get("experience_level") || "",

@@ -1,6 +1,7 @@
 import {
   EmploymentType,
   ExperienceLevel,
+  JobOptions,
   LocationType,
   SortOptions,
 } from "@/common/KeyChain";
@@ -81,7 +82,20 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
       </div>
 
       {expand && (
-        <div className="flex flex-col gap-4 md:flex-row">
+        <div className="flex flex-col gap-4 rounded-md bg-white p-5 md:flex-row">
+          <div className="w-full">
+            <SelectField
+              options={JobOptions}
+              onChange={(SelectedOption) =>
+                setParams((prevParams) => ({
+                  ...prevParams,
+                  status: SelectedOption?.value,
+                }))
+              }
+              value={JobOptions.find((el) => el.value === params.status)}
+              placeholder={"Filter by job status"}
+            />
+          </div>
           <div className="w-full">
             <SelectField
               options={ExperienceLevel}
@@ -135,8 +149,20 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
         </p>
       )}
       <div className="flex flex-wrap items-center gap-2">
+        {params.status && (
+          <Badge
+            size={"lg"}
+            onClick={() => handleResetFilter("status")}
+            variant="outline"
+            className="space-x-1"
+          >
+            <span>{formatText(params.status)}</span>
+            <XMarkIcon className="h-4 w-4 cursor-pointer" />
+          </Badge>
+        )}
         {params.experience_level && (
           <Badge
+            size={"lg"}
             onClick={() => handleResetFilter("experience_level")}
             variant="outline"
             className="space-x-1"
@@ -147,6 +173,7 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
         )}
         {params.job_type && (
           <Badge
+            size={"lg"}
             onClick={() => handleResetFilter("job_type")}
             variant="outline"
             className="space-x-1"
@@ -157,6 +184,7 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
         )}
         {params.location_type && (
           <Badge
+            size={"lg"}
             onClick={() => handleResetFilter("location_type")}
             variant="outline"
             className="space-x-1"
