@@ -60,7 +60,7 @@ export default function AllJobs() {
       <div className="space-y-4">
         <PageTitleWithButton
           title={"Job Listings"}
-          buttonText={"Post Job"}
+          buttonText={"Post New Job"}
           href="/recruiter/jobs/post-job"
         />
 

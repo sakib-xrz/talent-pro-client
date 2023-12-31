@@ -1,19 +1,45 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 import { EyeIcon, ShareIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { Check, CopyIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import APIKit from "@/common/APIkit";
 import { JobOptions } from "@/common/KeyChain";
-import { formatText, getTimeDifference } from "@/common/UtilKit";
+import { formatText, getBaseUrl, getTimeDifference } from "@/common/UtilKit";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import SelectField from "@/components/form/SelectField";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function RecruiterJobCard({ job, refetch }) {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const baseUrl = getBaseUrl();
+
+  const copyToClipboard = async (url) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setIsCopied(true);
+      toast.success("Job link copied to clipboard");
+    } catch (err) {
+      console.error("Error copying to clipboard:", err);
+    }
+  };
+
   const handleUpdateJobStatus = (uid, SelectedOption) => {
     const status = SelectedOption.value;
 
@@ -35,7 +61,6 @@ export default function RecruiterJobCard({ job, refetch }) {
       loading: "Loading...",
       success: "Job status update successful!",
       error: "Something went wrong!",
-      // error: (error) => console.log(error),
     });
   };
 
@@ -106,12 +131,57 @@ export default function RecruiterJobCard({ job, refetch }) {
 
       <div>
         <div className="flex flex-col gap-4 lg:flex-row">
-          <Button variant="secondary" className="w-full gap-2">
-            <div>
-              <ShareIcon className="h-4 w-4" />
-            </div>{" "}
-            <p> Get Shared Link</p>
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                variant="secondary"
+                className="w-full gap-2"
+                onClick={() => setIsCopied(false)}
+              >
+                <div>
+                  <ShareIcon className="h-4 w-4" />
+                </div>{" "}
+                <p> Get Shared Link</p>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-xl">
+              <DialogHeader>
+                <DialogTitle>Share job link</DialogTitle>
+                <DialogDescription>
+                  Anyone who has this link will be able to view this job.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex items-center space-x-2">
+                <div className="grid flex-1 gap-2">
+                  <Label htmlFor="link" className="sr-only">
+                    Link
+                  </Label>
+                  <Input
+                    id="link"
+                    defaultValue={`${baseUrl}/public/jobs/${job?._id}`}
+                    readOnly
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  size="sm"
+                  className="px-3"
+                  onClick={() =>
+                    copyToClipboard(`${baseUrl}/public/jobs/${job?._id}`)
+                  }
+                >
+                  <span className="sr-only">
+                    {isCopied ? "Copied!" : "Copy"}
+                  </span>
+                  {isCopied ? (
+                    <Check className="h-4 w-4" />
+                  ) : (
+                    <CopyIcon className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
 
           <Link className="block w-full" href={`/recruiter/jobs/${job?._id}`}>
             <Button className="w-full">View Job Details</Button>

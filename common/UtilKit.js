@@ -87,3 +87,10 @@ export function getTimeDifference(timestamp) {
     return days === 1 ? "1 day ago" : `${days} days ago`;
   }
 }
+
+export const getBaseUrl = () => {
+  const baseUrl = `${window.location.protocol}//${window.location.hostname}${
+    window.location.port ? ":" + window.location.port : ""
+  }`;
+  return baseUrl;
+};
