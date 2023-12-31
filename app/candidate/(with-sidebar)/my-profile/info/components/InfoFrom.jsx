@@ -26,11 +26,12 @@ const validationSchema = Yup.object().shape({
 
 export default function InfoFrom({ initialValues, refetch }) {
   const [showActionButtons, setShowActionButtons] = useState(false);
+  const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true);
+    onSubmit: (values) => {
+      setLoading(true);
       const payload = {
         industry: values.industry,
         phone: values.phone,
@@ -51,7 +52,7 @@ export default function InfoFrom({ initialValues, refetch }) {
         .updateInfo(payload)
         .then(handleSuccess)
         .catch(handleFailure)
-        .finally(() => setSubmitting(false));
+        .finally(() => setLoading(false));
 
       return toast.promise(promise, {
         loading: "Updating personal information...",
@@ -181,7 +182,7 @@ export default function InfoFrom({ initialValues, refetch }) {
           >
             Cancel
           </Button>
-          <Button type="submit" isLoading={formik.isSubmitting}>
+          <Button type="submit" isLoading={loading}>
             Save
           </Button>
         </>

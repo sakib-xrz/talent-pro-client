@@ -12,12 +12,13 @@ import { toast } from "sonner";
 
 export default function SkillsFrom({ initialValues, refetch }) {
   const [showActionButtons, setShowActionButtons] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues,
     // validationSchema,
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true);
+    onSubmit: (values) => {
+      setLoading(true);
       const payload = {
         skills: values?.skills,
         portfolio: values?.portfolio,
@@ -41,7 +42,7 @@ export default function SkillsFrom({ initialValues, refetch }) {
         .updateSkillAndExpertise(payload)
         .then(handleSuccess)
         .catch(handleFailure)
-        .finally(() => setSubmitting(false));
+        .finally(() => setLoading(false));
 
       return toast.promise(promise, {
         loading: "Updating skill and expertise...",
@@ -177,7 +178,7 @@ export default function SkillsFrom({ initialValues, refetch }) {
           >
             Cancel
           </Button>
-          <Button type="submit" isLoading={formik.isSubmitting}>
+          <Button type="submit" isLoading={loading}>
             Save
           </Button>
         </>

@@ -20,6 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Password } from "@/components/ui/password";
 import RootFooter from "@/components/shared/RootFooter";
 import RootNavbar from "@/components/shared/RootNavbar";
+import { useState } from "react";
 
 const validationSchema = Yup.object({
   first_name: Yup.string().required("First Name is required"),
@@ -45,11 +46,12 @@ const initialValues = {
 
 export default function CandidateRegister() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true);
+    onSubmit: (values) => {
+      setLoading(true);
       const payload = {
         name: {
           first_name: values.first_name,
@@ -74,7 +76,7 @@ export default function CandidateRegister() {
         .register(payload)
         .then(handleSuccess)
         .catch(handleFailure)
-        .finally(() => setSubmitting(false));
+        .finally(() => setLoading(false));
 
       return toast.promise(promise, {
         loading: "Creating your account...",
@@ -168,11 +170,7 @@ export default function CandidateRegister() {
               <FormikErrorBox formik={formik} field="confirm_password" />
             </div>
             <div className="w-full">
-              <Button
-                type="submit"
-                className="mt-2 w-full"
-                isLoading={formik.isSubmitting}
-              >
+              <Button type="submit" className="mt-2 w-full" isLoading={loading}>
                 Sign up
               </Button>
             </div>

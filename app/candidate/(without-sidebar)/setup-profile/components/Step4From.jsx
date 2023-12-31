@@ -17,6 +17,7 @@ export default function Step4From({
   formik,
   handleCompleteStep4,
   handleBackToStep3,
+  loading,
 }) {
   const { user } = useStore();
   const { resume, resume_preview } = formik.values || {};
@@ -200,7 +201,7 @@ export default function Step4From({
               ) : (
                 <Button
                   type="submit"
-                  isLoading={formik.isSubmitting}
+                  isLoading={loading}
                   onClick={() => handleCompleteStep4(formik.values)}
                 >
                   Submit

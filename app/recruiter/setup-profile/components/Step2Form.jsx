@@ -12,6 +12,7 @@ export default function Step2Form({
   formik,
   handleCompleteStep2,
   handleBackToStep1,
+  loading,
 }) {
   const { user } = useStore();
   return (
@@ -118,7 +119,7 @@ export default function Step2Form({
               ) : (
                 <Button
                   type="submit"
-                  isLoading={formik.isSubmitting}
+                  isLoading={loading}
                   onClick={() => handleCompleteStep2(formik.values)}
                 >
                   Submit

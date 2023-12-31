@@ -16,6 +16,7 @@ import Success from "./components/Success";
 
 export default function CandidateSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [loading, setLoading] = useState(false);
   const { user, refetchMe } = useStore();
 
   const initialValues = {
@@ -59,8 +60,8 @@ export default function CandidateSetupProfile() {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true);
+    onSubmit: (values) => {
+      setLoading(true);
 
       let payload = { ...values };
 
@@ -96,7 +97,7 @@ export default function CandidateSetupProfile() {
         .setupProfile(payload)
         .then(handleSuccess)
         .catch(handleFailure)
-        .finally(() => setSubmitting(false));
+        .finally(() => setLoading(false));
 
       return toast.promise(promise, {
         loading: "Loading...",
@@ -160,6 +161,7 @@ export default function CandidateSetupProfile() {
             formik={formik}
             handleCompleteStep4={handleCompleteStep4}
             handleBackToStep3={() => handleStepChange(3)}
+            loading={loading}
           />
         )}
         {currentStep === 5 && <Success />}

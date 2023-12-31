@@ -14,6 +14,7 @@ import Success from "./components/Success";
 
 export default function OrganizationSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [loading, setLoading] = useState(false);
   const { user, refetchMe } = useStore();
 
   const initialValues = {
@@ -33,8 +34,8 @@ export default function OrganizationSetupProfile() {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true);
+    onSubmit: (values) => {
+      setLoading(true);
 
       const handleSuccess = () => {
         setCurrentStep(3);
@@ -51,7 +52,7 @@ export default function OrganizationSetupProfile() {
         .setupProfile(values)
         .then(handleSuccess)
         .catch(handleFailure)
-        .finally(() => setSubmitting(false));
+        .finally(() => setLoading(false));
 
       return toast.promise(promise, {
         loading: "Loading...",
@@ -89,6 +90,7 @@ export default function OrganizationSetupProfile() {
             formik={formik}
             handleCompleteStep2={handleCompleteStep2}
             handleBackToStep1={() => handleStepChange(1)}
+            loading={loading}
           />
         )}
 

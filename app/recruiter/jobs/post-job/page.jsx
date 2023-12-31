@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -35,6 +35,7 @@ import TimePicker from "@/components/form/TimePicker";
 
 export default function PostJob() {
   const { user, organization } = useStore();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
@@ -67,8 +68,8 @@ export default function PostJob() {
       },
       is_negotiable: true,
     },
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true);
+    onSubmit: (values) => {
+      setLoading(true);
 
       const handleSuccess = () => {
         formik.resetForm();
@@ -84,7 +85,7 @@ export default function PostJob() {
         .postJob(values)
         .then(handleSuccess)
         .catch(handleFailure)
-        .finally(() => setSubmitting(false));
+        .finally(() => setLoading(false));
 
       return toast.promise(promise, {
         loading: "Loading...",
@@ -493,7 +494,7 @@ export default function PostJob() {
               <Button
                 className={"w-full md:w-fit"}
                 type="submit"
-                isLoading={formik.isSubmitting}
+                isLoading={loading}
               >
                 Publish Job
               </Button>

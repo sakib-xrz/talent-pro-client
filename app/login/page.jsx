@@ -40,11 +40,12 @@ export default function CandidateLogin() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const previousURL = searchParams.get("next");
+  const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true);
+    onSubmit: (values) => {
+      setLoading(true);
       const payload = {
         email: values.email,
         password: values.password,
@@ -69,7 +70,7 @@ export default function CandidateLogin() {
         .token(payload)
         .then(handleSuccess)
         .catch(handleFailure)
-        .finally(() => setSubmitting(false));
+        .finally(() => setLoading(false));
 
       return toast.promise(promise, {
         loading: "Signing you in...",
@@ -130,11 +131,7 @@ export default function CandidateLogin() {
                 </Button>
               </p>
             </div>
-            <Button
-              type="submit"
-              className="w-full"
-              isLoading={formik.isSubmitting}
-            >
+            <Button type="submit" className="w-full" isLoading={loading}>
               Sign in
             </Button>
             <p className="text-center text-sm font-medium leading-none">
