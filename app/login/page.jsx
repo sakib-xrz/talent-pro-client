@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Logo from "public/images/logo.png";
@@ -20,7 +21,6 @@ import { Label } from "@/components/ui/label";
 import { Password } from "@/components/ui/password";
 import RootFooter from "@/components/shared/RootFooter";
 import RootNavbar from "@/components/shared/RootNavbar";
-import { useStore } from "@/context/StoreProvider";
 
 const validationSchema = Yup.object({
   email: Yup.string()

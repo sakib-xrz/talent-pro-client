@@ -32,7 +32,7 @@ export default function Step2Form({
             <span className="h-2 w-2/4 rounded-lg bg-primary p-1" />
           </div>
         </div>
-        <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
+        <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 ">
           <div className="space-y-2">
             <p className="font-medium text-primary">
               Company Website Link<span className="text-destructive">*</span>

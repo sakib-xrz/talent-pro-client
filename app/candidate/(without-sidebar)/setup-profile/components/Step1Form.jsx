@@ -35,7 +35,7 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
           </div>
         </div>
-        <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
+        <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 ">
           <h4 className="text-lg font-semibold">Personal Information</h4>
           <div className="space-y-2">
             <p className="font-medium text-primary">

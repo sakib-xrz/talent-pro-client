@@ -2,7 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { EyeIcon, ShareIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { toast } from "sonner";
 
+import APIKit from "@/common/APIkit";
 import { JobOptions } from "@/common/KeyChain";
 import { formatText, getTimeDifference } from "@/common/UtilKit";
 
@@ -11,7 +13,32 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription } from "@/components/ui/card";
 import SelectField from "@/components/form/SelectField";
 
-export default function RecruiterJobCard({ job }) {
+export default function RecruiterJobCard({ job, refetch }) {
+  const handleUpdateJobStatus = (uid, SelectedOption) => {
+    const status = SelectedOption.value;
+
+    const handleSuccess = () => {
+      refetch();
+    };
+
+    const handleFailure = (error) => {
+      console.log(error);
+      throw error;
+    };
+
+    const promise = APIKit.job
+      .updateJobStatus(uid, { status })
+      .then(handleSuccess)
+      .catch(handleFailure);
+
+    return toast.promise(promise, {
+      loading: "Loading...",
+      success: "Job status update successful!",
+      error: "Something went wrong!",
+      // error: (error) => console.log(error),
+    });
+  };
+
   return (
     <Card className={"space-y-3"}>
       <div className="flex flex-col justify-between gap-2 lg:flex-row lg:items-center">
@@ -70,7 +97,10 @@ export default function RecruiterJobCard({ job }) {
       <div>
         <SelectField
           options={JobOptions}
-          defaultValue={JobOptions.find((el) => el.value === job?.status)}
+          value={JobOptions.find((el) => el.value === job?.status)}
+          onChange={(SelectedOption) =>
+            handleUpdateJobStatus(job?._id, SelectedOption)
+          }
         />
       </div>
 

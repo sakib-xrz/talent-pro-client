@@ -122,7 +122,7 @@ export default async function Home() {
       <RootNavbar />
       <div className="space-y-12 lg:space-y-24">
         <Banner />
-        <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-8 lg:space-y-14">
+        <div className="mx-auto max-w-7xl space-y-6 px-4  lg:space-y-14">
           <HeadingWithSubtitle
             title={"We have everything that you need"}
             subtitle={
@@ -151,7 +151,7 @@ export default async function Home() {
         </div>
 
         <div className="bg-accent">
-          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-12 sm:flex-row-reverse sm:items-center sm:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-12 sm:flex-row-reverse sm:items-center ">
             <div className="sm:w-1/2">
               <Image
                 height={500}
@@ -178,7 +178,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-8 lg:space-y-14">
+        <div className="mx-auto max-w-7xl space-y-6 px-4  lg:space-y-14">
           <HeadingWithSubtitle
             title={"Simplifying Your Hiring Journey"}
             subtitle={
@@ -216,7 +216,7 @@ export default async function Home() {
         </div>
 
         <div className="bg-accent">
-          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-12 sm:flex-row-reverse sm:items-center sm:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-12 sm:flex-row-reverse sm:items-center ">
             <div className="sm:w-1/2">
               <Image
                 height={500}
@@ -243,7 +243,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-8 lg:space-y-14">
+        <div className="mx-auto max-w-7xl space-y-6 px-4  lg:space-y-14">
           <HeadingWithSubtitle title={"Why choose Talent Pro to hire talent"} />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {whyTalentPro.map((el) => (

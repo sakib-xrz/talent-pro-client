@@ -14,6 +14,7 @@ import Pagination from "@/components/shared/Pagination";
 import RecruiterJobCard from "@/app/recruiter/jobs/components/RecruiterJobCard";
 import RecruiterJobCardSkeleton from "./components/RecruiterJobCardSkeleton";
 import RecruiterJobSearchSortFilter from "./components/RecruiterJobSearchSortFilter";
+import PageTitleWithButton from "@/components/shared/PageTitleWithButton";
 
 export default function AllJobs() {
   const router = useRouter();
@@ -37,7 +38,11 @@ export default function AllJobs() {
     router.push(queryString);
   }, [queryString, router]);
 
-  const { data: jobs, isLoading } = useQuery({
+  const {
+    data: jobs,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: [`/jobs/${queryString}`],
     queryFn: () => APIKit.job.getJob(queryString).then((data) => data),
   });
@@ -53,6 +58,12 @@ export default function AllJobs() {
   return (
     <Container>
       <div className="space-y-4">
+        <PageTitleWithButton
+          title={"Job Listings"}
+          buttonText={"Post Job"}
+          href="/recruiter/jobs/post-job"
+        />
+
         <RecruiterJobSearchSortFilter params={params} setParams={setParams} />
 
         {isLoading ? (
@@ -67,7 +78,7 @@ export default function AllJobs() {
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               {jobs?.data?.map((job) => (
-                <RecruiterJobCard key={job?._id} job={job} />
+                <RecruiterJobCard key={job?._id} job={job} refetch={refetch} />
               ))}
             </div>
 

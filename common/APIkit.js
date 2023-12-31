@@ -129,6 +129,10 @@ const APIKit = {
       const url = `/job${queryString}`;
       return client.get(url);
     },
+    updateJobStatus: (uid, payload) => {
+      const url = `/job/update-status/${uid}`;
+      return client.patch(url, payload);
+    },
   },
 };
 

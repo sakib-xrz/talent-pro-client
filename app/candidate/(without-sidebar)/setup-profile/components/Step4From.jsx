@@ -50,7 +50,7 @@ export default function Step4From({
             <span className="h-2 w-1/3 rounded-lg bg-primary p-1" />
           </div>
         </div>
-        <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
+        <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 ">
           <h4 className="text-lg font-semibold">Skills and Expertise</h4>
           <div className="space-y-2">
             <p className="font-medium text-primary">

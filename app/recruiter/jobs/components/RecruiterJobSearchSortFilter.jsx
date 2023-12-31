@@ -80,8 +80,9 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
           </div>
           <div>
             <Button
+              variant="outline"
               onClick={() => setExpand(!expand)}
-              className={"w-fit gap-2"}
+              className={"w-fit gap-2 hover:bg-white"}
             >
               <div>
                 {expand ? (

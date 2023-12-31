@@ -33,7 +33,7 @@ export default function Step3Form({
             <span className="h-2 w-1/3 rounded-lg bg-input p-1" />
           </div>
         </div>
-        <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 sm:px-8">
+        <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 ">
           <h4 className="text-lg font-semibold">Education</h4>
           <div className="flex items-center gap-2 rounded-md bg-primary/10 p-2">
             <InformationCircleIcon className="h-5 w-5" />

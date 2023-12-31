@@ -20,14 +20,15 @@ export default function RecruiterAuthNavbar() {
   const { user } = useStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
-    <div className="sticky top-0 z-50 flex w-full items-center justify-between bg-white px-4 py-3 shadow sm:px-8">
-      <Link href={"/recruiter"}>
+    <div className="sticky top-0 z-50 mx-auto grid max-w-7xl grid-cols-12 items-center justify-center gap-4 bg-white px-4 py-3 ">
+      <Link href={"/recruiter"} className="col-span-8 lg:col-span-2">
         <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
       </Link>
-      <div className="hidden items-center lg:flex">
+      <div className="col-span-6 hidden lg:block"></div>
+      <div className="hidden items-center justify-end lg:col-span-4 lg:flex">
         <RecruiterCardDropdown />
       </div>
-      <div className="lg:hidden">
+      <div className="col-span-4 flex w-full justify-end lg:hidden">
         <Bars3Icon
           onClick={() => setDrawerOpen(!drawerOpen)}
           className="h-8 w-8 cursor-pointer text-primary"
