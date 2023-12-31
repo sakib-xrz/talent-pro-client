@@ -1,14 +1,8 @@
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export default function EmptyState({
-  src,
-  title,
-  helperText,
-  extraClassName,
-  textSectionExtraClass,
-}) {
+export default function EmptyState({ src, title, helperText }) {
   return (
     <Card className="flex flex-col items-center justify-center gap-4 py-10">
       <div>

@@ -12,6 +12,7 @@ import Container from "@/components/shared/Container";
 import EmptyState from "@/components/shared/EpmtyState";
 import Pagination from "@/components/shared/Pagination";
 import RecruiterJobCard from "@/app/recruiter/jobs/components/RecruiterJobCard";
+import RecruiterJobCardSkeleton from "./components/RecruiterJobCardSkeleton";
 import RecruiterJobSearchSortFilter from "./components/RecruiterJobSearchSortFilter";
 
 export default function AllJobs() {
@@ -55,7 +56,13 @@ export default function AllJobs() {
         <RecruiterJobSearchSortFilter params={params} setParams={setParams} />
 
         {isLoading ? (
-          <p>Loading...</p>
+          <div className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-2">
+              {[...Array(2).keys()].map((item) => (
+                <RecruiterJobCardSkeleton key={item} />
+              ))}
+            </div>
+          </div>
         ) : jobs?.meta?.total ? (
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
@@ -63,6 +70,7 @@ export default function AllJobs() {
                 <RecruiterJobCard key={job?._id} job={job} />
               ))}
             </div>
+
             <Pagination
               params={params}
               setParams={setParams}
