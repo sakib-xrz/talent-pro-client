@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useFormik } from "formik";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export default function SkillsFrom({ initialValues, refetch }) {
   const [showActionButtons, setShowActionButtons] = useState(false);

@@ -5,7 +5,7 @@ import {
   PencilSquareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 import APIKit from "@/common/APIkit";
 import { formatDate } from "@/common/UtilKit";
@@ -83,8 +83,8 @@ export default function EducationCard({ education, refetch }) {
                 {study_currently
                   ? "Present"
                   : end_date
-                    ? formatDate(end_date)
-                    : "Not set"}
+                  ? formatDate(end_date)
+                  : "Not set"}
               </p>
             </div>
           </div>

@@ -4,7 +4,6 @@ import { Button } from "../ui/button";
 export default function Pagination({ params, setParams, dataLength }) {
   const itemsPerPage = +params.limit;
   const totalPages = Math.ceil(dataLength / itemsPerPage);
-  console.log(dataLength);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {

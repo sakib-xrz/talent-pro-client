@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 import APIKit from "@/common/APIkit";
 import { EmployStatus } from "@/common/KeyChain";

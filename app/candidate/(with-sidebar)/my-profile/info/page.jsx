@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import InfoFrom from "./components/InfoFrom";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 

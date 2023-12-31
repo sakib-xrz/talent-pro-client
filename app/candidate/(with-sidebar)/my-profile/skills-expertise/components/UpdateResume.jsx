@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import { DocumentTextIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 import APIKit from "@/common/APIkit";
 

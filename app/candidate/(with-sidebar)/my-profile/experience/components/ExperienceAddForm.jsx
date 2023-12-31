@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { useFormik } from "formik";
 
 import APIKit from "@/common/APIkit";

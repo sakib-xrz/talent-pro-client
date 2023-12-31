@@ -8,7 +8,7 @@ import Logo from "public/images/logo.png";
 
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 import APIKit from "@/common/APIkit";
 import { setJWTokenAndRedirect } from "@/common/UtilKit";
