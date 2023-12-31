@@ -127,12 +127,12 @@ export const navOptions = [
 export const recruiterNavOptions = [
   {
     name: "My Profile",
-    href: "/recruiter/my-profile",
+    href: "#",
     icon: UserIcon,
   },
   {
     name: "My Organization",
-    href: "/recruiter/organization",
+    href: "#",
     icon: BuildingOffice2Icon,
   },
 ];
