@@ -42,8 +42,10 @@ export default function CandidateJobSearchSortFilter({ params, setParams }) {
     setParams((prevParams) => ({
       ...prevParams,
       search: value,
+      page: "1",
     }));
   }, 500);
+
   return (
     <div className="space-y-2">
       <div className="flex flex-col gap-4 md:flex-row">
@@ -107,6 +109,7 @@ export default function CandidateJobSearchSortFilter({ params, setParams }) {
                 setParams((prevParams) => ({
                   ...prevParams,
                   experience_level: SelectedOption?.value,
+                  page: "1",
                 }))
               }
               value={ExperienceLevel.find(
@@ -122,6 +125,7 @@ export default function CandidateJobSearchSortFilter({ params, setParams }) {
                 setParams((prevParams) => ({
                   ...prevParams,
                   job_type: SelectedOption?.value,
+                  page: "1",
                 }))
               }
               value={EmploymentType.find((el) => el.value === params.job_type)}
@@ -135,6 +139,7 @@ export default function CandidateJobSearchSortFilter({ params, setParams }) {
                 setParams((prevParams) => ({
                   ...prevParams,
                   location_type: SelectedOption?.value,
+                  page: "1",
                 }))
               }
               value={LocationType.find(
