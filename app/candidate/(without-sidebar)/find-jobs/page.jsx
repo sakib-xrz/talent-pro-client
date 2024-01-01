@@ -10,6 +10,10 @@ import { generateQueryString } from "@/common/UtilKit";
 
 import CandidateJobSearchSortFilter from "./components/CandidateJobSearchSortFilter";
 import Container from "@/components/shared/Container";
+import CandidateJobCard from "./components/CandidateJobCard";
+import CandidateJobCardSkeleton from "./components/CandidateJobCardSkeleton";
+import EmptyState from "@/components/shared/EpmtyState";
+import Pagination from "@/components/shared/Pagination";
 import PageTitleWithButton from "@/components/shared/PageTitleWithButton";
 
 export default function CandidateJobPage() {
@@ -55,6 +59,44 @@ export default function CandidateJobPage() {
         <PageTitleWithButton title={"Find all jobs"} />
 
         <CandidateJobSearchSortFilter params={params} setParams={setParams} />
+
+        {isLoading ? (
+          <div className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-2">
+              {[...Array(2).keys()].map((item) => (
+                <CandidateJobCardSkeleton key={item} />
+              ))}
+            </div>
+          </div>
+        ) : jobs?.meta?.total ? (
+          <div className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-2">
+              {jobs?.data?.map(
+                (job) =>
+                  (job?.status === "PUBLISHED" ||
+                    job?.status === "ON_HOLD") && (
+                    <CandidateJobCard
+                      key={job?._id}
+                      job={job}
+                      refetch={refetch}
+                    />
+                  ),
+              )}
+            </div>
+
+            <Pagination
+              params={params}
+              setParams={setParams}
+              dataLength={jobs?.meta?.total}
+            />
+          </div>
+        ) : (
+          <EmptyState
+            src="/empty/job-empty.svg"
+            title={getDynamicEmptyStateTitle()}
+            helperText="Once we found, you will see a list of jobs."
+          />
+        )}
       </div>
     </Container>
   );
