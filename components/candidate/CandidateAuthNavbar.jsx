@@ -31,7 +31,7 @@ const candidateMenus = [
   },
   {
     name: "Explore Opportunities",
-    href: "/candidate/jobs",
+    href: "/candidate/find-jobs",
   },
 ];
 
@@ -40,7 +40,7 @@ export default function CandidateAuthNavbar() {
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
-    <div className="sticky top-0 z-50 mx-auto grid max-w-7xl grid-cols-12 items-center justify-center gap-4 bg-white px-4 py-3 ">
+    <div className="sticky top-0 z-50 mx-auto grid max-w-7xl grid-cols-12 items-center justify-center gap-4 bg-white px-4 py-3">
       <Link href={"/candidate"} className="col-span-8 lg:col-span-2">
         <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
       </Link>

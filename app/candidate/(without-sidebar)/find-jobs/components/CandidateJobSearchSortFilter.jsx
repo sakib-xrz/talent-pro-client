@@ -10,7 +10,6 @@ import { useDebouncedCallback } from "use-debounce";
 import {
   EmploymentType,
   ExperienceLevel,
-  JobOptions,
   LocationType,
   SortOptions,
 } from "@/common/KeyChain";
@@ -22,7 +21,7 @@ import { Label } from "@/components/ui/label";
 import { Search } from "@/components/ui/search";
 import SelectField from "@/components/form/SelectField";
 
-export default function RecruiterJobSearchSortFilter({ params, setParams }) {
+export default function CandidateJobSearchSortFilter({ params, setParams }) {
   const [expand, setExpand] = useState(false);
   const [searchKey, setSearchKey] = useState("");
 
@@ -45,7 +44,6 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
       search: value,
     }));
   }, 500);
-
   return (
     <div className="space-y-2">
       <div className="flex flex-col gap-4 md:flex-row">
@@ -101,20 +99,7 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
       </div>
 
       {expand && (
-        <div className="grid grid-cols-1 gap-4 rounded-md border border-border bg-white p-5 sm:grid-cols-2 xl:grid-cols-4">
-          <div className="w-full">
-            <SelectField
-              options={JobOptions}
-              onChange={(SelectedOption) =>
-                setParams((prevParams) => ({
-                  ...prevParams,
-                  status: SelectedOption?.value,
-                }))
-              }
-              value={JobOptions.find((el) => el.value === params.status)}
-              placeholder={"Filter by job status"}
-            />
-          </div>
+        <div className="grid grid-cols-1 gap-4 rounded-md border border-border bg-white p-5 lg:grid-cols-3">
           <div className="w-full">
             <SelectField
               options={ExperienceLevel}
@@ -169,18 +154,6 @@ export default function RecruiterJobSearchSortFilter({ params, setParams }) {
       )}
 
       <div className="flex flex-wrap items-center gap-2">
-        {params.status && (
-          <Badge
-            size={"lg"}
-            onClick={() => handleResetFilter("status")}
-            variant="outline"
-            className="group cursor-pointer space-x-1 hover:border-destructive hover:text-destructive"
-          >
-            <span>{formatText(params.status)}</span>
-            <XMarkIcon className="h-4 w-4 group-hover:text-destructive" />
-          </Badge>
-        )}
-
         {params.experience_level && (
           <Badge
             size={"lg"}

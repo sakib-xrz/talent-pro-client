@@ -10,7 +10,11 @@ export default function PageTitleWithButton({
   icon = true,
 }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 md:gap-0">
+    <div
+      className={`flex flex-wrap items-center justify-between md:gap-0 ${
+        buttonText && "gap-4"
+      }`}
+    >
       <h2 className="text-lg font-semibold text-primary md:text-2xl">
         {title}
       </h2>
