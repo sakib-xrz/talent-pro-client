@@ -12,12 +12,43 @@ const ACTIVE_NAV_ICON_STYLES = "text-white font-semibold";
 const DEFAULT_NAV_TEXT_STYLES = "font-semibold";
 const ACTIVE_NAV_TEXT_STYLES = "text-white font-semibold";
 
-export default function MobileNavOptions({ setOpen }) {
+export default function MobileNavOptions({ setOpen, menus }) {
   let pathname = usePathname();
   const currentPathname = pathname.split("/").slice(0, 3).join("/");
   let isActiveRoute = (currentNav) => currentNav.includes(currentPathname);
   return (
-    <div>
+    <div className="space-y-2">
+      <div className="space-y-1">
+        {menus.map((option, index) => (
+          <Link
+            key={index + 1}
+            href={option.href}
+            className={
+              (pathname === "/recruiter"
+                ? DEFAULT_NAV_BACKGROUND_STYLES
+                : isActiveRoute(option.href)
+                  ? ACTIVE_NAV_BACKGROUND_STYLES
+                  : DEFAULT_NAV_BACKGROUND_STYLES) +
+              " " +
+              DEFAULT_STYLES
+            }
+            onClick={() => setOpen(false)}
+          >
+            <h2
+              className={
+                (pathname === "/recruiter"
+                  ? DEFAULT_NAV_TEXT_STYLES
+                  : isActiveRoute(option.href)
+                    ? ACTIVE_NAV_TEXT_STYLES
+                    : DEFAULT_NAV_TEXT_STYLES) + " text-sm"
+              }
+            >
+              {option.name}
+            </h2>
+          </Link>
+        ))}
+      </div>
+      <hr />
       <div className="space-y-1">
         {navOptions.map((option, index) => (
           <Link
@@ -27,8 +58,8 @@ export default function MobileNavOptions({ setOpen }) {
               (pathname === "/candidate"
                 ? DEFAULT_NAV_BACKGROUND_STYLES
                 : isActiveRoute(option.href)
-                ? ACTIVE_NAV_BACKGROUND_STYLES
-                : DEFAULT_NAV_BACKGROUND_STYLES) +
+                  ? ACTIVE_NAV_BACKGROUND_STYLES
+                  : DEFAULT_NAV_BACKGROUND_STYLES) +
               " " +
               DEFAULT_STYLES
             }
@@ -39,8 +70,8 @@ export default function MobileNavOptions({ setOpen }) {
                 (pathname === "/candidate"
                   ? DEFAULT_NAV_ICON_STYLES
                   : isActiveRoute(option.href)
-                  ? ACTIVE_NAV_ICON_STYLES
-                  : DEFAULT_NAV_ICON_STYLES) + " h-5 w-5"
+                    ? ACTIVE_NAV_ICON_STYLES
+                    : DEFAULT_NAV_ICON_STYLES) + " h-5 w-5"
               }
             />
             <h2
@@ -48,8 +79,8 @@ export default function MobileNavOptions({ setOpen }) {
                 (pathname === "/candidate"
                   ? DEFAULT_NAV_TEXT_STYLES
                   : isActiveRoute(option.href)
-                  ? ACTIVE_NAV_TEXT_STYLES
-                  : DEFAULT_NAV_TEXT_STYLES) + " text-sm"
+                    ? ACTIVE_NAV_TEXT_STYLES
+                    : DEFAULT_NAV_TEXT_STYLES) + " text-sm"
               }
             >
               {option.name}

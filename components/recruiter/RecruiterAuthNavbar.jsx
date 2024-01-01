@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { LogOut } from "lucide-react";
@@ -16,7 +17,6 @@ import MobileNavOptions from "./MobileNavOptions";
 import RecruiterCard from "./RecruiterCard";
 import RecruiterCardDropdown from "./RecruiterCardDropdown";
 import RightSideDrawer from "../shared/RightSideDrawer";
-import { usePathname } from "next/navigation";
 
 const DEFAULT_STYLES =
   "flex justify-center items-center cursor-pointer px-3 py-1";
