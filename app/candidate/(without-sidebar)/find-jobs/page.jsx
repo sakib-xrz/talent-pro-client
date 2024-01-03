@@ -56,7 +56,7 @@ export default function CandidateJobPage() {
   return (
     <Container>
       <div className="space-y-4">
-        <PageTitleWithButton title={"Find all jobs"} />
+        <PageTitleWithButton title={"Find All Jobs"} />
 
         <CandidateJobSearchSortFilter params={params} setParams={setParams} />
 
@@ -71,23 +71,14 @@ export default function CandidateJobPage() {
         ) : jobs?.meta?.total ? (
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
-              {jobs?.data?.map(
-                (job) =>
-                  (job?.status === "PUBLISHED" ||
-                    job?.status === "ON_HOLD") && (
-                    <CandidateJobCard
-                      key={job?._id}
-                      job={job}
-                      refetch={refetch}
-                    />
-                  ),
-              )}
+              {jobs.data.map((job) => (
+                <CandidateJobCard key={job?._id} job={job} refetch={refetch} />
+              ))}
             </div>
-
             <Pagination
               params={params}
               setParams={setParams}
-              dataLength={jobs?.meta?.total}
+              dataLength={jobs.meta.total}
             />
           </div>
         ) : (

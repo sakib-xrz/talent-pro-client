@@ -77,15 +77,14 @@ export default function AllJobs() {
         ) : jobs?.meta?.total ? (
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
-              {jobs?.data?.map((job) => (
+              {jobs.data.map((job) => (
                 <RecruiterJobCard key={job?._id} job={job} refetch={refetch} />
               ))}
             </div>
-
             <Pagination
               params={params}
               setParams={setParams}
-              dataLength={jobs?.meta?.total}
+              dataLength={jobs.meta.total}
             />
           </div>
         ) : (
