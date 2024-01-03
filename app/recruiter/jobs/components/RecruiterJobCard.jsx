@@ -67,9 +67,9 @@ export default function RecruiterJobCard({ job, refetch }) {
   return (
     <Card className={"space-y-3"}>
       <div className="flex flex-col justify-between gap-2 lg:flex-row lg:items-center">
-        <CardDescription>
+        <p className="text-sm font-medium">
           Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
-        </CardDescription>
+        </p>
         <div className="flex items-center gap-6 ">
           <div className="flex items-center gap-2 text-primary">
             <EyeIcon className="h-5 w-5" />

@@ -39,9 +39,9 @@ export default function CandidateJobCard({ job }) {
   return (
     <Card className={"space-y-3"}>
       <div className="flex justify-between gap-2">
-        <CardDescription>
+        <p className="text-sm font-medium">
           Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
-        </CardDescription>
+        </p>
 
         <div>
           {job?.status === "PUBLISHED" ? (
@@ -52,15 +52,15 @@ export default function CandidateJobCard({ job }) {
           ) : (
             <div className="flex w-fit items-center gap-2 rounded-md bg-amber-100 px-2 py-1 text-amber-500">
               <PauseCircle className="h-4 w-4" />
-              <p className="text-xs font-medium">Recruiting Hold</p>
+              <p className="text-xs font-medium">Recruiting on Hold</p>
             </div>
           )}
         </div>
-      </div>
 
-      {/* <div className="cursor-pointer text-primary">
-        <BookmarkIcon className="h-6 w-6" />
-      </div> */}
+        {/* <div className="cursor-pointer text-primary">
+          <BookmarkIcon className="h-6 w-6" />
+        </div> */}
+      </div>
 
       <div className="space-y-3">
         <div className="flex items-center gap-2">

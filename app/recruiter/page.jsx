@@ -13,7 +13,7 @@ export default function Recruiter() {
     if (user?.isOnboardComplete === false) {
       router.push("/recruiter/setup-profile");
     } else {
-      router.push("/recruiter");
+      router.push("/recruiter/dashboard");
     }
   }, [router, user?.isOnboardComplete]);
 

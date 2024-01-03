@@ -5,18 +5,9 @@ export default function CandidateJobCardSkeleton() {
   return (
     <Card className={"h-[19rem] space-y-3 lg:h-[14rem]"}>
       <div className="flex flex-col justify-between gap-2 lg:flex-row lg:items-center">
-        <Skeleton className="h-5 w-40" />
+        <Skeleton className="h-4 w-32" />
 
-        <div className="flex items-center gap-6 ">
-          <div className="flex items-center gap-2 text-primary">
-            <Skeleton className="h-5 w-5" />
-            <Skeleton className="h-5 w-16" />
-          </div>
-          <div className="flex items-center gap-2 text-primary">
-            <Skeleton className="h-5 w-5" />
-            <Skeleton className="h-5 w-16" />
-          </div>
-        </div>
+        <Skeleton className="h-5 w-36" />
       </div>
 
       <div className="space-y-3">

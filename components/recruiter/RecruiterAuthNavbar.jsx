@@ -22,12 +22,12 @@ const DEFAULT_STYLES =
   "flex justify-center items-center cursor-pointer px-3 py-1";
 const ACTIVE_TAB_STYLES = "font-medium text-primary border-b-2 border-primary";
 const DEFAULT_TAB_STYLES =
-  "font-medium text-primary border-b-2 border-transparent";
+  "font-medium border-b-2 border-transparent text-primary/70 hover:text-primary";
 
 const recruiterMenus = [
   {
     name: "Dashboard",
-    href: "#",
+    href: "/recruiter/dashboard",
   },
   {
     name: "Jobs",
