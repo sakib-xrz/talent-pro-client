@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { BookmarkIcon, EyeIcon, ShareIcon } from "@heroicons/react/24/outline";
-import { Check, CopyIcon } from "lucide-react";
+import { Check, CopyIcon, Goal, PauseCircle } from "lucide-react";
 import { toast } from "sonner";
 
 import { formatText, getBaseUrl, getTimeDifference } from "@/common/UtilKit";
@@ -42,10 +42,25 @@ export default function CandidateJobCard({ job }) {
         <CardDescription>
           Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
         </CardDescription>
-        <div className="cursor-pointer text-primary">
-          <BookmarkIcon className="h-6 w-6" />
+
+        <div>
+          {job?.status === "PUBLISHED" ? (
+            <div className="flex w-fit items-center gap-2 rounded-md bg-green-100 px-2 py-1 text-green-500">
+              <Goal className="h-4 w-4" />
+              <p className="text-xs font-medium">Actively Recruiting</p>
+            </div>
+          ) : (
+            <div className="flex w-fit items-center gap-2 rounded-md bg-amber-100 px-2 py-1 text-amber-500">
+              <PauseCircle className="h-4 w-4" />
+              <p className="text-xs font-medium">Recruiting Hold</p>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* <div className="cursor-pointer text-primary">
+        <BookmarkIcon className="h-6 w-6" />
+      </div> */}
 
       <div className="space-y-3">
         <div className="flex items-center gap-2">
@@ -136,7 +151,10 @@ export default function CandidateJobCard({ job }) {
             </DialogContent>
           </Dialog>
 
-          <Link className="block w-full" href={`/recruiter/jobs/${job?._id}`}>
+          <Link
+            className="block w-full"
+            href={`/candidate/find-jobs/${job?._id}`}
+          >
             <Button className="w-full">View Job Details</Button>
           </Link>
         </div>
