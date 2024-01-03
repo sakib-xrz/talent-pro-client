@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-import { EyeIcon, ShareIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { BookmarkIcon, EyeIcon, ShareIcon } from "@heroicons/react/24/outline";
 import { Check, CopyIcon } from "lucide-react";
 import { toast } from "sonner";
 
@@ -38,21 +38,12 @@ export default function CandidateJobCard({ job }) {
   };
   return (
     <Card className={"space-y-3"}>
-      <div className="flex flex-col justify-between gap-2 lg:flex-row lg:items-center">
+      <div className="flex justify-between gap-2">
         <CardDescription>
           Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
         </CardDescription>
-        <div className="flex items-center gap-6 ">
-          <div className="flex items-center gap-2 text-primary">
-            <EyeIcon className="h-5 w-5" />
-            <CardDescription>{job?.total_views || 0} Views</CardDescription>
-          </div>
-          <div className="flex items-center gap-2 text-primary">
-            <UsersIcon className="h-5 w-5" />
-            <CardDescription>
-              {job?.total_applications || 0} Applied
-            </CardDescription>
-          </div>
+        <div className="cursor-pointer text-primary">
+          <BookmarkIcon className="h-6 w-6" />
         </div>
       </div>
 

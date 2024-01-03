@@ -46,7 +46,7 @@ export default function CandidateJobSearchSortFilter({ params, setParams }) {
   }, 500);
   return (
     <div className="space-y-2">
-      <div className="flex flex-col gap-4 md:flex-row">
+      <div className="flex flex-col gap-2 md:flex-row md:gap-4">
         <div className="flex-grow">
           <Label>Search</Label>
           <Search
