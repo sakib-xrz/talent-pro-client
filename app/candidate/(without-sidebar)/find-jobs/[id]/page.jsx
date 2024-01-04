@@ -1,23 +1,35 @@
 import Container from "@/components/shared/Container";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardDescription } from "@/components/ui/card";
 import banner_side from "@/public/images/job-details-side-image.png";
 import {
   ArrowLeftIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/solid";
+import {
+  BriefcaseIcon,
+  BuildingOffice2Icon,
+  GlobeAltIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+
+const job_description =
+  "<h4><strong>Job brief</strong></h4><p>We are looking for a qualified Front-end developer to join our IT team. You will be responsible for building the ‘client-side’ of our web applications. You should be able to translate our company and customer needs into functional and appealing interactive applications.</p><h4><strong>Responsibilities</strong></h4><ul><li>Use markup languages like HTML to create user-friendly web pages</li><li>Maintain and improve website</li><li>Optimize applications for maximum speed</li><li>Design mobile-based features</li><li>Collaborate with back-end developers and web designers to improve usability</li><li>Get feedback from, and build solutions for, users and customers</li><li>Write functional requirement documents and guides</li><li>Create quality mockups and prototypes</li><li>Help back-end developers with coding and troubleshooting</li><li>Ensure high quality graphic standards and brand consistency</li><li>Stay up-to-date on emerging technologies</li></ul><h4><strong>Requirements and skills</strong></h4><ul><li>Proven work experience as a Front-end developer</li><li>Hands on experience with markup languages</li><li>Experience with JavaScript, CSS and jQuery</li><li>Familiarity with browser testing and debugging</li><li>In-depth understanding of the entire web development process (design, development and deployment)</li><li>Understanding of layout aesthetics</li><li>Knowledge of SEO principles</li><li>Familiarity with software like Adobe Suite, Photoshop and content management systems</li><li>An ability to perform well in a fast-paced environment</li><li>Excellent analytical and multitasking skills</li><li>BSc degree in Computer Science or relevant field</li></ul>";
 
 export default function CandidateJobDetails({ id }) {
   return (
     <div>
       <div className="bg-[url('/images/job-details-banner.png')] bg-cover">
         <Container>
-          <Link href="/candidate/find-jobs">
-            <div className="flex w-fit items-center gap-2 border-b border-transparent py-1 font-medium text-primary hover:border-primary">
-              <ArrowLeftIcon className="h-5 w-5 " />
-              <p>Go Back to Jobs</p>
-            </div>
+          <Link
+            href="/candidate/find-jobs"
+            className="flex w-fit items-center gap-2 border-b border-transparent py-1 font-medium text-primary hover:border-primary"
+          >
+            <ArrowLeftIcon className="h-5 w-5 " />
+            <p>Go Back to Jobs</p>
           </Link>
 
           <div className="flex flex-col-reverse items-center justify-between gap-4 md:flex-row md:gap-8 ">
@@ -66,14 +78,204 @@ export default function CandidateJobDetails({ id }) {
           </div>
         </Container>
       </div>
-      <Container>
-        {/* <p className="text-md mx-auto flex w-fit items-center justify-center gap-2 rounded-md bg-amber-100 px-2 py-1 font-medium text-amber-500">
-          <div>
-            <ExclamationTriangleIcon className="h-5 w-5" />
+      <div className="mx-auto max-w-7xl px-4 py-10">
+        <div className="flex flex-col gap-4 lg:flex-row">
+          <div className="w-full lg:w-9/12">
+            <Card className="space-y-5">
+              <h4 className="line-clamp-1 text-lg font-semibold text-primary sm:line-clamp-none">
+                About this role
+              </h4>
+              <div className="flex items-center gap-2">
+                <Image
+                  width={50}
+                  height={50}
+                  src={"/images/google.jpg"}
+                  alt=""
+                  className="h-12 w-12 rounded-md border p-2"
+                />
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Senior UI/ UX Designer
+                  </h3>
+                  <CardDescription className="line-clamp-1 lg:line-clamp-none">
+                    Google • Mirpur 10, Dhaka, Bangladesh
+                  </CardDescription>
+                </div>
+              </div>
+
+              <hr />
+
+              <div className="grid gap-4 md:grid-cols-3">
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Experience Level
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    Entry level
+                  </p>
+                </div>
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Job Type
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    Full time
+                  </p>
+                </div>
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Location Type
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    Onsite
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                  Required Skills
+                </h3>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="secondary" size="lg">
+                    Javascript
+                  </Badge>
+                  <Badge variant="secondary" size="lg">
+                    TypeScript
+                  </Badge>
+                  <Badge variant="secondary" size="lg">
+                    React
+                  </Badge>
+                  <Badge variant="secondary" size="lg">
+                    Next Js
+                  </Badge>
+                  <Badge variant="secondary" size="lg">
+                    Tailwind CSS
+                  </Badge>
+                  <Badge variant="secondary" size="lg">
+                    Mongoose
+                  </Badge>
+                  <Badge variant="secondary" size="lg">
+                    MongoDB
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-3">
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Working Days
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    Monday - Friday
+                  </p>
+                </div>
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Working Hours
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    7 hours
+                  </p>
+                </div>
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Minimum Experience
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    1 year
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-3">
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Number of Vacancy
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">5</p>
+                </div>
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Deadline
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    12 January, 2024
+                  </p>
+                </div>
+                <div>
+                  <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+                    Salary or Compensation
+                  </h3>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    ৳20,000 - ৳50,000
+                  </p>
+                </div>
+              </div>
+
+              <hr />
+
+              <div
+                className="prose"
+                dangerouslySetInnerHTML={{ __html: job_description }}
+              />
+            </Card>
           </div>
-          Job temporarily on hold. Save this opportunity for future updates.
-        </p> */}
-      </Container>
+          <div className="w-full space-y-2 lg:w-3/12">
+            <Card className="space-y-5 lg:sticky lg:top-24 ">
+              <h4 className="line-clamp-1 text-lg font-semibold text-primary sm:line-clamp-none">
+                About company
+              </h4>
+              <div className="space-y-2">
+                <div className="flex items-center justify-start gap-4">
+                  <GlobeAltIcon className="h-6 w-6 text-primary" />
+                  <div>
+                    <p className="text-sm">Website</p>
+                    <p className="text-md cursor-pointer font-semibold text-primary underline underline-offset-2">
+                      apple.com
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-start gap-4">
+                  <MapPinIcon className="h-6 w-6 text-primary" />
+                  <div>
+                    <p className="text-sm">Location</p>
+                    <p className="text-md font-semibold text-primary">
+                      Dhaka, Bangladesh
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-start gap-4">
+                  <BriefcaseIcon className="h-6 w-6 text-primary" />
+                  <div>
+                    <p className="text-sm">Industry</p>
+                    <p className="text-md font-semibold text-primary">
+                      Information Technology
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-start gap-4">
+                  <BuildingOffice2Icon className="h-6 w-6 text-primary" />
+                  <div>
+                    <p className="text-sm">Company Size</p>
+                    <p className="text-md font-semibold text-primary">
+                      10-50 people
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <Link
+                  href={`/candidate/find-jobs/${id}/apply`}
+                  className="w-full"
+                >
+                  <Button className="w-full">Apply Now</Button>
+                </Link>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
