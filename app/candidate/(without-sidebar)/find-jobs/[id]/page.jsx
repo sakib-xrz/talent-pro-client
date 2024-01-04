@@ -80,7 +80,7 @@ export default function CandidateJobDetails({ id }) {
       </div>
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="flex flex-col gap-4 lg:flex-row">
-          <div className="w-full lg:w-9/12">
+          <div className="w-full lg:w-8/12">
             <Card className="space-y-5">
               <h4 className="line-clamp-1 text-lg font-semibold text-primary sm:line-clamp-none">
                 About this role
@@ -221,7 +221,7 @@ export default function CandidateJobDetails({ id }) {
               />
             </Card>
           </div>
-          <div className="w-full space-y-2 lg:w-3/12">
+          <div className="w-full space-y-2 lg:w-4/12">
             <Card className="space-y-5 lg:sticky lg:top-24 ">
               <h4 className="line-clamp-1 text-lg font-semibold text-primary sm:line-clamp-none">
                 About company
