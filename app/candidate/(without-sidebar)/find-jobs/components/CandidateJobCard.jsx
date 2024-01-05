@@ -50,7 +50,7 @@ export default function CandidateJobCard({ job }) {
               <p className="text-xs font-medium">Actively Recruiting</p>
             </div>
           ) : (
-            <div className="flex w-fit items-center gap-2 rounded-md bg-amber-100 px-2 py-1 text-amber-500">
+            <div className="flex w-fit items-center gap-2 rounded-md bg-yellow-100 px-2 py-1 text-yellow-500">
               <PauseCircle className="h-4 w-4" />
               <p className="text-xs font-medium">Recruiting on Hold</p>
             </div>
@@ -67,7 +67,10 @@ export default function CandidateJobCard({ job }) {
           <Image
             width={50}
             height={50}
-            src={"/images/google.jpg"}
+            src={
+              job?.organization?.company_logo ||
+              "/images/organization_placeholder.jpg"
+            }
             alt=""
             className="h-12 w-12 rounded-md border p-2"
           />

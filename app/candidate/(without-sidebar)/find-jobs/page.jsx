@@ -42,7 +42,7 @@ export default function CandidateJobPage() {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [`/find-jobs/${queryString}`],
+    queryKey: [`/find-jobs?${queryString}`],
     queryFn: () => APIKit.job.getJob(queryString).then((data) => data),
   });
 

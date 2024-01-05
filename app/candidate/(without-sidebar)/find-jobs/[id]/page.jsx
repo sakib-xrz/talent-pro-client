@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "@/components/shared/Container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,11 +17,21 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import APIKit from "@/common/APIkit";
 
 const job_description =
   "<h4><strong>Job brief</strong></h4><p>We are looking for a qualified Front-end developer to join our IT team. You will be responsible for building the ‘client-side’ of our web applications. You should be able to translate our company and customer needs into functional and appealing interactive applications.</p><h4><strong>Responsibilities</strong></h4><ul><li>Use markup languages like HTML to create user-friendly web pages</li><li>Maintain and improve website</li><li>Optimize applications for maximum speed</li><li>Design mobile-based features</li><li>Collaborate with back-end developers and web designers to improve usability</li><li>Get feedback from, and build solutions for, users and customers</li><li>Write functional requirement documents and guides</li><li>Create quality mockups and prototypes</li><li>Help back-end developers with coding and troubleshooting</li><li>Ensure high quality graphic standards and brand consistency</li><li>Stay up-to-date on emerging technologies</li></ul><h4><strong>Requirements and skills</strong></h4><ul><li>Proven work experience as a Front-end developer</li><li>Hands on experience with markup languages</li><li>Experience with JavaScript, CSS and jQuery</li><li>Familiarity with browser testing and debugging</li><li>In-depth understanding of the entire web development process (design, development and deployment)</li><li>Understanding of layout aesthetics</li><li>Knowledge of SEO principles</li><li>Familiarity with software like Adobe Suite, Photoshop and content management systems</li><li>An ability to perform well in a fast-paced environment</li><li>Excellent analytical and multitasking skills</li><li>BSc degree in Computer Science or relevant field</li></ul>";
 
-export default function CandidateJobDetails({ id }) {
+export default function CandidateJobDetails({ params: { id } }) {
+  const { data: job, isLoading } = useQuery({
+    queryKey: [`/find-jobs/${id}`],
+    queryFn: () => APIKit.job.getSingleJob(id).then((data) => data.data),
+    enabled: !!id,
+  });
+
+  console.log(job);
+
   return (
     <div>
       <div className="bg-[url('/images/job-details-banner.png')] bg-cover">
@@ -36,27 +48,29 @@ export default function CandidateJobDetails({ id }) {
             <div className="flex w-full flex-col gap-3 text-center md:gap-6 md:text-left">
               <div className="space-y-3 text-primary">
                 <p className="text-2xl font-semibold lg:text-4xl">
-                  Senior UI/ UX Designer <span>at</span>{" "}
-                  <span className="capitalize">Google</span>
+                  {job?.job_title || "Job title not set"} <span>at</span>{" "}
+                  <span className="capitalize">
+                    {job?.organization?.company_name || "Company name not set"}
+                  </span>
                 </p>
                 <p className="mx-auto max-w-xl text-sm md:mx-0 lg:text-base">
-                  We are a global technology leader dedicated to organizing and
-                  making the world's information universally accessible.
+                  {job?.organization?.about_us || "About company not set"}
                 </p>
               </div>
+
               <div className="flex justify-center md:justify-start">
-                <p className="text-md flex w-fit gap-2 rounded-md bg-amber-100 px-2 py-1 text-left font-medium text-amber-500 lg:items-center">
+                <p className="text-md flex w-fit gap-2 rounded-md bg-yellow-100 px-2 py-1 text-left font-medium text-yellow-500 lg:items-center">
                   <div>
-                    <ExclamationTriangleIcon className="mt-0.5 h-3 w-3 lg:mt-0" />
+                    <ExclamationTriangleIcon className="mt-0.5 h-3 w-3 lg:mt-0 lg:h-3.5 lg:w-3.5" />
                   </div>
-                  <p className="text-xs">
+                  <p className="text-xs lg:text-sm">
                     Job temporarily on hold. Save this opportunity for future
                     updates.
                   </p>
                 </p>
               </div>
 
-              <div className="flex items-center justify-center gap-2 md:justify-start">
+              <div className="flex w-full items-center justify-center gap-2 md:justify-start">
                 <Button variant="outline" className="hover:bg-white">
                   Save Job
                 </Button>
@@ -89,16 +103,20 @@ export default function CandidateJobDetails({ id }) {
                 <Image
                   width={50}
                   height={50}
-                  src={"/images/google.jpg"}
+                  src={
+                    job?.organization?.company_logo ||
+                    "/images/organization_placeholder.jpg"
+                  }
                   alt=""
                   className="h-12 w-12 rounded-md border p-2"
                 />
                 <div>
                   <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
-                    Senior UI/ UX Designer
+                    {job?.job_title || "Job title not set"}
                   </h3>
                   <CardDescription className="line-clamp-1 lg:line-clamp-none">
-                    Google • Mirpur 10, Dhaka, Bangladesh
+                    {job?.organization?.company_name || "Company name not set"}{" "}
+                    • {job?.address || "Job location not set"}
                   </CardDescription>
                 </div>
               </div>

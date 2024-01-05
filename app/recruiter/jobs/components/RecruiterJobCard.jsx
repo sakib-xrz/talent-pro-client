@@ -73,7 +73,9 @@ export default function RecruiterJobCard({ job, refetch }) {
         <div className="flex items-center gap-6 ">
           <div className="flex items-center gap-2 text-primary">
             <EyeIcon className="h-5 w-5" />
-            <CardDescription>{job?.total_views || 0} Views</CardDescription>
+            <CardDescription>
+              {job?.total_views || 0} {job?.total_views < 1 ? "Views" : "View"}
+            </CardDescription>
           </div>
           <div className="flex items-center gap-2 text-primary">
             <UsersIcon className="h-5 w-5" />
