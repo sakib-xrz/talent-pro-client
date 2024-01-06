@@ -39,8 +39,12 @@ export const formatText = (text) => {
 export const formatDate = (date) => {
   if (date) {
     const dateString = new Date(date);
-    const formattedDate = format(dateString, "PP");
-    return formattedDate;
+    const dateParts = format(dateString, "PP").split(" ");
+    const month = dateParts[0];
+    const day = dateParts[1].slice(0, -1);
+    const year = dateParts[2];
+
+    return `${day} ${month}, ${year}`;
   } else {
     return "";
   }
@@ -94,3 +98,12 @@ export const getBaseUrl = () => {
   }`;
   return baseUrl;
 };
+
+export function formatCurrency(amount) {
+  const formatCurrency = new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "BDT",
+  });
+
+  return formatCurrency.format(amount).slice(4).slice(0, -3);
+}
