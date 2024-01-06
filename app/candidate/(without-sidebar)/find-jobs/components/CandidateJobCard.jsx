@@ -2,15 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-import { BookmarkIcon, EyeIcon, ShareIcon } from "@heroicons/react/24/outline";
-import { Check, CopyIcon, Goal, PauseCircle } from "lucide-react";
+import { BookmarkIcon, ShareIcon } from "@heroicons/react/24/outline";
+import { Check, CopyIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { formatText, getBaseUrl, getTimeDifference } from "@/common/UtilKit";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardDescription } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -43,23 +43,9 @@ export default function CandidateJobCard({ job }) {
           Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
         </p>
 
-        <div>
-          {job?.status === "PUBLISHED" ? (
-            <div className="flex w-fit items-center gap-2 rounded-md bg-green-100 px-2 py-1 text-green-500">
-              <Goal className="h-4 w-4" />
-              <p className="text-xs font-medium">Actively Recruiting</p>
-            </div>
-          ) : (
-            <div className="flex w-fit items-center gap-2 rounded-md bg-yellow-100 px-2 py-1 text-yellow-500">
-              <PauseCircle className="h-4 w-4" />
-              <p className="text-xs font-medium">Recruiting on Hold</p>
-            </div>
-          )}
-        </div>
-
-        {/* <div className="cursor-pointer text-primary">
+        <div className="cursor-pointer text-primary">
           <BookmarkIcon className="h-6 w-6" />
-        </div> */}
+        </div>
       </div>
 
       <div className="space-y-3">
@@ -78,10 +64,10 @@ export default function CandidateJobCard({ job }) {
             <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
               {job?.job_title || "Not set"}
             </h3>
-            <CardDescription className="line-clamp-1 lg:line-clamp-none">
+            <div className="line-clamp-1 text-sm font-medium xl:line-clamp-none">
               {job?.organization?.company_name || "Not set"} •{" "}
               {job?.address || "Not set"}
-            </CardDescription>
+            </div>
           </div>
         </div>
 
@@ -101,12 +87,12 @@ export default function CandidateJobCard({ job }) {
       </div>
 
       <div>
-        <div className="flex flex-col gap-4 lg:flex-row">
+        <div className="flex flex-col gap-2 sm:flex-row lg:gap-4">
           <Dialog>
             <DialogTrigger asChild>
               <Button
-                variant="secondary"
-                className="w-full gap-2"
+                variant="outline"
+                className="w-full gap-2 hover:bg-white"
                 onClick={() => setIsCopied(false)}
               >
                 <div>

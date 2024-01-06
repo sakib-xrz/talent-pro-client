@@ -66,7 +66,7 @@ export default function RecruiterJobCard({ job, refetch }) {
 
   return (
     <Card className={"space-y-3"}>
-      <div className="flex flex-col justify-between gap-2 lg:flex-row lg:items-center">
+      <div className="flex flex-col justify-between gap-2 sm:flex-row md:flex-col lg:flex-row lg:items-center">
         <p className="text-sm font-medium">
           Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
         </p>
@@ -91,7 +91,10 @@ export default function RecruiterJobCard({ job, refetch }) {
           <Image
             width={50}
             height={50}
-            src={"/images/google.jpg"}
+            src={
+              job?.organization?.company_logo ||
+              "/images/organization_placeholder.jpg"
+            }
             alt=""
             className="h-12 w-12 rounded-md border p-2"
           />
@@ -99,10 +102,10 @@ export default function RecruiterJobCard({ job, refetch }) {
             <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
               {job?.job_title || "Not set"}
             </h3>
-            <CardDescription className="line-clamp-1 lg:line-clamp-none">
+            <div className="line-clamp-1 text-sm font-medium xl:line-clamp-none">
               {job?.organization?.company_name || "Not set"} •{" "}
               {job?.address || "Not set"}
-            </CardDescription>
+            </div>
           </div>
         </div>
 

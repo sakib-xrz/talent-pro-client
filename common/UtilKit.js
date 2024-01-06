@@ -79,7 +79,7 @@ export function getTimeDifference(timestamp) {
   if (timeDifferenceInSeconds < 60) {
     return timeDifferenceInSeconds === 1
       ? "1 min ago"
-      : `${timeDifferenceInSeconds} mins ago`;
+      : `${timeDifferenceInSeconds} seconds ago`;
   } else if (timeDifferenceInSeconds < 3600) {
     const minutes = Math.floor(timeDifferenceInSeconds / 60);
     return minutes === 1 ? "1 min ago" : `${minutes} mins ago`;

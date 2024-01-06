@@ -26,7 +26,7 @@ export default function AboutCompanyCard({ job, id }) {
             <a
               href={job?.organization?.website || "#"}
               target="_blank"
-              className="text-md line-clamp-1 cursor-pointer font-semibold text-primary underline underline-offset-2"
+              className="text-md line-clamp-1 cursor-pointer font-semibold text-primary hover:underline"
             >
               {job?.organization?.website || "Not set"}
             </a>
