@@ -1,6 +1,8 @@
-import { CardDescription } from "@/components/ui/card";
-import { Share2 } from "lucide-react";
 import Image from "next/image";
+
+import { Share2 } from "lucide-react";
+
+import { CardDescription } from "@/components/ui/card";
 
 export default function JobCardSection({ job }) {
   return (

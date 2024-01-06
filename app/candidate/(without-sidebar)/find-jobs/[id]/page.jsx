@@ -1,12 +1,14 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
+
 import APIKit from "@/common/APIkit";
-import JobCardSection from "./components/JobCardSection";
-import JobInfoSection from "./components/JobInfoSection";
+
 import AboutCompanyCard from "./components/AboutCompanyCard";
 import BannerSection from "./components/BannerSection";
+import { Card } from "@/components/ui/card";
+import JobCardSection from "./components/JobCardSection";
+import JobInfoSection from "./components/JobInfoSection";
 
 export default function CandidateJobDetails({ params: { id } }) {
   const { data: job, isLoading } = useQuery({

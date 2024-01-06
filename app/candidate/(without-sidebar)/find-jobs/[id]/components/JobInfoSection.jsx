@@ -1,4 +1,5 @@
 import { formatCurrency, formatDate, formatText } from "@/common/UtilKit";
+
 import { Badge } from "@/components/ui/badge";
 
 export default function JobInfoSection({ job }) {

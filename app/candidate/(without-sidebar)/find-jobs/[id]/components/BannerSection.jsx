@@ -1,10 +1,13 @@
-import Container from "@/components/shared/Container";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
+
 import banner_side from "@/public/images/job-details-side-image.png";
-import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import Container from "@/components/shared/Container";
 
 export default function BannerSection({ job, id }) {
   return (

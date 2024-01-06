@@ -1,13 +1,16 @@
-import { formatText } from "@/common/UtilKit";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import Link from "next/link";
+
 import {
   BriefcaseIcon,
   BuildingOffice2Icon,
   GlobeAltIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
-import Link from "next/link";
+
+import { formatText } from "@/common/UtilKit";
+
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export default function AboutCompanyCard({ job, id }) {
   return (
