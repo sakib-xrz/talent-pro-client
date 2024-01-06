@@ -19,9 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import APIKit from "@/common/APIkit";
-
-const job_description =
-  "<h4><strong>Job brief</strong></h4><p>We are looking for a qualified Front-end developer to join our IT team. You will be responsible for building the ‘client-side’ of our web applications. You should be able to translate our company and customer needs into functional and appealing interactive applications.</p><h4><strong>Responsibilities</strong></h4><ul><li>Use markup languages like HTML to create user-friendly web pages</li><li>Maintain and improve website</li><li>Optimize applications for maximum speed</li><li>Design mobile-based features</li><li>Collaborate with back-end developers and web designers to improve usability</li><li>Get feedback from, and build solutions for, users and customers</li><li>Write functional requirement documents and guides</li><li>Create quality mockups and prototypes</li><li>Help back-end developers with coding and troubleshooting</li><li>Ensure high quality graphic standards and brand consistency</li><li>Stay up-to-date on emerging technologies</li></ul><h4><strong>Requirements and skills</strong></h4><ul><li>Proven work experience as a Front-end developer</li><li>Hands on experience with markup languages</li><li>Experience with JavaScript, CSS and jQuery</li><li>Familiarity with browser testing and debugging</li><li>In-depth understanding of the entire web development process (design, development and deployment)</li><li>Understanding of layout aesthetics</li><li>Knowledge of SEO principles</li><li>Familiarity with software like Adobe Suite, Photoshop and content management systems</li><li>An ability to perform well in a fast-paced environment</li><li>Excellent analytical and multitasking skills</li><li>BSc degree in Computer Science or relevant field</li></ul>";
+import { formatText } from "@/common/UtilKit";
 
 export default function CandidateJobDetails({ params: { id } }) {
   const { data: job, isLoading } = useQuery({
@@ -30,7 +28,11 @@ export default function CandidateJobDetails({ params: { id } }) {
     enabled: !!id,
   });
 
-  console.log(job);
+  if (isLoading) {
+    return "Loading...";
+  }
+
+  const { job_description } = job;
 
   return (
     <div>
@@ -58,17 +60,19 @@ export default function CandidateJobDetails({ params: { id } }) {
                 </p>
               </div>
 
-              <div className="flex justify-center md:justify-start">
-                <p className="text-md flex w-fit gap-2 rounded-md bg-yellow-100 px-2 py-1 text-left font-medium text-yellow-500 lg:items-center">
-                  <div>
-                    <ExclamationTriangleIcon className="mt-0.5 h-3 w-3 lg:mt-0 lg:h-3.5 lg:w-3.5" />
-                  </div>
-                  <p className="text-xs lg:text-sm">
-                    Job temporarily on hold. Save this opportunity for future
-                    updates.
+              {job?.status === "ON_HOLD" && (
+                <div className="flex justify-center md:justify-start">
+                  <p className="text-md flex w-fit gap-2 rounded-md bg-yellow-100 px-2 py-1 text-left font-medium text-yellow-500 lg:items-center">
+                    <div>
+                      <ExclamationTriangleIcon className="mt-0.5 h-3 w-3 lg:mt-0 lg:h-3.5 lg:w-3.5" />
+                    </div>
+                    <p className="text-xs lg:text-sm">
+                      Job temporarily on hold. Save this opportunity for future
+                      updates.
+                    </p>
                   </p>
-                </p>
-              </div>
+                </div>
+              )}
 
               <div className="flex w-full items-center justify-center gap-2 md:justify-start">
                 <Button variant="outline" className="hover:bg-white">
@@ -129,7 +133,9 @@ export default function CandidateJobDetails({ params: { id } }) {
                     Experience Level
                   </h3>
                   <p className="line-clamp-1 text-sm lg:line-clamp-none">
-                    Entry level
+                    {job?.experience_level
+                      ? `${formatText(job?.experience_level)} level`
+                      : "Job level not set"}
                   </p>
                 </div>
                 <div>
@@ -137,7 +143,9 @@ export default function CandidateJobDetails({ params: { id } }) {
                     Job Type
                   </h3>
                   <p className="line-clamp-1 text-sm lg:line-clamp-none">
-                    Full time
+                    {job?.job_type
+                      ? `${formatText(job?.job_type)}`
+                      : "Job type not set"}
                   </p>
                 </div>
                 <div>
@@ -145,7 +153,9 @@ export default function CandidateJobDetails({ params: { id } }) {
                     Location Type
                   </h3>
                   <p className="line-clamp-1 text-sm lg:line-clamp-none">
-                    Onsite
+                    {job?.location_type
+                      ? `${formatText(job?.location_type)}`
+                      : "Location type not set"}
                   </p>
                 </div>
               </div>
@@ -155,27 +165,13 @@ export default function CandidateJobDetails({ params: { id } }) {
                   Required Skills
                 </h3>
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="secondary" size="lg">
-                    Javascript
-                  </Badge>
-                  <Badge variant="secondary" size="lg">
-                    TypeScript
-                  </Badge>
-                  <Badge variant="secondary" size="lg">
-                    React
-                  </Badge>
-                  <Badge variant="secondary" size="lg">
-                    Next Js
-                  </Badge>
-                  <Badge variant="secondary" size="lg">
-                    Tailwind CSS
-                  </Badge>
-                  <Badge variant="secondary" size="lg">
-                    Mongoose
-                  </Badge>
-                  <Badge variant="secondary" size="lg">
-                    MongoDB
-                  </Badge>
+                  {job?.required_skills?.length
+                    ? job?.required_skills.map((skill) => (
+                        <Badge variant="secondary" size="lg" key={skill._id}>
+                          {skill.label}
+                        </Badge>
+                      ))
+                    : "No skill required"}
                 </div>
               </div>
 
@@ -185,7 +181,13 @@ export default function CandidateJobDetails({ params: { id } }) {
                     Working Days
                   </h3>
                   <p className="line-clamp-1 text-sm lg:line-clamp-none">
-                    Monday - Friday
+                    {job?.start_day
+                      ? formatText(job?.start_day)
+                      : "Start day not set"}{" "}
+                    -{" "}
+                    {job?.end_day
+                      ? formatText(job?.end_day)
+                      : "End day not set"}
                   </p>
                 </div>
                 <div>
@@ -193,7 +195,9 @@ export default function CandidateJobDetails({ params: { id } }) {
                     Working Hours
                   </h3>
                   <p className="line-clamp-1 text-sm lg:line-clamp-none">
-                    7 hours
+                    {job?.working_hours
+                      ? `${parseInt(job?.working_hours)} hours`
+                      : "Working hours not set"}
                   </p>
                 </div>
                 <div>
@@ -201,7 +205,7 @@ export default function CandidateJobDetails({ params: { id } }) {
                     Minimum Experience
                   </h3>
                   <p className="line-clamp-1 text-sm lg:line-clamp-none">
-                    1 year
+                    {job?.years_of_experience || "Not set"} year
                   </p>
                 </div>
               </div>
@@ -211,7 +215,9 @@ export default function CandidateJobDetails({ params: { id } }) {
                   <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
                     Number of Vacancy
                   </h3>
-                  <p className="line-clamp-1 text-sm lg:line-clamp-none">5</p>
+                  <p className="line-clamp-1 text-sm lg:line-clamp-none">
+                    {job?.num_of_vacancy || "Not set"}
+                  </p>
                 </div>
                 <div>
                   <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
@@ -249,17 +255,21 @@ export default function CandidateJobDetails({ params: { id } }) {
                   <GlobeAltIcon className="h-6 w-6 text-primary" />
                   <div>
                     <p className="text-sm">Website</p>
-                    <p className="text-md cursor-pointer font-semibold text-primary underline underline-offset-2">
-                      apple.com
-                    </p>
+                    <a
+                      href={job?.organization?.website || "#"}
+                      target="_blank"
+                      className="text-md cursor-pointer font-semibold text-primary underline underline-offset-2"
+                    >
+                      {job?.organization?.website || "Not set"}
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-center justify-start gap-4">
                   <MapPinIcon className="h-6 w-6 text-primary" />
                   <div>
                     <p className="text-sm">Location</p>
-                    <p className="text-md font-semibold text-primary">
-                      Dhaka, Bangladesh
+                    <p className="text-md truncate font-semibold text-primary">
+                      {job?.organization?.company_location || "Not set"}
                     </p>
                   </div>
                 </div>
@@ -268,7 +278,9 @@ export default function CandidateJobDetails({ params: { id } }) {
                   <div>
                     <p className="text-sm">Industry</p>
                     <p className="text-md font-semibold text-primary">
-                      Information Technology
+                      {job?.organization?.industry
+                        ? formatText(job?.organization?.industry)
+                        : "Not set"}
                     </p>
                   </div>
                 </div>
@@ -277,7 +289,9 @@ export default function CandidateJobDetails({ params: { id } }) {
                   <div>
                     <p className="text-sm">Company Size</p>
                     <p className="text-md font-semibold text-primary">
-                      10-50 people
+                      {job?.organization?.company_size
+                        ? `${job?.organization?.company_size} people`
+                        : "Not set"}
                     </p>
                   </div>
                 </div>
