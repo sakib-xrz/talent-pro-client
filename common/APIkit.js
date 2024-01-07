@@ -133,6 +133,10 @@ const APIKit = {
       const url = `/job/${uid}`;
       return client.get(url);
     },
+    getSinglePublicJob: (uid) => {
+      const url = `/job/public/${uid}`;
+      return client.get(url);
+    },
     updateJobStatus: (uid, payload) => {
       const url = `/job/update-status/${uid}`;
       return client.patch(url, payload);
