@@ -36,6 +36,11 @@ export default function CandidateJobCard({ job }) {
       console.error("Error copying to clipboard:", err);
     }
   };
+
+  const handleAddSaveJob = (id) => {
+    console.log(id);
+  };
+
   return (
     <Card className={"space-y-3"}>
       <div className="flex justify-between gap-2">
@@ -44,7 +49,10 @@ export default function CandidateJobCard({ job }) {
         </p>
 
         <div className="cursor-pointer text-primary">
-          <BookmarkIcon className="h-6 w-6" />
+          <BookmarkIcon
+            className="h-6 w-6"
+            onClick={() => handleAddSaveJob(job?._id)}
+          />
         </div>
       </div>
 
