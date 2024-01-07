@@ -1,9 +1,10 @@
 import Image from "next/image";
 
-import { Goal, PauseCircle, Share2 } from "lucide-react";
+import { Goal, PauseCircle } from "lucide-react";
 
-import { CardDescription } from "@/components/ui/card";
 import { getTimeDifference } from "@/common/UtilKit";
+
+import SocialShare from "./SocialShare";
 
 export default function JobCardSection({ job }) {
   return (
@@ -12,9 +13,7 @@ export default function JobCardSection({ job }) {
         <h4 className="line-clamp-1 text-lg font-semibold text-primary sm:line-clamp-none">
           About this role
         </h4>
-        <div>
-          <Share2 className="w-4.5 h-4.5" />
-        </div>
+        <SocialShare />
       </div>
 
       <div className="space-y-2">
