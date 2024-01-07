@@ -13,7 +13,7 @@ export default function JobCardSection({ job }) {
         <h4 className="line-clamp-1 text-lg font-semibold text-primary sm:line-clamp-none">
           About this role
         </h4>
-        <SocialShare />
+        <SocialShare job={job} />
       </div>
 
       <div className="space-y-2">

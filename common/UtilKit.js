@@ -107,3 +107,28 @@ export function formatCurrency(amount) {
 
   return formatCurrency.format(amount).slice(4).slice(0, -3);
 }
+
+function objectToGetParams(object) {
+  const params = Object.entries(object)
+    .filter(([, value]) => value !== undefined && value !== null)
+    .map(
+      ([key, value]) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`,
+    );
+
+  return params.length > 0 ? `?${params.join("&")}` : "";
+}
+
+export function facebookLink(url, { hashtag } = {}) {
+  return (
+    "https://www.facebook.com/sharer/sharer.php" +
+    objectToGetParams({ u: url, hashtag })
+  );
+}
+
+export function linkedinLink(url, { title, summary, source } = {}) {
+  return (
+    "https://linkedin.com/shareArticle" +
+    objectToGetParams({ url, mini: "true", title, summary, source })
+  );
+}
