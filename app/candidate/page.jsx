@@ -13,8 +13,12 @@ export default function Candidate() {
     if (user?.isOnboardComplete === false) {
       router.push("/candidate/setup-profile");
     } else {
-      router.push("/candidate/dashboard");
+      router.push("/candidate");
     }
   }, [router, user?.isOnboardComplete]);
-  return <Container>Candidate page coming soon...</Container>;
+  return (
+    <Container>
+      <p>Candidate dashboard page coming soon...</p>
+    </Container>
+  );
 }

@@ -27,7 +27,7 @@ const DEFAULT_TAB_STYLES =
 const candidateMenus = [
   {
     name: "Dashboard",
-    href: "/candidate/dashboard",
+    href: "/candidate",
   },
   {
     name: "Explore Opportunities",

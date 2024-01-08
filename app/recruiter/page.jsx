@@ -13,13 +13,13 @@ export default function Recruiter() {
     if (user?.isOnboardComplete === false) {
       router.push("/recruiter/setup-profile");
     } else {
-      router.push("/recruiter/dashboard");
+      router.push("/recruiter");
     }
   }, [router, user?.isOnboardComplete]);
 
   return (
     <Container>
-      <p>Recruiter page coming soon...</p>
+      <p>Recruiter dashboard page coming soon...</p>
     </Container>
   );
 }

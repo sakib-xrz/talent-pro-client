@@ -27,7 +27,7 @@ const DEFAULT_TAB_STYLES =
 const recruiterMenus = [
   {
     name: "Dashboard",
-    href: "/recruiter/dashboard",
+    href: "/recruiter",
   },
   {
     name: "Jobs",
