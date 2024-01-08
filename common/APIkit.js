@@ -141,6 +141,21 @@ const APIKit = {
       const url = `/job/update-status/${uid}`;
       return client.patch(url, payload);
     },
+
+    save: {
+      getSaveJobsList: () => {
+        const url = "/job/save-job-list";
+        return client.get(url);
+      },
+      postSaveJob: (uid) => {
+        const url = `/job/save-job/${uid}`;
+        return client.post(url);
+      },
+      removeSaveJob: (uid) => {
+        const url = `/job/save-job/${uid}`;
+        return client.delete(url);
+      },
+    },
   },
 };
 

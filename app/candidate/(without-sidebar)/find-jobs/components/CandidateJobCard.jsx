@@ -3,9 +3,11 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { BookmarkIcon, ShareIcon } from "@heroicons/react/24/outline";
+import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
 import { Check, CopyIcon } from "lucide-react";
 import { toast } from "sonner";
 
+import APIKit from "@/common/APIkit";
 import { formatText, getBaseUrl, getTimeDifference } from "@/common/UtilKit";
 
 import { Badge } from "@/components/ui/badge";
@@ -22,10 +24,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function CandidateJobCard({ job }) {
+export default function CandidateJobCard({
+  job,
+  saveJobsList,
+  saveJobsListRefetch,
+}) {
   const [isCopied, setIsCopied] = useState(false);
 
   const baseUrl = getBaseUrl();
+
+  const isJobSaved = saveJobsList.some((id) => id === job._id);
 
   const copyToClipboard = async (url) => {
     try {
@@ -38,7 +46,39 @@ export default function CandidateJobCard({ job }) {
   };
 
   const handleAddSaveJob = (id) => {
-    console.log(id);
+    const handleSuccess = () => {
+      saveJobsListRefetch();
+    };
+    const handleFailure = (error) => {
+      throw error;
+    };
+    const promise = APIKit.job.save
+      .postSaveJob(id)
+      .then(handleSuccess)
+      .catch(handleFailure);
+    return toast.promise(promise, {
+      loading: "Saving this job...",
+      success: "Job saved successfully!",
+      error: "Something went wrong!",
+    });
+  };
+
+  const handleRemoveSaveJob = (id) => {
+    const handleSuccess = () => {
+      saveJobsListRefetch();
+    };
+    const handleFailure = (error) => {
+      throw error;
+    };
+    const promise = APIKit.job.save
+      .removeSaveJob(id)
+      .then(handleSuccess)
+      .catch(handleFailure);
+    return toast.promise(promise, {
+      loading: "Removing from save jobs...",
+      success: "Removed from save jobs!",
+      error: "Something went wrong!",
+    });
   };
 
   return (
@@ -49,10 +89,17 @@ export default function CandidateJobCard({ job }) {
         </p>
 
         <div className="cursor-pointer text-primary">
-          <BookmarkIcon
-            className="h-6 w-6"
-            onClick={() => handleAddSaveJob(job?._id)}
-          />
+          {isJobSaved ? (
+            <BookmarkIconSolid
+              className="h-6 w-6"
+              onClick={() => handleRemoveSaveJob(job._id)}
+            />
+          ) : (
+            <BookmarkIcon
+              className="h-6 w-6"
+              onClick={() => handleAddSaveJob(job._id)}
+            />
+          )}
         </div>
       </div>
 
@@ -100,7 +147,7 @@ export default function CandidateJobCard({ job }) {
             <DialogTrigger asChild>
               <Button
                 variant="outline"
-                className="w-full gap-2 hover:bg-white"
+                className="w-full gap-2"
                 onClick={() => setIsCopied(false)}
               >
                 <div>

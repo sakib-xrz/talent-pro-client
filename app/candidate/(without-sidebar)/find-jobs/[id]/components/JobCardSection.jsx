@@ -29,7 +29,7 @@ export default function JobCardSection({ job }) {
                 <p className="text-xs font-medium">Actively Recruiting</p>
               </div>
             ) : (
-              <div className="flex w-fit items-center gap-2 rounded-md bg-yellow-100 px-2 py-1 text-yellow-500">
+              <div className="flex w-fit items-center gap-2 rounded-md bg-yellow-100 px-2 py-1 text-yellow-600">
                 <PauseCircle className="h-4 w-4" />
                 <p className="text-xs font-medium">Recruiting on Hold</p>
               </div>

@@ -3,13 +3,38 @@ import Link from "next/link";
 
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
+import { toast } from "sonner";
 
+import APIKit from "@/common/APIkit";
 import banner_side from "@/public/images/job-details-side-image.png";
 
 import { Button } from "@/components/ui/button";
 import Container from "@/components/shared/Container";
 
-export default function BannerSection({ job, id }) {
+export default function BannerSection({
+  job,
+  id,
+  isJobSaved,
+  saveJobsListRefetch,
+}) {
+  const handleAddSaveJob = (id) => {
+    const handleSuccess = () => {
+      saveJobsListRefetch();
+    };
+    const handleFailure = (error) => {
+      throw error;
+    };
+    const promise = APIKit.job.save
+      .postSaveJob(id)
+      .then(handleSuccess)
+      .catch(handleFailure);
+    return toast.promise(promise, {
+      loading: "Saving this job...",
+      success: "Job saved successfully!",
+      error: "Something went wrong!",
+    });
+  };
+
   return (
     <Container>
       <Link
@@ -36,9 +61,9 @@ export default function BannerSection({ job, id }) {
 
           {job?.status === "ON_HOLD" && (
             <div className="flex justify-center md:justify-start">
-              <p className="text-md flex w-fit gap-2 rounded-md bg-yellow-100 px-2 py-1 text-left font-medium text-yellow-500 lg:items-center">
+              <p className="text-md flex w-fit gap-2 rounded-md bg-yellow-100 px-2 py-1 text-left font-medium text-yellow-600 lg:items-center">
                 <div>
-                  <ExclamationTriangleIcon className="mt-0.5 h-3 w-3 lg:mt-0 lg:h-3.5 lg:w-3.5" />
+                  <ExclamationTriangleIcon className="mt-0.5 h-3 w-3 lg:h-3.5 lg:w-3.5" />
                 </div>
                 <p className="text-xs lg:text-sm">
                   Job temporarily on hold. Save this opportunity for future
@@ -49,12 +74,26 @@ export default function BannerSection({ job, id }) {
           )}
 
           <div className="flex w-full items-center justify-center gap-2 md:justify-start">
-            <Button variant="outline" className="hover:bg-white">
-              Save Job
-            </Button>
-            <Link href={`/candidate/find-jobs/${id}/apply`} className="w-fit">
-              <Button>Apply Now</Button>
-            </Link>
+            {isJobSaved ? (
+              <Button variant="outline" disabled>
+                Saved
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                onClick={() => handleAddSaveJob(job._id)}
+              >
+                Save Job
+              </Button>
+            )}
+
+            {job?.status === "ON_HOLD" ? (
+              <Button disabled>Apply Now</Button>
+            ) : (
+              <Link href={`/candidate/find-jobs/${id}/apply`} className="w-fit">
+                <Button>Apply Now</Button>
+              </Link>
+            )}
           </div>
         </div>
         <Image

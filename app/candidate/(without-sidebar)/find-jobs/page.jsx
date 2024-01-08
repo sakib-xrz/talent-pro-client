@@ -46,6 +46,15 @@ export default function CandidateJobPage() {
     queryFn: () => APIKit.job.getJob(queryString).then((data) => data),
   });
 
+  const {
+    data: saveJobsList,
+    isLoading: saveJobsListLoading,
+    refetch: saveJobsListRefetch,
+  } = useQuery({
+    queryKey: ["/job/save-job-list"],
+    queryFn: () => APIKit.job.save.getSaveJobsList().then((data) => data.data),
+  });
+
   const getDynamicEmptyStateTitle = () => {
     let title = "";
     if (params.search.length > 0) {
@@ -60,7 +69,7 @@ export default function CandidateJobPage() {
 
         <CandidateJobSearchSortFilter params={params} setParams={setParams} />
 
-        {isLoading ? (
+        {isLoading || saveJobsListLoading ? (
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               {[...Array(2).keys()].map((item) => (
@@ -72,7 +81,13 @@ export default function CandidateJobPage() {
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               {jobs.data.map((job) => (
-                <CandidateJobCard key={job?._id} job={job} refetch={refetch} />
+                <CandidateJobCard
+                  key={job?._id}
+                  job={job}
+                  refetch={refetch}
+                  saveJobsList={saveJobsList}
+                  saveJobsListRefetch={saveJobsListRefetch}
+                />
               ))}
             </div>
             <Pagination
