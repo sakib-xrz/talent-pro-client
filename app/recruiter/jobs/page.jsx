@@ -29,7 +29,7 @@ export default function AllJobs() {
     sortBy: searchParams.get("sortBy") || "createdAt",
     sortOrder: searchParams.get("sortOrder") || "descending",
     page: searchParams.get("page") || "1",
-    limit: searchParams.get("limit") || "2",
+    limit: searchParams.get("limit") || "10",
   });
 
   const queryString = generateQueryString(params);
