@@ -139,7 +139,7 @@ export default function RecruiterJobCard({ job, refetch }) {
           <Dialog>
             <DialogTrigger asChild>
               <Button
-                variant="secondary"
+                variant="outline"
                 className="w-full gap-2"
                 onClick={() => setIsCopied(false)}
               >

@@ -65,9 +65,15 @@ export default function AboutCompanyCard({ job, id }) {
         </div>
       </div>
       <div>
-        <Link href={`/candidate/find-jobs/${id}/apply`} className="w-full">
-          <Button className="w-full">Apply Now</Button>
-        </Link>
+        {job?.status === "ON_HOLD" ? (
+          <Button className="w-full" disabled>
+            Apply Now
+          </Button>
+        ) : (
+          <Link href={`/candidate/find-jobs/${id}/apply`} className="w-full">
+            <Button className="w-full">Apply Now</Button>
+          </Link>
+        )}
       </div>
     </Card>
   );

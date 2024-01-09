@@ -23,15 +23,11 @@ export default function MobileNavOptions({ setOpen, menus }) {
           <Link
             key={index + 1}
             href={option.href}
-            className={
-              (pathname === "/recruiter"
-                ? DEFAULT_NAV_BACKGROUND_STYLES
-                : isActiveRoute(option.href)
-                ? ACTIVE_NAV_BACKGROUND_STYLES
-                : DEFAULT_NAV_BACKGROUND_STYLES) +
-              " " +
-              DEFAULT_STYLES
-            }
+            className={`${
+              pathname === option.href
+                ? ACTIVE_NAV_BACKGROUND_STYLES + " " + ACTIVE_NAV_TEXT_STYLES
+                : DEFAULT_NAV_BACKGROUND_STYLES + " " + DEFAULT_NAV_TEXT_STYLES
+            } ${DEFAULT_STYLES}`}
             onClick={() => setOpen(false)}
           >
             <h2

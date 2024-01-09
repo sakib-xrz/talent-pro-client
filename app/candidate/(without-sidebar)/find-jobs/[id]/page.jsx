@@ -17,16 +17,32 @@ export default function CandidateJobDetails({ params: { id } }) {
     enabled: !!id,
   });
 
-  if (isLoading) {
+  const {
+    data: saveJobsList,
+    isLoading: saveJobsListLoading,
+    refetch: saveJobsListRefetch,
+  } = useQuery({
+    queryKey: ["/job/save-job-list"],
+    queryFn: () => APIKit.job.save.getSaveJobsList().then((data) => data.data),
+  });
+
+  if (isLoading || saveJobsListLoading) {
     return "Loading...";
   }
+
+  const isJobSaved = saveJobsList.some((id) => id === job._id);
 
   const { job_description } = job;
 
   return (
     <div>
       <div className="bg-[url('/images/job-details-banner.png')] bg-cover">
-        <BannerSection job={job} id={id} />
+        <BannerSection
+          job={job}
+          id={id}
+          isJobSaved={isJobSaved}
+          saveJobsListRefetch={saveJobsListRefetch}
+        />
       </div>
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="flex flex-col gap-4 lg:flex-row">
