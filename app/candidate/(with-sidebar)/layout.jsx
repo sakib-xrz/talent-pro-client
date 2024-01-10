@@ -7,7 +7,7 @@ export default function CandidateLayoutWithSidebar({ children }) {
       <div className="hidden bg-white md:w-1/5 lg:block">
         <Sidebar />
       </div>
-      <div className="w-full md:w-4/5">
+      <div className="w-full lg:w-4/5">
         <Container> {children}</Container>
       </div>
     </div>

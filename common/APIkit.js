@@ -143,6 +143,10 @@ const APIKit = {
     },
 
     save: {
+      getSaveJobs: (queryString) => {
+        const url = `/job/save-job${queryString}`;
+        return client.get(url);
+      },
       getSaveJobsList: () => {
         const url = "/job/save-job-list";
         return client.get(url);

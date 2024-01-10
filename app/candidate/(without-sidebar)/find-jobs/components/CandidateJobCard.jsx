@@ -28,6 +28,7 @@ export default function CandidateJobCard({
   job,
   saveJobsList,
   saveJobsListRefetch,
+  refetch,
 }) {
   const [isCopied, setIsCopied] = useState(false);
 
@@ -48,6 +49,7 @@ export default function CandidateJobCard({
   const handleAddSaveJob = (id) => {
     const handleSuccess = () => {
       saveJobsListRefetch();
+      refetch();
     };
     const handleFailure = (error) => {
       throw error;
@@ -66,6 +68,7 @@ export default function CandidateJobCard({
   const handleRemoveSaveJob = (id) => {
     const handleSuccess = () => {
       saveJobsListRefetch();
+      refetch();
     };
     const handleFailure = (error) => {
       throw error;
