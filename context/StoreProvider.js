@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import APIKit from "@/common/APIkit";
 import { AUTH_TOKEN_KEY } from "@/common/KeyChain";
 import { setJWTokenAndRedirect } from "@/common/UtilKit";
+import { toast } from "sonner";
 
 const StoreContext = createContext();
 
@@ -14,14 +15,20 @@ export default function StoreProvider({ children }) {
   const [user, setUser] = useState(null);
   const [organization, setOrganization] = useState(null);
 
-  const fetchMe = async () => {
+  const fetchMe = async (role) => {
     try {
       const { data } = await APIKit.me.getMe();
       if (data) {
+        if (data.role !== role) {
+          toast.error("You Don't have permission to access this.");
+          router.push(role === "recruiter" ? "/recruiter-logout" : "/logout");
+        }
         setUser(data);
       }
     } catch (error) {
       console.error(error);
+      toast.error(error.message);
+      router.push("/logout");
     }
   };
 

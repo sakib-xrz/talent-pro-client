@@ -17,7 +17,7 @@ export default function RecruiterAuthGuardHOC({ children }) {
 
     if (token) {
       setJWTokenAndRedirect(token)
-        .then(fetchMe)
+        .then(fetchMe("recruiter"))
         .then(fetchWe)
         .catch((error) => {
           console.log(error?.response);

@@ -17,7 +17,7 @@ export default function CandidateAuthGuardHOC({ children }) {
 
     if (token) {
       setJWTokenAndRedirect(token)
-        .then(fetchMe)
+        .then(fetchMe("candidate"))
         .catch((error) => {
           console.log(error?.response);
           router.push("/logout");
