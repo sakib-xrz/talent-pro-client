@@ -39,7 +39,7 @@ export default function OrganizationSetupProfile() {
 
       const handleSuccess = () => {
         setCurrentStep(3);
-        refetchMe();
+        refetchMe("recruiter");
         formik.resetForm();
       };
 

@@ -47,7 +47,7 @@ export default function PersonalInformation() {
     const promise = APIKit.me
       .updateProfilePicture(formData)
       .then(({ data }) => {
-        refetchMe();
+        refetchMe("candidate");
         setImage(data?.image_url);
       })
       .catch((error) => {

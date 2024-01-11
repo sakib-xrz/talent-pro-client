@@ -84,7 +84,7 @@ export default function CandidateSetupProfile() {
 
       const handleSuccess = () => {
         setCurrentStep(5);
-        refetchMe();
+        refetchMe("candidate");
         formik.resetForm();
       };
 

@@ -43,11 +43,11 @@ export default function StoreProvider({ children }) {
     }
   };
 
-  const refetchMe = () => {
+  const refetchMe = (role) => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
     if (token) {
       setJWTokenAndRedirect(token)
-        .then(fetchMe)
+        .then(fetchMe(role))
         .catch((error) => {
           console.log(error?.response);
         });
