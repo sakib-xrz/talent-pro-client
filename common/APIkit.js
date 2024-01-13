@@ -47,6 +47,11 @@ const APIKit = {
       return client.post(url, payload, defaultFileUploadConfig);
     },
 
+    getCandidateProfile: () => {
+      const url = "/me/profile";
+      return client.get(url);
+    },
+
     info: {
       getInfo: () => {
         const url = "/me/info";

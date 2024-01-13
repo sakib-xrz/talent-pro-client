@@ -32,9 +32,7 @@ export default function MobileNavOptions({ setOpen, menus }) {
           >
             <h2
               className={
-                (pathname === "/recruiter"
-                  ? DEFAULT_NAV_TEXT_STYLES
-                  : isActiveRoute(option.href)
+                (pathname === option.href
                   ? ACTIVE_NAV_TEXT_STYLES
                   : DEFAULT_NAV_TEXT_STYLES) + " text-sm"
               }
@@ -54,8 +52,8 @@ export default function MobileNavOptions({ setOpen, menus }) {
               (pathname === "/recruiter"
                 ? DEFAULT_NAV_BACKGROUND_STYLES
                 : isActiveRoute(option.href)
-                ? ACTIVE_NAV_BACKGROUND_STYLES
-                : DEFAULT_NAV_BACKGROUND_STYLES) +
+                  ? ACTIVE_NAV_BACKGROUND_STYLES
+                  : DEFAULT_NAV_BACKGROUND_STYLES) +
               " " +
               DEFAULT_STYLES
             }
@@ -66,8 +64,8 @@ export default function MobileNavOptions({ setOpen, menus }) {
                 (pathname === "/recruiter"
                   ? DEFAULT_NAV_ICON_STYLES
                   : isActiveRoute(option.href)
-                  ? ACTIVE_NAV_ICON_STYLES
-                  : DEFAULT_NAV_ICON_STYLES) + " h-5 w-5"
+                    ? ACTIVE_NAV_ICON_STYLES
+                    : DEFAULT_NAV_ICON_STYLES) + " h-5 w-5"
               }
             />
             <h2
@@ -75,8 +73,8 @@ export default function MobileNavOptions({ setOpen, menus }) {
                 (pathname === "/recruiter"
                   ? DEFAULT_NAV_TEXT_STYLES
                   : isActiveRoute(option.href)
-                  ? ACTIVE_NAV_TEXT_STYLES
-                  : DEFAULT_NAV_TEXT_STYLES) + " text-sm"
+                    ? ACTIVE_NAV_TEXT_STYLES
+                    : DEFAULT_NAV_TEXT_STYLES) + " text-sm"
               }
             >
               {option.name}
