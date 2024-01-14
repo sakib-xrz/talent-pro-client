@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function RecruiterJobCardSkeleton() {
   return (
     <Card className={"h-[21rem] space-y-3 lg:h-64"}>
-      <div className="flex flex-col justify-between gap-2 lg:flex-row lg:items-center">
+      <div className="flex flex-col justify-between gap-2 xs:flex-row md:flex-col lg:flex-row lg:items-center">
         <Skeleton className="h-5 w-40" />
 
         <div className="flex items-center gap-6 ">

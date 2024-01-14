@@ -19,11 +19,11 @@ export default function MyApplicationSearchSortFilter({ params, setParams }) {
   }, 500);
   return (
     <div className="space-y-2">
-      <div className="flex flex-col gap-2 xs:flex-row sm:gap-4">
-        <div className="xs:w-6/12">
+      <div className="flex flex-col gap-2 xl:flex-row xl:gap-4">
+        <div className="xl:w-7/12">
           <Label>Search</Label>
           <Search
-            value={searchKey}
+            value={searchKey || params.search}
             onChange={(e) => {
               debounced(e.target.value);
               setSearchKey(e.target.value);
@@ -39,33 +39,34 @@ export default function MyApplicationSearchSortFilter({ params, setParams }) {
           />
         </div>
 
-        <div className="xs:w-3/12">
-          <Label>Sort By Applied Time</Label>
-          <SelectField
-            options={SortOptions}
-            onChange={(SelectedOption) =>
-              setParams((prevParams) => ({
-                ...prevParams,
-                sortOrder: SelectedOption?.value,
-              }))
-            }
-            value={SortOptions.find((el) => el.value === params.sortOrder)}
-          />
-        </div>
-
-        <div className="xs:w-3/12">
-          <Label>Filter by Application Status</Label>
-          <SelectField
-            placeholder={"Select status"}
-            options={ApplicationStatus}
-            onChange={(SelectedOption) =>
-              setParams((prevParams) => ({
-                ...prevParams,
-                status: SelectedOption?.value,
-              }))
-            }
-            value={ApplicationStatus.find((el) => el.value === params.status)}
-          />
+        <div className="flex flex-col items-center gap-2 xs:flex-row xl:w-5/12 xl:gap-4">
+          <div className="w-full xl:w-6/12">
+            <Label>Sort By Applied Time</Label>
+            <SelectField
+              options={SortOptions}
+              onChange={(SelectedOption) =>
+                setParams((prevParams) => ({
+                  ...prevParams,
+                  sortOrder: SelectedOption?.value,
+                }))
+              }
+              value={SortOptions.find((el) => el.value === params.sortOrder)}
+            />
+          </div>
+          <div className="w-full xl:w-6/12">
+            <Label>Filter by Application Status</Label>
+            <SelectField
+              placeholder={"Select status"}
+              options={ApplicationStatus}
+              onChange={(SelectedOption) =>
+                setParams((prevParams) => ({
+                  ...prevParams,
+                  status: SelectedOption?.value,
+                }))
+              }
+              value={ApplicationStatus.find((el) => el.value === params.status)}
+            />
+          </div>
         </div>
       </div>
 

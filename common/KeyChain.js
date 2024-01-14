@@ -118,6 +118,18 @@ export const ApplicationStatus = [
   { label: "Not Selected", value: "not_selected" },
 ];
 
+export const badgeColor = {
+  application_received: "text-green-600 bg-green-100", // Success
+  application_in_review: "text-sky-600 bg-sky-100", // Info
+  shortlisted_for_interview: "text-sky-600 bg-sky-100", // Info
+  interview_scheduled: "text-sky-600 bg-sky-100", // Info
+  interview_completed: "text-green-600 bg-green-100", // Success
+  hired: "text-green-600 bg-green-100", // Success
+  interview_rescheduled: "text-sky-600 bg-sky-100", // Info
+  interview_canceled: "text-red-600 bg-red-100", // Error
+  not_selected: "text-red-600 bg-red-100", // Error
+};
+
 export const navOptions = [
   {
     icon: UserIcon,

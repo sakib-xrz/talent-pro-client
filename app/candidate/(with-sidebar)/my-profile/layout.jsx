@@ -28,7 +28,7 @@ export default function MyProfileLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <div className="w-full space-y-5">
+    <div className="w-full">
       <div className="hidden md:block">
         <TabNavigation tabs={profileTabsOptions} />
       </div>
@@ -41,7 +41,7 @@ export default function MyProfileLayout({ children }) {
           }}
         />
       </div>
-      <div className="rounded-md bg-white shadow">
+      <div className="mt-5 rounded-md bg-white shadow">
         <div className="space-y-2 p-4 md:space-y-4 md:p-6">{children}</div>
       </div>
     </div>

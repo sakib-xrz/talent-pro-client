@@ -68,7 +68,7 @@ export default function SavedJobs() {
       {isLoading || saveJobsListLoading ? (
         <div className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
-            {[...Array(2).keys()].map((item) => (
+            {[...Array(Number(params.limit)).keys()].map((item) => (
               <CandidateJobCardSkeleton key={item} />
             ))}
           </div>

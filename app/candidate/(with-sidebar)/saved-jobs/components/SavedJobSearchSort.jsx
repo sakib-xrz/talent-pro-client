@@ -24,7 +24,7 @@ export default function SavedJobSearchSort({ params, setParams }) {
         <div className="xs:w-9/12">
           <Label>Search</Label>
           <Search
-            value={searchKey}
+            value={searchKey || params.search}
             onChange={(e) => {
               debounced(e.target.value);
               setSearchKey(e.target.value);
