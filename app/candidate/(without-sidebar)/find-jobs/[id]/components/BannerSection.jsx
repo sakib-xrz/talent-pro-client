@@ -15,6 +15,7 @@ export default function BannerSection({
   job,
   id,
   isJobSaved,
+  isAppliedJob,
   saveJobsListRefetch,
 }) {
   const handleAddSaveJob = (id) => {
@@ -89,6 +90,8 @@ export default function BannerSection({
 
             {job?.status === "ON_HOLD" ? (
               <Button disabled>Apply Now</Button>
+            ) : isAppliedJob ? (
+              <Button disabled>Already Applied</Button>
             ) : (
               <Link href={`/candidate/find-jobs/${id}/apply`} className="w-fit">
                 <Button>Apply Now</Button>

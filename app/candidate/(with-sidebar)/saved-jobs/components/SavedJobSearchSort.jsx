@@ -20,7 +20,7 @@ export default function SavedJobSearchSort({ params, setParams }) {
 
   return (
     <div className="space-y-2">
-      <div className="xs:flex-row flex flex-col gap-2 sm:gap-4">
+      <div className="flex flex-col gap-2 xs:flex-row sm:gap-4">
         <div className="xs:w-9/12">
           <Label>Search</Label>
           <Search
@@ -41,7 +41,7 @@ export default function SavedJobSearchSort({ params, setParams }) {
         </div>
 
         <div className="xs:w-3/12">
-          <Label>Sort By</Label>
+          <Label>Sort By Saved Time</Label>
           <SelectField
             options={SortOptions}
             onChange={(SelectedOption) =>

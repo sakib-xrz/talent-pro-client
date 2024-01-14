@@ -12,7 +12,7 @@ import { formatText } from "@/common/UtilKit";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-export default function AboutCompanyCard({ job, id }) {
+export default function AboutCompanyCard({ job, id, isAppliedJob }) {
   return (
     <Card className="space-y-5 lg:sticky lg:top-24 ">
       <h4 className="line-clamp-1 text-lg font-semibold text-primary sm:line-clamp-none">
@@ -68,6 +68,10 @@ export default function AboutCompanyCard({ job, id }) {
         {job?.status === "ON_HOLD" ? (
           <Button className="w-full" disabled>
             Apply Now
+          </Button>
+        ) : isAppliedJob ? (
+          <Button className="w-full" disabled>
+            Already Applied
           </Button>
         ) : (
           <Link href={`/candidate/find-jobs/${id}/apply`} className="w-full">

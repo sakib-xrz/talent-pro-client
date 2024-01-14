@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import APIKit from "@/common/APIkit";
+import { useStore } from "@/context/StoreProvider";
 
 import AboutCompanyCard from "./components/AboutCompanyCard";
 import BannerSection from "./components/BannerSection";
@@ -11,6 +12,8 @@ import JobCardSection from "./components/JobCardSection";
 import JobInfoSection from "./components/JobInfoSection";
 
 export default function CandidateJobDetails({ params: { id } }) {
+  const { user } = useStore();
+
   const { data: job, isLoading } = useQuery({
     queryKey: [`/find-jobs/${id}`],
     queryFn: () => APIKit.job.getSingleJob(id).then((data) => data.data),
@@ -31,6 +34,7 @@ export default function CandidateJobDetails({ params: { id } }) {
   }
 
   const isJobSaved = saveJobsList.some((id) => id === job._id);
+  const isAppliedJob = job.applied_by.some((id) => id === user._id);
 
   const { job_description } = job;
 
@@ -41,6 +45,7 @@ export default function CandidateJobDetails({ params: { id } }) {
           job={job}
           id={id}
           isJobSaved={isJobSaved}
+          isAppliedJob={isAppliedJob}
           saveJobsListRefetch={saveJobsListRefetch}
         />
       </div>
@@ -63,7 +68,7 @@ export default function CandidateJobDetails({ params: { id } }) {
             </Card>
           </div>
           <div className="w-full space-y-2 lg:w-4/12">
-            <AboutCompanyCard job={job} id={id} />
+            <AboutCompanyCard job={job} id={id} isAppliedJob={isAppliedJob} />
           </div>
         </div>
       </div>
