@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MyApplicationSearchSortFilter from "./components/MyApplicationSearchSortFilter";
 import MyApplicationCard from "./components/MyApplicationCard";
+import MyApplicationCardSkeleton from "./components/MyApplicationCardSkeleton";
 
 export default function MyApplications() {
   const router = useRouter();
@@ -34,6 +35,7 @@ export default function MyApplications() {
       <div className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
           <MyApplicationCard />
+          <MyApplicationCardSkeleton />
         </div>
       </div>
     </div>

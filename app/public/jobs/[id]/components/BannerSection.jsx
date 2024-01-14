@@ -12,14 +12,6 @@ import Container from "@/components/shared/Container";
 export default function BannerSection({ job, id }) {
   return (
     <Container>
-      <Link
-        href="/candidate/find-jobs"
-        className="flex w-fit items-center gap-2 border-b border-transparent py-1 font-medium text-primary hover:border-primary"
-      >
-        <ArrowLeftIcon className="h-5 w-5 " />
-        <p>Go Back to Jobs</p>
-      </Link>
-
       <div className="flex flex-col-reverse items-center justify-between gap-4 md:flex-row md:gap-8 ">
         <div className="flex w-full flex-col gap-3 text-center md:gap-6 md:text-left">
           <div className="space-y-3 text-primary">
@@ -41,17 +33,20 @@ export default function BannerSection({ job, id }) {
                   <ExclamationTriangleIcon className="mt-0.5 h-3 w-3 lg:mt-0 lg:h-3.5 lg:w-3.5" />
                 </div>
                 <p className="text-xs lg:text-sm">
-                  Job temporarily on hold. Save this opportunity for future
-                  updates.
+                  Job temporarily on hold. You can't apply right now.
                 </p>
               </p>
             </div>
           )}
 
           <div className="flex w-full items-center justify-center gap-2 md:justify-start">
-            <Link href={`/candidate/find-jobs/${id}/apply`} className="w-fit">
-              <Button>Apply Now</Button>
-            </Link>
+            {job?.status === "ON_HOLD" ? (
+              <Button disabled>Apply Now</Button>
+            ) : (
+              <Link href={`/candidate/find-jobs/${id}/apply`} className="w-fit">
+                <Button>Apply Now</Button>
+              </Link>
+            )}
           </div>
         </div>
         <Image
