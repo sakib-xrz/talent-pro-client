@@ -8,6 +8,7 @@ import AboutCompanyCard from "./components/AboutCompanyCard";
 import BannerSection from "./components/BannerSection";
 import { Card } from "@/components/ui/card";
 import JobCardSection from "./components/JobCardSection";
+import JobDetailsSkeletonPage from "./components/skeleton/JobDetailsSkeletonPage";
 import JobInfoSection from "./components/JobInfoSection";
 
 export default function CandidateJobDetails({ params: { id } }) {
@@ -18,7 +19,7 @@ export default function CandidateJobDetails({ params: { id } }) {
   });
 
   if (isLoading) {
-    return "Loading...";
+    return <JobDetailsSkeletonPage />;
   }
 
   const { job_description } = job;
