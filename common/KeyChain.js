@@ -106,6 +106,18 @@ export const JobOptions = [
   { label: "Closed", value: "CLOSED" },
 ];
 
+export const ApplicationStatus = [
+  { label: "Application Received", value: "application_received" },
+  { label: "Application In Review", value: "application_in_review" },
+  { label: "Shortlisted for Interview", value: "shortlisted_for_interview" },
+  { label: "Interview Scheduled", value: "interview_scheduled" },
+  { label: "Interview Completed", value: "interview_completed" },
+  { label: "Hired", value: "hired" },
+  { label: "Interview Rescheduled", value: "interview_rescheduled" },
+  { label: "Interview Canceled", value: "interview_canceled" },
+  { label: "Not Selected", value: "not_selected" },
+];
+
 export const navOptions = [
   {
     icon: UserIcon,
