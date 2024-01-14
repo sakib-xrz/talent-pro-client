@@ -8,8 +8,12 @@ import FileUpload from "@/components/form/FileUpload";
 import { DocumentTextIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import APIKit from "@/common/APIkit";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function ApplicationForm({ job, candidate }) {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { user } = useStore();
 
@@ -33,7 +37,28 @@ export default function ApplicationForm({ job, candidate }) {
     },
     // validationSchema: {},
     onSubmit: (values) => {
-      console.log(values);
+      setLoading(true);
+      const handleSuccess = () => {
+        formik.resetForm();
+        router.push("/candidate/my-applications");
+      };
+
+      const handleFailure = (error) => {
+        console.log(error);
+        throw error;
+      };
+
+      const promise = APIKit.application
+        .applyJob(values)
+        .then(handleSuccess)
+        .catch(handleFailure)
+        .finally(() => setLoading(false));
+
+      return toast.promise(promise, {
+        loading: "Loading...",
+        success: "Successfully applied this job!",
+        error: "Something went wrong!",
+      });
     },
   });
 

@@ -1,13 +1,11 @@
 "use client";
 
 import APIKit from "@/common/APIkit";
-import Container from "@/components/shared/Container";
 import { Card } from "@/components/ui/card";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 import ApplicationForm from "./components/ApplicationForm";
-import { useStore } from "@/context/StoreProvider";
 
 export default function ApplyJob() {
   const pathname = usePathname();

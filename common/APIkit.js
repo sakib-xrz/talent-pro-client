@@ -166,6 +166,13 @@ const APIKit = {
       },
     },
   },
+
+  application: {
+    applyJob: (payload) => {
+      const url = "/application";
+      return client.post(url, payload, defaultFileUploadConfig);
+    },
+  },
 };
 
 export default APIKit;
