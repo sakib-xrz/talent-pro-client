@@ -17,6 +17,8 @@ export default function ApplicationForm({ job, candidate }) {
   const [loading, setLoading] = useState(false);
   const { user } = useStore();
 
+  const isAppliedJob = job.applied_by.some((id) => id === user._id);
+
   const formik = useFormik({
     initialValues: {
       user: user?._id,
@@ -199,9 +201,15 @@ export default function ApplicationForm({ job, candidate }) {
           </div>
         </div>
 
-        <Button className="w-full" type="submit" isLoading={loading}>
-          Apply Now
-        </Button>
+        {isAppliedJob ? (
+          <Button className="w-full" type="button" disabled>
+            Already Applied
+          </Button>
+        ) : (
+          <Button className="w-full" type="submit" isLoading={loading}>
+            Apply Now
+          </Button>
+        )}
       </form>
     </div>
   );
