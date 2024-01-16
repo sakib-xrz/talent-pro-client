@@ -4,11 +4,12 @@ import { useState } from "react";
 
 import { BookmarkIcon, ShareIcon } from "@heroicons/react/24/outline";
 import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
-import { Check, CopyIcon } from "lucide-react";
+import { Check, CopyIcon, CheckCheck } from "lucide-react";
 import { toast } from "sonner";
 
 import APIKit from "@/common/APIkit";
 import { formatText, getBaseUrl, getTimeDifference } from "@/common/UtilKit";
+import { useStore } from "@/context/StoreProvider";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -30,11 +31,13 @@ export default function CandidateJobCard({
   saveJobsListRefetch,
   refetch,
 }) {
+  const { user } = useStore();
   const [isCopied, setIsCopied] = useState(false);
 
   const baseUrl = getBaseUrl();
 
   const isJobSaved = saveJobsList.some((id) => id === job._id);
+  const isAppliedJob = job.applied_by.some((id) => id === user._id);
 
   const copyToClipboard = async (url) => {
     try {
@@ -91,19 +94,26 @@ export default function CandidateJobCard({
           Posted {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
         </p>
 
-        <div className="cursor-pointer text-primary">
-          {isJobSaved ? (
-            <BookmarkIconSolid
-              className="h-6 w-6"
-              onClick={() => handleRemoveSaveJob(job._id)}
-            />
-          ) : (
-            <BookmarkIcon
-              className="h-6 w-6"
-              onClick={() => handleAddSaveJob(job._id)}
-            />
-          )}
-        </div>
+        {isAppliedJob ? (
+          <Badge className="flex items-center gap-1 bg-green-100 text-green-500">
+            <CheckCheck className="h-4 w-4" />
+            Applied
+          </Badge>
+        ) : (
+          <div className="cursor-pointer text-primary">
+            {isJobSaved ? (
+              <BookmarkIconSolid
+                className="h-6 w-6"
+                onClick={() => handleRemoveSaveJob(job._id)}
+              />
+            ) : (
+              <BookmarkIcon
+                className="h-6 w-6"
+                onClick={() => handleAddSaveJob(job._id)}
+              />
+            )}
+          </div>
+        )}
       </div>
 
       <div className="space-y-3">

@@ -76,11 +76,11 @@ export default function BannerSection({
 
           <div className="flex w-full items-center justify-center gap-2 md:justify-start">
             {isJobSaved ? (
-              <Button variant="outline" disabled>
+              <Button className={`${isAppliedJob && "hidden"}`} variant="outline" disabled>
                 Saved
               </Button>
             ) : (
-              <Button
+              <Button className={`${isAppliedJob && "hidden"}`}
                 variant="outline"
                 onClick={() => handleAddSaveJob(job._id)}
               >
