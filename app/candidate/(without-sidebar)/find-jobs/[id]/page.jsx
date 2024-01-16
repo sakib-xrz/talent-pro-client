@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import APIKit from "@/common/APIkit";
 import { useStore } from "@/context/StoreProvider";
 
+import "react-quill/dist/quill.snow.css";
+
 import AboutCompanyCard from "./components/AboutCompanyCard";
 import BannerSection from "./components/BannerSection";
 import { Card } from "@/components/ui/card";
@@ -63,7 +65,7 @@ export default function CandidateJobDetails({ params: { id } }) {
               <hr />
 
               <div
-                className="prose"
+                className="ql-editor prose"
                 dangerouslySetInnerHTML={{ __html: job_description }}
               />
             </Card>

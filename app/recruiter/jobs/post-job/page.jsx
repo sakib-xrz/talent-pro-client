@@ -32,6 +32,7 @@ import DatePicker from "@/components/form/DatePicker";
 import { Input } from "@/components/ui/input";
 import SelectField from "@/components/form/SelectField";
 import TimePicker from "@/components/form/TimePicker";
+import "react-quill/dist/quill.snow.css";
 
 export default function PostJob() {
   const { user, organization } = useStore();
@@ -177,6 +178,24 @@ export default function PostJob() {
               <div>
                 <DynamicQuill
                   placeholder="e.g. Skills, Requirements, Responsibilities"
+                  modules={{
+                    toolbar: [
+                      [{ header: "1" }, { header: "2" }, { font: [] }],
+                      [{ size: [] }],
+                      ["bold", "italic", "underline", "strike", "blockquote"],
+                      [
+                        { list: "ordered" },
+                        { list: "bullet" },
+                        { indent: "-1" },
+                        { indent: "+1" },
+                      ],
+                      ["link", "image", "video"],
+                      ["clean"],
+                    ],
+                    clipboard: {
+                      matchVisual: false,
+                    },
+                  }}
                   theme="snow"
                   value={formik.values.job_description}
                   onChange={(value) =>
