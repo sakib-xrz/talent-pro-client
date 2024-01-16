@@ -3,6 +3,7 @@ import BannerSectionSkeleton from "./BannerSectionSkeleton";
 import JobCardSectionSkeleton from "./JobCardSectionSkeleton";
 import JobInfoSectionSkeleton from "./JobInfoSectionSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
+import AboutCompanyCardSkeleton from "./AboutCompanyCardSkeleton";
 
 export default function JobDetailsSkeletonPage() {
   return (
@@ -29,6 +30,9 @@ export default function JobDetailsSkeletonPage() {
                 </div>
               </div>
             </Card>
+          </div>
+          <div className="w-full space-y-2 lg:w-4/12">
+            <AboutCompanyCardSkeleton />
           </div>
         </div>
       </div>

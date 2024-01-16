@@ -30,7 +30,7 @@ export default function CandidateJobDetails({ params: { id } }) {
     queryFn: () => APIKit.job.save.getSaveJobsList().then((data) => data.data),
   });
 
-  if (!isLoading || !saveJobsListLoading) {
+  if (isLoading || saveJobsListLoading) {
     return <JobDetailsSkeletonPage />;
   }
 
