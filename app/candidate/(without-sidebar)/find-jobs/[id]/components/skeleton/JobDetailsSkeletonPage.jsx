@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import BannerSectionSkeleton from "./BannerSectionSkeleton";
 import JobCardSectionSkeleton from "./JobCardSectionSkeleton";
+import JobInfoSectionSkeleton from "./JobInfoSectionSkeleton";
 
 export default function JobDetailsSkeletonPage() {
   return (
@@ -13,6 +14,8 @@ export default function JobDetailsSkeletonPage() {
           <div className="w-full lg:w-8/12">
             <Card className="space-y-5">
               <JobCardSectionSkeleton />
+              <hr />
+              <JobInfoSectionSkeleton />
               <hr />
             </Card>
           </div>
