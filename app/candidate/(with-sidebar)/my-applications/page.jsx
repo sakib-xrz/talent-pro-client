@@ -7,6 +7,10 @@ import { useEffect, useState } from "react";
 import MyApplicationSearchSortFilter from "./components/MyApplicationSearchSortFilter";
 import MyApplicationCard from "./components/MyApplicationCard";
 import MyApplicationCardSkeleton from "./components/MyApplicationCardSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import APIKit from "@/common/APIkit";
+import Pagination from "@/components/shared/Pagination";
+import EmptyState from "@/components/shared/EpmtyState";
 
 export default function MyApplications() {
   const router = useRouter();
@@ -26,18 +30,58 @@ export default function MyApplications() {
   useEffect(() => {
     router.push(queryString);
   }, [queryString, router]);
+
+  const { data: applications, isLoading } = useQuery({
+    queryKey: [`/application?${queryString}`],
+    queryFn: () =>
+      APIKit.application.getApplication(queryString).then((data) => data),
+  });
+
+  const getDynamicEmptyStateTitle = () => {
+    let title = "";
+    if (params.search.length > 0) {
+      return (title = `Couldn't find any application named "${params.search}"`);
+    }
+    return "Couldn't find any applications";
+  };
+
   return (
     <div className="space-y-4">
       <PageTitleWithButton title={"My Applications"} />
 
       <MyApplicationSearchSortFilter params={params} setParams={setParams} />
 
-      <div className="space-y-4">
-        <div className="grid gap-4 md:grid-cols-2">
-          <MyApplicationCard />
-          <MyApplicationCardSkeleton />
+      {isLoading ? (
+        <div className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            {[...Array(Number(params.limit)).keys()].map((item) => (
+              <MyApplicationCardSkeleton key={item} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : applications?.meta?.total ? (
+        <div className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            {applications.data.map((application) => (
+              <MyApplicationCard
+                key={application?._id}
+                application={application}
+              />
+            ))}
+          </div>
+          <Pagination
+            params={params}
+            setParams={setParams}
+            dataLength={applications.meta.total}
+          />
+        </div>
+      ) : (
+        <EmptyState
+          src="/empty/job-empty.svg"
+          title={getDynamicEmptyStateTitle()}
+          helperText="Once we found, you will see a list of applications."
+        />
+      )}
     </div>
   );
 }

@@ -172,6 +172,10 @@ const APIKit = {
       const url = "/application";
       return client.post(url, payload, defaultFileUploadConfig);
     },
+    getApplication: (queryString) => {
+      const url = `/application${queryString}`;
+      return client.get(url);
+    },
   },
 };
 

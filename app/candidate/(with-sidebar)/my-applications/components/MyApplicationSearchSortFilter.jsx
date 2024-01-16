@@ -1,14 +1,31 @@
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDebouncedCallback } from "use-debounce";
 
 import { ApplicationStatus, SortOptions } from "@/common/KeyChain";
+import { formatText } from "@/common/UtilKit";
 
+import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Search } from "@/components/ui/search";
 import SelectField from "@/components/form/SelectField";
 
 export default function MyApplicationSearchSortFilter({ params, setParams }) {
   const [searchKey, setSearchKey] = useState("");
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleResetFilter = (paramName) => {
+    setParams((prevParams) => ({
+      ...prevParams,
+      [paramName]: "",
+    }));
+
+    router.replace(pathname);
+  };
 
   const debounced = useDebouncedCallback((value) => {
     setParams((prevParams) => ({
@@ -17,6 +34,7 @@ export default function MyApplicationSearchSortFilter({ params, setParams }) {
       page: "1",
     }));
   }, 500);
+
   return (
     <div className="space-y-2">
       <div className="flex flex-col gap-2 xl:flex-row xl:gap-4">
@@ -76,6 +94,20 @@ export default function MyApplicationSearchSortFilter({ params, setParams }) {
           <span className="font-bold">{`"${params.search}"`}</span>
         </p>
       )}
+
+      <div className="flex flex-wrap items-center gap-2">
+        {params.status && (
+          <Badge
+            size={"lg"}
+            onClick={() => handleResetFilter("status")}
+            variant="outline"
+            className="group cursor-pointer space-x-1 hover:border-destructive hover:text-destructive"
+          >
+            <span>{`${formatText(params.status)} level`}</span>
+            <XMarkIcon className="h-4 w-4 group-hover:text-destructive" />
+          </Badge>
+        )}
+      </div>
     </div>
   );
 }
