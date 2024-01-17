@@ -52,7 +52,7 @@ export default function CandidateJobSearchSortFilter({ params, setParams }) {
         <div className="flex-grow">
           <Label>Search</Label>
           <Search
-            value={searchKey || params.search}
+            value={searchKey}
             onChange={(e) => {
               debounced(e.target.value);
               setSearchKey(e.target.value);

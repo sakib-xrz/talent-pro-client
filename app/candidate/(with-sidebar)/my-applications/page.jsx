@@ -77,7 +77,7 @@ export default function MyApplications() {
         </div>
       ) : (
         <EmptyState
-          src="/empty/job-empty.svg"
+          src="/empty/application-empty.svg"
           title={getDynamicEmptyStateTitle()}
           helperText="Once we found, you will see a list of applications."
         />

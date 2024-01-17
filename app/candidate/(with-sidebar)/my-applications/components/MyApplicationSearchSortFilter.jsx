@@ -41,7 +41,7 @@ export default function MyApplicationSearchSortFilter({ params, setParams }) {
         <div className="xl:w-7/12">
           <Label>Search</Label>
           <Search
-            value={searchKey || params.search}
+            value={searchKey}
             onChange={(e) => {
               debounced(e.target.value);
               setSearchKey(e.target.value);
@@ -76,13 +76,15 @@ export default function MyApplicationSearchSortFilter({ params, setParams }) {
             <SelectField
               placeholder={"Select status"}
               options={ApplicationStatus}
-              onChange={(SelectedOption) =>
+              onChange={(SelectedOption) => {
+                console.log(SelectedOption);
                 setParams((prevParams) => ({
                   ...prevParams,
-                  status: SelectedOption?.value,
-                }))
-              }
+                  status: SelectedOption === null ? "" : SelectedOption?.value,
+                }));
+              }}
               value={ApplicationStatus.find((el) => el.value === params.status)}
+              isClearable
             />
           </div>
         </div>
@@ -94,20 +96,6 @@ export default function MyApplicationSearchSortFilter({ params, setParams }) {
           <span className="font-bold">{`"${params.search}"`}</span>
         </p>
       )}
-
-      <div className="flex flex-wrap items-center gap-2">
-        {params.status && (
-          <Badge
-            size={"lg"}
-            onClick={() => handleResetFilter("status")}
-            variant="outline"
-            className="group cursor-pointer space-x-1 hover:border-destructive hover:text-destructive"
-          >
-            <span>{`${formatText(params.status)} level`}</span>
-            <XMarkIcon className="h-4 w-4 group-hover:text-destructive" />
-          </Badge>
-        )}
-      </div>
     </div>
   );
 }
