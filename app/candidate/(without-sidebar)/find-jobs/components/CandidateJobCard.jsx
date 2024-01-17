@@ -36,8 +36,8 @@ export default function CandidateJobCard({
 
   const baseUrl = getBaseUrl();
 
-  const isJobSaved = saveJobsList.some((id) => id === job._id);
-  const isAppliedJob = job.applied_by.some((id) => id === user._id);
+  const isJobSaved = saveJobsList?.some((id) => id === job._id);
+  const isAppliedJob = job.applied_by?.some((id) => id === user._id);
 
   const copyToClipboard = async (url) => {
     try {
