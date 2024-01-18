@@ -35,7 +35,7 @@ const recruiterMenus = [
   },
   {
     name: "Applications",
-    href: "#",
+    href: "/recruiter/applications",
   },
 ];
 
