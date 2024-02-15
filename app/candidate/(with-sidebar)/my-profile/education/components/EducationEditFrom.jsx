@@ -49,8 +49,9 @@ export default function EducationEditFrom({
         location: values.location,
         start_date: values.start_date,
         end_date: values.end_date,
-        study_currently: values.study_currently ? values.study_currently : true,
+        study_currently: values.end_date ? values.study_currently : true,
       };
+
       const handleSuccess = () => {
         refetch();
         setShowEducationEditForm(false);
