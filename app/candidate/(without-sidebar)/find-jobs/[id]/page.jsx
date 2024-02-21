@@ -18,8 +18,8 @@ export default function CandidateJobDetails({ params: { id } }) {
   const { user } = useStore();
 
   const { data: job, isLoading } = useQuery({
-    queryKey: [`/find-jobs/${id}`],
-    queryFn: () => APIKit.job.getSingleJob(id).then((data) => data.data),
+    queryKey: [`me/job/${id}`],
+    queryFn: () => APIKit.me.job.getSingleJob(id).then((data) => data.data),
     enabled: !!id,
   });
 
@@ -28,8 +28,9 @@ export default function CandidateJobDetails({ params: { id } }) {
     isLoading: saveJobsListLoading,
     refetch: saveJobsListRefetch,
   } = useQuery({
-    queryKey: ["/job/save-job-list"],
-    queryFn: () => APIKit.job.save.getSaveJobsList().then((data) => data.data),
+    queryKey: ["/me/job/saved/list"],
+    queryFn: () =>
+      APIKit.me.job.saved.getSaveJobsList().then((data) => data.data),
   });
 
   if (isLoading || saveJobsListLoading) {

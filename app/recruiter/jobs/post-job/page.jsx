@@ -82,7 +82,7 @@ export default function PostJob() {
         throw error;
       };
 
-      const promise = APIKit.job
+      const promise = APIKit.we.job
         .postJob(values)
         .then(handleSuccess)
         .catch(handleFailure)

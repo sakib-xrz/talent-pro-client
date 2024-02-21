@@ -38,9 +38,9 @@ export default function SavedJobs() {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [`/job/save-job?${queryString}`],
+    queryKey: [`me/job/saved?${queryString}`],
     queryFn: () =>
-      APIKit.job.save.getSaveJobs(queryString).then((data) => data),
+      APIKit.me.job.saved.getSaveJobs(queryString).then((data) => data),
   });
 
   const {
@@ -48,8 +48,9 @@ export default function SavedJobs() {
     isLoading: saveJobsListLoading,
     refetch: saveJobsListRefetch,
   } = useQuery({
-    queryKey: [`/job/save-job-list`],
-    queryFn: () => APIKit.job.save.getSaveJobsList().then((data) => data.data),
+    queryKey: [`/me/job/saved/list`],
+    queryFn: () =>
+      APIKit.me.job.saved.getSaveJobsList().then((data) => data.data),
   });
 
   const getDynamicEmptyStateTitle = () => {

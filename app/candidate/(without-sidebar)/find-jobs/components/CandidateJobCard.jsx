@@ -57,7 +57,7 @@ export default function CandidateJobCard({
     const handleFailure = (error) => {
       throw error;
     };
-    const promise = APIKit.job.save
+    const promise = APIKit.me.job.saved
       .postSaveJob(id)
       .then(handleSuccess)
       .catch(handleFailure);
@@ -76,7 +76,7 @@ export default function CandidateJobCard({
     const handleFailure = (error) => {
       throw error;
     };
-    const promise = APIKit.job.save
+    const promise = APIKit.me.job.saved
       .removeSaveJob(id)
       .then(handleSuccess)
       .catch(handleFailure);

@@ -42,8 +42,8 @@ export default function CandidateJobPage() {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [`/find-jobs?${queryString}`],
-    queryFn: () => APIKit.job.getJob(queryString).then((data) => data),
+    queryKey: [`me/job${queryString}`],
+    queryFn: () => APIKit.me.job.getJob(queryString).then((data) => data),
   });
 
   const {
@@ -51,8 +51,9 @@ export default function CandidateJobPage() {
     isLoading: saveJobsListLoading,
     refetch: saveJobsListRefetch,
   } = useQuery({
-    queryKey: ["/job/save-job-list"],
-    queryFn: () => APIKit.job.save.getSaveJobsList().then((data) => data.data),
+    queryKey: ["/me/job/saved/list"],
+    queryFn: () =>
+      APIKit.me.job.saved.getSaveJobsList().then((data) => data.data),
   });
 
   const getDynamicEmptyStateTitle = () => {
