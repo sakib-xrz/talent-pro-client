@@ -25,7 +25,7 @@ export default function BannerSection({
     const handleFailure = (error) => {
       throw error;
     };
-    const promise = APIKit.job.save
+    const promise = APIKit.me.job.saved
       .postSaveJob(id)
       .then(handleSuccess)
       .catch(handleFailure);
@@ -76,11 +76,16 @@ export default function BannerSection({
 
           <div className="flex w-full items-center justify-center gap-2 md:justify-start">
             {isJobSaved ? (
-              <Button className={`${isAppliedJob && "hidden"}`} variant="outline" disabled>
+              <Button
+                className={`${isAppliedJob && "hidden"}`}
+                variant="outline"
+                disabled
+              >
                 Saved
               </Button>
             ) : (
-              <Button className={`${isAppliedJob && "hidden"}`}
+              <Button
+                className={`${isAppliedJob && "hidden"}`}
                 variant="outline"
                 onClick={() => handleAddSaveJob(job._id)}
               >

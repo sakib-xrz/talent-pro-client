@@ -43,8 +43,8 @@ export default function AllJobs() {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [`/jobs/${queryString}`],
-    queryFn: () => APIKit.job.getJob(queryString).then((data) => data),
+    queryKey: [`we/jobs/${queryString}`],
+    queryFn: () => APIKit.we.job.getJob(queryString).then((data) => data),
   });
 
   const getDynamicEmptyStateTitle = () => {

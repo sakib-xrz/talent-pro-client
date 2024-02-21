@@ -112,6 +112,35 @@ const APIKit = {
         return client.patch(url, payload);
       },
     },
+
+    job: {
+      getJob: (queryString) => {
+        const url = `me/job${queryString}`;
+        return client.get(url);
+      },
+      getSingleJob: (uid) => {
+        const url = `me/job/${uid}`;
+        return client.get(url);
+      },
+      saved: {
+        getSaveJobs: (queryString) => {
+          const url = `me/job/saved${queryString}`;
+          return client.get(url);
+        },
+        getSaveJobsList: () => {
+          const url = "/me/job/saved/list";
+          return client.get(url);
+        },
+        postSaveJob: (uid) => {
+          const url = `/me/job/saved/${uid}`;
+          return client.post(url);
+        },
+        removeSaveJob: (uid) => {
+          const url = `/me/job/saved/${uid}`;
+          return client.delete(url);
+        },
+      },
+    },
   },
 
   we: {
@@ -123,49 +152,51 @@ const APIKit = {
       const url = "/we";
       return client.post(url, payload, defaultFileUploadConfig);
     },
-  },
 
-  job: {
-    postJob: (payload) => {
-      const url = "/job";
-      return client.post(url, payload);
-    },
-    getJob: (queryString) => {
-      const url = `/job${queryString}`;
-      return client.get(url);
-    },
-    getSingleJob: (uid) => {
-      const url = `/job/${uid}`;
-      return client.get(url);
-    },
-    getSinglePublicJob: (uid) => {
-      const url = `/job/public/${uid}`;
-      return client.get(url);
-    },
-    updateJobStatus: (uid, payload) => {
-      const url = `/job/update-status/${uid}`;
-      return client.patch(url, payload);
-    },
-
-    save: {
-      getSaveJobs: (queryString) => {
-        const url = `/job/save-job${queryString}`;
+    job: {
+      getJob: (queryString) => {
+        const url = `we/job${queryString}`;
         return client.get(url);
       },
-      getSaveJobsList: () => {
-        const url = "/job/save-job-list";
-        return client.get(url);
-      },
-      postSaveJob: (uid) => {
-        const url = `/job/save-job/${uid}`;
-        return client.post(url);
-      },
-      removeSaveJob: (uid) => {
-        const url = `/job/save-job/${uid}`;
-        return client.delete(url);
+      postJob: (payload) => {
+        const url = "we/job";
+        return client.post(url, payload);
       },
     },
   },
+
+  // job: {
+  //
+  //   getJob: (queryString) => {
+  //     const url = `/job${queryString}`;
+  //     return client.get(url);
+  //   },
+  //
+  //   getSinglePublicJob: (uid) => {
+  //     const url = `/job/public/${uid}`;
+  //     return client.get(url);
+  //   },
+  //   updateJobStatus: (uid, payload) => {
+  //     const url = `/job/update-status/${uid}`;
+  //     return client.patch(url, payload);
+  //   },
+
+  //   save: {
+  //
+  //     getSaveJobsList: () => {
+  //       const url = "/job/save-job-list";
+  //       return client.get(url);
+  //     },
+  //     postSaveJob: (uid) => {
+  //       const url = `/job/save-job/${uid}`;
+  //       return client.post(url);
+  //     },
+  //     removeSaveJob: (uid) => {
+  //       const url = `/job/save-job/${uid}`;
+  //       return client.delete(url);
+  //     },
+  //   },
+  // },
 
   application: {
     applyJob: (payload) => {
