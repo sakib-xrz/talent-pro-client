@@ -26,6 +26,15 @@ const APIKit = {
     },
   },
 
+  public: {
+    job: {
+      getSingleJob: (uid) => {
+        const url = `/public/job/${uid}`;
+        return client.get(url);
+      },
+    },
+  },
+
   me: {
     getMe: () => {
       const url = "/me";
@@ -164,39 +173,6 @@ const APIKit = {
       },
     },
   },
-
-  // job: {
-  //
-  //   getJob: (queryString) => {
-  //     const url = `/job${queryString}`;
-  //     return client.get(url);
-  //   },
-  //
-  //   getSinglePublicJob: (uid) => {
-  //     const url = `/job/public/${uid}`;
-  //     return client.get(url);
-  //   },
-  //   updateJobStatus: (uid, payload) => {
-  //     const url = `/job/update-status/${uid}`;
-  //     return client.patch(url, payload);
-  //   },
-
-  //   save: {
-  //
-  //     getSaveJobsList: () => {
-  //       const url = "/job/save-job-list";
-  //       return client.get(url);
-  //     },
-  //     postSaveJob: (uid) => {
-  //       const url = `/job/save-job/${uid}`;
-  //       return client.post(url);
-  //     },
-  //     removeSaveJob: (uid) => {
-  //       const url = `/job/save-job/${uid}`;
-  //       return client.delete(url);
-  //     },
-  //   },
-  // },
 
   application: {
     applyJob: (payload) => {

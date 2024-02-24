@@ -15,8 +15,8 @@ import JobInfoSection from "./components/JobInfoSection";
 
 export default function CandidateJobDetails({ params: { id } }) {
   const { data: job, isLoading } = useQuery({
-    queryKey: [`/find-jobs/${id}`],
-    queryFn: () => APIKit.job.getSinglePublicJob(id).then((data) => data.data),
+    queryKey: [`/public/job/${id}`],
+    queryFn: () => APIKit.public.job.getSingleJob(id).then((data) => data.data),
     enabled: !!id,
   });
 
