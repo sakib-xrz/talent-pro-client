@@ -149,6 +149,17 @@ const APIKit = {
           return client.delete(url);
         },
       },
+
+      application: {
+        applyJob: (uid, payload) => {
+          const url = `me/job/${uid}/apply`;
+          return client.post(url, payload, defaultFileUploadConfig);
+        },
+        getAppliedJobs: (queryString) => {
+          const url = `me/job/applied-job${queryString}`;
+          return client.get(url);
+        },
+      },
     },
   },
 
@@ -171,17 +182,6 @@ const APIKit = {
         const url = "we/job";
         return client.post(url, payload);
       },
-    },
-  },
-
-  application: {
-    applyJob: (payload) => {
-      const url = "/application";
-      return client.post(url, payload, defaultFileUploadConfig);
-    },
-    getApplication: (queryString) => {
-      const url = `/application${queryString}`;
-      return client.get(url);
     },
   },
 };

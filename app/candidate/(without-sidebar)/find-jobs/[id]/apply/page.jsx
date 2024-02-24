@@ -17,8 +17,8 @@ export default function ApplyJob() {
   });
 
   const { data: job, isLoading: isJobLoading } = useQuery({
-    queryKey: [`/find-jobs/${jobId}`],
-    queryFn: () => APIKit.job.getSingleJob(jobId).then((data) => data.data),
+    queryKey: [`me/job/${jobId}`],
+    queryFn: () => APIKit.me.job.getSingleJob(jobId).then((data) => data.data),
     enabled: !!jobId,
   });
 

@@ -50,8 +50,8 @@ export default function ApplicationForm({ job, candidate }) {
         throw error;
       };
 
-      const promise = APIKit.application
-        .applyJob(values)
+      const promise = APIKit.me.job.application
+        .applyJob(job?._id, values)
         .then(handleSuccess)
         .catch(handleFailure)
         .finally(() => setLoading(false));
@@ -119,6 +119,7 @@ export default function ApplicationForm({ job, candidate }) {
             <div>
               <Input
                 type="number"
+                min="0"
                 name="years_of_experience"
                 id="years_of_experience"
                 value={formik.values.years_of_experience}

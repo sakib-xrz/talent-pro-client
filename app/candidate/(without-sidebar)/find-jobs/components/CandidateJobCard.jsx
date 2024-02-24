@@ -95,7 +95,7 @@ export default function CandidateJobCard({
         </p>
 
         {isAppliedJob ? (
-          <Badge className="flex items-center gap-1 bg-green-100 text-green-500">
+          <Badge className="flex items-center gap-1 bg-green-100 text-green-600 hover:cursor-default hover:bg-green-100 hover:text-green-600">
             <CheckCheck className="h-4 w-4" />
             Applied
           </Badge>

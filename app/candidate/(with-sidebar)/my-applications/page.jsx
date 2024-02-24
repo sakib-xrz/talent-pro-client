@@ -32,9 +32,11 @@ export default function MyApplications() {
   }, [queryString, router]);
 
   const { data: applications, isLoading } = useQuery({
-    queryKey: [`/application?${queryString}`],
+    queryKey: [`me/job/applied-job${queryString}`],
     queryFn: () =>
-      APIKit.application.getApplication(queryString).then((data) => data),
+      APIKit.me.job.application
+        .getAppliedJobs(queryString)
+        .then((data) => data),
   });
 
   const getDynamicEmptyStateTitle = () => {
