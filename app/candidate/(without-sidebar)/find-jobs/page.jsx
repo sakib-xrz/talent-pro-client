@@ -78,7 +78,7 @@ export default function CandidateJobPage() {
               ))}
             </div>
           </div>
-        ) : jobs?.meta?.total ? (
+        ) : jobs.meta?.total ? (
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               {jobs.data.map((job) => (
