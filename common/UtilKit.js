@@ -132,3 +132,20 @@ export function linkedinLink(url, { title, summary, source } = {}) {
     objectToGetParams({ url, mini: "true", title, summary, source })
   );
 }
+
+export function generateAge(dateString) {
+  if (dateString) {
+    const birthDate = new Date(dateString);
+
+    const currentDate = new Date();
+
+    const timeDifference = currentDate - birthDate;
+
+    const ageInYears = Math.floor(
+      timeDifference / (365.25 * 24 * 60 * 60 * 1000),
+    );
+
+    return `${ageInYears} years`;
+  }
+  return "";
+}

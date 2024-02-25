@@ -1,6 +1,8 @@
+import { formatText, generateAge } from "@/common/UtilKit";
 import Image from "next/image";
 
-export default function PersonalInfo({ user }) {
+export default function PersonalInfo({ user, candidate }) {
+  console.log(candidate);
   return (
     <div className="space-y-3">
       <h2 className="text-lg font-semibold text-primary">
@@ -12,7 +14,7 @@ export default function PersonalInfo({ user }) {
           width={200}
           alt="profile-photo"
           src={user?.image_url}
-          className="h-14 w-14 rounded-md object-cover"
+          className="h-14 w-14 rounded-md border border-border object-cover "
         />
 
         <div>
@@ -27,7 +29,13 @@ export default function PersonalInfo({ user }) {
             </h3>
           )}
 
-          <p className="tex-sm text-secondary-foreground">{user.email}</p>
+          <p className="text-sm font-medium text-secondary-foreground">
+            {candidate.gender ? formatText(candidate.gender) : "Gender not set"}{" "}
+            •{" "}
+            {candidate.date_of_birth
+              ? generateAge(candidate.date_of_birth)
+              : "Age not set"}
+          </p>
         </div>
       </div>
     </div>

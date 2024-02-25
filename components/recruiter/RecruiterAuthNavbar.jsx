@@ -41,6 +41,7 @@ const recruiterMenus = [
 
 export default function RecruiterAuthNavbar() {
   const { user } = useStore();
+  console.log(user);
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
@@ -50,18 +51,21 @@ export default function RecruiterAuthNavbar() {
           <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
         </Link>
         <div className="col-span-6 hidden gap-4 lg:flex">
-          {recruiterMenus?.map((item) => (
-            <Link
-              href={item.href}
-              key={item.name}
-              className={cn(
-                DEFAULT_STYLES,
-                pathname === item.href ? ACTIVE_TAB_STYLES : DEFAULT_TAB_STYLES,
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
+          {user.isOnboardComplete &&
+            recruiterMenus?.map((item) => (
+              <Link
+                href={item.href}
+                key={item.name}
+                className={cn(
+                  DEFAULT_STYLES,
+                  pathname === item.href
+                    ? ACTIVE_TAB_STYLES
+                    : DEFAULT_TAB_STYLES,
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
         </div>
         <div className="hidden items-center justify-end lg:col-span-4 lg:flex">
           <RecruiterCardDropdown />

@@ -46,18 +46,21 @@ export default function CandidateAuthNavbar() {
           <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />
         </Link>
         <div className="col-span-6 hidden gap-4 lg:flex">
-          {candidateMenus?.map((item) => (
-            <Link
-              href={item.href}
-              key={item.name}
-              className={cn(
-                DEFAULT_STYLES,
-                pathname === item.href ? ACTIVE_TAB_STYLES : DEFAULT_TAB_STYLES,
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
+          {user.isOnboardComplete &&
+            candidateMenus?.map((item) => (
+              <Link
+                href={item.href}
+                key={item.name}
+                className={cn(
+                  DEFAULT_STYLES,
+                  pathname === item.href
+                    ? ACTIVE_TAB_STYLES
+                    : DEFAULT_TAB_STYLES,
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
         </div>
         <div className="hidden items-center justify-end lg:col-span-4 lg:flex">
           <CandidateCardDropdown />

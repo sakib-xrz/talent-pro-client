@@ -1,12 +1,17 @@
 "use client";
 
-import { EmployStatus, IndustryOptions } from "@/common/KeyChain";
+import {
+  EmployStatus,
+  GenderOptions,
+  IndustryOptions,
+} from "@/common/KeyChain";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Phone } from "@/components/ui/phone";
 import Radio from "@/components/form/Radio";
 import SelectField from "@/components/form/SelectField";
+import DatePicker from "@/components/form/DatePicker";
 
 export default function Step1Form({ formik, handleCompleteStep1 }) {
   const handleIndustryChange = (selectedOption) => {
@@ -14,6 +19,10 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
       "industry",
       selectedOption ? selectedOption.value : "",
     );
+  };
+
+  const handleGenderChange = (selectedOption) => {
+    formik.setFieldValue("gender", selectedOption ? selectedOption.value : "");
   };
 
   return (
@@ -37,6 +46,39 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
         </div>
         <form onSubmit={formik.handleSubmit} className="space-y-5 px-4 ">
           <h4 className="text-lg font-semibold">Personal Information</h4>
+
+          <div className="space-y-2">
+            <p className="font-medium text-primary">
+              Gender <span className="text-destructive">*</span>
+            </p>
+            <div>
+              <SelectField
+                id="gender"
+                name="gender"
+                placeholder="Select your gender"
+                options={GenderOptions}
+                onChange={handleGenderChange}
+                value={GenderOptions.find(
+                  (el) => el.value === formik.values.gender,
+                )}
+                onBlur={formik.handleBlur}
+              />
+            </div>
+          </div>
+
+          <div className="w-full space-y-2">
+            <p className="font-medium text-primary">
+              Date of birth <span className="text-destructive">*</span>
+            </p>
+            <DatePicker
+              name="date_of_birth"
+              id="date_of_birth"
+              value={formik.values.date_of_birth}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+          </div>
+
           <div className="space-y-2">
             <p className="font-medium text-primary">
               Your phone number <span className="text-destructive">*</span>
@@ -85,7 +127,6 @@ export default function Step1Form({ formik, handleCompleteStep1 }) {
                   (el) => el.value === formik.values.industry,
                 )}
                 onBlur={formik.handleBlur}
-                isClearable
                 isSearchable
               />
             </div>

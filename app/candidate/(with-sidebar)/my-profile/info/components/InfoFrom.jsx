@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { toast } from "sonner";
 
 import APIKit from "@/common/APIkit";
-import { EmployStatus } from "@/common/KeyChain";
+import { EmployStatus, GenderOptions } from "@/common/KeyChain";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,8 @@ import { Label } from "@/components/ui/label";
 import { Phone } from "@/components/ui/phone";
 import Radio from "@/components/form/Radio";
 import FormikErrorBox from "@/components/form/FormikErrorBox";
+import SelectField from "@/components/form/SelectField";
+import DatePicker from "@/components/form/DatePicker";
 
 const validationSchema = Yup.object().shape({
   phone: Yup.string()
@@ -33,9 +35,11 @@ export default function InfoFrom({ initialValues, refetch }) {
     onSubmit: (values) => {
       setLoading(true);
       const payload = {
-        industry: values.industry,
+        gender: values.gender,
+        date_of_birth: values.date_of_birth,
         phone: values.phone,
         location: values.location,
+        industry: values.industry,
         job_status: values.job_status,
       };
 
@@ -101,6 +105,47 @@ export default function InfoFrom({ initialValues, refetch }) {
           value={formik.values.email}
           disabled
         />
+      </div>
+
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+        <Label htmlFor="gender" className="md:w-2/5">
+          Gender
+        </Label>
+        <div className="w-full">
+          <SelectField
+            id="gender"
+            name="gender"
+            options={GenderOptions}
+            onChange={(selectedOption) => {
+              setShowActionButtons(true);
+              formik.setFieldValue("gender", selectedOption.value);
+            }}
+            value={GenderOptions.find(
+              (el) => el.value === formik.values.gender,
+            )}
+            onBlur={formik.handleBlur}
+          />
+          <FormikErrorBox formik={formik} field={"gender"} />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+        <Label htmlFor="date_of_birth" className="md:w-2/5">
+          Date of birth
+        </Label>
+        <div className="w-full">
+          <DatePicker
+            name="date_of_birth"
+            id="date_of_birth"
+            value={formik.values.date_of_birth}
+            onChange={(date) => {
+              formik.handleChange(date);
+              setShowActionButtons(true);
+            }}
+            onBlur={formik.handleBlur}
+          />
+          <FormikErrorBox formik={formik} field={"date_of_birth"} />
+        </div>
       </div>
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">

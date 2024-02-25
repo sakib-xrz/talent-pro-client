@@ -7,6 +7,12 @@ import {
 
 export const AUTH_TOKEN_KEY = "@AUTH_TOKEN";
 
+export const GenderOptions = [
+  { label: "Male", value: "MALE" },
+  { label: "Female", value: "FEMALE" },
+  { label: "Other", value: "OTHER" },
+];
+
 export const IndustryOptions = [
   { label: "Aerospace And Defense", value: "AEROSPACE_AND_DEFENSE" },
   { label: "Agriculture", value: "AGRICULTURE" },
@@ -117,18 +123,6 @@ export const ApplicationStatus = [
   { label: "Interview Canceled", value: "interview_canceled" },
   { label: "Not Selected", value: "not_selected" },
 ];
-
-export const badgeColor = {
-  application_received: "text-green-600 bg-green-100", // Success
-  application_in_review: "text-sky-600 bg-sky-100", // Info
-  shortlisted_for_interview: "text-sky-600 bg-sky-100", // Info
-  interview_scheduled: "text-sky-600 bg-sky-100", // Info
-  interview_completed: "text-green-600 bg-green-100", // Success
-  hired: "text-green-600 bg-green-100", // Success
-  interview_rescheduled: "text-sky-600 bg-sky-100", // Info
-  interview_canceled: "text-red-600 bg-red-100", // Error
-  not_selected: "text-red-600 bg-red-100", // Error
-};
 
 export const navOptions = [
   {

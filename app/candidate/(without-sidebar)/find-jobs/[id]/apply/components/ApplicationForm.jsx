@@ -75,7 +75,7 @@ export default function ApplicationForm({ job, candidate }) {
 
   return (
     <div className="space-y-5">
-      <PersonalInfo user={user} />
+      <PersonalInfo user={user} candidate={candidate} />
       <form onSubmit={formik.handleSubmit} className="space-y-5">
         <div className="space-y-2">
           <div className="space-y-2">

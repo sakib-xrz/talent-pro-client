@@ -21,6 +21,8 @@ export default function CandidateSetupProfile() {
 
   const initialValues = {
     user_id: user?.id,
+    gender: "MALE",
+    date_of_birth: "1998-08-22",
     phone: "01409029742",
     location: "Dhaka, Bangladesh",
     industry: "INFORMATION_TECHNOLOGY",
@@ -57,6 +59,42 @@ export default function CandidateSetupProfile() {
     },
     open_to_work_remotely: true,
   };
+
+  // const initialValues = {
+  //   user_id: user?.id,
+  //   gender: "",
+  //   date_of_birth: "",
+  //   phone: "",
+  //   location: "",
+  //   industry: "",
+  //   job_status: "",
+  //   experience: {
+  //     company_name: "",
+  //     designation: "",
+  //     job_type: "",
+  //     start_date: "",
+  //     end_date: "",
+  //     work_currently: false,
+  //   },
+  //   education: {
+  //     institute_name: "",
+  //     degree: "",
+  //     major: "",
+  //     location: "",
+  //     start_date: "",
+  //     end_date: "",
+  //     study_currently: false,
+  //   },
+  //   skills: [],
+  //   portfolio: "",
+  //   resume: "",
+  //   resume_preview: "",
+  //   desired_salary: {
+  //     min: "",
+  //     max: "",
+  //   },
+  //   open_to_work_remotely: false,
+  // };
 
   const formik = useFormik({
     initialValues,
