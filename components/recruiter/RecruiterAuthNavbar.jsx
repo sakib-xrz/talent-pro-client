@@ -41,7 +41,6 @@ const recruiterMenus = [
 
 export default function RecruiterAuthNavbar() {
   const { user } = useStore();
-  console.log(user);
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (

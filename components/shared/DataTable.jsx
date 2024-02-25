@@ -19,13 +19,13 @@ export default function DataTable({
       )}
     >
       <table className={cn("w-full text-left text-sm", tableClassName)}>
-        <thead className={cn("border-b", theadClassName)}>
+        <thead className={cn("border-b bg-gray-100", theadClassName)}>
           <tr className={theadTrClassName}>
             {cols.map((col, i) => (
               <th
                 key={i}
                 scope="col"
-                className="whitespace-nowrap px-6 py-3 last:text-center"
+                className="whitespace-nowrap px-6 py-3 first:sticky first:left-0 first:bg-gray-100 last:text-center"
               >
                 {col.title}
               </th>
@@ -45,7 +45,10 @@ export default function DataTable({
               }
             >
               {cols.map((col, i) => (
-                <td key={i} className="px-6 py-4 last:text-center">
+                <td
+                  key={i}
+                  className="first: px-6 py-4 first:sticky first:left-0 first:bg-gray-50"
+                >
                   {col.renderer
                     ? col.renderer(row, rowIndex)
                     : row[col.dataField]}

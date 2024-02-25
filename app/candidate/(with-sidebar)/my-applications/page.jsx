@@ -4,13 +4,13 @@ import { generateQueryString } from "@/common/UtilKit";
 import PageTitleWithButton from "@/components/shared/PageTitleWithButton";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import MyApplicationSearchSortFilter from "./components/MyApplicationSearchSortFilter";
 import MyApplicationCard from "./components/MyApplicationCard";
 import MyApplicationCardSkeleton from "./components/MyApplicationCardSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import APIKit from "@/common/APIkit";
 import Pagination from "@/components/shared/Pagination";
 import EmptyState from "@/components/shared/EpmtyState";
+import ApplicationSearchSortFilter from "@/components/application/ApplicationSearchSortFilter";
 
 export default function MyApplications() {
   const router = useRouter();
@@ -42,7 +42,7 @@ export default function MyApplications() {
   const getDynamicEmptyStateTitle = () => {
     let title = "";
     if (params.search.length > 0) {
-      return (title = `Couldn't find any application named "${params.search}"`);
+      return (title = `Couldn't find any application which job title is "${params.search}"`);
     }
     return "Couldn't find any applications";
   };
@@ -51,7 +51,7 @@ export default function MyApplications() {
     <div className="space-y-4">
       <PageTitleWithButton title={"My Applications"} />
 
-      <MyApplicationSearchSortFilter params={params} setParams={setParams} />
+      <ApplicationSearchSortFilter params={params} setParams={setParams} />
 
       {isLoading ? (
         <div className="space-y-4">

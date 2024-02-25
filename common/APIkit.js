@@ -182,6 +182,12 @@ const APIKit = {
         const url = "we/job";
         return client.post(url, payload);
       },
+      application: {
+        getAllApplicationForOrg: (queryString) => {
+          const url = `/we/job/application${queryString}`;
+          return client.get(url);
+        },
+      },
     },
   },
 };

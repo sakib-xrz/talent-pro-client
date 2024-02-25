@@ -1,31 +1,14 @@
 import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDebouncedCallback } from "use-debounce";
 
 import { ApplicationStatus, SortOptions } from "@/common/KeyChain";
-import { formatText } from "@/common/UtilKit";
 
-import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Search } from "@/components/ui/search";
 import SelectField from "@/components/form/SelectField";
 
-export default function MyApplicationSearchSortFilter({ params, setParams }) {
+export default function ApplicationSearchSortFilter({ params, setParams }) {
   const [searchKey, setSearchKey] = useState("");
-
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleResetFilter = (paramName) => {
-    setParams((prevParams) => ({
-      ...prevParams,
-      [paramName]: "",
-    }));
-
-    router.replace(pathname);
-  };
 
   const debounced = useDebouncedCallback((value) => {
     setParams((prevParams) => ({
