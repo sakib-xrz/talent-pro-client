@@ -192,6 +192,10 @@ const APIKit = {
           return client.get(url);
         },
       },
+      removeJob: (uid) => {
+        const url = `/we/job/${uid}`;
+        return client.delete(url);
+      },
     },
   },
 };

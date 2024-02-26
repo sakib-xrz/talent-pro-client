@@ -24,8 +24,32 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import APIKit from "@/common/APIkit";
+import { toast } from "sonner";
 
 export default function Action({ job }) {
+  const router = useRouter();
+
+  const handleDeleteJob = (id) => {
+    const handleSuccess = () => {
+      router.push("/recruiter/jobs");
+    };
+    const handleFailure = (error) => {
+      throw error;
+    };
+    const promise = APIKit.we.job
+      .removeJob(id)
+      .then(handleSuccess)
+      .catch(handleFailure);
+
+    return toast.promise(promise, {
+      loading: "Deleting Job...",
+      success: "Job deleted successfully!",
+      error: "Something went wrong!",
+    });
+  };
+
   return (
     <div>
       <Menu as="div" className="relative">
@@ -80,12 +104,15 @@ export default function Action({ job }) {
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                       This action cannot be undone and permanently delete this
-                      experience from our database.
+                      job from our database.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                    <AlertDialogAction
+                      onClick={() => handleDeleteJob(job._id)}
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    >
                       Delete
                     </AlertDialogAction>
                   </AlertDialogFooter>
