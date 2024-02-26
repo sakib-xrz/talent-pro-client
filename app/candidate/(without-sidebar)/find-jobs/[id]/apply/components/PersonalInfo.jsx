@@ -2,7 +2,6 @@ import { formatText, generateAge } from "@/common/UtilKit";
 import Image from "next/image";
 
 export default function PersonalInfo({ user, candidate }) {
-  console.log(candidate);
   return (
     <div className="space-y-3">
       <h2 className="text-lg font-semibold text-primary">

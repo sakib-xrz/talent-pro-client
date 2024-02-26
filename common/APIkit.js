@@ -178,6 +178,10 @@ const APIKit = {
         const url = `we/job${queryString}`;
         return client.get(url);
       },
+      getSingleJob: (uid) => {
+        const url = `we/job/${uid}`;
+        return client.get(url);
+      },
       postJob: (payload) => {
         const url = "we/job";
         return client.post(url, payload);

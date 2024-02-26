@@ -30,6 +30,7 @@ export default function ApplicationForm({ job, candidate }) {
         job_type: job?.job_type,
         experience_level: job?.experience_level,
         location_type: job?.location_type,
+        address: job?.address,
       },
       phone: candidate?.phone,
       years_of_experience: 0,

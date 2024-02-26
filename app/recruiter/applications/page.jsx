@@ -188,7 +188,7 @@ export default function RecruiterApplications() {
   ];
 
   return (
-    <Container extraClassName={"max-w-[115rem]"}>
+    <Container>
       <div className="space-y-4">
         <PageTitleWithButton title={"All Applicants"} />
 

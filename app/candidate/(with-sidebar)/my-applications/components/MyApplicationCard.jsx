@@ -69,7 +69,8 @@ export default function MyApplicationCard({ application }) {
             </h3>
             <div className="line-clamp-1 text-sm font-medium xl:line-clamp-none">
               {application?.organization?.company_name || "Not set"} •{" "}
-              {application?.organization?.company_location || "Not set"}
+              {application?.job?.address ||
+                application?.organization?.company_location}
             </div>
           </div>
         </div>

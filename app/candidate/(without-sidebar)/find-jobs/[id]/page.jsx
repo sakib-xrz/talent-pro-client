@@ -66,7 +66,7 @@ export default function CandidateJobDetails({ params: { id } }) {
               <hr />
 
               <div
-                className="ql-editor prose"
+                className="ql-editor prose !p-0"
                 dangerouslySetInnerHTML={{ __html: job_description }}
               />
             </Card>

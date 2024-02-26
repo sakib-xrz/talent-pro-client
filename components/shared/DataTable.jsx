@@ -14,7 +14,7 @@ export default function DataTable({
   return (
     <div
       className={cn(
-        "overflow-auto rounded border [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar]:h-[5px] [&::-webkit-scrollbar]:w-[5px]",
+        "overflow-auto rounded border [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar]:h-[10px] [&::-webkit-scrollbar]:w-[10px]",
         wrapperClassName,
       )}
     >
