@@ -39,7 +39,7 @@ export default function SocialShare({ job }) {
                 <Share2 className="w-4.5 h-4.5" />
               </TooltipTrigger>
               <TooltipContent>
-                <p>Share Job</p>
+                <p className="hidden lg:block">Share Job</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

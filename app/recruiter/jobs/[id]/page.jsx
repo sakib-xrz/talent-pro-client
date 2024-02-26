@@ -48,7 +48,9 @@ export default function RecruiterJobDetailsPage({ params: { id } }) {
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>{job?.total_views || 0} candidate viewed this job</p>
+                    <p className="hidden lg:block">
+                      {job?.total_views || 0} candidate viewed this job
+                    </p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -64,7 +66,7 @@ export default function RecruiterJobDetailsPage({ params: { id } }) {
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>
+                    <p className="hidden lg:block">
                       {job?.total_applications || 0} candidate applied this job
                     </p>
                   </TooltipContent>
