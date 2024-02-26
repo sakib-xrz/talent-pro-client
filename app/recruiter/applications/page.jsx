@@ -2,7 +2,7 @@
 
 import APIKit from "@/common/APIkit";
 import { ApplicationStatus } from "@/common/KeyChain";
-import { generateAge, generateQueryString } from "@/common/UtilKit";
+import { formatDate, generateAge, generateQueryString } from "@/common/UtilKit";
 import ApplicationSearchSortFilter from "@/components/application/ApplicationSearchSortFilter";
 import Select from "@/components/form/Select";
 import Container from "@/components/shared/Container";
@@ -19,7 +19,6 @@ import { useEffect, useState } from "react";
 export default function RecruiterApplications() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [selectedStatus, setSelectedStatus] = useState("");
 
   const [params, setParams] = useState({
     search: searchParams.get("search") || "",
@@ -51,10 +50,6 @@ export default function RecruiterApplications() {
     }
     return "Couldn't find any applications";
   };
-
-  if (isLoading) {
-    return "Loading...";
-  }
 
   console.log(applications);
 
@@ -106,9 +101,13 @@ export default function RecruiterApplications() {
       ),
     },
     {
+      title: "Applied on",
+      renderer: (data) => formatDate(data?.createdAt) || "Not available",
+    },
+    {
       title: "Contact Information",
       renderer: (data) => (
-        <div onClick={(e) => e.stopPropagation()} className="text-center">
+        <div onClick={(e) => e.stopPropagation()}>
           {data.user?.email ? (
             <Link
               href={`mailto:${data.user.email}`}
@@ -131,6 +130,22 @@ export default function RecruiterApplications() {
           )}
         </div>
       ),
+    },
+    {
+      title: "Resume",
+      renderer: (data) =>
+        data?.resume ? (
+          <Link
+            href={data.resume}
+            className="cursor-pointer font-semibold underline "
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Resume
+          </Link>
+        ) : (
+          "Resume not provided"
+        ),
     },
     {
       title: "Address",
@@ -157,31 +172,13 @@ export default function RecruiterApplications() {
       ),
     },
     {
-      title: "Resume",
-      renderer: (data) =>
-        data?.resume ? (
-          <Link
-            href={data.resume}
-            className="cursor-pointer font-semibold hover:underline "
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Resume
-          </Link>
-        ) : (
-          "Resume not provided"
-        ),
-    },
-    {
       title: "Status",
       renderer: (data) => (
-        <div className="w-52">
+        <div className="mx-auto w-52">
           <Select
             options={ApplicationStatus}
-            // value={data.status}
-            value={selectedStatus}
+            value={data.status}
             onChange={(e) => {
-              setSelectedStatus(e.target.value);
               console.log(e.target.value);
             }}
           />
@@ -191,19 +188,21 @@ export default function RecruiterApplications() {
   ];
 
   return (
-    <Container>
+    <Container extraClassName={"max-w-[115rem]"}>
       <div className="space-y-4">
         <PageTitleWithButton title={"All Applicants"} />
 
         <ApplicationSearchSortFilter params={params} setParams={setParams} />
 
-        {applications?.meta?.total ? (
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : applications?.meta?.total ? (
           <div className="space-y-4">
             <DataTable
               cols={tableColumns}
               data={applications.data}
               wrapperClassName="max-h-[calc(100vh-200px)] whitespace-nowrap font-medium"
-              theadClassName="sticky top-0"
+              theadClassName="sticky top-0 z-10"
             />
             <Pagination
               params={params}

@@ -54,7 +54,11 @@ export default function SelectField({
             padding: "8px",
             color: isFocused ? "#fff" : "#020817",
             cursor: "default",
-            zIndex: "999",
+          }),
+          menu: (provided) => ({
+            ...provided,
+            backgroundColor: "white",
+            zIndex: "9999",
           }),
           input: (baseStyles) => ({
             ...baseStyles,

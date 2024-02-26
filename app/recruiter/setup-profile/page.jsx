@@ -15,7 +15,7 @@ import Success from "./components/Success";
 export default function OrganizationSetupProfile() {
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
-  const { user, refetchMe } = useStore();
+  const { user, refetchMe, refetchWe } = useStore();
 
   const initialValues = {
     user_id: user?.id,
@@ -40,6 +40,7 @@ export default function OrganizationSetupProfile() {
       const handleSuccess = () => {
         setCurrentStep(3);
         refetchMe("recruiter");
+        refetchWe();
         formik.resetForm();
       };
 
