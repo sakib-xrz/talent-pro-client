@@ -12,7 +12,44 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import APIKit from "@/common/APIkit";
+import { toast } from "sonner";
+
 export default function Action({ job }) {
+  const router = useRouter();
+
+  const handleDeleteJob = (id) => {
+    const handleSuccess = () => {
+      router.push("/recruiter/jobs");
+    };
+    const handleFailure = (error) => {
+      throw error;
+    };
+    const promise = APIKit.we.job
+      .removeJob(id)
+      .then(handleSuccess)
+      .catch(handleFailure);
+
+    return toast.promise(promise, {
+      loading: "Deleting Job...",
+      success: "Job deleted successfully!",
+      error: "Something went wrong!",
+    });
+  };
+
   return (
     <div>
       <Menu as="div" className="relative">
@@ -51,12 +88,36 @@ export default function Action({ job }) {
               </div>
             </Menu.Item>
             <Menu.Item>
-              <div className="flex w-full cursor-pointer items-center gap-2 bg-white p-4 text-center text-sm font-medium text-primary duration-300 first:rounded-t-sm last:rounded-b-sm hover:bg-destructive hover:text-white">
-                <div>
-                  <TrashIcon className="h-4 w-4" />
-                </div>
-                <p>Delete Job</p>
-              </div>
+              <AlertDialog className="mx-auto w-10/12">
+                <AlertDialogTrigger className="w-1/2 sm:w-full">
+                  <div className="flex w-full cursor-pointer items-center gap-2 bg-white p-4 text-center text-sm font-medium text-primary duration-300 first:rounded-t-sm last:rounded-b-sm hover:bg-destructive hover:text-white">
+                    <div>
+                      <TrashIcon className="h-4 w-4" />
+                    </div>
+                    <p>Delete Job</p>
+                  </div>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone and permanently delete this
+                      job from our database.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => handleDeleteJob(job._id)}
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    >
+                      Delete
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </Menu.Item>
           </Menu.Items>
         </Transition>
