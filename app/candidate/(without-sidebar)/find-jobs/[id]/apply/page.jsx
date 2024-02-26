@@ -26,7 +26,7 @@ export default function ApplyJob() {
 
   return (
     <>
-      <h2 className="bg-primary/5 py-10 text-center text-lg font-semibold text-primary">
+      <h2 className="bg-primary/5 px-4 py-10 text-center text-lg font-semibold text-primary">
         Apply for {job?.job_title} at {job?.organization?.company_name}
       </h2>
 

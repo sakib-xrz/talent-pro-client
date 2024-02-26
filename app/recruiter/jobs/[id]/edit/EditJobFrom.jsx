@@ -457,7 +457,10 @@ export default function EditJobFrom({ job }) {
         </div>
 
         <div className="flex justify-end gap-2">
-          <Link href={`/recruiter/jobs/${job._id}`}>
+          <Link
+            href={`/recruiter/jobs/${job._id}`}
+            className="block w-full md:w-fit"
+          >
             <Button
               className={"w-full md:w-fit"}
               type="button"

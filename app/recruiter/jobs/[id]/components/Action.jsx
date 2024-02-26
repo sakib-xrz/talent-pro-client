@@ -61,7 +61,7 @@ export default function Action({ job }) {
                 <MoreVertical className="w-4.5 h-4.5" />
               </TooltipTrigger>
               <TooltipContent>
-                <p>More Actions</p>
+                <p className="hidden lg:block">More Actions</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -93,8 +93,8 @@ export default function Action({ job }) {
             </Menu.Item>
             <Menu.Item>
               <AlertDialog className="mx-auto w-10/12">
-                <AlertDialogTrigger className="w-1/2 sm:w-full">
-                  <div className="flex w-full cursor-pointer items-center gap-2 bg-white p-4 text-center text-sm font-medium text-primary duration-300 first:rounded-t-sm last:rounded-b-sm hover:bg-destructive hover:text-white">
+                <AlertDialogTrigger className="w-full">
+                  <div className="flex w-full cursor-pointer items-center gap-2 bg-white p-4 text-center text-sm font-medium text-primary duration-300 last:rounded-b-sm hover:bg-destructive hover:text-white">
                     <div>
                       <TrashIcon className="h-4 w-4" />
                     </div>

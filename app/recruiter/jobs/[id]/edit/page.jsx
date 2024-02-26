@@ -30,7 +30,7 @@ export default function EditJobPage({ params: { id } }) {
           </h2>
 
           {job.total_applications ? (
-            <div className="flex items-center justify-center gap-2 rounded-md bg-red-100 py-4 text-sm text-red-700 md:text-base">
+            <div className="flex items-center justify-center gap-2 rounded-md bg-red-100 px-3 py-4 text-sm text-red-700 md:text-base">
               <div>
                 <Ban className="h-5 w-5" />
               </div>
@@ -39,7 +39,7 @@ export default function EditJobPage({ params: { id } }) {
               </p>
             </div>
           ) : (
-            <div className="flex items-center justify-center gap-2 rounded-md bg-sky-100 py-4 text-sm text-sky-700 md:text-base">
+            <div className="flex items-center justify-center gap-2 rounded-md bg-sky-100 px-3 py-4 text-sm text-sky-700 md:text-base">
               <div>
                 <InformationCircleIcon className="h-5 w-5 md:h-6 md:w-6" />
               </div>
