@@ -34,7 +34,13 @@ import SelectField from "@/components/form/SelectField";
 import TimePicker from "@/components/form/TimePicker";
 import "react-quill/dist/quill.snow.css";
 
-export default function PostJob() {
+export default function EditJobPage({ params: { id } }) {
+  const { data: job, isLoading } = useQuery({
+    queryKey: [`we/job/${id}`],
+    queryFn: () => APIKit.we.job.getSingleJob(id).then((data) => data.data),
+    enabled: !!id,
+  });
+
   const { user, organization } = useStore();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -42,32 +48,26 @@ export default function PostJob() {
     initialValues: {
       createdBy: "",
       organization: "",
-      job_title: "Frontend Developer",
-      job_description:
-        "<h4><strong>Job brief</strong></h4><p>We are looking for a qualified Front-end developer to join our IT team. You will be responsible for building the ‘client-side’ of our web applications. You should be able to translate our company and customer needs into functional and appealing interactive applications.</p><h4><strong>Responsibilities</strong></h4><ul><li>Use markup languages like HTML to create user-friendly web pages</li><li>Maintain and improve website</li><li>Optimize applications for maximum speed</li><li>Design mobile-based features</li><li>Collaborate with back-end developers and web designers to improve usability</li><li>Get feedback from, and build solutions for, users and customers</li><li>Write functional requirement documents and guides</li><li>Create quality mockups and prototypes</li><li>Help back-end developers with coding and troubleshooting</li><li>Ensure high quality graphic standards and brand consistency</li><li>Stay up-to-date on emerging technologies</li></ul><h4><strong>Requirements and skills</strong></h4><ul><li>Proven work experience as a Front-end developer</li><li>Hands on experience with markup languages</li><li>Experience with JavaScript, CSS and jQuery</li><li>Familiarity with browser testing and debugging</li><li>In-depth understanding of the entire web development process (design, development and deployment)</li><li>Understanding of layout aesthetics</li><li>Knowledge of SEO principles</li><li>Familiarity with software like Adobe Suite and content management systems</li><li>An ability to perform well in a fast-paced environment</li><li>Excellent analytical and multitasking skills</li><li>BSc degree in Computer Science or relevant field</li></ul>",
-      industry: "INFORMATION_TECHNOLOGY",
-      job_type: "FULL_TIME",
-      experience_level: "ENTRY",
-      years_of_experience: 1,
-      required_skills: [
-        { label: "React", value: "REACT" },
-        { label: "NextJs", value: "NEXTJS" },
-        { label: "JavaScript", value: "JAVASCRIPT" },
-        { label: "Tailwind Css", value: "TAILWIND_CSS" },
-      ],
-      location_type: "ONSITE",
-      address: "1600 Amphitheatre Parkway in Mountain View, California.",
-      start_day: "MONDAY",
-      end_day: "FRIDAY",
-      start_time: "10:00",
-      end_time: "18:00",
-      deadline: "2024-01-31",
-      num_of_vacancy: 5,
+      job_title: "",
+      job_description: "",
+      industry: "",
+      job_type: "",
+      experience_level: "",
+      years_of_experience: 0,
+      required_skills: [],
+      location_type: "",
+      address: "",
+      start_day: "",
+      end_day: "",
+      start_time: "",
+      end_time: "",
+      deadline: "",
+      num_of_vacancy: 0,
       salary: {
-        min: 75000,
-        max: 95000,
+        min: 0,
+        max: 0,
       },
-      is_negotiable: true,
+      is_negotiable: false,
     },
     onSubmit: (values) => {
       setLoading(true);

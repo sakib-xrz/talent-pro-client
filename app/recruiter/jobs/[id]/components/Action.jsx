@@ -11,6 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Link from "next/link";
 
 export default function Action({ job }) {
   return (
@@ -43,12 +44,15 @@ export default function Action({ job }) {
             }
           >
             <Menu.Item>
-              <div className="flex w-full cursor-pointer items-center gap-2 bg-white p-4 text-center text-sm font-medium text-primary duration-300 first:rounded-t-sm last:rounded-b-sm hover:bg-secondary/80">
+              <Link
+                href={`/recruiter/jobs/${job._id}/edit`}
+                className="flex w-full cursor-pointer items-center gap-2 bg-white p-4 text-center text-sm font-medium text-primary duration-300 first:rounded-t-sm last:rounded-b-sm hover:bg-secondary/80"
+              >
                 <div>
                   <PencilSquareIcon className="h-4 w-4 text-primary" />
                 </div>
                 <p>Edit Job</p>
-              </div>
+              </Link>
             </Menu.Item>
             <Menu.Item>
               <div className="flex w-full cursor-pointer items-center gap-2 bg-white p-4 text-center text-sm font-medium text-primary duration-300 first:rounded-t-sm last:rounded-b-sm hover:bg-destructive hover:text-white">
