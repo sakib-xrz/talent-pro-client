@@ -1,38 +1,14 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
-const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
-import "react-quill/dist/quill.snow.css";
-import { toast } from "sonner";
-import { useFormik } from "formik";
-
 import APIKit from "@/common/APIkit";
-import {
-  EmploymentType,
-  ExperienceLevel,
-  IndustryOptions,
-  LocationType,
-  WeekDay,
-} from "@/common/KeyChain";
-import { useStore } from "@/context/StoreProvider";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import Container from "@/components/shared/Container";
-import CreatableSelectField from "@/components/form/CreatableSelectField";
-import DatePicker from "@/components/form/DatePicker";
-import { Input } from "@/components/ui/input";
-import SelectField from "@/components/form/SelectField";
-import TimePicker from "@/components/form/TimePicker";
-import "react-quill/dist/quill.snow.css";
+
+import { useQuery } from "@tanstack/react-query";
+import EditJobFrom from "./EditJobFrom";
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import { Ban } from "lucide-react";
 
 export default function EditJobPage({ params: { id } }) {
   const { data: job, isLoading } = useQuery({
@@ -41,466 +17,40 @@ export default function EditJobPage({ params: { id } }) {
     enabled: !!id,
   });
 
-  const { user, organization } = useStore();
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const formik = useFormik({
-    initialValues: {
-      createdBy: "",
-      organization: "",
-      job_title: "",
-      job_description: "",
-      industry: "",
-      job_type: "",
-      experience_level: "",
-      years_of_experience: 0,
-      required_skills: [],
-      location_type: "",
-      address: "",
-      start_day: "",
-      end_day: "",
-      start_time: "",
-      end_time: "",
-      deadline: "",
-      num_of_vacancy: 0,
-      salary: {
-        min: 0,
-        max: 0,
-      },
-      is_negotiable: false,
-    },
-    onSubmit: (values) => {
-      setLoading(true);
-
-      const handleSuccess = () => {
-        formik.resetForm();
-        router.push("/recruiter/jobs");
-      };
-
-      const handleFailure = (error) => {
-        console.log(error);
-        throw error;
-      };
-
-      const promise = APIKit.we.job
-        .postJob(values)
-        .then(handleSuccess)
-        .catch(handleFailure)
-        .finally(() => setLoading(false));
-
-      return toast.promise(promise, {
-        loading: "Loading...",
-        success: "Job published successful!",
-        error: "Something went wrong!",
-      });
-    },
-  });
-
-  useEffect(() => {
-    formik.setFieldValue("createdBy", user?._id);
-    formik.setFieldValue("organization", organization?._id);
-  }, [organization?._id, user?._id]);
-
-  const handleFieldChange = (fieldName, selectedOption) => {
-    formik.setFieldValue(fieldName, selectedOption ? selectedOption.value : "");
-  };
+  if (isLoading) {
+    return "Loading...";
+  }
 
   return (
     <Container>
       <Card>
-        <CardHeader>
+        <CardHeader className="space-y-4">
           <h2 className="text-center text-3xl font-semibold text-primary ">
-            Post a new Job
+            Edit Job Details
           </h2>
-          <CardDescription>
-            Add fundamental information about the job. This typically includes:{" "}
-            <span className="font-semibold">
-              Job Title, Job Description, Responsibilities
-            </span>
-            . Candidates will see this information when they are going to apply
-            for the job.
-          </CardDescription>
+
+          {job.total_applications ? (
+            <div className="flex items-center justify-center gap-2 rounded-md bg-red-100 py-4 text-sm text-red-700 md:text-base">
+              <div>
+                <Ban className="h-5 w-5" />
+              </div>
+              <p className="font-semibold">
+                This job has received applications and can't be updated.
+              </p>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center gap-2 rounded-md bg-sky-100 py-4 text-sm text-sky-700 md:text-base">
+              <div>
+                <InformationCircleIcon className="h-5 w-5 md:h-6 md:w-6" />
+              </div>
+              <p className="font-semibold">
+                Once a candidate applied this job you cannot edit this job.
+              </p>
+            </div>
+          )}
         </CardHeader>
-        <CardContent className="mt-10">
-          <form onSubmit={formik.handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <p className="font-medium text-primary">
-                Job Title <span className="text-destructive">*</span>
-              </p>
-              <div>
-                <Input
-                  type="text"
-                  id="job_title"
-                  name="job_title"
-                  placeholder="e.g. Product Designer"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.job_title}
-                />
-              </div>
-            </div>
 
-            <div className="space-y-2">
-              <p className="font-medium text-primary">
-                Job Description <span className="text-destructive">*</span>
-              </p>
-              <div>
-                <DynamicQuill
-                  placeholder="e.g. Skills, Requirements, Responsibilities"
-                  modules={{
-                    toolbar: [
-                      [{ header: "1" }, { header: "2" }, { font: [] }],
-                      [{ size: [] }],
-                      ["bold", "italic", "underline", "strike", "blockquote"],
-                      [
-                        { list: "ordered" },
-                        { list: "bullet" },
-                        { indent: "-1" },
-                        { indent: "+1" },
-                      ],
-                      ["link", "image", "video"],
-                      ["clean"],
-                    ],
-                    clipboard: {
-                      matchVisual: false,
-                    },
-                  }}
-                  theme="snow"
-                  value={formik.values.job_description}
-                  onChange={(value) =>
-                    formik.setFieldValue("job_description", value)
-                  }
-                />
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col gap-4 md:flex-row">
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Industry <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <SelectField
-                    id="industry"
-                    name="industry"
-                    placeholder="e.g. Information Technology"
-                    options={IndustryOptions}
-                    onChange={(selectedOption) =>
-                      handleFieldChange("industry", selectedOption)
-                    }
-                    value={IndustryOptions.find(
-                      (el) => el.value === formik.values.industry,
-                    )}
-                    onBlur={formik.handleBlur}
-                    isSearchable
-                  />
-                </div>
-              </div>
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Job Type <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <SelectField
-                    id="job_type"
-                    name="job_type"
-                    placeholder="e.g. Full Time"
-                    options={EmploymentType}
-                    onChange={(selectedOption) =>
-                      handleFieldChange("job_type", selectedOption)
-                    }
-                    value={EmploymentType.find(
-                      (el) => el.value === formik.values.job_type,
-                    )}
-                    onBlur={formik.handleBlur}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col gap-4 md:flex-row">
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Experience Level <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <SelectField
-                    id="experience_level"
-                    name="experience_level"
-                    placeholder="e.g. Senior Level"
-                    options={ExperienceLevel}
-                    onChange={(selectedOption) =>
-                      handleFieldChange("experience_level", selectedOption)
-                    }
-                    value={ExperienceLevel.find(
-                      (el) => el.value === formik.values.experience_level,
-                    )}
-                    onBlur={formik.handleBlur}
-                    isSearchable
-                  />
-                </div>
-              </div>
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Years of Experience{" "}
-                  <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <Input
-                    type="number"
-                    id="years_of_experience"
-                    name="years_of_experience"
-                    placeholder="e.g. 3"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.years_of_experience}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <p className="font-medium text-primary">
-                Required Skills <span className="text-destructive">*</span>
-              </p>
-              <div>
-                <CreatableSelectField
-                  id="required_skills"
-                  name="required_skills"
-                  placeholder="e.g. Python, React"
-                  onChange={(selectedOption) => {
-                    const skills = selectedOption.map((obj) => ({
-                      label:
-                        obj.label.charAt(0).toUpperCase() + obj.label.slice(1),
-                      value: obj.value.toUpperCase().replace(/\s+/g, "_"),
-                    }));
-                    formik.setFieldValue("required_skills", skills);
-                  }}
-                  value={formik.values.required_skills}
-                  onBlur={formik.handleBlur}
-                  isClearable
-                  isMulti
-                  isSearchable
-                />
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col gap-4 md:flex-row">
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Location Type <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <SelectField
-                    id="location_type"
-                    name="location_type"
-                    placeholder="e.g. Onsite"
-                    options={LocationType}
-                    onChange={(selectedOption) =>
-                      handleFieldChange("location_type", selectedOption)
-                    }
-                    value={LocationType.find(
-                      (el) => el.value === formik.values.location_type,
-                    )}
-                    onBlur={formik.handleBlur}
-                    isSearchable
-                  />
-                </div>
-              </div>
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Address <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <Input
-                    type="text"
-                    id="address"
-                    name="address"
-                    placeholder="e.g. Dhaka, Bangladesh"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.address}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col gap-4 md:flex-row">
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Weekly Start Day <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <SelectField
-                    id="start_day"
-                    name="start_day"
-                    placeholder="e.g. Monday"
-                    options={WeekDay}
-                    onChange={(selectedOption) =>
-                      handleFieldChange("start_day", selectedOption)
-                    }
-                    value={WeekDay.find(
-                      (el) => el.value === formik.values.start_day,
-                    )}
-                    onBlur={formik.handleBlur}
-                    isSearchable
-                  />
-                </div>
-              </div>
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Weekly End Day <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <SelectField
-                    id="end_day"
-                    name="end_day"
-                    placeholder="e.g. Friday"
-                    options={WeekDay}
-                    onChange={(selectedOption) =>
-                      handleFieldChange("end_day", selectedOption)
-                    }
-                    value={WeekDay.find(
-                      (el) => el.value === formik.values.end_day,
-                    )}
-                    onBlur={formik.handleBlur}
-                    isSearchable
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col gap-4 md:flex-row">
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Office Start Time <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <TimePicker
-                    name="start_time"
-                    id="start_time"
-                    value={formik.values.start_time}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                </div>
-              </div>
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Office End Time <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <TimePicker
-                    name="end_time"
-                    id="end_time"
-                    value={formik.values.end_time}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col gap-4 md:flex-row">
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Set a Deadline <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <DatePicker
-                    name="deadline"
-                    id="deadline"
-                    value={formik.values.deadline}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                </div>
-              </div>
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Number of Vacancy <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <Input
-                    type="number"
-                    id="num_of_vacancy"
-                    name="num_of_vacancy"
-                    placeholder="e.g. 10"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.num_of_vacancy}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col gap-4 md:flex-row">
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Minimum Expected Salary{" "}
-                  <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <Input
-                    type="number"
-                    id="salary.min"
-                    name="salary.min"
-                    placeholder="e.g. 50,000 BDT"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.salary.min}
-                  />
-                </div>
-              </div>
-              <div className="w-full space-y-2 md:w-1/2">
-                <p className="font-medium text-primary">
-                  Maximum Expected Salary{" "}
-                  <span className="text-destructive">*</span>
-                </p>
-                <div>
-                  <Input
-                    type="number"
-                    id="salary.max"
-                    name="salary.max"
-                    placeholder="e.g. 75,000 BDT"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.salary.max}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="is_negotiable"
-                  name="is_negotiable"
-                  onChange={formik.handleChange}
-                  checked={formik.values.is_negotiable}
-                  className="accent-primary"
-                />
-                <label
-                  htmlFor="is_negotiable"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Negotiable
-                </label>
-              </div>
-            </div>
-
-            <div className="flex justify-end">
-              <Button
-                className={"w-full md:w-fit"}
-                type="submit"
-                isLoading={loading}
-              >
-                Publish Job
-              </Button>
-            </div>
-          </form>
-        </CardContent>
+        <EditJobFrom job={job} />
       </Card>
     </Container>
   );

@@ -186,15 +186,23 @@ const APIKit = {
         const url = "we/job";
         return client.post(url, payload);
       },
+      updateJob: (uid, payload) => {
+        const url = `/we/job/${uid}`;
+        return client.patch(url, payload);
+      },
+      updateJobStatus: (uid, payload) => {
+        const url = `/we/job/${uid}/status`;
+        return client.patch(url, payload);
+      },
+      removeJob: (uid) => {
+        const url = `/we/job/${uid}`;
+        return client.delete(url);
+      },
       application: {
         getAllApplicationForOrg: (queryString) => {
           const url = `/we/job/application${queryString}`;
           return client.get(url);
         },
-      },
-      removeJob: (uid) => {
-        const url = `/we/job/${uid}`;
-        return client.delete(url);
       },
     },
   },

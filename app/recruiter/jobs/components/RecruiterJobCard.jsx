@@ -48,11 +48,11 @@ export default function RecruiterJobCard({ job, refetch }) {
     };
 
     const handleFailure = (error) => {
-      console.log(error);
+      // console.log(error);
       throw error;
     };
 
-    const promise = APIKit.job
+    const promise = APIKit.we.job
       .updateJobStatus(uid, { status })
       .then(handleSuccess)
       .catch(handleFailure);
@@ -60,7 +60,7 @@ export default function RecruiterJobCard({ job, refetch }) {
     return toast.promise(promise, {
       loading: "Loading...",
       success: "Job status update successful!",
-      error: "Something went wrong!",
+      error: (error) => error.message,
     });
   };
 

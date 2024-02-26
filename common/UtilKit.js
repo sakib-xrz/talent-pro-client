@@ -25,6 +25,19 @@ export const setJWTokenAndRedirect = async (token, redirect = () => {}) => {
   }
 };
 
+export function pickDifference(initialValues, submittedValues) {
+  const keys = Object.keys(initialValues);
+
+  const picked = {};
+
+  for (let key of keys) {
+    if (initialValues[key] !== submittedValues[key]) {
+      picked[key] = submittedValues[key];
+    }
+  }
+  return picked;
+}
+
 export const formatText = (text) => {
   if (text) {
     const textLowerCase = text.split("_").join(" ").toLowerCase();
