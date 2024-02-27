@@ -199,6 +199,10 @@ const APIKit = {
         return client.delete(url);
       },
       application: {
+        getAllApplicationForJob: (uid, queryString) => {
+          const url = `/we/job/${uid}/application${queryString}`;
+          return client.get(url);
+        },
         getAllApplicationForOrg: (queryString) => {
           const url = `/we/job/application${queryString}`;
           return client.get(url);

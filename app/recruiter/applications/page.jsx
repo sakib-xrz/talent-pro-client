@@ -51,8 +51,6 @@ export default function RecruiterApplications() {
     return "Couldn't find any applications";
   };
 
-  console.log(applications);
-
   const tableColumns = [
     {
       title: <p className="text-center">#</p>,
