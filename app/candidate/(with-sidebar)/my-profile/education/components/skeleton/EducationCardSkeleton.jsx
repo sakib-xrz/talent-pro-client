@@ -1,5 +1,5 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function EducationCardSkeleton() {
   return (
