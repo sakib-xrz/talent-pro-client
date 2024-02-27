@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import EducationEditFrom from "./EducationEditFrom";
+import EducationCardSkeleton from "./skeleton/EducationCardSkeleton";
 
 export default function EducationCard({ education, refetch }) {
   const [showEducationEditForm, setShowEducationEditForm] = useState(false);

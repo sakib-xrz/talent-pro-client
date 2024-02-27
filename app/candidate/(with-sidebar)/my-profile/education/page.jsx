@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import EducationAddForm from "./components/EducationAddForm";
 import EducationCard from "./components/EducationCard";
 import TitleWithDescription from "../../components/TitleWithDescription";
+import EducationCardSkeleton from "./components/skeleton/EducationCardSkeleton";
 
 export default function EducationalBackground() {
   const { user } = useStore();
@@ -26,10 +27,6 @@ export default function EducationalBackground() {
     queryFn: () => APIKit.me.education.getEducation().then(({ data }) => data),
   });
 
-  if (isLoading) {
-    return "Loading...";
-  }
-
   const educations = userEducation?.education;
 
   return (
@@ -39,7 +36,12 @@ export default function EducationalBackground() {
         desc="What schools have you studied at?"
       />
       <hr />
-      {educations?.length > 0 ? (
+
+      {isLoading ? (
+        [...Array(Number(2)).keys()].map((_, index) => (
+          <EducationCardSkeleton key={index} />
+        ))
+      ) : educations?.length > 0 ? (
         <div className="flex flex-col gap-2">
           {educations.map((education, index) => (
             <EducationCard
