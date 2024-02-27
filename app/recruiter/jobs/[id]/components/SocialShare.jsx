@@ -12,6 +12,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 export default function SocialShare({ job }) {
   const { job_title } = job;
@@ -32,17 +33,11 @@ export default function SocialShare({ job }) {
   return (
     <div>
       <Menu as="div" className="relative">
-        <Menu.Button>
-          <TooltipProvider delayDuration={0}>
-            <Tooltip>
-              <TooltipTrigger className="mt-2">
-                <Share2 className="w-4.5 h-4.5" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="hidden lg:block">Share Job</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+        <Menu.Button className={"w-full"}>
+          <Button className="w-full items-center gap-2" variant="outline">
+            <Share2 className="w-4" />
+            <p className="font-semibold">Share Job</p>
+          </Button>
         </Menu.Button>
         <Transition
           as={Fragment}

@@ -15,6 +15,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Breadcrumb from "@/components/shared/Breadcrumb";
+
+const contents = [
+  { href: "/recruiter/jobs", label: "Jobs" },
+  { href: null, label: "Job Details" },
+];
 
 export default function RecruiterJobDetailsPage({ params: { id } }) {
   const { data: job, isLoading } = useQuery({
@@ -31,6 +37,7 @@ export default function RecruiterJobDetailsPage({ params: { id } }) {
 
   return (
     <Container>
+      <Breadcrumb contents={contents} />
       <Card className="space-y-5">
         <CardTitle className="flex flex-col gap-2 xs:flex-row xs:items-center xs:justify-between">
           Job Analytics

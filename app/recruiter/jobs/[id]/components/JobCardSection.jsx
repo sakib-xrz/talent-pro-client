@@ -3,6 +3,9 @@ import Image from "next/image";
 import { getTimeDifference } from "@/common/UtilKit";
 
 import SocialShare from "./SocialShare";
+import { Button } from "@/components/ui/button";
+import { Users } from "lucide-react";
+import Link from "next/link";
 
 export default function JobCardSection({ job }) {
   return (
@@ -14,7 +17,15 @@ export default function JobCardSection({ job }) {
             {job?.createdAt ? getTimeDifference(job.createdAt) : "Not set"}
           </p>
 
-          <SocialShare job={job} />
+          <div className="hidden items-center gap-3 sm:flex">
+            <SocialShare job={job} />
+            <Link href={`/recruiter/jobs/${job._id}/application`}>
+              <Button className="items-center gap-2">
+                <Users className="w-4" />
+                <p className="font-semibold">View Applicants</p>
+              </Button>
+            </Link>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <Image
@@ -36,6 +47,20 @@ export default function JobCardSection({ job }) {
               {job?.address || "Job location not set"}
             </div>
           </div>
+        </div>
+        <div className="flex flex-col gap-3 xs:flex-row xs:items-center sm:hidden">
+          <div className="w-full">
+            <SocialShare job={job} />
+          </div>
+          <Link
+            href={`/recruiter/jobs/${job._id}/application`}
+            className="w-full"
+          >
+            <Button className="w-full items-center gap-2">
+              <Users className="w-4" />
+              <p className="font-semibold">View Applicants</p>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

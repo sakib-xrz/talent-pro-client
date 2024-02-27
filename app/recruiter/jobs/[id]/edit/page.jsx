@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import EditJobFrom from "./EditJobFrom";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import { Ban } from "lucide-react";
+import Breadcrumb from "@/components/shared/Breadcrumb";
 
 export default function EditJobPage({ params: { id } }) {
   const { data: job, isLoading } = useQuery({
@@ -21,8 +22,15 @@ export default function EditJobPage({ params: { id } }) {
     return "Loading...";
   }
 
+  const contents = [
+    { href: "/recruiter/jobs", label: "Jobs" },
+    { href: `/recruiter/jobs/${id}`, label: "Job Details" },
+    { href: null, label: "Edit Job Details" },
+  ];
+
   return (
     <Container>
+      <Breadcrumb contents={contents} />
       <Card>
         <CardHeader className="space-y-4">
           <h2 className="text-center text-3xl font-semibold text-primary ">
