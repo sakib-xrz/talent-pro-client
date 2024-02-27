@@ -12,25 +12,20 @@ import { Button } from "@/components/ui/button";
 import ExperienceAddForm from "./components/ExperienceAddForm";
 import ExperienceCard from "./components/ExperienceCard";
 import TitleWithDescription from "../../components/TitleWithDescription";
+import ExperienceCardSkeleton from "./components/skeleton/ExperienceCardSkeleton";
 
 export default function ProfessionalExperience() {
   const { user } = useStore();
   const [showExperienceAddForm, setShowAddExperienceForm] = useState(false);
   const {
-    data: userExperience,
+    data: experiences,
     isLoading,
     refetch,
   } = useQuery({
     queryKey: ["my-experiences", user?.email],
     queryFn: () =>
-      APIKit.me.experience.getExperience().then(({ data }) => data),
+      APIKit.me.experience.getExperience().then(({ data }) => data?.experience),
   });
-
-  if (isLoading) {
-    return "Loading...";
-  }
-
-  const experiences = userExperience?.experience;
 
   return (
     <div className="space-y-3">
@@ -39,7 +34,12 @@ export default function ProfessionalExperience() {
         desc="What other positions have you held?"
       />
       <hr />
-      {experiences?.length > 0 ? (
+
+      {isLoading ? (
+        [...Array(Number(2)).keys()].map((_, index) => (
+          <ExperienceCardSkeleton key={index} />
+        ))
+      ) : experiences?.length > 0 ? (
         <div className="flex flex-col gap-2">
           {experiences.map((experience, index) => (
             <ExperienceCard
