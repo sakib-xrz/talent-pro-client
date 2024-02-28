@@ -91,14 +91,14 @@ export default function RecruiterJobDetailsPage({ params: { id } }) {
 
         <hr />
 
-        <JobInfoSection job={job} />
-
-        <hr />
-
         <div
           className="ql-editor prose !p-0"
           dangerouslySetInnerHTML={{ __html: job_description }}
         />
+
+        <hr />
+
+        <JobInfoSection job={job} />
       </Card>
     </Container>
   );
