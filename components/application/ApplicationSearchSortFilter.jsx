@@ -7,7 +7,11 @@ import { Label } from "@/components/ui/label";
 import { Search } from "@/components/ui/search";
 import SelectField from "@/components/form/SelectField";
 
-export default function ApplicationSearchSortFilter({ params, setParams }) {
+export default function ApplicationSearchSortFilter({
+  params,
+  setParams,
+  searchPlaceholder,
+}) {
   const [searchKey, setSearchKey] = useState("");
 
   const debounced = useDebouncedCallback((value) => {
@@ -36,7 +40,7 @@ export default function ApplicationSearchSortFilter({ params, setParams }) {
               }));
               setSearchKey("");
             }}
-            placeholder={"Search by job title..."}
+            placeholder={searchPlaceholder || "Search by job title..."}
           />
         </div>
 
@@ -75,7 +79,7 @@ export default function ApplicationSearchSortFilter({ params, setParams }) {
 
       {params.search && (
         <p className="truncate text-sm text-primary">
-          Showing jobs for{" "}
+          Showing application for{" "}
           <span className="font-bold">{`"${params.search}"`}</span>
         </p>
       )}

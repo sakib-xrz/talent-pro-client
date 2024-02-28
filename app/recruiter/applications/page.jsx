@@ -190,7 +190,13 @@ export default function RecruiterApplications() {
       <div className="space-y-4">
         <PageTitleWithButton title={"All Applicants"} />
 
-        <ApplicationSearchSortFilter params={params} setParams={setParams} />
+        <ApplicationSearchSortFilter
+          params={params}
+          setParams={setParams}
+          searchPlaceholder={
+            "Search by applicant name, email, phone or job title..."
+          }
+        />
 
         {isLoading ? (
           <div>Loading...</div>
