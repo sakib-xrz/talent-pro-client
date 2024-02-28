@@ -75,7 +75,7 @@ export default function ApplicationSearchSortFilter({ params, setParams }) {
 
       {params.search && (
         <p className="truncate text-sm text-primary">
-          Showing jobs for{" "}
+          Showing application for{" "}
           <span className="font-bold">{`"${params.search}"`}</span>
         </p>
       )}
