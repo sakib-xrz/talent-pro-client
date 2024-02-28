@@ -188,7 +188,11 @@ export default function ApplicationForJob({ params: { id } }) {
       <div className="space-y-4">
         <Breadcrumb contents={contents} />
 
-        <ApplicationSearchSortFilter params={params} setParams={setParams} />
+        <ApplicationSearchSortFilter
+          params={params}
+          setParams={setParams}
+          searchPlaceholder={"Search by applicant name, email or phone..."}
+        />
 
         {isLoading ? (
           <div>Loading...</div>
