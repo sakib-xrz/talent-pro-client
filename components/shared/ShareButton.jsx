@@ -23,7 +23,7 @@ export default function ShareButton({
     } else {
       navigator.clipboard
         .writeText(url)
-        .then(() => toast.success("Link copied."));
+        .then(() => toast.success("Link copied on clipboard."));
     }
   }
 
