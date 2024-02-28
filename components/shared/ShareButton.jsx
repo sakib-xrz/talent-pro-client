@@ -10,6 +10,7 @@ export default function ShareButton({ url, title, variant, mini = false }) {
       if (navigator.share) {
         await navigator.share({
           title,
+          text: `${title}\n${url}`,
           url,
         });
       } else {
