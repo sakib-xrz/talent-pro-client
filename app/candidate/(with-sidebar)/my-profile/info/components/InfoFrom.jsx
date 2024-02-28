@@ -24,6 +24,18 @@ const validationSchema = Yup.object().shape({
   location: Yup.string().required("Location is required"),
 
   industry: Yup.string().required("Industry is required"),
+
+  gender: Yup.string().required("Gender is required"),
+
+  date_of_birth: Yup.date()
+    .max(
+      new Date(new Date().getFullYear() - 10, 11, 31),
+      "Date of birth cannot be today or in the future",
+    )
+    .min(
+      new Date(new Date().getFullYear() - 10, 0, 1),
+      "Date of birth must be at least 10 years ago",
+    ),
 });
 
 export default function InfoFrom({ initialValues, refetch }) {
