@@ -2,18 +2,22 @@ import Image from "next/image";
 
 import { Goal, PauseCircle } from "lucide-react";
 
-import { getTimeDifference } from "@/common/UtilKit";
+import { getBaseUrl, getTimeDifference } from "@/common/UtilKit";
 
-import SocialShare from "./SocialShare";
+import ShareButton from "@/components/shared/ShareButton";
 
 export default function JobCardSection({ job }) {
+  const baseUrl = getBaseUrl();
+
+  const jobPublicLink = `${baseUrl}/public/jobs/${job?._id}`;
+
   return (
     <div className="space-y-5">
       <div className="flex justify-between">
         <h4 className="line-clamp-1 text-lg font-semibold text-primary sm:line-clamp-none">
           About this role
         </h4>
-        <SocialShare job={job} />
+        <ShareButton url={jobPublicLink} title={job?.job_title} mini />
       </div>
 
       <div className="space-y-2">

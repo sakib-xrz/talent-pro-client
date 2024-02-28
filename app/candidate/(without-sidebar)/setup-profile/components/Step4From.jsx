@@ -136,7 +136,6 @@ export default function Step4From({
           <div className="space-y-2">
             <p className="font-medium text-primary">
               What is your desired salary?{" "}
-              <span className="text-destructive">*</span>
             </p>
             <div className="flex flex-col items-center justify-between gap-2 sm:flex-row sm:gap-4">
               <div className="w-full space-y-2">
