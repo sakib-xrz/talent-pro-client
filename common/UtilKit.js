@@ -162,3 +162,29 @@ export function generateAge(dateString) {
   }
   return "";
 }
+
+// function generateGoogleCalendarEventLink(eventDetails) {
+//   // eventDetails is an object containing dynamic event details
+//   const baseUrl = 'https://calendar.google.com/calendar/u/0/r/eventedit?vcon=meet';
+
+//   // Example parameters: title, startTime, endTime, location
+//   const { title, startTime, endTime, location } = eventDetails;
+
+//   // Construct the URL with dynamic parameters
+//   const url = `${baseUrl}&text=${encodeURIComponent(title)}&dates=${encodeURIComponent(startTime)}/${encodeURIComponent(endTime)}&location=${encodeURIComponent(location)}&hl=en-GB&pli=1`;
+
+//   return url;
+// }
+
+// // Example event details
+// const eventDetails = {
+//   title: 'Meeting with Client',
+//   startTime: '20240301T100000Z', // Format: YYYYMMDDTHHMMSSZ
+//   endTime: '20240301T110000Z',   // Format: YYYYMMDDTHHMMSSZ
+//   location: '123 Main St, City, Country'
+// };
+
+// // Generate the Google Calendar event link
+// const googleCalendarEventLink = generateGoogleCalendarEventLink(eventDetails);
+
+// console.log(googleCalendarEventLink);
