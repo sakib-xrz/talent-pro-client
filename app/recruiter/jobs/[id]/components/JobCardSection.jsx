@@ -29,7 +29,9 @@ export default function JobCardSection({ job }) {
             <Link href={`/recruiter/jobs/${job._id}/application`}>
               <Button className="items-center gap-2">
                 <Users className="w-4" />
-                <p className="font-semibold">View Applicants</p>
+                <p className="whitespace-nowrap font-semibold">
+                  View Applicants
+                </p>
               </Button>
             </Link>
           </div>
@@ -67,7 +69,9 @@ export default function JobCardSection({ job }) {
           >
             <Button className="w-full items-center gap-2">
               <Users className="w-4" />
-              <p className="font-semibold">View Applicants</p>
+              <p className="whitespace-nowrap font-semibold ">
+                View Applicants
+              </p>
             </Button>
           </Link>
         </div>
