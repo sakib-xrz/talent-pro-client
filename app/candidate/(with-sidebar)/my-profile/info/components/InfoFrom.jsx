@@ -108,7 +108,10 @@ export default function InfoFrom({ initialValues, refetch }) {
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="email" className="md:w-2/5">
-          Email Address
+          {" "}
+          <p className="font-medium text-primary">
+            Email Address <span className="text-destructive">*</span>
+          </p>
         </Label>
         <Input
           name="email"
@@ -121,7 +124,9 @@ export default function InfoFrom({ initialValues, refetch }) {
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="gender" className="md:w-2/5">
-          Gender
+          <p className="font-medium text-primary">
+            Gender <span className="text-destructive">*</span>
+          </p>
         </Label>
         <div className="w-full">
           <SelectField
@@ -143,7 +148,9 @@ export default function InfoFrom({ initialValues, refetch }) {
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="date_of_birth" className="md:w-2/5">
-          Date of birth
+          <p className="font-medium text-primary">
+            Date of Birth <span className="text-destructive">*</span>
+          </p>
         </Label>
         <div className="w-full">
           <DatePicker
@@ -162,7 +169,10 @@ export default function InfoFrom({ initialValues, refetch }) {
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="phone" className="md:w-2/5">
-          Contact Number
+          {" "}
+          <p className="font-medium text-primary">
+            Contact Number <span className="text-destructive">*</span>
+          </p>
         </Label>
         <div className="w-full">
           <Phone
@@ -182,7 +192,9 @@ export default function InfoFrom({ initialValues, refetch }) {
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="location" className="md:w-2/5">
-          Location
+          <p className="font-medium text-primary">
+            Location <span className="text-destructive">*</span>
+          </p>{" "}
         </Label>
         <div className="w-full">
           <Input
@@ -202,7 +214,9 @@ export default function InfoFrom({ initialValues, refetch }) {
 
       <div className="flex flex-col gap-2 md:flex-row md:gap-3">
         <Label htmlFor="job_status" className="md:w-2/5">
-          Job Status
+          <p className="font-medium text-primary">
+            Job Status <span className="text-destructive">*</span>
+          </p>
         </Label>
         <div className="w-full">
           {EmployStatus.map((item, i) => (
