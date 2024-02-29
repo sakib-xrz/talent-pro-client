@@ -16,6 +16,12 @@ import FormikErrorBox from "@/components/form/FormikErrorBox";
 import SelectField from "@/components/form/SelectField";
 import DatePicker from "@/components/form/DatePicker";
 
+const tenYearsAgoDate = new Date(
+  new Date().setFullYear(new Date().getFullYear() - 10),
+)
+  .toISOString()
+  .split("T")[0];
+
 const validationSchema = Yup.object().shape({
   phone: Yup.string()
     .matches(/^01[3-9]\d{8}$/, "Invalid phone number")
@@ -28,14 +34,8 @@ const validationSchema = Yup.object().shape({
   gender: Yup.string().required("Gender is required"),
 
   date_of_birth: Yup.date()
-    .max(
-      new Date(new Date().getFullYear() - 10, 11, 31),
-      "Date of birth cannot be today or in the future",
-    )
-    .min(
-      new Date(new Date().getFullYear() - 10, 0, 1),
-      "Date of birth must be at least 10 years ago",
-    ),
+    .max(tenYearsAgoDate, "You must be at least 10 years old")
+    .required("Date of birth is required"),
 });
 
 export default function InfoFrom({ initialValues, refetch }) {
@@ -109,9 +109,7 @@ export default function InfoFrom({ initialValues, refetch }) {
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="email" className="md:w-2/5">
           {" "}
-          <p className="font-medium text-primary">
-            Email Address <span className="text-destructive">*</span>
-          </p>
+          <p className="font-medium text-primary">Email Address</p>
         </Label>
         <Input
           name="email"
@@ -162,6 +160,7 @@ export default function InfoFrom({ initialValues, refetch }) {
               setShowActionButtons(true);
             }}
             onBlur={formik.handleBlur}
+            max={tenYearsAgoDate}
           />
           <FormikErrorBox formik={formik} field={"date_of_birth"} />
         </div>

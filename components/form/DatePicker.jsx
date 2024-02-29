@@ -13,9 +13,9 @@ export default function DatePicker({
   value,
   onChange,
   disabled,
+  ...props
 }) {
   const DATE_FIELD_STYLES = cn(DATE_BOX_STYLES);
-  const maxDate = "2014-12-31";
   return (
     <div className="flex flex-col gap-1">
       {label && (
@@ -30,8 +30,8 @@ export default function DatePicker({
         name={name}
         value={value}
         onChange={onChange}
-        max={maxDate}
         className={DATE_FIELD_STYLES}
+        {...props}
       />
     </div>
   );
