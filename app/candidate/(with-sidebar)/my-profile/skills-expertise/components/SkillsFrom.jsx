@@ -76,7 +76,7 @@ export default function SkillsFrom({ initialValues, refetch }) {
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="skills" className="md:w-2/5">
-          Skills
+          Skills <span className="text-destructive">*</span>
         </Label>
         <div className="w-full">
           <CreatableSelectField

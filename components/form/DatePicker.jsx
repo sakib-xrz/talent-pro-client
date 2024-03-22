@@ -13,6 +13,7 @@ export default function DatePicker({
   value,
   onChange,
   disabled,
+  ...props
 }) {
   const DATE_FIELD_STYLES = cn(DATE_BOX_STYLES);
   return (
@@ -30,6 +31,7 @@ export default function DatePicker({
         value={value}
         onChange={onChange}
         className={DATE_FIELD_STYLES}
+        {...props}
       />
     </div>
   );
