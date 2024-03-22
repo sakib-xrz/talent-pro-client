@@ -131,6 +131,7 @@ const APIKit = {
         const url = `me/job/${uid}`;
         return client.get(url);
       },
+
       saved: {
         getSaveJobs: (queryString) => {
           const url = `me/job/saved${queryString}`;
@@ -198,6 +199,7 @@ const APIKit = {
         const url = `/we/job/${uid}`;
         return client.delete(url);
       },
+
       application: {
         getAllApplicationForJob: (uid, queryString) => {
           const url = `/we/job/${uid}/application${queryString}`;
