@@ -1,0 +1,4 @@
+{
+  "DEPLOYPATH": "/home/talentpr/talent-pro-client",
+  "task": ["index.php", "images"]
+}
