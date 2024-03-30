@@ -11,7 +11,7 @@ export default function EducationCardSkeleton() {
 
         <div className="space-y-2">
           <Skeleton className={"h-5 w-40"} />
-          <Skeleton className={"h-4 w-72"} />
+          <Skeleton className={"h-4 w-64"} />
           <Skeleton className={"h-3.5 w-52"} />
           <Skeleton className={"h-3.5 w-44"} />
         </div>
