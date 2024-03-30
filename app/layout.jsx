@@ -9,6 +9,7 @@ const PlusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 export const metadata = {
   title: "Talent Pro",
   description: "Powered by Talent Pro",
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({ children }) {

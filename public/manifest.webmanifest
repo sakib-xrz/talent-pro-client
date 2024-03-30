@@ -1,0 +1,15 @@
+{
+  "name": "Talent Pro",
+  "short_name": "talent_pro",
+  "theme_color": "#020817",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "any",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-256.png", "type": "image/png", "sizes": "256x256" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
