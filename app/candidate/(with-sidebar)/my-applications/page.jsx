@@ -37,6 +37,7 @@ export default function MyApplications() {
       APIKit.me.job.application
         .getAppliedJobs(queryString)
         .then((data) => data),
+    keepPreviousData: true,
   });
 
   const getDynamicEmptyStateTitle = () => {

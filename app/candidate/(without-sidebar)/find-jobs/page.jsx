@@ -44,6 +44,7 @@ export default function CandidateJobPage() {
   } = useQuery({
     queryKey: [`me/job${queryString}`],
     queryFn: () => APIKit.me.job.getJob(queryString).then((data) => data),
+    keepPreviousData: true,
   });
 
   const {
@@ -54,6 +55,7 @@ export default function CandidateJobPage() {
     queryKey: ["/me/job/saved/list"],
     queryFn: () =>
       APIKit.me.job.saved.getSaveJobsList().then((data) => data.data),
+    keepPreviousData: true,
   });
 
   const getDynamicEmptyStateTitle = () => {

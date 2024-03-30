@@ -41,6 +41,7 @@ export default function SavedJobs() {
     queryKey: [`me/job/saved?${queryString}`],
     queryFn: () =>
       APIKit.me.job.saved.getSaveJobs(queryString).then((data) => data),
+    keepPreviousData: true,
   });
 
   const {
