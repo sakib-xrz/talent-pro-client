@@ -154,16 +154,17 @@ export default async function Home() {
           <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-12 sm:flex-row-reverse sm:items-center ">
             <div className="sm:w-1/2">
               <Image
-                height={500}
-                width={500}
+                height={1000}
+                width={1000}
                 src="/images/start-apply.webp"
                 alt=""
                 className="aspect-auto w-full rounded-lg object-cover object-center"
+                quality={100}
               />
             </div>
             <div className="sm:1/2 space-y-2 md:space-y-6">
               <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
-                Start Applying today
+                Start Applying Today
               </h2>
               <p className="text-base sm:max-w-md">
                 Transform your job search into a journey of success. Get started
@@ -188,11 +189,12 @@ export default async function Home() {
           <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
             <div className="w-full sm:w-1/2">
               <Image
-                height={500}
-                width={500}
+                height={1000}
+                width={1000}
                 src="/images/recruiter.webp"
                 alt=""
                 className="h-auto w-full rounded-lg object-cover object-center"
+                quality={100}
               />
             </div>
             <div className="space-y-5 sm:w-1/2">
@@ -219,16 +221,17 @@ export default async function Home() {
           <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-12 sm:flex-row-reverse sm:items-center ">
             <div className="sm:w-1/2">
               <Image
-                height={500}
-                width={500}
+                height={1000}
+                width={1000}
                 src="/images/start-hire.webp"
                 alt=""
                 className="aspect-auto w-full rounded-lg object-cover object-center"
+                quality={100}
               />
             </div>
             <div className="sm:1/2 space-y-2 md:space-y-6">
               <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
-                Start Hiring today
+                Start Hiring Today
               </h2>
               <p className="text-base sm:max-w-md">
                 Join the future of recruitment and take the first step towards
