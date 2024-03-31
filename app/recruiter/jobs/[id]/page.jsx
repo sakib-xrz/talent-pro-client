@@ -90,6 +90,8 @@ export default function RecruiterJobDetailsPage({ params: { id } }) {
         <JobCardSection job={job} />
 
         <hr />
+        <JobInfoSection job={job} />
+        <hr />
 
         <div
           className="ql-editor prose !p-0"
@@ -97,8 +99,6 @@ export default function RecruiterJobDetailsPage({ params: { id } }) {
         />
 
         <hr />
-
-        <JobInfoSection job={job} />
       </Card>
     </Container>
   );
