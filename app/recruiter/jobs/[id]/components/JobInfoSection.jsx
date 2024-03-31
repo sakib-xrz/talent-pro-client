@@ -5,21 +5,6 @@ import { Badge } from "@/components/ui/badge";
 export default function JobInfoSection({ job }) {
   return (
     <div className="space-y-5">
-      <div className="space-y-2">
-        <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
-          Required Skills
-        </h3>
-        <div className="flex flex-wrap items-center gap-2">
-          {job?.required_skills?.length
-            ? job?.required_skills.map((skill) => (
-                <Badge variant="secondary" size="lg" key={skill._id}>
-                  {skill.label}
-                </Badge>
-              ))
-            : "No skill required"}
-        </div>
-      </div>
-
       <div className="grid gap-4 md:grid-cols-3">
         <div>
           <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
@@ -50,6 +35,22 @@ export default function JobInfoSection({ job }) {
               ? `${formatText(job?.location_type)}`
               : "Location type not set"}
           </p>
+        </div>
+      </div>
+      <div>
+        <div className="space-y-2">
+          <h3 className="line-clamp-1 font-semibold text-primary sm:line-clamp-none">
+            Required Skills
+          </h3>
+          <div className="flex flex-wrap items-center gap-2">
+            {job?.required_skills?.length
+              ? job?.required_skills.map((skill) => (
+                  <Badge variant="secondary" size="lg" key={skill._id}>
+                    {skill.label}
+                  </Badge>
+                ))
+              : "No skill required"}
+          </div>
         </div>
       </div>
 
