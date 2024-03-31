@@ -30,77 +30,75 @@ export default function RecruiterJobDetailsPage({ params: { id } }) {
     enabled: !!id,
   });
 
-  if (isLoading) {
-    return <RecruiterJobDetailsSkeletonPage />;
-  }
-
-  const { job_description } = job;
-
   return (
     <Container>
       <Breadcrumb contents={contents} />
-      <Card className="space-y-5">
-        <CardTitle className="flex flex-col gap-2 xs:flex-row xs:items-center xs:justify-between">
-          Job Analytics
-          <div className="flex items-center justify-between gap-6">
-            <div className="flex items-center gap-6">
-              <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <div className="flex items-center gap-2 text-primary">
-                      <EyeIcon className="h-5 w-5" />
-                      <CardDescription>
-                        {job?.total_views || 0}{" "}
-                        {job?.total_views > 1 ? "Views" : "View"}
-                      </CardDescription>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="hidden lg:block">
-                      {job?.total_views || 0} candidate viewed this job
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
 
-              <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <div className="flex items-center gap-2 text-primary">
-                      <UsersIcon className="h-5 w-5" />
-                      <CardDescription>
-                        {job?.total_applications || 0} Applied
-                      </CardDescription>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="hidden lg:block">
-                      {job?.total_applications || 0} candidate applied this job
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+      {isLoading ? (
+        <RecruiterJobDetailsSkeletonPage />
+      ) : (
+        <Card className="space-y-5">
+          <CardTitle className="flex flex-col gap-2 xs:flex-row xs:items-center xs:justify-between">
+            Job Analytics
+            <div className="flex items-center justify-between gap-6">
+              <div className="flex items-center gap-6">
+                <TooltipProvider delayDuration={0}>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div className="flex items-center gap-2 text-primary">
+                        <EyeIcon className="h-5 w-5" />
+                        <CardDescription>
+                          {job?.total_views || 0}{" "}
+                          {job?.total_views > 1 ? "Views" : "View"}
+                        </CardDescription>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="hidden lg:block">
+                        {job?.total_views || 0} candidate viewed this job
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+
+                <TooltipProvider delayDuration={0}>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div className="flex items-center gap-2 text-primary">
+                        <UsersIcon className="h-5 w-5" />
+                        <CardDescription>
+                          {job?.total_applications || 0} Applied
+                        </CardDescription>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="hidden lg:block">
+                        {job?.total_applications || 0} candidate applied this
+                        job
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+
+              <Action job={job} />
             </div>
+          </CardTitle>
 
-            <Action job={job} />
-          </div>
-        </CardTitle>
+          <hr />
 
-        <hr />
+          <JobCardSection job={job} />
 
-        <JobCardSection job={job} />
+          <hr />
+          <JobInfoSection job={job} />
+          <hr />
 
-        <hr />
-        <JobInfoSection job={job} />
-        <hr />
-
-        <div
-          className="ql-editor prose !p-0"
-          dangerouslySetInnerHTML={{ __html: job_description }}
-        />
-
-        <hr />
-      </Card>
+          <div
+            className="ql-editor prose !p-0"
+            dangerouslySetInnerHTML={{ __html: job.job_description }}
+          />
+        </Card>
+      )}
     </Container>
   );
 }
