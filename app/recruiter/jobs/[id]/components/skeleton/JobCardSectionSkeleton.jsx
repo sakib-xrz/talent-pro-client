@@ -5,13 +5,22 @@ export default function JobCardSectionSkeleton() {
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <Skeleton className="h-6 w-36" />
-        <Skeleton className="h-8 w-8 rounded-full" />
+        <div className="flex items-center justify-center space-x-4">
+          <Skeleton className="h-6 w-32" />
+          <Skeleton className="h-6 w-32" />
+          <Skeleton className="h-8 w-1" />
+        </div>
       </div>
+
+      <hr />
 
       <div className="space-y-2">
         <div className="flex items-center justify-between gap-2">
           <Skeleton className="h-3 w-32" />
-          <Skeleton className="h-6 w-32" />
+          <div className="flex items-center justify-between  space-x-4">
+            <Skeleton className="h-10 w-32" />
+            <Skeleton className="h-10 w-32" />
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <div>

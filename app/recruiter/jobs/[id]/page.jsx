@@ -16,6 +16,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Breadcrumb from "@/components/shared/Breadcrumb";
+import RecruiterJobDetailsSkeletonPage from "./components/skeleton/RecruiterJobDetailsSkeletonPage";
 
 const contents = [
   { href: "/recruiter/jobs", label: "Jobs" },
@@ -30,7 +31,7 @@ export default function RecruiterJobDetailsPage({ params: { id } }) {
   });
 
   if (isLoading) {
-    return "Loading...";
+    return <RecruiterJobDetailsSkeletonPage />;
   }
 
   const { job_description } = job;
