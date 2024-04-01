@@ -1,20 +1,43 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import APIKit from "@/common/APIkit";
-import { ApplicationStatus } from "@/common/KeyChain";
-import { formatDate, generateAge, generateQueryString } from "@/common/UtilKit";
+import {
+  formatDate,
+  formatText,
+  generateAge,
+  generateQueryString,
+} from "@/common/UtilKit";
 import ApplicationSearchSortFilter from "@/components/application/ApplicationSearchSortFilter";
-import Select from "@/components/form/Select";
 import Container from "@/components/shared/Container";
 import DataTable from "@/components/shared/DataTable";
 import EmptyState from "@/components/shared/EpmtyState";
 import PageTitleWithButton from "@/components/shared/PageTitleWithButton";
 import Pagination from "@/components/shared/Pagination";
+import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+
+const badgeColor = {
+  application_received:
+    "text-green-600 bg-green-100 hover:text-green-600 hover:bg-green-100", // Success
+  application_in_review:
+    "text-sky-600 bg-sky-100 hover:text-sky-600 hover:bg-sky-100", // Info
+  shortlisted_for_interview:
+    "text-sky-600 bg-sky-100 hover:text-sky-600 hover:bg-sky-100", // Info
+  interview_scheduled:
+    "text-sky-600 bg-sky-100 hover:text-sky-600 hover:bg-sky-100", // Info
+  interview_completed:
+    "text-green-600 bg-green-100 hover:text-green-600 hover:bg-green-100", // Success
+  hired: "text-green-600 bg-green-100 hover:text-green-600 hover:bg-green-100", // Success
+  interview_rescheduled:
+    "text-sky-600 bg-sky-100 hover:text-sky-600 hover:bg-sky-100", // Info
+  interview_canceled:
+    "text-red-600 bg-red-100 hover:text-red-600 hover:bg-red-100", // Error
+  not_selected: "text-red-600 bg-red-100 hover:text-red-600 hover:bg-red-100", // Error
+};
 
 export default function RecruiterApplications() {
   const router = useRouter();
@@ -93,9 +116,7 @@ export default function RecruiterApplications() {
     {
       title: "Applied for",
       renderer: (data) => (
-        <p className="whitespace-normal">
-          {data?.job?.job_title || "Job title not available"}
-        </p>
+        <p>{data?.job?.job_title || "Job title not available"}</p>
       ),
     },
     {
@@ -172,15 +193,14 @@ export default function RecruiterApplications() {
     {
       title: "Status",
       renderer: (data) => (
-        <div className="mx-auto w-52">
-          <Select
-            options={ApplicationStatus}
-            value={data.status}
-            onChange={(e) => {
-              console.log(e.target.value);
-            }}
-          />
-        </div>
+        <Badge
+          size="lg"
+          className={`${
+            badgeColor[data?.status]
+          } hidden hover:cursor-default xs:block`}
+        >
+          {formatText(data?.status)}
+        </Badge>
       ),
     },
   ];
@@ -207,6 +227,10 @@ export default function RecruiterApplications() {
               data={applications.data}
               wrapperClassName="max-h-[calc(100vh-200px)] whitespace-nowrap font-medium"
               theadClassName="sticky top-0 z-10"
+              isClickable={true}
+              handleTableRowClick={(row) =>
+                router.push(`/recruiter/applications/${row._id}`)
+              }
             />
             <Pagination
               params={params}
