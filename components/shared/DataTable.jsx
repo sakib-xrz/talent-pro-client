@@ -10,6 +10,7 @@ export default function DataTable({
   tbodyClassName,
   tbodyTrClassName,
   handleTableRowClick,
+  isClickable = false,
 }) {
   return (
     <div
@@ -37,7 +38,10 @@ export default function DataTable({
           {data.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className={tbodyTrClassName}
+              className={`${tbodyTrClassName} ${
+                isClickable &&
+                "cursor-pointer hover:bg-gray-200 [&>td:nth-child(1)]:hover:bg-gray-200"
+              }`}
               onClick={
                 handleTableRowClick
                   ? () => handleTableRowClick(row, rowIndex)

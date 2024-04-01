@@ -38,6 +38,18 @@ export function pickDifference(initialValues, submittedValues) {
   return picked;
 }
 
+export function sanitizeParams(params) {
+  const sanitizedObj = {};
+
+  for (const key in params) {
+    if (params[key]) {
+      sanitizedObj[key] = params[key];
+    }
+  }
+
+  return sanitizedObj;
+}
+
 export const formatText = (text) => {
   if (text) {
     const textLowerCase = text.split("_").join(" ").toLowerCase();
