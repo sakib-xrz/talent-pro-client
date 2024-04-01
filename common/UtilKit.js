@@ -158,7 +158,7 @@ export function generateAge(dateString) {
       timeDifference / (365.25 * 24 * 60 * 60 * 1000),
     );
 
-    return `${ageInYears} years`;
+    return `${ageInYears} Years`;
   }
   return "";
 }

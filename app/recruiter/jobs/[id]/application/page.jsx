@@ -2,7 +2,12 @@
 
 import APIKit from "@/common/APIkit";
 import { ApplicationStatus } from "@/common/KeyChain";
-import { formatDate, generateAge, generateQueryString } from "@/common/UtilKit";
+import {
+  formatDate,
+  formatText,
+  generateAge,
+  generateQueryString,
+} from "@/common/UtilKit";
 import ApplicationSearchSortFilter from "@/components/application/ApplicationSearchSortFilter";
 import Breadcrumb from "@/components/shared/Breadcrumb";
 import Select from "@/components/form/Select";
@@ -15,6 +20,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+
+const badgeColor = {
+  application_received:
+    "text-green-600 bg-green-100 hover:text-green-600 hover:bg-green-100", // Success
+  application_in_review:
+    "text-sky-600 bg-sky-100 hover:text-sky-600 hover:bg-sky-100", // Info
+  shortlisted_for_interview:
+    "text-sky-600 bg-sky-100 hover:text-sky-600 hover:bg-sky-100", // Info
+  interview_scheduled:
+    "text-sky-600 bg-sky-100 hover:text-sky-600 hover:bg-sky-100", // Info
+  interview_completed:
+    "text-green-600 bg-green-100 hover:text-green-600 hover:bg-green-100", // Success
+  hired: "text-green-600 bg-green-100 hover:text-green-600 hover:bg-green-100", // Success
+  interview_rescheduled:
+    "text-sky-600 bg-sky-100 hover:text-sky-600 hover:bg-sky-100", // Info
+  interview_canceled:
+    "text-red-600 bg-red-100 hover:text-red-600 hover:bg-red-100", // Error
+  not_selected: "text-red-600 bg-red-100 hover:text-red-600 hover:bg-red-100", // Error
+};
 
 export default function ApplicationForJob({ params: { id } }) {
   const contents = [
@@ -131,14 +155,16 @@ export default function ApplicationForJob({ params: { id } }) {
       title: "Resume",
       renderer: (data) =>
         data?.resume ? (
-          <Link
-            href={data.resume}
-            className="cursor-pointer font-semibold underline "
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Resume
-          </Link>
+          <div onClick={(e) => e.stopPropagation()}>
+            <Link
+              href={data.resume}
+              className="cursor-pointer font-semibold underline "
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Resume
+            </Link>
+          </div>
         ) : (
           "Resume not provided"
         ),
@@ -170,15 +196,12 @@ export default function ApplicationForJob({ params: { id } }) {
     {
       title: "Status",
       renderer: (data) => (
-        <div className="mx-auto w-52">
-          <Select
-            options={ApplicationStatus}
-            value={data.status}
-            onChange={(e) => {
-              console.log(e.target.value);
-            }}
-          />
-        </div>
+        <Badge
+          size="lg"
+          className={`${badgeColor[data?.status]} hover:cursor-default`}
+        >
+          {formatText(data?.status)}
+        </Badge>
       ),
     },
   ];

@@ -154,14 +154,16 @@ export default function RecruiterApplications() {
       title: "Resume",
       renderer: (data) =>
         data?.resume ? (
-          <Link
-            href={data.resume}
-            className="cursor-pointer font-semibold underline "
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Resume
-          </Link>
+          <div onClick={(e) => e.stopPropagation()}>
+            <Link
+              href={data.resume}
+              className="cursor-pointer font-semibold underline "
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Resume
+            </Link>
+          </div>
         ) : (
           "Resume not provided"
         ),
@@ -195,9 +197,7 @@ export default function RecruiterApplications() {
       renderer: (data) => (
         <Badge
           size="lg"
-          className={`${
-            badgeColor[data?.status]
-          } hidden hover:cursor-default xs:block`}
+          className={`${badgeColor[data?.status]} hover:cursor-default`}
         >
           {formatText(data?.status)}
         </Badge>
@@ -229,7 +229,9 @@ export default function RecruiterApplications() {
               theadClassName="sticky top-0 z-10"
               isClickable={true}
               handleTableRowClick={(row) =>
-                router.push(`/recruiter/applications/${row._id}`)
+                router.push(
+                  `/recruiter/jobs/${row?.job?._id}/application/${row._id}`,
+                )
               }
             />
             <Pagination

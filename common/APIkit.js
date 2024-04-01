@@ -209,6 +209,10 @@ const APIKit = {
           const url = `/we/job/application${queryString}`;
           return client.get(url);
         },
+        getSingleApplication: (jobId, applicationId) => {
+          const url = `/we/job/${jobId}/application/${applicationId}`;
+          return client.get(url);
+        },
       },
     },
   },
