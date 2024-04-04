@@ -20,7 +20,7 @@ export default function SelectField({
     <div className="flex flex-col">
       <label
         htmlFor={name}
-        className="mb-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
         {label}
       </label>
