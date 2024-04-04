@@ -3,8 +3,8 @@ import Link from "next/link";
 import {
   BriefcaseIcon,
   BuildingOffice2Icon,
-  CalendarIcon,
   EnvelopeIcon,
+  GlobeAltIcon,
   InboxStackIcon,
   MapPinIcon,
   PhoneIcon,
@@ -36,7 +36,9 @@ export default function InfoSection({ data }) {
                   {data?.user?.email}
                 </Link>
               ) : (
-                <p className="text-base font-medium text-primary">Not set</p>
+                <p className="text-base font-medium text-primary">
+                  Not provided
+                </p>
               )}
             </div>
           </div>
@@ -55,7 +57,32 @@ export default function InfoSection({ data }) {
                     {data?.phone}
                   </Link>
                 ) : (
-                  <p className="text-base font-medium text-primary">Not set</p>
+                  <p className="text-base font-medium text-primary">
+                    Not provided
+                  </p>
+                )}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <div>
+              <GlobeAltIcon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
+            </div>
+            <div>
+              <h1 className="text-sm font-medium text-primary">Portfolio</h1>
+              <p className="text-base font-medium text-primary">
+                {data?.candidate?.portfolio ? (
+                  <Link
+                    href={data?.candidate?.portfolio}
+                    className="text-base font-medium text-primary hover:underline"
+                  >
+                    Portfolio link
+                  </Link>
+                ) : (
+                  <p className="text-base font-medium text-primary">
+                    Not provided
+                  </p>
                 )}
               </p>
             </div>
@@ -89,7 +116,7 @@ export default function InfoSection({ data }) {
                 Current Company
               </h1>
               <p className="text-base font-medium text-primary">
-                {data?.current_company || "Not Provided"}
+                {data?.current_company || "Not provided"}
               </p>
             </div>
           </div>
@@ -100,24 +127,8 @@ export default function InfoSection({ data }) {
             <div>
               <h1 className="text-sm font-medium text-primary">Current Role</h1>
               <p className="text-base font-medium text-primary">
-                {data?.current_role || "Not Provided"}
+                {data?.current_role || "Not provided"}
               </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <div>
-              <CalendarIcon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
-            </div>
-            <div>
-              <h3 className="text-base font-medium text-primary">
-                Date of Birth
-              </h3>
-              <span className="text-base font-medium">
-                {data?.candidate?.date_of_birth
-                  ? formatDate(data?.candidate?.date_of_birth)
-                  : "Not Set"}
-              </span>
             </div>
           </div>
 
