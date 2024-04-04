@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import CandidateSIdebarCard from "./components/CandidateSIdebarCard";
 import InfoSection from "./components/InfoSection";
 import SkillSection from "./components/SkillSection";
+import ExperienceSection from "./components/ExperienceSection";
 
 export default function ApplicationDetails({ params }) {
   const { id: jobId, applicationId } = params;
@@ -47,6 +48,8 @@ export default function ApplicationDetails({ params }) {
           <InfoSection data={data} />
           <hr />
           <SkillSection data={data} />
+          <hr />
+          <ExperienceSection data={data} />
           <hr />
         </Card>
       </div>
