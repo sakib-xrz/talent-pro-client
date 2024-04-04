@@ -16,9 +16,7 @@ export default function InfoSection({ data }) {
   return (
     <div>
       <div>
-        <h2 className="text-base font-semibold text-primary">
-          About Candidate
-        </h2>
+        <h2 className="text-base font-semibold text-primary">About</h2>
       </div>
       <div className="space-y-2 pt-4">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

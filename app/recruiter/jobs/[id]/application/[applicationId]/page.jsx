@@ -11,6 +11,7 @@ import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import CandidateSIdebarCard from "./components/CandidateSIdebarCard";
 import InfoSection from "./components/InfoSection";
+import SkillSection from "./components/SkillSection";
 
 export default function ApplicationDetails({ params }) {
   const { id: jobId, applicationId } = params;
@@ -42,9 +43,10 @@ export default function ApplicationDetails({ params }) {
       <div className="grid gap-5 md:grid-cols-12">
         <CandidateSIdebarCard data={data} />
 
-        <Card className="md:col-span-8 xl:col-span-9">
+        <Card className="space-y-5 md:col-span-8 xl:col-span-9">
           <InfoSection data={data} />
-
+          <hr />
+          <SkillSection data={data} />
           <hr />
         </Card>
       </div>
