@@ -1,8 +1,10 @@
 import { ApplicationStatus } from "@/common/KeyChain";
 import { formatDate, generateAge } from "@/common/UtilKit";
 import SelectField from "@/components/form/SelectField";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CandidateSIdebarCard({ data }) {
   return (
@@ -37,22 +39,21 @@ export default function CandidateSIdebarCard({ data }) {
             </div>
           </div>
 
-          <div>
+          <div className="space-y-2">
             <p>Applied on {formatDate(data.createdAt)}</p>
 
-            <div>
-              <small className="font-medium">Change application status</small>
-              <SelectField
-                options={ApplicationStatus}
-                value={ApplicationStatus.find(
-                  (el) => el.value === data?.status,
-                )}
-                onChange={(selectedOption) => {
-                  // router.push(selectedOption.value);
-                  console.log(selectedOption);
-                }}
-              />
-            </div>
+            <SelectField
+              options={ApplicationStatus}
+              value={ApplicationStatus.find((el) => el.value === data?.status)}
+              onChange={(selectedOption) => {
+                // router.push(selectedOption.value);
+                console.log(selectedOption);
+              }}
+            />
+
+            <Link href={data?.resume} target="_blank" className="block">
+              <Button className="w-full">View Resume</Button>
+            </Link>
           </div>
         </div>
       </div>
