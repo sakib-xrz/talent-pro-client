@@ -1,9 +1,7 @@
 "use client";
 
 import APIKit from "@/common/APIkit";
-import { ApplicationStatus } from "@/common/KeyChain";
-import { formatDate, formatText, generateAge } from "@/common/UtilKit";
-import SelectField from "@/components/form/SelectField";
+import { formatDate } from "@/common/UtilKit";
 import Container from "@/components/shared/Container";
 import { Card } from "@/components/ui/card";
 import {
@@ -20,6 +18,7 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import CandidateSIdebarCard from "./components/CandidateSIdebarCard";
 
 export default function ApplicationDetails({ params }) {
   const { id: jobId, applicationId } = params;
@@ -49,56 +48,7 @@ export default function ApplicationDetails({ params }) {
       </div>
 
       <div className="grid gap-5 md:grid-cols-12">
-        <Card className="h-fit !p-5 md:col-span-4 xl:col-span-3">
-          <div class="space-y-6">
-            <div class="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="h-12 w-12 overflow-hidden rounded-full border border-border">
-                  <Image
-                    src={data.user.image_url}
-                    width={100}
-                    height={100}
-                    alt="candidate-image"
-                    className="h-12 w-12 object-cover"
-                  />
-                </div>
-
-                <div>
-                  <p className="text-left font-semibold text-primary">
-                    {data.user?.name?.first_name && data.user?.name?.last_name
-                      ? `${
-                          data.user.name.first_name +
-                          " " +
-                          data.user.name.last_name
-                        }`
-                      : "Name not set"}
-                  </p>
-                  <p className="text-sm lowercase text-primary first-letter:uppercase">
-                    {data.candidate?.gender || "Gender not set"} &bull;{" "}
-                    {data.candidate?.date_of_birth
-                      ? generateAge(data.candidate?.date_of_birth)
-                      : "Age not set"}
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <p>Applied on {formatDate(data.createdAt)}</p>
-
-                <SelectField
-                  options={ApplicationStatus}
-                  value={ApplicationStatus.find(
-                    (el) => el.value === data?.status,
-                  )}
-                  onChange={(selectedOption) => {
-                    // router.push(selectedOption.value);
-                    console.log(selectedOption);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </Card>
+        <CandidateSIdebarCard data={data} />
 
         <Card className="md:col-span-8 xl:col-span-9">
           {/* information about the candidate */}
