@@ -23,7 +23,7 @@ export default function ExperienceSection({ data }) {
                   {experience?.company_name || "Not set"} •{" "}
                   {formatText(experience?.job_type) || "Not Set"}
                 </p>
-                <p className="text-sm font-medium text-accent-foreground">
+                <p className="mt-2 text-sm font-medium text-accent-foreground">
                   {formatDate(experience?.start_date) || "Not set"} -{" "}
                   {experience?.work_currently
                     ? "Present"

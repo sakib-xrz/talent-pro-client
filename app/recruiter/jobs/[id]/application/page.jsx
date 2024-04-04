@@ -20,6 +20,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 
 const badgeColor = {
   application_received:
@@ -226,6 +227,12 @@ export default function ApplicationForJob({ params: { id } }) {
               data={applications.data}
               wrapperClassName="max-h-[calc(100vh-200px)] whitespace-nowrap font-medium"
               theadClassName="sticky top-0 z-10"
+              isClickable={true}
+              handleTableRowClick={(row) =>
+                router.push(
+                  `/recruiter/jobs/${row?.job?._id}/application/${row._id}`,
+                )
+              }
             />
             <Pagination
               params={params}
