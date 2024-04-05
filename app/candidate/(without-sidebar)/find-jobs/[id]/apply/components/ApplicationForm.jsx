@@ -95,8 +95,6 @@ export default function ApplicationForm({ job, candidate }) {
     );
   };
 
-  console.log(formik.errors);
-
   return (
     <div className="space-y-5">
       <PersonalInfo user={user} candidate={candidate} />

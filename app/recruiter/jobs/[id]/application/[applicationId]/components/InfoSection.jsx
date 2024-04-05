@@ -40,6 +40,7 @@ export default function InfoSection({ data }) {
               )}
             </div>
           </div>
+
           <div className="flex items-start gap-3">
             <div>
               <PhoneIcon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
@@ -99,12 +100,13 @@ export default function InfoSection({ data }) {
                   ? data?.years_of_experience < 1
                     ? "0 year"
                     : data?.years_of_experience === 1
-                    ? "1 year"
-                    : data?.years_of_experience + " years"
+                      ? "1 year"
+                      : data?.years_of_experience + " years"
                   : "Not set"}
               </p>
             </div>
           </div>
+
           <div className="flex items-start gap-3">
             <div>
               <BuildingOffice2Icon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
@@ -113,24 +115,25 @@ export default function InfoSection({ data }) {
               <h1 className="text-sm font-medium text-primary">
                 Current Company
               </h1>
-              <p className="text-base font-medium text-primary">
+              <p className="line-clamp-1 text-base font-medium text-primary">
                 {data?.current_company || "Not provided"}
               </p>
             </div>
           </div>
+
           <div className="flex items-start gap-3">
             <div>
               <InboxStackIcon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
             </div>
             <div>
               <h1 className="text-sm font-medium text-primary">Current Role</h1>
-              <p className="text-base font-medium text-primary">
+              <p className="line-clamp-1 text-base font-medium text-primary">
                 {data?.current_role || "Not provided"}
               </p>
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className="col-span-1 flex items-start gap-3 sm:col-span-2 lg:grid-cols-3">
             <div>
               <MapPinIcon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
             </div>

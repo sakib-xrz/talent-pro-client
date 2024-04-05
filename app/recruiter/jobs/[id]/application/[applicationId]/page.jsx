@@ -16,6 +16,7 @@ import ExperienceSection from "./components/ExperienceSection";
 import EducationSection from "./components/EducationSection";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 export default function ApplicationDetails({ params }) {
   const { id: jobId, applicationId } = params;
@@ -28,8 +29,11 @@ export default function ApplicationDetails({ params }) {
       APIKit.we.job.application
         .getSingleApplication(jobId, applicationId)
         .then(({ data }) => data),
-    enable: !!jobId && !!applicationId,
   });
+
+  useEffect(() => {
+    refetch();
+  }, [applicationId, jobId]);
 
   if (isLoading) {
     return "Loading...";

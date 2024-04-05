@@ -169,14 +169,6 @@ export default function RecruiterApplications() {
         ),
     },
     {
-      title: "Address",
-      renderer: (data) => (
-        <p className="max-w-[240px] whitespace-normal">
-          {data?.candidate?.location || "Not set"}
-        </p>
-      ),
-    },
-    {
       title: "Experience",
       renderer: (data) =>
         data?.years_of_experience < 1
