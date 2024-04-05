@@ -1,3 +1,5 @@
+import * as Yup from "yup";
+
 import { Phone } from "@/components/ui/phone";
 import PersonalInfo from "./PersonalInfo";
 import { useFormik } from "formik";
@@ -11,6 +13,23 @@ import { Button } from "@/components/ui/button";
 import APIKit from "@/common/APIkit";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import FormikErrorBox from "@/components/form/FormikErrorBox";
+
+const validationSchema = Yup.object().shape({
+  phone: Yup.string()
+    .matches(/^(?:\+?88|01)?\d{11}$/, "Please enter a valid phone number")
+    .required("Phone number is required"),
+  years_of_experience: Yup.number().min(
+    0,
+    "Years of experience must be non-negative",
+  ),
+  current_company: Yup.string().optional(),
+  current_role: Yup.string().optional(),
+  skills: Yup.array()
+    .min(1, "At least one skill is required")
+    .required("Skill is required"),
+  resume: Yup.string().required("Resume is required"),
+});
 
 export default function ApplicationForm({ job, candidate }) {
   const router = useRouter();
@@ -34,11 +53,13 @@ export default function ApplicationForm({ job, candidate }) {
       },
       phone: candidate?.phone,
       years_of_experience: 0,
+      current_company: "",
+      current_role: "",
       skills: [],
       resume: "",
       resume_preview: "",
     },
-    // validationSchema: {},
+    validationSchema,
     onSubmit: (values) => {
       setLoading(true);
       const handleSuccess = () => {
@@ -74,6 +95,8 @@ export default function ApplicationForm({ job, candidate }) {
     );
   };
 
+  console.log(formik.errors);
+
   return (
     <div className="space-y-5">
       <PersonalInfo user={user} candidate={candidate} />
@@ -104,6 +127,7 @@ export default function ApplicationForm({ job, candidate }) {
                     : formik.values.phone
                 }
               />
+              <FormikErrorBox formik={formik} field="phone" />
             </div>
           </div>
         </div>
@@ -111,7 +135,7 @@ export default function ApplicationForm({ job, candidate }) {
 
         <div className="space-y-2">
           <h2 className="text-lg font-semibold text-primary">
-            Related Work Experience
+            Work Experience
           </h2>
           <div className="space-y-2">
             <p className="font-medium text-primary">
@@ -127,6 +151,40 @@ export default function ApplicationForm({ job, candidate }) {
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
+              <FormikErrorBox formik={formik} field="years_of_experience" />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-medium text-primary">Current Company (If any)</p>
+            <div>
+              <Input
+                id="current_company"
+                name="current_company"
+                placeholder="eg. Google"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.current_company}
+              />
+
+              <FormikErrorBox formik={formik} field="current_company" />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-medium text-primary">Current Role (If any)</p>
+
+            <div>
+              <Input
+                id="current_role"
+                name="current_role"
+                placeholder="eg. Software Engineer"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.current_role}
+              />
+
+              <FormikErrorBox formik={formik} field="current_role" />
             </div>
           </div>
         </div>
@@ -159,6 +217,8 @@ export default function ApplicationForm({ job, candidate }) {
                 isMulti
                 isSearchable
               />
+
+              <FormikErrorBox formik={formik} field="skills" />
             </div>
           </div>
 
@@ -189,15 +249,19 @@ export default function ApplicationForm({ job, candidate }) {
                   </div>
                 </div>
               ) : (
-                <FileUpload
-                  id="resume"
-                  name="resume"
-                  htmlFor="resume"
-                  title="Select and upload your resume"
-                  helperText="Supported only PDF up to 10 mb"
-                  accept=".pdf"
-                  onChange={handleFileUpload}
-                />
+                <>
+                  <FileUpload
+                    id="resume"
+                    name="resume"
+                    htmlFor="resume"
+                    title="Select and upload your resume"
+                    helperText="Supported only PDF up to 10 mb"
+                    accept=".pdf"
+                    onChange={handleFileUpload}
+                  />
+
+                  <FormikErrorBox formik={formik} field="resume" />
+                </>
               )}
             </div>
           </div>
