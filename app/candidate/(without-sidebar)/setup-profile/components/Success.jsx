@@ -12,7 +12,7 @@ export default function Success() {
             height={400}
             width={400}
             alt=""
-            src="/images/success-icon.svg"
+            src="/images/success-icon.png"
             className="h-fit w-fit"
           />
         </div>
