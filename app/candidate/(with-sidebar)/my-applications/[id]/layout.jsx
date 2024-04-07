@@ -85,7 +85,7 @@ export default function ApplicationDetails({ params: { id }, children }) {
                 ApplicationStatus.find((status) => status.value === data.status)
                   ?.label}
             </h3>
-            <p className="text-sm font-medium text-gray-500">
+            <p className="text-sm font-medium text-muted-foreground">
               Applied {getTimeDifference(data?.createdAt) || "0 min ago"}
             </p>
           </div>
