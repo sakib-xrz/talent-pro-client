@@ -133,7 +133,7 @@ export default function InfoSection({ data }) {
             </div>
           </div>
 
-          <div className="col-span-1 flex items-start gap-3 sm:col-span-2 lg:grid-cols-3">
+          <div className="col-span-1 flex items-start gap-3 sm:col-span-2 lg:col-span-3">
             <div>
               <MapPinIcon className="h-10 w-10 rounded-md bg-primary/10 p-2 text-primary" />
             </div>

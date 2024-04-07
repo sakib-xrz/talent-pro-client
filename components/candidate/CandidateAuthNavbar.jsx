@@ -40,7 +40,7 @@ export default function CandidateAuthNavbar() {
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
-    <div className="sticky top-0 z-50 bg-white ">
+    <div className="sticky top-0 z-50 border-b border-border bg-white ">
       <div className="mx-auto grid max-w-7xl grid-cols-12 items-center justify-center gap-4 px-4 py-3 ">
         <Link href={"/candidate"} className="col-span-8 w-fit lg:col-span-2">
           <Image src={Logo} width={150} height={40} alt="Talent Pro Logo" />

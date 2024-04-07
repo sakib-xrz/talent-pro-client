@@ -160,6 +160,10 @@ const APIKit = {
           const url = `me/job/applied-job${queryString}`;
           return client.get(url);
         },
+        getSingleApplication: (uid) => {
+          const url = `me/job/applied-job/${uid}`;
+          return client.get(url);
+        },
       },
     },
   },

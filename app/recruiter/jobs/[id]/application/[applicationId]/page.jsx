@@ -55,8 +55,8 @@ export default function ApplicationDetails({ params }) {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2">
               <Image
-                width={50}
-                height={50}
+                width={100}
+                height={100}
                 src={
                   data?.organization?.company_logo ||
                   "/images/organization_placeholder.jpg"
