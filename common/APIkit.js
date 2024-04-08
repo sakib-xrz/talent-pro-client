@@ -61,6 +61,11 @@ const APIKit = {
       return client.get(url);
     },
 
+    getDashboard: () => {
+      const url = "/me/dashboard";
+      return client.get(url);
+    },
+
     info: {
       getInfo: () => {
         const url = "/me/info";
@@ -176,6 +181,11 @@ const APIKit = {
     setupProfile: (payload) => {
       const url = "/we";
       return client.post(url, payload, defaultFileUploadConfig);
+    },
+
+    getDashboard: () => {
+      const url = "/we/dashboard";
+      return client.get(url);
     },
 
     job: {
