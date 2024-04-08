@@ -190,6 +190,46 @@ export default function InfoFrom({ initialValues, refetch }) {
       </div>
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+        <Label htmlFor="current_company" className="md:w-2/5">
+          <p className="font-medium text-primary">Current Company</p>{" "}
+        </Label>
+        <div className="w-full">
+          <Input
+            name="current_company"
+            id="current_company"
+            placeholder="Your Current Company"
+            onChange={(e) => {
+              formik.handleChange(e);
+              setShowActionButtons(true);
+            }}
+            onBlur={formik.handleBlur}
+            value={formik.values.current_company}
+          />
+          <FormikErrorBox formik={formik} field={"current_company"} />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+        <Label htmlFor="current_role" className="md:w-2/5">
+          <p className="font-medium text-primary">Current Role</p>{" "}
+        </Label>
+        <div className="w-full">
+          <Input
+            name="current_role"
+            id="current_role"
+            placeholder="Your Current Role"
+            onChange={(e) => {
+              formik.handleChange(e);
+              setShowActionButtons(true);
+            }}
+            onBlur={formik.handleBlur}
+            value={formik.values.current_role}
+          />
+          <FormikErrorBox formik={formik} field={"current_role"} />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Label htmlFor="location" className="md:w-2/5">
           <p className="font-medium text-primary">
             Location <span className="text-destructive">*</span>
