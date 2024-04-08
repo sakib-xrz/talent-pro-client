@@ -50,6 +50,8 @@ export default function InfoFrom({ initialValues, refetch }) {
         gender: values.gender,
         date_of_birth: values.date_of_birth,
         phone: values.phone,
+        current_company: values.current_company,
+        current_role: values.current_role,
         location: values.location,
         industry: values.industry,
         job_status: values.job_status,

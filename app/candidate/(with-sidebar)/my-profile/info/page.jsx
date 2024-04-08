@@ -37,6 +37,8 @@ export default function PersonalInformation() {
     email: user?.email,
     gender: userInfo?.gender || "",
     date_of_birth: userInfo?.date_of_birth || "",
+    current_company: userInfo?.current_company || "",
+    current_role: userInfo?.current_role || "",
     phone: userInfo?.phone || "",
     location: userInfo?.location || "",
     industry: userInfo?.industry || "",
