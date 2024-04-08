@@ -10,7 +10,6 @@ import APIKit from "@/common/APIkit";
 import ApplicantsCard from "./components/ApplicantsCard";
 import JobPostCard from "./components/JobPostCard";
 import Image from "next/image";
-import { Card } from "@/components/ui/card";
 
 export default function Recruiter() {
   const router = useRouter();
