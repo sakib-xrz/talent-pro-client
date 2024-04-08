@@ -45,7 +45,10 @@ export default function ApplicantsCard({ data }) {
             <p className="text-muted-foreground">In Review</p>
           </div>
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-            <BookOpenCheck className="h-6 w-6 text-primary" />
+            <BookOpenCheck
+              strokeWidth="1.5px"
+              className="h-6 w-6 text-primary"
+            />
           </div>
         </Card>
 
@@ -93,7 +96,7 @@ export default function ApplicantsCard({ data }) {
             <p className="text-muted-foreground">Not Selected</p>
           </div>
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-            <MonitorX className="h-6 w-6 text-primary" />
+            <MonitorX strokeWidth="1.5px" className="h-6 w-6 text-primary" />
           </div>
         </Card>
       </div>

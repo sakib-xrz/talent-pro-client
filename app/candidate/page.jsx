@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
+import ProfileCard from "./components/ProfileCard";
 
 export default function Candidate() {
   const router = useRouter();
@@ -34,7 +34,7 @@ export default function Candidate() {
 
   return (
     <Container>
-      <h1 className="text-3xl font-semibold capitalize text-gray-700">
+      <h1 className="text-2xl font-semibold capitalize text-gray-700 md:text-3xl">
         Welcome{" "}
         {user?.name?.first_name && user?.name?.last_name
           ? `${
@@ -46,7 +46,7 @@ export default function Candidate() {
         !
       </h1>
 
-      <div className="flex gap-6 space-y-4">
+      <div className="flex flex-col-reverse gap-6 space-y-4 lg:flex-row">
         <div className="mt-5 grid w-full gap-4 sm:grid-cols-2 lg:w-8/12">
           <Card className="flex items-center justify-between gap-4 !p-4">
             <div className="space-y-1">
@@ -134,33 +134,7 @@ export default function Candidate() {
           </Card>
         </div>
 
-        <div className="w-full lg:w-4/12">
-          <Card>
-            <div className="flex items-center gap-4">
-              <Image
-                height={200}
-                width={200}
-                alt=""
-                src={user?.image_url || "/images/avatar.png"}
-                className="h-12 w-12 shrink-0 rounded-full border border-border object-cover md:h-16 md:w-16"
-              />
-
-              <div className="">
-                <h3 className="text-md font-semibold text-gray-700 sm:text-lg">
-                  Hi,{" "}
-                  {user?.name?.first_name && user?.name?.last_name
-                    ? `${user?.name?.first_name + " " + user?.name?.last_name}`
-                    : "Not Set"}
-                  !
-                </h3>
-
-                <p className="text-xs text-gray-500 sm:text-base">
-                  {user?.email || "Email was not set"}
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
+        <ProfileCard />
       </div>
     </Container>
   );
