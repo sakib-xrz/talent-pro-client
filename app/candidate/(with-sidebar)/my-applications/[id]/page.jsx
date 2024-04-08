@@ -18,5 +18,6 @@ export default function ApplicationDetails({ params: { id } }) {
   }
 
   console.log(data);
+
   return <div>ApplicationDetails</div>;
 }
