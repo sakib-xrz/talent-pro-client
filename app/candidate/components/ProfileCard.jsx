@@ -23,22 +23,20 @@ export default function ProfileCard() {
           "Loading..."
         ) : (
           <>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col items-center gap-4 xs:flex-row">
               <Image
                 height={200}
                 width={200}
                 alt=""
                 src={user?.image_url || "/images/avatar.png"}
-                className="h-12 w-12 shrink-0 rounded-full border border-border object-cover md:h-16 md:w-16"
+                className="h-28 w-28 shrink-0 rounded-full border border-border object-cover xs:h-16 xs:w-16"
               />
 
-              <div className="">
+              <div className="text-center xs:text-left">
                 <h3 className="text-md font-semibold sm:text-lg">
-                  Hi,{" "}
                   {user?.name?.first_name && user?.name?.last_name
                     ? `${user?.name?.first_name + " " + user?.name?.last_name}`
                     : "Not Set"}
-                  !
                 </h3>
 
                 <p className="text-xs text-muted-foreground  sm:text-base">
