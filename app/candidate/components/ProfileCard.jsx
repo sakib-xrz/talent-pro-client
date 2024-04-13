@@ -5,8 +5,8 @@ import Image from "next/image";
 import { generateAge } from "@/common/UtilKit";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Container from "@/components/shared/Container";
 import APIKit from "@/common/APIkit";
+import ProfileCardSkeleton from "./skeleton/ProfileCardSkeleton";
 
 export default function ProfileCard() {
   const { user } = useStore();
@@ -20,7 +20,7 @@ export default function ProfileCard() {
     <div className="w-full lg:w-4/12">
       <Card>
         {isLoading ? (
-          "Loading..."
+          <ProfileCardSkeleton />
         ) : (
           <>
             <div className="flex flex-col items-center gap-4 xs:flex-row">
