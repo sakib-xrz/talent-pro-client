@@ -33,13 +33,13 @@ export default function ProfileCard() {
               />
 
               <div className="text-center xs:text-left">
-                <h3 className="text-md font-semibold sm:text-lg">
+                <h3 className="xs:text-md text-2xl font-semibold sm:text-lg">
                   {user?.name?.first_name && user?.name?.last_name
                     ? `${user?.name?.first_name + " " + user?.name?.last_name}`
                     : "Not Set"}
                 </h3>
 
-                <p className="text-xs text-muted-foreground  sm:text-base">
+                <p className="text-sm text-muted-foreground sm:text-base">
                   {data?.current_company || data?.current_role ? (
                     `${data?.current_company} | ${data?.current_role}`
                   ) : (
