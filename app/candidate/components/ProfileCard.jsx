@@ -43,9 +43,9 @@ export default function ProfileCard() {
                   {data?.current_company || data?.current_role ? (
                     `${data?.current_company} | ${data?.current_role}`
                   ) : (
-                    <span className="lowercase first-letter:uppercase">
-                      `${data?.gender} | ${generateAge(data?.date_of_birth)}`
-                    </span>
+                    <p className="lowercase first-letter:uppercase">
+                      {`${data?.gender} • ${generateAge(data?.date_of_birth)}`}
+                    </p>
                   )}
                 </p>
               </div>
